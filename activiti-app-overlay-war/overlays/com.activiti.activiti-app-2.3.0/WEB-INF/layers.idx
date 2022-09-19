@@ -1,0 +1,11 @@
+- "dependencies":
+  - "WEB-INF/lib/"
+- "spring-boot-loader":
+  - "org/"
+- "snapshot-dependencies":
+- "application":
+  - ".htaccess"
+  - "META-INF/"
+  - "WEB-INF/classes/"
+  - "WEB-INF/jboss-deployment-structure.xml"
+  - "WEB-INF/layers.idx"

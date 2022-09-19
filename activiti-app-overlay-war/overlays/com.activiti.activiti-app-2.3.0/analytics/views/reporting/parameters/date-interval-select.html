@@ -1,0 +1,11 @@
+<div ng-controller="ReportingParamDateIntervalController">
+    <span ng-if="parameter.name">{{parameter.name}}</span>
+    <span ng-if="!parameter.name && parameter.nameKey">{{(parameter.nameKey) | translate}}</span>
+
+    <select class="form-control"
+            ng-options="option.id as option.name for option in model.dateIntervalOptions"
+            ng-model="parameter.value"
+            ng-change="parameterValueUpdated()"
+            ng-disabled="model.loading">
+    </select>
+</div>

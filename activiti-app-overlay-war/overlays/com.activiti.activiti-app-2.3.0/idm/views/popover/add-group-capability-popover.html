@@ -1,0 +1,40 @@
+<div class="popover" ng-controller="AddCapabilityPopoverController" click-anywhere="$hide()" ignore="toggle-add-capability">
+    <div class="arrow"></div>
+    <div class="popover-header">
+        <span>{{'IDM.SYSTEM-GROUP-MGMT.POPUP.ADD-CAPABILITY-TITLE' | translate}}</span>
+        <div class="actions">
+            <a ng-click="$hide()">
+                {{'IDM.GENERAL.ACTION.CLOSE' | translate}}
+            </a>
+        </div>
+    </div>
+    <div class="popover-wrapper clearfix">
+
+        <div ng-if="!model.capabilitiesLoading" style="max-height: 200px; overflow: auto;">
+
+            <ul class="simple-list pack" style="overflow: visible;">
+                <li ng-repeat="capability in model.potentialCapabilities"
+                    ng-click="selectCapability(capability)"
+                    class="potential-capability"
+                    ng-class="{'potential-capability-selected' : isSelectedCapability(capability) }">
+                    <i class="glyphicon glyphicon-ok-circle"></i>
+                    <span>{{'IDM.SYSTEM-GROUP-MGMT.CAPABILITIES.' +  capability  | translate}}</span>
+                </li>
+            </ul>
+
+            <div ng-if="model.potentialCapabilities && model.potentialCapabilities.length == 0" style="color:grey">
+                <span>{{'IDM.SYSTEM-GROUP-MGMT.POPUP.ADD-CAPABILITY-NO-FOUND' | translate}}</span>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="popover-footer">
+        <div class="btn-group pull-right">
+            <button class="btn btn-default" ng-click="addCapabilitiesToGroup();" ng-disabled="model.capabilitiesLoading || model.selectedCapabilities.length == 0 || readOnly">
+                <span>{{'IDM.SYSTEM-GROUP-MGMT.POPUP.ADD-CAPABILITY-CONFIRM' | translate:model}}</span>
+            </button>
+        </div>
+        <div loading="model.capabilitiesLoading"></div>
+    </div>
+</div>

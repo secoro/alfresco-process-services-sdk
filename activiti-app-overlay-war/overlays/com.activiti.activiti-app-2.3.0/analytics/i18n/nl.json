@@ -1,0 +1,244 @@
+{
+  "COMMON": {
+    "ACCOUNTS": {
+      "box": "BOX",
+      "alfresco-*": "Alfresco ({{name}})",
+      "alfresco-cloud": "Alfresco Content Services in the Cloud",
+      "google-drive": "Google Drive"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services bevindt zich in de modus Alleen-lezen omdat de lokale licentie ongeldig is.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services bevindt zich in de modus Alleen-lezen omdat geen lokale licentie is gevonden.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services bevindt zich in de modus Alleen-lezen omdat de datums van de lokale licentie niet geldig zijn. (Ze zijn verlopen of de startdatum ligt in de toekomst.)",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Uw licentie is bijna verlopen! Alfresco Process Services zal overgaan op de modus Alleen-lezen."
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Analytics",
+    "ERROR": {
+      "GENERIC": "Er is een fout opgetreden...",
+      "UNKNOWN": "Bij het uitvoeren van de aangevraagde bewerking is een fout opgetreden.",
+      "BAD_REQUEST": "Bij het uitvoeren van de aangevraagde bewerking is een fout opgetreden.",
+      "NOT_FOUND": "De resource die u wilt openen bestaat niet.",
+      "UNAUTHORIZED": "U moet zich aanmelden om de aangevraagde bewerking te kunnen uitvoeren.",
+      "FORBIDDEN": "U bent niet gemachtigd om de aangevraagde bewerking uit te voeren.",
+      "INTERNAL_SERVER_ERROR": "Bij het uitvoeren van de aangevraagde bewerking is een onverwachte fout opgetreden."
+    },
+    "NAVIGATION": {
+      "REPORTS": "Rapporten",
+      "CONFIGURE": "Configureren"
+    },
+    "ACTION": {
+      "LOGOUT": "Afmelden",
+      "SAVE": "Opslaan",
+      "CANCEL": "Annuleren",
+      "CLOSE": "Sluiten",
+      "ABOUT": "Over Alfresco Process Services",
+      "HELP-DOCS-LINK": "Help"
+    },
+    "ABOUT": {
+      "TYPE": "Type",
+      "LICENSED-TO": "Gelicentieerd voor",
+      "EXPIRES": "Geldig tot",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Alle rechten voorbehouden.",
+      "LEGAL": "Juridische kennisgevingen en licentie-informatie"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "U kunt allerlei belangrijke rapporten over uw processen maken die u helpen bij het vaststellen van knelpunten of prestatieverbeteringen.",
+    "GENERATE-REPORTS": "Voeg nu een aantal standaardrapporten toe.",
+    "NO-REPORT-SELECTED": "Geen rapport geselecteerd. Selecteer een rapport in de lijst aan de linkerkant.",
+    "NO-DATA-FOUND": "Geen gegevens gevonden",
+    "CONFIG-REPORTS": "Rapporten configureren",
+    "RESET-ALL-REPORTS": "Al mijn rapporten opnieuw instellen",
+    "FETCHING-PROC-DEFS": "Procesdefinities ophalen...",
+    "GENERATING": "Rapport genereren...",
+    "SAVE-REPORT": "Dit rapport opslaan",
+    "EXPORT-REPORT": "Gegevens exporteren",
+    "SHOW": "Klikken om weer te geven",
+    "HIDE": "Opnieuw klikken om te verbergen",
+    "FILL-PARAMS": "Geen rapportgegevens gevonden. Vul de parameters in om uw rapport te genereren.",
+    "PROCESS-STATUS": "Processtatus",
+    "TASK-STATUS": "Taakstatus",
+    "STATUS": {
+      "ACTIVE": "Actief",
+      "ALL": "Alle",
+      "COMPLETE": "Voltooid"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "Geen voltooide taken gevonden voor huidige procesdefinitie.",
+      "DATE-RANGE": {
+        "TODAY": "Vandaag",
+        "YESTERDAY": "Gisteren",
+        "LAST-7-DAYS": "Laatste 7 dagen",
+        "PREVIOUS-MONTH": "Vorige maand",
+        "CURRENT-YEAR": "Huidig jaar",
+        "CUSTOM-RANGE": "Aangepast bereik",
+        "APPLY": "Toepassen",
+        "CANCEL": "Annuleren",
+        "FROM": "Van",
+        "TO": "Tot"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "Op uur",
+        "DAY": "Op dag",
+        "WEEK": "Op week",
+        "MONTH": "Op maand",
+        "YEAR": "Op jaar"
+      },
+      "DURATION": {
+        "SECONDS": "Seconden",
+        "MINUTES": "Minuten",
+        "HOURS": "Uren",
+        "DAYS": "Dagen"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "TITLE": "Taakoverzicht",
+        "PROCESS-DEFINITION": "Procesdefinitie",
+        "DATE-RANGE": "Datumbereik",
+        "DATE-RANGE-INTERVAL": "Datums samenvoegen op basis van",
+        "TASK-COUNT-TITLE": "Aantal taken",
+        "TASK-COUNT-DESCRIPTION": "Dit diagram geeft het totale aantal taken in het gegeven datumbereik weer.",
+        "TASK-DURATIONS-TITLE": "Duur van de taken",
+        "TASK-DURATIONS-DESCRIPTION": "Dit diagram geeft de gemiddelde, minimale en maximale duur (in uren) van de voltooide taken in het gegeven datumbereik weer. In de gedetailleerde tabel hieronder geeft de x-as het regelnummer van de taak weer.",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "Aantal taken per toegewezen persoon",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "Dit cirkeldiagram geeft het aantal taken voor de geselecteerde procesdefinitie weer, op basis van iedere toegewezen persoon.",
+        "DETAILED-TASK-STATS-TITLE": "Gedetailleerde taakstatistieken",
+        "DETAILED-TASK-STATS-DESCRIPTION": "Deze tabel geeft de samengevoegde statistieken van alle taken weer. Klik op een willekeurige taak voor meer gedetailleerde informatie. Alle tijdinformatie wordt aangegeven in uren.",
+        "DETAILED-TASK-STATS-TASK": "Taak",
+        "DETAILED-TASK-STATS-ASSIGNEE": "Toegewezen persoon",
+        "TASK-HISTOGRAM-TITLE": "Aantal taken, onderverdeeld op basis van het datuminterval",
+        "TASK-HISTOGRAM-TABLE": "Tabel: vorige diagramgegevens in tabelformaat",
+        "TASK-HISTOGRAM-TABLE-DATE": "Datum",
+        "COUNT": "Aantal",
+        "SUM": "Som",
+        "MIN-DURATION": "Min. duur",
+        "MAX-DURATION": "Max. duur",
+        "AVERAGE": "Gemiddelde",
+        "STDDEV": "Standaardafwijking"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "TITLE": "Procesinstantieoverzicht",
+        "PROCESS-DEFINITION": "Procesdefinitie",
+        "DATE-RANGE": "Datumbereik",
+        "SLOW-PROC-INST-NUMBER": "Hoeveel langzaamste procesinstanties moeten worden weergegeven?",
+        "HISTOGRAM-TITLE": "Aantal procesinstanties",
+        "HISTOGRAM-DESCRIPTION": "Het volgende diagram geeft het aantal procesinstanties weer dat is gestart en voltooid binnen het geselecteerde datumbereik.",
+        "ACTIVITY-DURATION-TABLE-TITLE": "Details activiteitsduur",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "De volgende tabel geeft de tijden van de verschillende activiteiten in het proces weer, geordend op de benodigde cumulatieve totale tijd. Alle tijdinformatie wordt aangegeven in uren.",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "Activiteit",
+        "ACTIVITY-DURATION-CHART-TITLE": "Totale tijd van de processtappen",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "Dit diagram geeft weer voor welke activiteiten tijd is besteed. De aantallen zijn de som van de totale duur voor die activiteit, zoals weergegeven in de onderstaande tabel.",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "Langzaamste procesinstanties",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "Deze tabel geeft de langzaamste procesinstanties weer die in het geconfigureerde datumbereik zijn voltooid. Klik op een vermelding om de procesvariabelen voor de desbetreffende procesinstantie weer te geven.",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Duur",
+        "SLOWEST-PROCESS-INSTANCES-ID": "Interne ID",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Business key",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Aanmaaktijd",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "Eindtijd",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variabelen",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "variabelenaam",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Variabelewaarde",
+        "COUNT": "Aantal",
+        "SUM": "Som",
+        "MIN-DURATION": "Min. duur",
+        "MAX-DURATION": "Max. duur",
+        "AVERAGE": "Gemiddelde",
+        "STDDEV": "Standaardafwijking"
+      },
+      "TASK-SLA": {
+        "TITLE": "SLA-overzicht",
+        "PROCESS-DEFINITION": "Procesdefinitie",
+        "TASK": "Taak",
+        "DATE-RANGE": "Datumbereik",
+        "SLA-DURATION": "In welke tijd moet deze taak worden voltooid om te voldoen aan de SLA?",
+        "SLA-NOT-OK": "Service Level Agreement OK vs. Niet OK",
+        "ASSIGNEE-TABLE": "Toegewezen personen die de taak niet binnen de grenzen van de SLA hebben voltooid",
+        "ASSIGNEE": "Toegewezen persoon",
+        "COUNT": "Aantal"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "TITLE": "Procesdefinitieoverzicht",
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Totaal aantal procesdefinities: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Totaal aantal procesinstanties: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Totaal aantal actieve procesinstanties: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Totaal aantal voltooide procesinstanties: ",
+        "DETAIL-TABLE": "Details procesdefinitie",
+        "DETAIL-TABLE-PROCESS": "Procesdefinitie",
+        "DETAIL-TABLE-TOTAL": "Totaal",
+        "DETAIL-TABLE-ACTIVE": "Actief",
+        "DETAIL-TABLE-COMPLETED": "Voltooid",
+        "PROC-INST-CHART-TITLE": "Overzicht van het totaal van de procesinstanties",
+        "DURATIONS-CHART-TITLE": "Gemiddelde tijden voor elke procesdefinitie",
+        "DURATIONS-CHART-DESCRIPTION": "De gemiddelde duur (en standaardafwijking) van voltooide procesinstanties in uren. De waarde op de x-as komt overeen met de vermelding in de bovenstaande tabel."
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "Heatmap voor proces",
+        "TYPE-FILTERING": "Alle processtappen opnemen? (Als u deze optie uitschakelt, worden tussenstappen zoals start events, gateways enz. verwijderd.)",
+        "METRIC-TOTAL-COUNT": "Aantal keren dat een stap is uitgevoerd",
+        "METRIC-TOTAL-TIME": "Totale tijd die in een processtap is besteed",
+        "METRIC-AVG-TIME": "Gemiddelde tijd die in een processtap is besteed",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "keer",
+        "METRIC-TOTAL-TIME-TOOLTIP": "uren",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "uren",
+        "GENERATING": "Heatmap voor proces genereren..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "Rapport opslaan",
+        "DESCRIPTION": "De huidige parameterinstellingen worden opgeslagen en er wordt een nieuw rapport weergegeven in de rapportenlijst. Wanneer op dit specifieke rapport wordt geklikt, wordt het rapport gegenereerd met behulp van deze opgeslagen parameterwaarden.",
+        "NAME": "Naam"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "Gegevens exporteren",
+        "NAME": "Naam"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "Rapport verwijderen",
+        "DESCRIPTION": "Weet u zeker dat u dit rapport wilt verwijderen?",
+        "CONFIRM": "Rapport verwijderen"
+      }
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "App Designer",
+      "TITLE-PROCESSES": "Procesmodellen",
+      "TITLE-FORMS": "Formuliermodellen",
+      "TITLE-APPS": "App-modellen",
+      "TITLE-STENCILS": "Stencils",
+      "TITLE-DECISION-TABLES": "Beslissingstabellen",
+      "TITLE-DATA-MODELS": "Gegevensmodellen"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Beheer App"
+    },
+    "TASKS": {
+      "TITLE": "Task App",
+      "TITLE-TASKS": "Taken",
+      "TITLE-PROCESSES": "Processen",
+      "TITLE-PROCESSES?MODE=START": "Start"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profiel",
+      "TITLE-TENANT-ADMIN": "Identiteitsbeheer",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenants",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Gebruikers",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Functies",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organisatie",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profiel",
+      "TITLE-PROFILE": "Profiel"
+    },
+    "ANALYTICS": {
+      "TITLE": "Analytics App"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}}-taken",
+      "TITLE-PROCESSES": "{{name}}-processen",
+      "TITLE-PROCESSES?MODE=START": "{{name}}-start"
+    }
+  }
+}

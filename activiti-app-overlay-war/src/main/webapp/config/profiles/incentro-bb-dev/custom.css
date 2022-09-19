@@ -1,0 +1,9 @@
+.navbar {
+    background-color: #36A7C4;
+}
+
+.user-menu-con:before {
+    content: "INCENTRO-BB-DEV";
+    color: white;
+    padding-right: 15px;
+}

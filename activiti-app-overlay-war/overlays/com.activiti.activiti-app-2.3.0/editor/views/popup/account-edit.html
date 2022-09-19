@@ -1,0 +1,41 @@
+
+<div class="modal" ng-controller="AccountEditPopupCrtl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h2>{{'ACCOUNT.POPUP.EDIT.TITLE' | translate}}</h2>
+            </div>
+            <div class="modal-body">
+            	<div class="form-group">
+            	    <label for="editFirstname" class="control-label" translate="ACCOUNT.POPUP.EDIT.FIRSTNAME"></label>
+            	    <input ng-disabled="model.loading" type="text" class="form-control" id="editFirstname" ng-model="model.firstName"
+            	    	placeholder="{{'ACCOUNT.POPUP.EDIT.FIRSTNAME-PLACEHOLDER' | translate}}">
+            	</div>
+            	<div class="form-group">
+            	    <label for="editLastname" class="control-label" translate="ACCOUNT.POPUP.EDIT.LASTNAME"></label>
+            	    <input ng-disabled="model.loading" type="text" class="form-control" id="editLastname" ng-model="model.lastName"
+            	    	placeholder="{{'ACCOUNT.POPUP.EDIT.LASTNAME-PLACEHOLDER' | translate}}">
+            	</div>
+            	<div class="form-group">
+            	    <label for="editCompany" class="control-label" translate="ACCOUNT.POPUP.EDIT.COMPANY"></label>
+            	    <input ng-disabled="model.loading" type="text" class="form-control" id="editCompany" ng-model="model.company"
+            	    	placeholder="{{'ACCOUNT.POPUP.EDIT.COMPANY-PLACEHOLDER' | translate}}">
+            	</div>
+            </div>
+            
+            <div class="modal-footer">
+            	<div class="pull-right">
+            		<button type="button" class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="model.loading">
+            			{{'GENERAL.ACTION.CANCEL' | translate}}
+            		</button>
+            		<button type="button" class="btn btn-sm btn-default" ng-click="ok()" ng-disabled="model.loading || !model.firstName || !model.lastName || readOnly">
+            			{{'ACCOUNT.POPUP.EDIT.CONFIRM' | translate}}
+            		</button>
+            	</div>
+            	<div class="loading pull-right" ng-show="model.loading">
+            		<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>

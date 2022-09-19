@@ -1,0 +1,105 @@
+<div class="modal"
+	ng-controller="ActivitiRestCallRequestHeadersPopupCtrl">
+	<div class="modal-dialog modal-wide">
+		<div class="modal-content" ng-form="requestHeadersForm">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true" ng-click="close()">&times;</button>
+				<h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}}
+					"{{property.title | translate}}"</h2>
+			</div>
+			<div class="modal-body">
+				<div class="row row-no-gutter">
+					<div class="col-xs-6">
+						<div class="kis-listener-grid" ui-grid="requestHeadersGridOptions"
+							ui-grid-selection ng-if="requestHeadersGridOptions"></div>
+						<div class="pull-right">
+							<div class="btn-group">
+								<a class="btn btn-icon btn-lg" rel="tooltip"
+									data-title="{{ACTION.ADD | translate}}" data-placement="bottom"
+									data-original-title="" title="" id="add-request-header-button"
+									ng-click="addNewRequestHeader()"><i
+									class="glyphicon glyphicon-plus"></i></a> <a
+									class="btn btn-icon btn-lg" rel="tooltip"
+									data-title="{{ACTION.REMOVE | translate}}"
+									ng-disabled="!selectedRequestHeader"
+									data-placement="bottom" data-original-title="" title=""
+									ng-click="removeRequestHeader()"><i
+									class="glyphicon glyphicon-minus"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div ng-if="selectedRequestHeader">
+							<div class="form-group"
+								ng-class="{'has-error': requestHeadersForm.headerName.$invalid}">
+								<label for="headerName"
+									translate="PROCESS-BUILDER.REST-CALL-STEP.REQUEST-HEADERS.HEADER-NAME"></label>
+								<input type="text" id="headerName" name="headerName"
+									class="form-control" ng-model="selectedRequestHeader.name" ng-required="true" required
+									placeholder="{{'FORM-BUILDER.COMPONENT.PLACEHOLDER-REQUEST-HEADER-NAME' | translate}}">
+							</div>
+							<div class="form-group"
+								ng-class="{'has-error': requestHeadersForm.headerValue.$invalid}">
+								<label for="headerValue"
+									translate="PROCESS-BUILDER.REST-CALL-STEP.REQUEST-HEADERS.HEADER-VALUE"></label>
+								<input type="text" id="headerValue" name="headerValue"
+									class="form-control" ng-model="selectedRequestHeader.value"
+									store-cursor-position="restHeaderConfig.position" ng-required="true"
+									placeholder="{{'FORM-BUILDER.COMPONENT.PLACEHOLDER-REQUEST-HEADER-VALUE' | translate}}">
+							</div>
+
+							<div class="form-group">
+								<div class="btn-group btn-group-justified">
+									<div class="btn-group">
+										<button type="button" class="btn btn-default"
+											ng-click="setUrlFieldType('formField')"
+											ng-model="popup.headerFieldType"
+											ng-class="{'active' : popup.headerFieldType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD'
+											| translate}}</button>
+									</div>
+									<div class="btn-group">
+										<button type="button" class="btn btn-default"
+											ng-click="setUrlFieldType('restResponse')"
+											ng-model="popup.headerFieldType"
+											ng-class="{'active' : popup.headerFieldType === 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE'
+											| translate}}</button>
+									</div>
+								</div>
+
+								<div ng-show="popup.headerFieldType === 'formField'">
+									<div>
+										<div class="subtle"
+											translate="FORM-BUILDER.MESSAGE.REQUEST-HEADER-INSERT-FIELD-HELP"
+											style="padding: 5px 0 5px 1px;"></div>
+										<div field-select="restHeaderConfig.field" include-type="true"
+											expand-relative="true" all-steps="allSteps" step-id="selectedShape.resourceId"
+											select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'"
+											field-type-filter="allowedTypes" editor-type="bpmn"></div>
+									</div>
+								</div>
+
+								<div ng-show="popup.headerFieldType === 'restResponse'">
+									<div>
+										<div class="subtle"
+											translate="FORM-BUILDER.MESSAGE.REQUEST-HEADER-INSERT-VARIABLE-HELP"
+											style="padding: 5px 0 5px 1px;"></div>
+										<div field-select="restHeaderConfig.field" include-type="true"
+											variables-type="rest" editor-type="bpmn"
+											expand-relative="true" step-id="selectedShape.resourceId" all-steps="allSteps"
+											select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-RESPONSE-VARIABLE'"></div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button ng-click="close()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+					<button ng-click="save()" ng-disabled="requestHeadersForm.$invalid || readOnly" class="btn btn-primary" translate>ACTION.SAVE</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

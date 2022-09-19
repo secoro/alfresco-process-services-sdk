@@ -1,0 +1,44 @@
+<div ng-if="element.rows && element.rows.length > 0">
+
+    <h2 ng-if="element.title">{{element.title}}</h2>
+    <h2 ng-if="!element.title && element.titleKey">{{element.titleKey | translate}}</h2>
+
+    <div ng-if="element.description" class="well">{{element.description}}</div>
+    <div ng-if="!element.description && element.descriptionKey" class="well">{{element.descriptionKey | translate}}</div>
+
+    <div ng-if="element.collapseable && element.collapsed" class="collapsed-table" ng-click="element.collapsed = !element.collapsed">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span ng-if="element.collapsedTitle">{{element.collapsedTitle}}</span>
+        <span ng-if="!element.collapsedTitle && element.collapsedTitleKey">{{element.collapsedTitleKey | translate}}</span>
+        <a href="">{{'REPORTING.SHOW' | translate}}</a>
+    </div>
+
+    <div ng-if="element.collapseable && !element.collapsed" class="collapsed-table" ng-click="element.collapsed = !element.collapsed">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+        <span ng-if="element.collapsedTitle">{{element.collapsedTitle}}</span>
+        <span ng-if="!element.collapsedTitle && element.collapsedTitleKey">{{element.collapsedTitleKey | translate}}</span>
+        <a href="">{{'REPORTING.HIDE' | translate}}</a>
+    </div>
+
+    <table ng-if="!element.collapsed" class="table table-hover">
+        <thead>
+        <tr>
+            <th ng-if="element.showRowIndex"></th>
+            <th ng-if="!element.columnNameKeys && element.columnNames && element.columnNames.length > 0"
+                ng-repeat="columnName in element.columnNames">{{columnName}}</th>
+            <th ng-if="element.columnNameKeys && element.columnNameKeys.length > 0"
+                ng-repeat="columnNameKey in element.columnNameKeys">{{columnNameKey | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in element.rows track by $index">
+            <td ng-if="element.showRowIndex">{{$index + 1}}</td>
+            <td ng-class="{'centered-column': element.columnsCentered[$index]}"
+                ng-repeat="rowObject in row track by $index">{{getTranslationOrValue(rowObject)}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div ng-if="!element.rows || element.rows.length == 0" class="no-reporting-data">{{'REPORTING.NO-DATA-FOUND' | translate}}</div>

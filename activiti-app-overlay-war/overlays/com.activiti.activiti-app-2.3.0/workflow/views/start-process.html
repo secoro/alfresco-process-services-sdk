@@ -1,0 +1,100 @@
+<div class="row column-page">
+    <div class="col-xs-12 column-page-body">
+        <div class="row">
+            <div class="col-xs-3 column-page-body-column">
+                <div class="column-header" ng-class="{ 'column-header-fixed': !processDefinitions || processDefinitions.length > 0 }">
+                    <h4>
+                        <span translate="PROCESS.MESSAGE.START-PROCESS"></span>
+                    </h4>
+                    <p ng-if="processDefinitions.length != 0">
+                        <small translate="PROCESS.MESSAGE.SELECT-DEFINITION"></small>
+                    </p>
+                </div>
+
+                <ul ng-show="processDefinitions.length > 0"
+                    column-list-scroll="column-header"
+                    class="column-list column-list--summary">
+                    <li class="column-list-scroll-push"></li>
+                    <li class="column-list-item noselect"
+                        ng-repeat="definition in processDefinitions"
+                        ng-if="definition.name != 'Hire' && definition.name != 'Todo'"
+                        ng-class="{'active' : processDefinition.id == definition.id}"
+                        ng-click="selectProcessDefinition(definition)">
+                        <div>
+                            <div class="title">
+                                {{definition.name}}
+                            </div>
+                            <div class="detail">
+                                {{definition.description}}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="column-list-empty" ng-if="processDefinitions.length == 0">
+                    <span translate="PROCESS.MESSAGE.NO-PROCESS-DEFINITIONS"></span>
+                </div>
+
+            </div>
+
+            <div class="col-xs-9 column-page-body-column-large">
+
+                <div ng-show="!processDefinition.id && !missingAppdefinition">
+                    <div class="help-container" ng-cloak>
+                        <div>
+                            <div class="help-dude-pointing"></div>
+                        </div>
+                        <div>
+                            <div class="help-text wide">
+                                <div class="description" ng-show="processDefinitions.length == 0">
+                                    {{'PROCESS.MESSAGE.NO-PROCESS-DEFINITIONS' | translate}}
+                                </div>
+                                <div class="description" ng-show="processDefinitions.length > 0">
+                                    {{'PROCESS.MESSAGE.NO-PROCESS-DEFINITION-SELECTED-HELP' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="processDefinition.id && !missingAppdefinition" class="column-full-height">
+
+                    <div class="column-header-large">
+                        <h2>
+                            <edit-in-place value="processName"></edit-in-place>
+                        </h2>
+                    </div>
+
+                    <div column-list-scroll="column-header-large">
+
+                        <div class="column-list-scroll-push"></div>
+
+                        <div ng-if="processDefinitions.length && processDefinitionWithStartFormId">
+                            <div class="section-no-h3">
+                                <activiti-form process-name="processName"
+                                               hide-buttons="processName.length === 0"
+                                               process-definition-id="processDefinitionWithStartFormId"
+                                               form-definition="startFormDefinition"></activiti-form>
+                            </div>
+                        </div>
+
+                        <div ng-if="processDefinitions.length && !processDefinitionWithStartFormId">
+                            <div class="section-no-h3 center">
+                                <button class="activiti-btn activiti-btn-primary"
+                                        ng-disabled="processName.length === 0"
+                                        ng-click="createProcessInstance()"
+                                        translate="FORM.DEFAULT-OUTCOME.START-PROCESS"></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div ng-if="missingAppdefinition" ng-include="appResourceRoot + 'views/integration-mode-error.html'"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

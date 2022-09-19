@@ -1,0 +1,12 @@
+<div ng-controller="StencilGroupEditCtrl">
+
+    <div ng-show="model.activeGroup">
+
+        <div class="form-group">
+            <label for="stencilGroupName">{{'STENCILS.ITEM.NAME' | translate}}</label>
+            <input id="stencilGroupName" type="text" class="form-control"
+                   ng-model="model.activeGroup.name" disabled>
+        </div>
+    </div>
+
+</div>

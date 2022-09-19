@@ -1,0 +1,60 @@
+<div ng-if="element.rows && element.rows.length > 0">
+
+    <h2 ng-if="element.title">{{element.title}}</h2>
+    <h2 ng-if="!element.title && element.titleKey">{{element.titleKey | translate}}</h2>
+
+    <div ng-if="element.description" class="well">{{element.description}}</div>
+    <div ng-if="!element.description && element.descriptionKey" class="well">{{element.descriptionKey | translate}}</div>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th ng-if="element.showRowIndex"></th>
+            <th ng-if="!element.columnNameKeys && element.columnNames && element.columnNames.length > 0"
+                ng-repeat="columnName in element.columnNames">{{columnName}}</th>
+            <th ng-if="element.columnNameKeys && element.columnNameKeys.length > 0"
+                ng-repeat="columnNameKey in element.columnNameKeys">{{columnNameKey | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in element.rows track by $index"
+                class="master-detail-table-row"
+                ng-class="{'info' : element.currentDetailTableRowIndex == $index}"
+                ng-click="element.currentDetailTableRowIndex=$index">
+                <td ng-if="element.showRowIndex">{{$index + 1}}</td>
+                <td ng-class="{'centered-column': element.columnsCentered[$index]}"
+                    ng-repeat="rowObject in row track by $index">{{rowObject}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div ng-if="!element.rows || element.rows.length == 0" class="no-reporting-data">{{'REPORTING.NO-DATA-FOUND' | translate}}</div>
+
+<div ng-if="element.currentDetailTableRowIndex >= 0">
+    <h4 ng-if="element.detailTables[element.currentDetailTableRowIndex].title">
+        {{element.detailTables[element.currentDetailTableRowIndex].title}}
+    </h4>
+    <h4 ng-if="element.detailTables[element.currentDetailTableRowIndex].titleKey">
+        {{element.detailTables[element.currentDetailTableRowIndex].titleKey | translate}}
+    </h4>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th ng-if="!element.detailTables[element.currentDetailTableRowIndex].columnNameKeys && element.detailTables[element.currentDetailTableRowIndex].columnNames && element.detailTables[element.currentDetailTableRowIndex].columnNames.length > 0"
+                ng-repeat="columnName in element.detailTables[element.currentDetailTableRowIndex].columnNames">{{columnName}}</th>
+            <th ng-if="element.detailTables[element.currentDetailTableRowIndex].columnNameKeys && element.detailTables[element.currentDetailTableRowIndex].columnNameKeys.length > 0"
+                ng-repeat="columnNameKey in element.detailTables[element.currentDetailTableRowIndex].columnNameKeys">{{columnNameKey | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in element.detailTables[element.currentDetailTableRowIndex].rows track by $index">
+            <td ng-class="{'centered-column': element.detailTables[element.currentDetailTableRowIndex].columnsCentered[$index]}"
+                ng-repeat="rowObject in row track by $index">{{rowObject}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

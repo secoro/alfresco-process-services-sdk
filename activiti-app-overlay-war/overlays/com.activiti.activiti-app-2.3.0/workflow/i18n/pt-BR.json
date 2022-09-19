@@ -1,0 +1,764 @@
+{
+  "COMMON": {
+    "SELECT-FOLDER": "Selecionar pasta...",
+    "ACCOUNTS": {
+      "ALFRESCO": "Alfresco ({{name}})",
+      "box": "Box",
+      "google-drive": "Google Drive"
+    },
+    "AUTHORIZE": {
+      "EXTERNAL-REPOSITORY-CONFIGURED": "Há uma conta {{moduleName}} configurada para você.",
+      "EXTERNAL-REPOSITORY-KEY-EXPIRE-AT": "A chave vai expirar em:{{expireDateTime | date: 'dd/MM/yyyy h:mma' }}",
+      "NO-EXTERNAL-REPOSITORY-CONFIGURED": "Não há uma conta {{moduleName}} configurada para você.",
+      "EXTERNAL-REPOSITORY-REAUTHORIZE-REQUIRED": "A tarefa não pode ser concluída sem reautorização.",
+      "EXTERNAL-REAUTHORIZE-ADVICE": "Reautorize que o Alfresco Process Services conecte ao {{moduleName}} usando o botão abaixo.",
+      "MODULE-DISABLED": "A integração com o {{moduleName}} está desativada no momento.",
+      "TITLE": "Autorizar"
+    },
+    "AUTHORIZATION_COMPLETED": "Autorização concluída",
+    "NOBODY": "Ninguém",
+    "NOBODY-LETTERS": "NB",
+    "FILTER": {
+      "NEW-FILTER": "Novo filtro",
+      "EDIT": "Editar",
+      "RESET": "Redefinir",
+      "DELETE": "Excluir",
+      "NEW-FILTER-NAME": "New Filter",
+      "FILTER-ICON-AND-NAME": "Filtrar ícone e nome",
+      "SAVE": "Salvar",
+      "SAVE-HINT": "Está satisfeito com o filtro?<br/> Escolha um ícone e um nome e clique em Salvar.",
+      "SEARCH-RESULTS": "Resultados da pesquisa"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "O Alfresco Process Services está em modo somente leitura porque a licença local é inválida.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "O Alfresco Process Services está em modo somente leitura porque não foi possível encontrar a licença local.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "O Alfresco Process Services está em modo somente leitura porque as datas da licença local não são válidas (expiradas ou com data de início no futuro).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Sua licença está prestes a expirar. O Alfresco Process Services entrará em modo somente leitura."
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Minhas tarefas",
+    "ERROR": {
+      "GENERIC": "Ocorreu um erro...",
+      "UNKNOWN": "Ocorreu um erro ao realizar a operação solicitada.",
+      "BAD_REQUEST": "Ocorreu um erro ao realizar a operação solicitada",
+      "NOT_FOUND": "O recurso que você está tentando acessar não existe",
+      "UNAUTHORIZED": "Você deve entrar para realizar a operação solicitada.",
+      "FORBIDDEN": "Você não tem permissão para realizar a operação solicitada",
+      "INTERNAL_SERVER_ERROR": "Ocorreu um erro inesperado ao realizar a operação solicitada.",
+      "UPLOAD-LIMIT-EXCEEDED": "O arquivo que você está tentando carregar é muito grande",
+      "UPLOAD-LIMIT-EXCEEDED-TRIAL-USER": "O arquivo que você está tentando carregar é muito grande. Atualize para Enterprise para carregar arquivos com mais de {{quota}}.",
+      "QUOTA-EXCEEDED-RUNTIME-PROCESSES": "Como usuário da versão de teste, você só pode ter {{quota}} processos ativos ao mesmo tempo.",
+      "QUOTA-EXCEEDED-COMPLETED-PROCESSES": "Como usuário da versão de teste, você só pode ter {{quota}} processos concluídos. Exclua um processo concluído para começar um novo.",
+      "QUOTA-EXCEEDED-TOTAL-CONTENT-SIZE": "Como usuário da versão de teste, você só pode ter {{quota}} de conteúdo no total. Exclua o conteúdo ou conclua os processos para liberar espaço para conteúdo novo."
+    },
+    "NAVIGATION": {
+      "TASKS": "Tarefas",
+      "PROCESSES": "Processos",
+      "START-PROCESS": "Iniciar",
+      "DESIGN": "Design",
+      "CREATE": "+ Criar",
+      "LOGIN": "Entrar",
+      "REPORTS": "Relatórios"
+    },
+    "TITLE": {
+      "ADD-COMMENT": "Criar comentário",
+      "INVOLVE-PEOPLE": "Selecionar pessoa",
+      "RECENT-PEOPLE": "Pessoas recentes",
+      "MATCHING-PEOPLE": "Pessoas correspondentes",
+      "SELECT-GROUP": "Selecionar grupo",
+      "MATCHING-GROUPS": "Grupos correspondentes",
+      "FILTER": "Filtrar",
+      "SELECT-DATE": "Selecionar uma data"
+    },
+    "ACTION": {
+      "ABOUT": "Sobre o Alfresco Process Services",
+      "LOGOUT": "Sair",
+      "EDIT-PROFILE": "Editar perfil",
+      "ADD-COMMENT": "Adicionar comentário",
+      "ADD-CHECKLIST": "Adicionar lista de verificação",
+      "SAVE": "Salvar",
+      "CANCEL": "Cancelar",
+      "CLOSE": "Fechar",
+      "CONFIRM": "Confirmar",
+      "SHOW-MORE": "Mostrar mais",
+      "HELP-DOCS-LINK": "Ajuda"
+    },
+    "MESSAGE": {
+      "SELECT-PEOPLE-HELP": "Use &uparrow; e &downarrow; para selecionar e pressione Enter para confirmar",
+      "SELECT-GROUP-HELP": "Use &uparrow; e &downarrow; para selecionar e pressione Enter para confirmar",
+      "SELECT-GROUP-SEARCH-PLACEHOLDER": "Pesquisar grupo",
+      "SELECT-GROUP-NO-MATCHING-RESULTS": "Use a caixa de pesquisa acima para encontrar grupos.",
+      "UPLOAD-CONTENT": "Selecionar ou soltar um arquivo",
+      "UPLOAD-CONTENT-NO-DROP": "Selecionar um arquivo a ser carregado",
+      "DROPZONE": "Soltar o arquivo a ser carregado",
+      "YES": "Sim",
+      "NO": "Não"
+    },
+    "TIME": {
+      "HOURS": "horas",
+      "MINUTES": "minutos",
+      "SECONDS": "segundos"
+    },
+    "ABOUT": {
+      "TYPE": "Tipo",
+      "LICENSED-TO": "Licenciado para",
+      "EXPIRES": "Expira",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Todos os direitos reservados.",
+      "LEGAL": "Jurídico e licença"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "Entrar",
+    "USERNAME": "Nome de usuário",
+    "USERNAME-PLACEHOLDER": "Insira seu nome de usuário",
+    "PASSWORD": "Senha",
+    "PASSWORD-PLACEHOLDER": "Insira sua senha",
+    "ACTION": {
+      "CONFIRM": "Entrar"
+    }
+  },
+  "TASK": {
+    "SECTION": {
+      "PEOPLE": "Pessoas",
+      "GROUPS": "Grupos",
+      "CONTENT": "Conteúdo",
+      "COMMENTS": "Comentários",
+      "CHECKLISTS": "Lista de verificação",
+      "NOTES": "Notas"
+    },
+    "FILTER": {
+      "SORT": "Classificar",
+      "CREATED-DESC": "Mais recentes primeiro",
+      "CREATED-ASC": "Mais antigos primeiro",
+      "DUE-DESC": "Vencidos por último",
+      "DUE-ASC": "Vencidos primeiro",
+      "TEXT": "Filtrar",
+      "TEXT-PLACEHOLDER": "Pesquisar por nome de tarefa",
+      "TEXT-SUMMARY": "Filtrado por: {{text}}",
+      "PROCESS-DEFINITION": "Definição de processo",
+      "PROCESS-DEFINITION-PLACEHOLDER": "Selecionar definição de processo..",
+      "STATE": "Estado",
+      "STATE-OPEN": "aberto",
+      "STATE-COMPLETED": "concluído",
+      "ASSIGNMENT": "Atribuição",
+      "ASSIGNMENT-INVOLVED": "Tarefas em que estou envolvido",
+      "ASSIGNMENT-ASSIGNEE": "Tarefas em que sou o destinatário",
+      "ASSIGNMENT-CANDIDATE": "Tarefas em que sou um dos candidatos",
+      "ASSIGNMENT-GROUP": "Tarefas atribuídas ao grupo \"{{name}}\"",
+      "RESET": "Redefinir filtros",
+      "SINGLE-TASK": "Mostrando '{{name || (\"TASK.MESSAGE.NO-NAME\" | translate)}}'",
+      "NO-SINGLE-TASK": "Não foi encontrada nenhuma tarefa com o ID '{{id}}'",
+      "INVOLVED-FILTER-NAME": "Tarefas envolvidas",
+      "ASSIGNEE-FILTER-NAME": "Minhas tarefas",
+      "COMPLETED-FILTER-NAME": "Tarefas concluídas",
+      "CANDIDATE-FILTER-NAME": "Tarefas colocadas na fila",
+      "TASK-NAME": "Nome da tarefa",
+      "SEARCH": "Pesquisar",
+      "NEW-SEARCH": "Nova pesquisa?",
+      "CREATE-FILTER": "Criar novo filtro ou escolher abaixo",
+      "EDIT-FILTER": "Editar pesquisa",
+      "FILTER-NAME-PLACEHOLDER": "Nome de filtro personalizado",
+      "CREATE-TASK": "Criar tarefa",
+      "SEARCH-PLACEHOLDER": "Pesquisar",
+      "NO-FILTER-RESULTS": "Nada encontrado em \"{{name}}\"; tente outra lista. Para começar algo novo, você pode:",
+      "NO-SEARCH-RESULTS": "Nenhuma tarefa corresponde à sua pesquisa; tente outros critérios. Para começar algo novo, você pode:"
+    },
+    "ALERT": {
+      "COMMENT-ADDED": "O comentário foi adicionado a \"{{name}}\"",
+      "CHECKLIST-ADDED": "A tarefa \"{{name}}\" foi adicionada à lista de verificação",
+      "CHECKLIST-REMOVED": "A tarefa \"{{name}}\" foi removida da lista de verificação",
+      "PERSON-INVOLVED": "{{userName}} agora está envolvido em \"{{taskName}}\"",
+      "PERSON-INVOLVED-EMAIL-NOT-ALLOWED": "Não é possível envolver pessoas externas pelo e-mail '{{emailAddress}}'.\"",
+      "PERSON-NO-LONGER-INVOLVED": "{{userName}} não está mais envolvido em \"{{taskName}}\"",
+      "GROUP-INVOLVED": "O grupo \"{{groupName}}\" agora está envolvido na tarefa \"{{taskName}}\"",
+      "GROUP-NO-LONGER-INVOLVED": "O grupo \"{{groupName}}\" não está mais envolvido na tarefa \"{{taskName}}\"",
+      "CREATED": "A tarefa \"{{name}}\" foi criada",
+      "COMPLETED": "Tarefa concluída",
+      "SAVED": "O formulário de tarefa está salvo",
+      "ASSIGNED": "A tarefa \"{{taskName}}\" agora está atribuída a {{userName}}",
+      "RELATED-CONTENT-ADDED": "\"{{name}}\" foi adicionado à tarefa",
+      "RELATED-CONTENT-ADDED-LOADING": "\"{{name}}\" foi adicionado à tarefa. O conteúdo será disponibilizado depois que for recuperado da fonte externa.",
+      "FORM-ATTACHED": "Formulário '{{name}}' anexado",
+      "FORM-REMOVED": "Formulário '{{name}}' removido"
+    },
+    "ACTION": {
+      "BACK-TO-LIST": "Voltar à lista de tarefas",
+      "COMPLETE-TASK-WITH-FORM": "Concluir formulário",
+      "COMPLETE": "Concluído",
+      "CLAIM": "Reivindicar",
+      "UNCLAIM": "Recolocar na fila",
+      "ASSIGN": "Atribuir",
+      "REASSIGN": "Reatribuir",
+      "CREATE": "+ Criar tarefa",
+      "CREATE-CONFIRM": "Criar",
+      "INVOLVE": "+ Envolver pessoas",
+      "INVOLVE-GROUP": "Envolver grupo",
+      "ADD-COMMENT": "+ Adicionar comentário",
+      "ADD-COMMENT-CONFIRM": "Adicionar comentário",
+      "ADD-CHECKLIST": "+ Adicionar tarefa à lista de verificação",
+      "ADD-CHECKLIST-CONFIRM": "Adicionar tarefa à lista de verificação",
+      "ADD-CONTENT": "+ Adicionar conteúdo",
+      "CLEAR-DUEDATE": "Limpar data de vencimento",
+      "DUE-TODAY": "Conclusão prevista para hoje",
+      "CLEAR-DATE": "Limpar data",
+      "DATE-TODAY": "Data de hoje",
+      "AUDIT-LOG": "Log de auditoria"
+    },
+    "TITLE": {
+      "ASSIGN": "Selecionar o destinatário",
+      "ASSIGNEE": "Destinatário",
+      "CONTENT": "Conteúdo relacionado",
+      "CREATE-NEW": "Nova tarefa",
+      "NEW-TASK-NAME": "Nova tarefa",
+      "EDIT-NAME": "Editar nome de tarefa",
+      "FORM": "Formulário",
+      "DETAILS": "Detalhes",
+      "ADD-RELATED-CONTENT": "Adicionar conteúdo relacionado",
+      "SELECT-DUEDATE": "Selecionar data de vencimento",
+      "SELECT-DATE": "Selecionar data",
+      "NO-CONTENT-ITEMS": "Sem itens de conteúdo",
+      "NO-PEOPLE-INVOLVED": "Nenhuma pessoa envolvida",
+      "NO-GROUPS-INVOLVED": "Nenhum grupo envolvido",
+      "NO-COMMENTS": "Sem comentários",
+      "COMMENT-COUNT": "comentário",
+      "COMMENTS-COUNT": "comentários",
+      "NO-CHECKLISTS": "Nenhuma lista de verificação",
+      "CHECKLIST-COUNT": "tarefa na lista de verificação",
+      "CHECKLISTS-COUNT": "tarefas na lista de verificação",
+      "SHOW-DETAILS": "Mostrar detalhes",
+      "SHOW-FORM": "Mostrar formulário",
+      "GROUPS-INVOLVED": "{{groupCount}} grupo(s) envolvido(s)"
+    },
+    "FIELD": {
+      "NAME": "Nome",
+      "DESCRIPTION": "Descrição",
+      "ASSIGNEE": "Destinatário",
+      "DUE": "Vencimento",
+      "FORM": "Formulário",
+      "PROCESS-INSTANCE": "Parte de processo",
+      "PARENT-TASK": "Parte de",
+      "ENDED": "Finalizado",
+      "DURATION": "Duração"
+    },
+    "MESSAGE": {
+      "NO-NAME": "Tarefa sem nome",
+      "NO-ASSIGNEE": "Atribuído a ninguém",
+      "NO-DUEDATE": "Sem data de vencimento",
+      "DUE-ON": "Vencimento",
+      "NO-FORM": "Nenhum formulário",
+      "CREATED-ON": "Criado",
+      "ENDED-ON": "Concluído",
+      "EXECUTION-FAILED": "Execução com falha",
+      "COMPLETED-BY": "Concluído por {{username}}, ",
+      "NO-DESCRIPTION": "Esta tarefa não tem descrição",
+      "NO-RELATED-CONTENT": "Esta tarefa não tem conteúdo relacionado ainda...",
+      "NO-PEOPLE-INVOLVED": "Esta tarefa não tem pessoas envolvidas ainda...",
+      "NO-COMMENTS": "Esta tarefa não tem comentários ainda...",
+      "INVOLVE-PEOPLE-PLACEHOLDER": "+ Adicionar pessoa",
+      "CONTENT-UPLOADED-BY": "Adicionado por ",
+      "ASSIGNEE": "Atribuído a {{username}}",
+      "NEW-COMMENT-PLACEHOLDER": "Insira um novo comentário para ser adicionado a esta tarefa",
+      "NEW-CHECKLIST-PLACEHOLDER": "Insira o nome da tarefa",
+      "COMMENT-HEADER": "Adicionado por {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+      "NO-FILTER": "Mostrando suas tarefas; sem filtro aplicado",
+      "FILTERED": "Mostrando suas tarefas; com filtro",
+      "NO-TASKS": "Nenhuma tarefa correspondente encontrada...",
+      "DURATION": "Levou {{duration}}",
+      "CLAIM-TASK-FIRST": "Para trabalhar nesta tarefa, você precisa primeiro assumi-la. Você pode fazer isso pressionando o botão Assumir exibido acima.",
+      "NO-TASKS-HELP": "Parece que não há tarefas para você. Para começar a trabalhar, você pode:",
+      "NO-SUCH-TASK-HELP": "Não é possível encontrar a tarefa que você está procurando. Se preferir, você pode:",
+      "NO-SUCH-TASK-RETURN-TO-LIST": "Retornar à lista de tarefas",
+      "NO-TASKS-CREATE-TASK": "Criar uma tarefa para si mesmo ou atribuí-la a outra pessoa",
+      "NO-TASKS-CREATE-PROCESS": "Iniciar um novo processo e depois monitorar o andamento dele",
+      "CANNOT-CLAIM-TASK": "A tarefa não pode mais ser reinvindicada."
+    },
+    "HELP": {
+      "DESCRIPTION": "Esta tarefa não tem detalhes ainda. Você pode fazer isso escolhendo uma destas ações:",
+      "COMPLETED-DESCRIPTION": "Esta tarefa concluída não tem detalhes.",
+      "DESCRIPTION-WITH-CLAIM": "Esta tarefa não tem detalhes ainda. Você pode fazer isso escolhendo uma das ações a seguir. Além disso, para concluir nesta tarefa, você precisa primeiro assumi-la pressionando o botão Assumir exibido acima.",
+      "ADD-FORM-DESCRIPTION": "Esta tarefa não tem formulários ainda. Você pode usar formulários da biblioteca para capturar mais informações sobre esta tarefa:",
+      "ADD-FORM": "Adicionar um formulário agora",
+      "COMPLETED-NOFORM": "Esta tarefa concluída não tem formulários.",
+      "ADD-PEOPLE": "Envolver outra pessoa e começar a colaborar",
+      "ADD-FIRST-PEOPLE": "Envolver outra pessoa e começar a colaborar",
+      "ADD-FIRST-GROUP": "Convidar grupos de pessoas e iniciar colaboração",
+      "ADD-COMMENT": "Adicionar um comentário que seja esclarecedor para as outras pessoas",
+      "ADD-FIRST-COMMENT": "Adicionar um comentário para si mesmo ou outras pessoas envolvidas",
+      "ADD-CHECKLIST": "Adicionar uma tarefa à lista de verificação",
+      "ADD-FIRST-CHECKLIST": "Crie sua própria lista de verificação dos termos necessários para esta tarefa. Você pode atribuir um item a outra pessoa, especificar uma data de vencimento para ele e anexar um formulário da biblioteca",
+      "ADD-CONTENT": "Adicionar um documento e compartilhar o conhecimento",
+      "ADD-FIRST-CONTENT": "Anexar arquivos adicionais relacionados a esta tarefa"
+    },
+    "DYNAMIC-TABLE": {
+      "ROW-EDIT-HEADER": "Editar linha de tabela",
+      "ROW-DETAILS-HEADER": "Detalhes de linha de tabela"
+    },
+    "FORM-SELECT": {
+      "TITLE": "Selecionar formulário",
+      "EMPTY": "Nenhum formulário selecionado",
+      "FORMS-ERROR": "Erro ao carregar formulários",
+      "LOADING": "Carregando formulários...",
+      "NO-FORMS": "Nenhum formulário encontrado",
+      "ATTACH-FORM": "Anexar formulário",
+      "REMOVE-FORM": "Remover formulário",
+      "CURRENT-FORM": "{{name}} (atual)",
+      "FORM-LOAD-ERROR": "Erro ao carregar formulário"
+    }
+  },
+  "PROCESS": {
+    "ALERT": {
+      "COMMENT-ADDED": "O comentário foi adicionado",
+      "STARTED": "Um novo processo \"{{processDefinitionName}}\" foi iniciado",
+      "START-PROCESS-CONTENT-ADD-FAILED": "Falha ao adicionar {{noOfFiles}} arquivo(s) ao processo"
+    },
+    "TITLE": {
+      "DIAGRAM": "Diagrama de processo"
+    },
+    "FILTER": {
+      "CREATED-DESC": "Mais recentes primeiro",
+      "CREATED-ASC": "Mais antigos primeiro",
+      "ENDED-DESC": "Concluído mais recentemente",
+      "ENDED-ASC": "Concluído menos recentemente",
+      "STATE-SUMMARY": "Mostrando processos de {{state.title | translate}}",
+      "STATE": "Estado do processo",
+      "STATE-RUNNING": "Em execução",
+      "STATE-COMPLETED": "Concluído",
+      "STATE-ALL": "Todos",
+      "PROCESS-NAME": "Nome de processo",
+      "PROCESS-DEFINITION": "Definição de processo",
+      "SORT": "Classificar",
+      "TEXT-PLACEHOLDER": "Pesquisar por nome de processo",
+      "RUNNING-FILTER-NAME": "Em execução",
+      "COMPLETED-FILTER-NAME": "Concluído",
+      "ALL-FILTER-NAME": "Todos",
+      "SINGLE-PROCESS": "Mostrando '{{name || processDefinitionName}}'",
+      "NO-SINGLE-PROCESS": "Não foi encontrado nenhum processo com o ID '{{id}}'",
+      "NO-FILTER-RESULTS": "Nada encontrado em \"{{name}}\"; escolha outra lista. Para começar algo novo, você pode:",
+      "NO-SEARCH-RESULTS": "Nenhum processo corresponde à sua pesquisa; tente escolher outros critérios. Para começar algo novo, você pode:",
+      "FILTER-NAME-PLACEHOLDER": "Nome de filtro personalizado"
+    },
+    "MESSAGE": {
+      "NO-DESCRIPTION": "Esta instância de processo não tem descrição",
+      "NO-FILTER": "Mostrando todas as instâncias de processo; sem filtro",
+      "NO-INSTANCES": "Nenhuma instância de processo correspondente encontrada...",
+      "NO-INSTANCES-HELP": "Não há processos em execução agora. Quando os processos forem concluídos, você poderá encontrá-los usando o filtro referente à lista de processos. Para começar algo novo, você pode:",
+      "NO-INSTANCES-HELP-START": "Iniciar um novo processo e monitorar o andamento dele",
+      "NO-TASKS": "Nenhuma tarefa está ativa no momento...",
+      "NO-COMPLETED-TASKS": "Nenhuma tarefa foi concluída ainda...",
+      "NO-BUSINESS-KEY": "Nenhuma chave de negócios definida",
+      "CATEGORY": "Categoria: {{processDefinitionCategory}}",
+      "NEW-COMMENT-PLACEHOLDER": "Insira um comentário para ser adicionado a este processo",
+      "COMMENT-HEADER": "Adicionado por {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+      "SELECT-DEFINITION": "Selecionar um processo na lista abaixo para ser iniciado",
+      "NO-PROCESS-DEFINITIONS": "Não é possível iniciar um processo porque não há definições de processo disponíveis",
+      "START-PROCESS": "Iniciar processo",
+      "STARTED-BY": "Iniciado por {{username}}",
+      "NO-PROCESS-DEFINITION-SELECTED-HELP": "Selecionar uma definição de processo",
+      "NO-SUCH-PROCESS-HELP": "Não é possível encontrar o processo que você está procurando. Se preferir, você pode:",
+      "NO-SUCH-PROCESS-RETURN-TO-LIST": "Retornar à lista de processos"
+    },
+    "HELP": {
+      "ADD-FIRST-COMMENT": "Adicionar um comentário para si mesmo ou outras pessoas envolvidas"
+    },
+    "ACTION": {
+      "CREATE": "Iniciar processo",
+      "BACK-TO-LIST": "Voltar a instâncias de processo",
+      "SHOW-DIAGRAM": "Mostrar diagrama",
+      "CANCEL": "Cancelar processo",
+      "DELETE": "Excluir processo",
+      "ADD-COMMENT": "+ Adicionar comentário",
+      "ADD-COMMENT-CONFIRM": "Adicionar comentário",
+      "AUDIT-LOG": "Log de auditoria",
+      "SEARCH-PLACEHOLDER": "Pesquisa",
+      "ZOOMIN": "Ampliar",
+      "ZOOMOUT": "Reduzir"
+    },
+    "FIELD": {
+      "BUSINESS-KEY": "Chave de negócios",
+      "CATEGORY": "Categoria",
+      "PROCESS-DEFINITION": "Definição de processo",
+      "STARTED": "Iniciado",
+      "STARTED-BY": "Iniciado por",
+      "ENDED": "Finalizado",
+      "NAME": "Nome de instância de processo",
+      "NAME-PLACEHOLDER": "Insira um nome opcional para o processo que está sendo iniciado"
+    },
+    "SECTION": {
+      "ACTIVE-TASKS": "Tarefas ativas",
+      "START-FORM": "Iniciar formulário",
+      "COMPLETED-TASKS": "Tarefas concluídas",
+      "COMPLETED-DECISION-TASKS": "Tabelas de decisão executadas   ",
+      "COMMENTS": "Comentários",
+      "CONTENT": "Conteúdo"
+    },
+    "POPUP": {
+      "CANCEL-TITLE": "Cancelar o processo?",
+      "CANCEL-DESCRIPTION": "Tem certeza de que deseja cancelar o processo {{name}}?",
+      "DELETE-TITLE": "Excluir o processo?",
+      "DELETE-DESCRIPTION": "Tem certeza de que deseja excluir o processo {{name}}? Todas as tarefas, conteúdos e comentários relacionados a este processo serão excluídos permanentemente."
+    },
+    "DECISION": {
+      "TABLE": {
+        "HEADER": "Tabela de decisão \"{{name}}\"",
+        "HIT-POLICY": "Política de acertos",
+        "HIT-POLICIES": {
+          "FIRST": "Primeira (Passagem única)",
+          "ANY": "Qualquer (Passagem única)"
+        },
+        "TOOLTIP": {
+          "INPUT-EXCEPTION": "Ocorreu uma exceção ao testar se a expressão coincidia com o valor de entrada: {{error}}",
+          "INPUT-MATCH": "O valor de entrada coincidiu com a expressão.",
+          "INPUT-EMPTYEXPRESSION": "Expressões vazias são tratadas como uma correspondência.",
+          "INPUT-NOMATCH": "O valor de entrada não coincidiu com a expressão.",
+          "INPUT-NOTEXECUTED": "A expressão nunca foi testada.",
+          "OUTPUT-EXCEPTION": "Ocorreu uma exceção ao definir valor usando a expressão: \n {{expression}}.\nMensagem de erro: {{error}}",
+          "OUTPUT-RESULT": "O valor foi definido usando a seguinte expressão: \n {{expression}}",
+          "OUTPUT-NOTEXECUTED": "A expressão a seguir nunca foi executada: \n {{expression}}",
+          "OUTPUT-NOEXPRESSION": "Não houve expressão definida para esta célula"
+        },
+        "INPUT-VARIABLE": "Condição",
+        "OUTPUT-VARIABLE": "Resultado",
+        "INPUT-VARIABLES": "Valores de entrada",
+        "NO-INPUT-VARIABLES": "Não havia valores de entrada quando a tabela de decisão foi executada",
+        "OUTPUT-VARIABLES": "Valores calculados",
+        "NO-OUTPUT-VARIABLES": "Nenhum valor calculado foi produzido com base nas tabelas de decisão",
+        "METADATA-NAME": "Nome",
+        "METADATA-VALUE": "Valor",
+        "LOAD-ERROR": "Algo não deu certo ao obter a tabela de decisão e a trilha de auditoria para execução '{{executionId}}' da atividade '{{activityId}}'."
+      }
+    }
+  },
+  "INVOLVE-PEOPLE": {
+    "NO-MATCHING-RESULTS": "Use a caixa de pesquisa acima para encontrar usuários ou ",
+    "NO-MATCHING-RESULTS-NO-EMAIL": "Use a caixa de pesquisa acima para encontrar usuários",
+    "SEARCH-PLACEHOLDER": "Pesquisar usuário",
+    "USE-EMAIL": "selecione alguém que use um endereço de e-mail",
+    "ASSIGN-YOURSELF-LEAD": "ou",
+    "ASSIGN-YOURSELF": "atribua a você mesmo",
+    "SELECT-YOURSELF-LEAD": "ou",
+    "SELECT-YOURSELF": "selecione você mesmo",
+    "EMAIL-PLACEHOLDER": "Insira um endereço de e-mail",
+    "EMAIL-HELP": "Pressione Enter ou clique no botão para continuar. Esta pessoa será notificada por e-mail ou convidada a se cadastrar",
+    "BACK-TO-SEARCH": "Voltar à pesquisa",
+    "ACTION-SELECT": "Selecionar"
+  },
+  "INTEGRATION": {
+    "GENERIC": {
+      "MESSAGE": {
+        "FILTER": "Filtrar",
+        "SEARCHING": "Pesquisando",
+        "NO_MATCHING_RESULTS_FOUND": "Nenhum resultado correspondente encontrado."
+      }
+    },
+    "ALFRESCO": {
+      "MESSAGE": {
+        "SELECT-FOLDER-DESCRIPTION": "Selecionar uma pasta da sua conta Alfresco",
+        "SELECT-FOLDER": "Selecionar pasta",
+        "CHOOSE-NETWORK": "Escolher rede",
+        "NETWORK": "Rede",
+        "CHOOSE-SITE": "Escolher site",
+        "NO-CONTENT": "Nenhum conteúdo nesta pasta"
+      }
+    },
+    "BOX": {
+      "MESSAGE": {
+        "ACCOUNT_NAME": "Box",
+        "FILTER": "Filtrar",
+        "SEARCHING": "Pesquisando",
+        "NO-CONTENT": "Nenhum resultado correspondente encontrado.",
+        "SELECT-FOLDER-DESCRIPTION": "Selecionar uma pasta da sua conta Box",
+        "SELECT-FILE-DESCRIPTION": "Selecionar um arquivo da sua conta Box",
+        "SELECT-FOLDER": "Selecionar pasta"
+      }
+    },
+    "ALFRESCO-CLOUD": {
+      "TITLE": {
+        "BROWSE-CLOUD": "Navegar pelo Alfresco Content Services in the Cloud",
+        "BROWSE-ON-PREM": "Navegar por {{name}}"
+      },
+      "MESSAGE": {
+        "ON-PREM-BROWSE": "Selecionar um arquivo para importar de {{name}}",
+        "CLOUD-BROWSE": "Selecionar um arquivo para importar da sua conta Alfresco Content Services in the Cloud"
+      }
+    },
+    "GOOGLE": {
+      "MESSAGE": {
+        "TITLE": "Google Drive",
+        "FILTER": "Filtrar",
+        "SEARCHING": "Pesquisando",
+        "NO-CONTENT": "Nenhum resultado correspondente encontrado",
+        "SELECT-FILE-DESCRIPTION": "Selecionar um arquivo da sua conta Google Drive",
+        "SELECT-FOLDER-DESCRIPTION": "Selecionar uma pasta da sua conta Google Drive"
+      }
+    },
+    "ALERT": {
+      "ALFRESCO-CLOUD-NOT-AUTHORIZED": "O acesso ao Alfresco Content Services in the Cloud expirou; você precisa inserir suas credenciais novamente.",
+      "GOOGLE-DRIVE-NOT-AUTHORIZED": "O acesso ao Google Drive expirou; você precisa inserir suas credenciais novamente.",
+      "ALFRESCO-ERROR": "Ocorreu um erro ao conectar com o Alfresco",
+      "BOX-ERROR": "Ocorreu um erro ao conectar com o Box",
+      "GOOGLE-DRIVE-ERROR": "Ocorreu um erro ao conectar com o Google Drive"
+    }
+  },
+  "CONTENT": {
+    "SIMPLE-TYPE": {
+      "WORD": "Documento",
+      "EXCEL": "Planilha",
+      "PDF": "Documento em PDF",
+      "IMAGE": "Imagem",
+      "FOLDER": "Pasta",
+      "CONTENT": "Conteúdo"
+    },
+    "MESSAGE": {
+      "NO-PREVIEW-AVAILABLE": "Nenhuma visualização disponível",
+      "PREVIEW-PENDING": "Criando visualização...",
+      "CONTENT-PENDING": "Obtendo conteúdo...",
+      "NOT-FOUND": "Não foi possível encontrar o conteúdo",
+      "DELETE-CONFIRMATION": "Tem certeza de que deseja excluir {{name}}?",
+      "DROP": "Soltar ou ",
+      "SELECT": "Selecionar um arquivo",
+      "DRAGOVER": "Soltar arquivo a ser carregado",
+      "EXTERNAL-ONLY": "Selecionar fonte de conteúdo",
+      "NO-EXTERNAL-SOURCE": "Nenhuma fonte externa disponível"
+    },
+    "TITLE": {
+      "DELETE": "Excluir conteúdo",
+      "NOT-FOUND": "Arquivo não encontrado"
+    },
+    "ACTION": {
+      "OPEN-IN-GOOGLE-DRIVE": "Abrir no Google Drive",
+      "OPEN-IN-ALFRESCO-CLOUD": "Abrir no Alfresco Content Services in the Cloud",
+      "OPEN-IN-ALFRESCO": "Abrir no Alfresco",
+      "OPEN-IN-BOX": "Abrir no Box"
+    }
+  },
+  "FORM": {
+    "ACTION": {
+      "SAVE": "Salvar"
+    },
+    "DEFAULT-OUTCOME": {
+      "COMPLETE": "Concluído",
+      "START-PROCESS": "Iniciar processo"
+    },
+    "MESSAGE": {
+      "SELECT-PERSON": "Nenhuma pessoa selecionada...",
+      "SELECT-GROUP": "Nenhum grupo selecionado...",
+      "EMPTY": "(vazio)"
+    },
+    "FIELD-PREVIEW": {
+      "DISPLAY-REF": "Valor de exibição",
+      "SELECT-FIELD": "(Nenhum campo selecionado)",
+      "FIELD-VALUE": "Mostrar valor do campo \"{{name}}\"",
+      "UNKNOWN-TYPE": "Tipo {{type}} de campo desconhecido",
+      "TEXT-VALUE": "Texto",
+      "MULTI-TEXT-VALUE": "Texto de várias linhas",
+      "NUMBER-VALUE": "123",
+      "DATE-VALUE": "Data",
+      "DATETIME-VALUE": "Data e hora",
+      "DROPDOWN-VALUE": "Selecionar...",
+      "UPLOAD-VALUE": "Carregar ou importar conteúdo...",
+      "RADIOS-OPTION1": "Opção 1"
+    }
+  },
+  "APP-DEFINITION": {
+    "MESSAGE": {
+      "NOT-FOUND": "Nenhuma definição de aplicativo encontrada com o ID fornecido",
+      "MISSING": "O Alfresco Process Services está sendo executado em modo de integração, mas a definição de aplicativo necessária está ausente"
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "Aplicativo Designer",
+      "TITLE-PROCESSES": "Modelos de processo",
+      "TITLE-FORMS": "Modelos de formulário",
+      "TITLE-APPS": "Modelos de aplicativo",
+      "TITLE-STENCILS": "Estênceis",
+      "TITLE-DECISION-TABLES": "Tabelas de decisão",
+      "TITLE-DATA-MODELS": "Modelos de dados"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Aplicativo de administração"
+    },
+    "TASKS": {
+      "TITLE": "Aplicativo de tarefas",
+      "TITLE-TASKS": "Tarefas",
+      "TITLE-PROCESSES": "Processos",
+      "TITLE-PROCESSES?MODE=START": "Iniciar"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Perfil",
+      "TITLE-TENANT-ADMIN": "Gerenciamento de identidades",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenants",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Usuários",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Recursos",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organização",
+      "TITLE-TENANT-ADMIN-PROFILE": "Perfil",
+      "TITLE-PROFILE": "Perfil"
+    },
+    "ANALYTICS": {
+      "TITLE": "Aplicativo de análise"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "Tarefas {{name}}",
+      "TITLE-PROCESSES": "Processos {{name}}",
+      "TITLE-PROCESSES?MODE=START": "Início {{name}}"
+    },
+    "TITLE": {
+      "ERROR": "Erro"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "Você pode obter todos os tipos de relatórios importantes sobre seus processos, o que ajuda a identificar obstruções ou melhorias de desempenho.",
+    "GENERATE-REPORTS": "Adicione alguns relatórios padrão agora.",
+    "NO-REPORT-SELECTED": "Nenhum relatório selecionado. Escolha um formulário na lista à esquerda",
+    "NO-DATA-FOUND": "Nenhum dado encontrado",
+    "CONFIG-REPORTS": "Configurar relatórios com o aplicativo de análise",
+    "FETCHING-PROC-DEFS": "Obtendo definições de processo..",
+    "GENERATING": "Gerando relatório...",
+    "SAVE-REPORT": "Salvar este relatório",
+    "EXPORT-REPORT": "Exportar dados",
+    "SHOW": "Clique para mostrar",
+    "HIDE": "Clique para ocultar novamente",
+    "FILL-PARAMS": "Não foram encontrados dados de relatório. Preencha os parâmetros para gerar seu relatório",
+    "PROCESS-STATUS": "Status do processo",
+    "TASK-STATUS": "Status da tarefa",
+    "STATUS": {
+      "ACTIVE": "Ativo",
+      "ALL": "Todos",
+      "COMPLETE": "Concluído"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "Nenhuma tarefa concluída encontrada para a definição de processo atual",
+      "DATE-RANGE": {
+        "TODAY": "Hoje",
+        "YESTERDAY": "Ontem",
+        "LAST-7-DAYS": "Últimos 7 dias",
+        "PREVIOUS-MONTH": "Mês anterior",
+        "CURRENT-YEAR": "Ano atual",
+        "CUSTOM-RANGE": "Personalizar intervalo",
+        "APPLY": "Aplicar",
+        "CANCEL": "Cancelar",
+        "FROM": "De",
+        "TO": "a"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "Por hora",
+        "DAY": "Por dia",
+        "WEEK": "Por semana",
+        "MONTH": "Por mês",
+        "YEAR": "Por ano"
+      },
+      "DURATION": {
+        "SECONDS": "Segundos",
+        "MINUTES": "Minutos",
+        "HOURS": "Horas",
+        "DAYS": "Dias"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "PROCESS-DEFINITION": "Definição de processo",
+        "DATE-RANGE": "Intervalo de datas",
+        "DATE-RANGE-INTERVAL": "Agregar datas por",
+        "TASK-COUNT-TITLE": "Contagens de tarefa",
+        "TASK-COUNT-DESCRIPTION": "Este gráfico mostra o total de tarefas no intervalo de datas fornecido",
+        "TASK-DURATIONS-TITLE": "Durações de tarefa",
+        "TASK-DURATIONS-DESCRIPTION": "Este gráfico mostra a duração média, mínima e máxima (em horas) das tarefas concluídas no intervalo de datas fornecido. O eixo X mostra o número de linhas da tarefa na tabela detalhada abaixo.",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "Número de tarefas por destinatário",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "Este gráfico de pizza mostra o número de tarefas para a definição de processo escolhida, por cada destinatário",
+        "DETAILED-TASK-STATS-TITLE": "Estatísticas detalhadas de tarefas",
+        "DETAILED-TASK-STATS-DESCRIPTION": "Esta tabela mostra as estatísticas agregadas de todas as tarefas. Clique em qualquer tarefa para ver informações mais detalhadas. Todas as informações de tempo são expressas em horas.",
+        "DETAILED-TASK-STATS-TASK": "Tarefa",
+        "DETAILED-TASK-STATS-ASSIGNEE": "Destinatário",
+        "TASK-HISTOGRAM-TITLE": "Número de tarefas dividido por intervalo de datas",
+        "TASK-HISTOGRAM-TABLE": "Tabela: dados do gráfico anterior em formato de tabela",
+        "TASK-HISTOGRAM-TABLE-DATE": "Data",
+        "COUNT": "Contagem",
+        "SUM": "Soma",
+        "MIN-DURATION": "Mín. duração",
+        "MAX-DURATION": "Máx. duração",
+        "AVERAGE": "Média",
+        "STDDEV": "Desvio padrão"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "PROCESS-DEFINITION": "Definição de processo",
+        "DATE-RANGE": "Intervalo de datas",
+        "SLOW-PROC-INST-NUMBER": "Quantas instâncias de processo devem ser exibidas?",
+        "HISTOGRAM-TITLE": "Contagens de instâncias de processo",
+        "HISTOGRAM-DESCRIPTION": "O gráfico a seguir mostra o número de instâncias de processo que foram iniciadas e concluídas dentro do intervalo de datas selecionado",
+        "ACTIVITY-DURATION-TABLE-TITLE": "Detalhes de duração da atividade",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "A tabela a seguir mostra, ordenados por tempo total cumulativo, os intervalos das diversas atividades no processo. Todas as informações de tempo são expressas em horas.",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "Atividade",
+        "ACTIVITY-DURATION-CHART-TITLE": "Tempo total das etapas do processo",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "Este gráfico mostra em quais atividade foi gasto o tempo. Os números são a soma da duração dessa atividade, conforme mostrado na tabela abaixo.",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "Instâncias de processo mais lentas",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "Esta tabela mostra as instâncias de processo mais lentas que foram concluídas no intervalo de datas configurado. Clique em qualquer das entradas para ver as variáveis de processo dessa instância de processo específica",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Duração",
+        "SLOWEST-PROCESS-INSTANCES-ID": "ID interna",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Chave de negócios",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Hora da criação",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "Hora de término",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variáveis",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "nome da variável",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Valor da variável",
+        "COUNT": "Contagem",
+        "SUM": "Soma",
+        "MIN-DURATION": "Mín. duração",
+        "MAX-DURATION": "Máx. duração",
+        "AVERAGE": "Média",
+        "STDDEV": "Desvio padrão"
+      },
+      "TASK-SLA": {
+        "PROCESS-DEFINITION": "Definição de processo",
+        "TASK": "Tarefa",
+        "DATE-RANGE": "Intervalo de datas",
+        "SLA-DURATION": "Até que horas esta tarefa precisa ser concluída para ficar dentro do SLA?",
+        "SLA-NOT-OK": "Contrato de nível de serviço OK versus Não OK",
+        "ASSIGNEE-TABLE": "Os destinatários não concluíram a tarefa dentro dos limites do SLA",
+        "ASSIGNEE": "Destinatário",
+        "COUNT": "Contagem"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Total de definições de processo: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Total de instâncias de processo: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Total de instâncias de processo ativas: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Total de instâncias de processo concluídas: ",
+        "DETAIL-TABLE": "Detalhes de definição de processo",
+        "DETAIL-TABLE-PROCESS": "Definição de processo",
+        "DETAIL-TABLE-TOTAL": "Total",
+        "DETAIL-TABLE-ACTIVE": "Ativo",
+        "DETAIL-TABLE-COMPLETED": "Concluído",
+        "PROC-INST-CHART-TITLE": "Visão geral do total de instâncias de processo",
+        "DURATIONS-CHART-TITLE": "Intervalos médios para cada definição de processo",
+        "DURATIONS-CHART-DESCRIPTION": "A duração média (e o desvio padrão) de instâncias de processo concluídas, em horas. O número do eixo X corresponde à entrada na tabela acima."
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "Mapa de calor do processo",
+        "TYPE-FILTERING": "Incluir todas as etapas do processo? (Se você desmarcar esta opção, etapas de teste como iniciar eventos, gateways, etc. serão removidas.)",
+        "METRIC-TOTAL-COUNT": "Número de vezes que uma etapa é executada",
+        "METRIC-TOTAL-TIME": "Tempo total gasto em uma etapa do processo",
+        "METRIC-AVG-TIME": "Tempo médio gasto em uma etapa do processo",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "vezes",
+        "METRIC-TOTAL-TIME-TOOLTIP": "horas",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "horas",
+        "GENERATING": "Gerando mapa de calor do processo..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "Salvar relatório",
+        "DESCRIPTION": "As configurações de parâmetro atuais serão armazenadas e um novo relatório será mostrado na lista de relatórios. Quando você clicar nesse relatório específico, ele será gerado com o uso desses valores de parâmetro salvos.",
+        "NAME": "Nome"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "Exportar dados",
+        "NAME": "Nome"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "Excluir relatório",
+        "DESCRIPTION": "Tem certeza de que deseja excluir este relatório?",
+        "CONFIRM": "Excluir relatório"
+      }
+    }
+  }
+}

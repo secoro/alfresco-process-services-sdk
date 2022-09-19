@@ -1,0 +1,25 @@
+<div class="modal" ng-controller="AboutActivitiPopupCrtl">
+    <div class="modal-dialog" style="width: 501px;">
+        <div class="modal-content about-background">
+            <div class="modal-header-about">
+                <img class="about-popup-logo"/>
+                <button type="button" class="close" ng-click="close()">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="about">
+                    <div class="about-title">{{popup.activitiVersion}}</div>
+                    <div><span>{{'GENERAL.ABOUT.LICENSED-TO' | translate}}: </span>{{popup.licenseHolder}}</div>
+                    <div><span>{{'GENERAL.ABOUT.EXPIRES' | translate}}: </span>{{popup.goodBeforeDate}}</div>
+                    <div class="about-vertical-spacer"></div>
+                    <div class="about-copyright-info">
+                        <span>{{'GENERAL.ABOUT.COPYRIGHT' | translate}}</span>
+                        <a href="http://www.alfresco.com" target="new">www.alfresco.com</a>
+                        <a href="http://www.alfresco.com/legal/agreements/" target="new">{{'GENERAL.ABOUT.LEGAL' | translate}}</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

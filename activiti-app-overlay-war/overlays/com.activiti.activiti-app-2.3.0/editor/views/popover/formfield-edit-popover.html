@@ -1,0 +1,1715 @@
+<div class="modal">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content" ng-if="!endpointTestVisible || endpointTestVisible.visible == false">
+            <div ng-form="elementEditorForm">
+                <div class="modal-header">
+                    <h2 ng-if="!currentStencilItem || !currentStencilItem.customType" translate="FORM-BUILDER.POPUP.EDIT-TITLE" translate-values="formElement"></h2>
+                    <h2 ng-if="currentStencilItem && currentStencilItem.customType" translate="FORM-BUILDER.POPUP.EDIT-CUSTOM-TITLE" translate-values="formElement"></h2>
+                </div>
+                <div class="modal-body" ng-controller="FormFieldEditController">
+                    <div class="center-pane">
+                        <div class="content">
+                            <div class="clearfix">
+                                <ul class="tabs clearfix">
+                                    <li ng-repeat="tab in formTabs" ng-class="{'active': tab.id == activeTab.id}"
+                                        ng-if="!tab.show || tab.show.indexOf(formElement.type) >= 0">
+                                        <a ng-click="tabClicked(tab)">{{tab.name | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-repeat="tabProperty in activeTab.properties">
+
+                        <div ng-if="tabProperty.type === 'label'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.LABEL" ng-show="formElement.type != 'readonly-text'"></label>
+                                        <label translate="FORM-BUILDER.COMPONENT.NAME" ng-show="formElement.type == 'readonly-text'"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.name"
+                                               ng-change="formElementNameChanged(formElement)" auto-focus>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix" ng-if="tabProperty.type === 'id'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-model="formElement.overrideId">
+                                                {{'FORM-BUILDER.COMPONENT.OVERRIDEID' | translate}}
+                                            </label>
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-group" ng-class="{'has-error': elementEditorForm.formElementId.$invalid}">
+                                        <label translate="FORM-BUILDER.COMPONENT.ID"></label>
+                                        <input type="text" class="form-control" name="formElementId" ng-model="formElement.id" ng-disabled="!formElement.overrideId" variable-identifier editor-input-check required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'required'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-model="formElement.required">
+                                                {{'FORM-BUILDER.COMPONENT.REQUIRED' | translate}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'numberOfColumns'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.NUMBER-OF-COLUMNS"></label>
+                                        <select class="form-control" ng-model="formElement.numberOfColumns" ng-change="changeNumberOfColumns(formElement)">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>6</option>
+                                            <option>12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div ng-if="tabProperty.type === 'colspan'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.COLSPAN"></label>
+                                        <select class="form-control" ng-model="formElement.colspan" ng-change="changeColspan(formElement)">
+                                            <option>1</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 2">2</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 3">3</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 4">4</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 5">5</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 6">6</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 7">7</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 8">8</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 9">9</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 10">10</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 11">11</option>
+                                            <option ng-if="formElement.params['maxColspan'] >= 12">12</option>
+                                        </select>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'placeholder'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.PLACEHOLDER"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.placeholder">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'minLength'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.MIN-LENGTH"></label>
+                                        <input type="text" number-input-check class="form-control" ng-model="formElement.minLength">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'maxLength'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.MAX-LENGTH"></label>
+                                        <input type="text" number-input-check class="form-control" ng-model="formElement.maxLength">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'regexPattern'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.REGEX-PATTERN"></label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">/^</span>
+                                            <input type="text" class="form-control" ng-model="formElement.regexPattern">
+                                            <span class="input-group-addon">$/</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'minValue'">
+                            <div class="row">
+                                <div ng-switch on="tabProperty.editor" class="col-md-8">
+                                    <div ng-switch-when="datepicker" class="form-group">
+                                        <label translate="{{tabProperty.name}}"></label>
+                                        <span class="control-label">({{getGlobalDateFormat()}})</span>
+                                        <input type="text" class="form-control"
+                                               ng-model="formElement.minValue"
+                                               bs-datepicker
+                                               restrict-input
+                                               data-date-type="string"
+                                               template="{{appResourceRoot}}views/templates/date-picker-template.html"
+                                               data-date-format="{{getGlobalDateFormat() | momentToAngularFormat}}" trigger="focus" autoclose="true">
+                                    </div>
+                                    <div ng-switch-when="datetimepicker" class="form-group">
+                                        <label translate="{{tabProperty.name}}"></label>
+                                        <span class="control-label">({{getGlobalDateFormat()}} hh:mm A)</span>
+                                        <div class='input-group' >
+                                         <input type="text" class="form-control"
+                                               ng-model="formElement.minValue"
+                                               datetimepicker
+                                               date-format="{{getGlobalDateFormat() | momentTodatetimeFormat}} hh:mm A"
+                                               valid-date-time
+                                               trigger="focus" 
+                                               autoclose="true">
+                                          <span  class="input-group-addon " data-type="date-selector">
+                                               <span  class="glyphicon glyphicon-calendar" ng-model="field.value"  ></span>
+                                          </span>
+                                          <span  class="input-group-addon " data-type="time-selector">
+                                               <span  class="glyphicon glyphicon-time" ng-model="field.value"></span>
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-default class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.MIN-VALUE"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.minValue">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'maxValue'">
+                            <div class="row">
+                                <div ng-switch on="tabProperty.editor" class="col-md-8">
+                                    <div ng-switch-when="datepicker" class="form-group">
+                                        <label translate="{{tabProperty.name}}"></label>
+                                        <span class="control-label">({{getGlobalDateFormat()}})</span>
+                                        <input type="text" class="form-control"
+                                               ng-model="formElement.maxValue"
+                                               bs-datepicker
+                                               restrict-input
+                                               data-date-type="string"
+                                               template="{{appResourceRoot}}views/templates/date-picker-template.html"
+                                               data-date-format="{{getGlobalDateFormat() | momentToAngularFormat}}" trigger="focus" autoclose="true">
+                                    </div>
+                                    <div ng-switch-when="datetimepicker" class="form-group">
+                                        <label translate="{{tabProperty.name}}"></label>
+                                        <span class="control-label">({{getGlobalDateFormat()}} hh:mm A)</span>
+                                        <div class='input-group' >
+                                           <input type="text" class="form-control"
+                                               ng-model="formElement.maxValue"
+                                               datetimepicker
+                                               date-format="{{getGlobalDateFormat() | momentTodatetimeFormat}} hh:mm A"
+                                               valid-date-time
+                                               trigger="focus" autoclose="true">
+                                           <span  class="input-group-addon " data-type="date-selector">
+                                               <span  class="glyphicon glyphicon-calendar" ng-model="field.value"  ></span>
+                                          </span>
+                                          <span  class="input-group-addon " data-type="time-selector">
+                                               <span  class="glyphicon glyphicon-time" ng-model="field.value"></span>
+                                          </span>
+                                          </div>
+                                    </div>
+                                    <div ng-switch-default class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.MAX-VALUE"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.maxValue">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'inputMask'">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.TITLE</label>
+                                        <input type="text" class="form-control" ng-model="formElement.params.inputMask">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-model="formElement.params.inputMaskReversed">
+                                                <span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.REVERSED</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.TITLE</label>
+                                        <ul>
+                                            <li><span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.PHONE</span> : (00) 0000-0000</li>
+                                            <li><span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.MIXED</span> : AAA 000-S0S</li>
+                                            <li><span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.NUMBERS-ONLY</span> : 0#</li>
+                                            <li><span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.PERCENT</span> : ##0,00%</li>
+                                            <li><span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.MONEY</span> : #.##0,00</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'inputMaskDigit'">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.TITLE</label>
+                                        <input type="text" class="form-control" ng-model="formElement.params.inputMask">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.TITLE</label>
+                                        <ul>
+                                            <li><span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.NUMBERS-ONLY</span> : 0#</li>
+                                            <li><span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.MONEY</span> : #,##0,000</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'inputMaskPlaceholder'">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.PLACEHOLDER</label>
+                                        <input type="text" class="form-control" ng-model="formElement.params.inputMaskPlaceholder">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.TITLE</label>
+                                        <ul>
+                                            <li><span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.PHONE</span> : (__) ___-___</li>
+                                            <li><span translate>FORM-BUILDER.COMPONENT.MASKED-INPUT.EXAMPLES.MIXED</span> : ___ ___-___</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'enableFractions'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-model="formElement.enableFractions">
+                                                {{'FORM-BUILDER.COMPONENT.AMOUNT-ENABLE-FRACTIONS' | translate}}
+                                            </label>
+                                        </div>
+                                        <div ng-if="formElement.enableFractions">
+                                            <label translate>FORM-BUILDER.COMPONENT.AMOUNT-FRACTION-COUNT</label>
+                                            <input ng-disabled="" type="number" min="1" class="form-control" ng-model="formElement.params.fractionLength">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'enablePeriodSeparator'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>
+                                            {{'FORM-BUILDER.COMPONENT.SEPARATOR' | translate}}
+                                        </label>
+                                        <div class="radio">
+                                            <label style="padding: 0 50px">
+                                                <input type="radio" ng-value="false" ng-model="formElement.enablePeriodSeparator">
+                                                {{'FORM-BUILDER.COMPONENT.COMMA-SEPARATOR' | translate}}
+                                            </label>
+                                            <label style="padding: 0 50px">
+                                                <input type="radio" ng-value="true" ng-model="formElement.enablePeriodSeparator">
+                                                {{'FORM-BUILDER.COMPONENT.PERIOD-SEPARATOR' | translate}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'className'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.CLASSNAME"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.className">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'text' && tabProperty.custom && tabProperty.custom.isCustomProperty">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="{{tabProperty.name}}"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.params.customProperties['' + tabProperty.id]">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div ng-if="tabProperty.type === 'multiline text' && tabProperty.custom && tabProperty.custom.isCustomProperty">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="{{tabProperty.name}}"></label>
+                                        <textarea class="form-control" rows="3" ng-model="formElement.params.customProperties['' + tabProperty.id]"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div ng-if="tabProperty.type === 'variable' && tabProperty.custom && tabProperty.custom.isCustomProperty">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="{{tabProperty.name}}"></label>
+                                        <div class="form-group btn-group btn-group-justified">
+                                            <div class="btn-group clearfix">
+                                                <button type="button" class="btn btn-default" ng-click="setCustomVariableType(tabProperty.id, 'field')" ng-model="formElement.params.customProperties['' + tabProperty.id].fieldType"
+                                                        ng-class="{'active' : !formElement.params.customProperties['' + tabProperty.id].fieldType || formElement.params.customProperties['' + tabProperty.id].fieldType === 'field'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="btn-group clearfix">
+                                                <button type="button" class="btn btn-default" ng-click="setCustomVariableType(tabProperty.id, 'variable')" ng-model="formElement.params.customProperties['' + tabProperty.id].fieldType"
+                                                        ng-class="{'active' : formElement.params.customProperties['' + tabProperty.id].fieldType === 'variable'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+            
+                                        <div class="form-group clearfix" ng-show="!formElement.params.customProperties['' + tabProperty.id].fieldType || formElement.params.customProperties['' + tabProperty.id].fieldType === 'field'">
+                                            <div>
+                                                <div field-select="formElement.params.customProperties['' + tabProperty.id].field" include-type="true" expand-relative="true" select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-FIELD'"
+                                                     all-steps="allSteps" step-id="stepId"
+                                                     field-type-filter="['text', 'integer', 'date', 'datetime', 'boolean', 'dropdown', 'radio-buttons', 'typeahead', 'amount', 'hyperlink', 'multi-line-text', 'people', 'functional-group', 'upload', 'dynamic-table']">
+                                                </div>
+                                            </div>
+                                        </div>
+            
+                                        <div class="form-group clearfix" ng-show="formElement.params.customProperties['' + tabProperty.id].fieldType === 'variable'">
+                                            <div>
+                                                <div field-select="formElement.params.customProperties['' + tabProperty.id].variable" include-type="true" variables-type="rest" expand-relative="true" all-steps="allSteps" step-id="stepId"
+                                                     form-variables="formVariables" editor-type="form" select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-RESPONSE-VARIABLE'"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'options'">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group" ng-if="formElement.type !== 'typeahead'">
+                                        <label translate="FORM-BUILDER.COMPONENT.OPTIONS-TYPE"></label>
+
+                                        <div class="btn-group btn-group-justified">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default" ng-click="setManualOptions()" ng-model="formElement.optionType"
+                                                        ng-class="{'active' : (!formElement.optionType || formElement.optionType == 'manual')}">{{'FORM-BUILDER.OPTIONS.MANUAL' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default" ng-click="setRestOptions()" ng-model="formElement.optionType"
+                                                        ng-class="{'active' : formElement.optionType == 'rest'}">{{'FORM-BUILDER.OPTIONS.REST' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-inline options" ng-if="formElement.type !== 'typeahead' && (!formElement.optionType || formElement.optionType == 'manual')">
+
+                                        <div><h5 style="display: inline-block;">{{"FORM-BUILDER.COMPONENT.OPTIONS" | translate}}</h5> <a ng-if="formElement.type === 'radio-buttons'" ng-click="formElement.value = null" translate="FORM-BUILDER.OPTIONS.CLEAR-SELECTION"></a></div>
+
+                                        <div class="form-group addon" ng-if="formElement.type === 'dropdown'">
+                                            <input id="radio_{{$index}}" type="radio" ng-model="formElement.value" ng-value="formElement.options[0].name">
+                                        </div>
+
+                                        <div class="form-group" ng-if="formElement.type === 'dropdown'">
+                                            <label class="left" for="option_label_{{$index}}">{{'FORM-BUILDER.OPTIONS.LABEL-LABEL' | translate}}</label>
+                                            <input id="option_label_{{$index}}" type="text" class="form-control empty" ng-model="formElement.options[0].name" ng-value="" style="background-color: #E6E6E6;">
+                                        </div>
+
+                                        <div class="form-group addon icon" ng-if="formElement.type === 'dropdown'">
+                                            <a data-placement="left" data-type="info" data-animation="am-fade-and-scale" bs-tooltip="'FORM-BUILDER.COMPONENT.DROPDOWN-EMPTY-VALUE-HELP'|translate">
+                                                <i class="glyphicon glyphicon-question-sign"></i>
+                                            </a>
+                                        </div>
+
+                                        <ul dnd-list="formElement.options">
+                                            <li ng-repeat="option in formElement.options">
+
+                                                <div class="form-group addon" ng-if="(!$first && formElement.type === 'dropdown') || formElement.type === 'radio-buttons'">
+                                                    <input id="radio_{{$index}}" type="radio" ng-model="formElement.value" ng-value="option.name">
+                                                </div>
+
+                                                <div class="form-group" ng-if="(!$first && formElement.type === 'dropdown') || formElement.type === 'radio-buttons'">
+                                                    <label class="left" for="option_label_{{$index}}">{{'FORM-BUILDER.OPTIONS.LABEL-LABEL' | translate}}</label>
+                                                    <input id="option_label_{{$index}}" type="text" class="form-control left" ng-if="$first && formElement.type === 'dropdown'" ng-model="option.name" style="background-color: #E6E6E6;">
+                                                    <input type="text" id="option_label_{{$index}}" class="form-control left" ng-if="!$first || formElement.type === 'radio-buttons'" ng-model="option.name" placeholder="{{'FORM-BUILDER.OPTIONS.PLACEHOLDER-LABEL' | translate}}">
+                                                </div>
+
+                                                <div class="form-group" ng-if="(!$first && formElement.type === 'dropdown') || formElement.type === 'radio-buttons'">
+                                                    <label class="right" for="option_id_{{$index}}">{{'FORM-BUILDER.OPTIONS.LABEL-ID' | translate}}</label>
+                                                    <input id="option_id_{{$index}}" type="text" class="form-control right" ng-if="$first && formElement.type === 'dropdown'" ng-model="option.id" style="background-color: #E6E6E6;">
+                                                    <input type="text" id="option_id_{{$index}}" class="form-control right" ng-if="!$first || formElement.type === 'radio-buttons'" ng-model="option.id" placeholder="{{'FORM-BUILDER.OPTIONS.PLACEHOLDER-ID' | translate}}">
+                                                </div>
+
+                                                <div class="form-group addon icon" ng-if="(formElement.type === 'radio-buttons') || (!$first && formElement.type === 'dropdown')"  dnd-draggable="option"
+                                                     dnd-moved="formElement.options.splice($index, 1); onOptionMoved($index)"
+                                                     dnd-effect-allowed="move"
+                                                     ng-class="{'selected': models.selected === item}">
+                                                    <div>
+                                                        <a data-placement="left" data-type="info" data-animation="am-fade-and-scale" bs-tooltip="'FORM-BUILDER.COMPONENT.DROPDOWN-MOVE-HELP'|translate">
+                                                            <i class="glyphicon glyphicon-align-justify"></i></a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group addon icon" ng-if="($index > 1 && formElement.type === 'radio-buttons') || (!$first && formElement.type === 'dropdown')">
+                                                    <a data-placement="left" data-type="info" data-animation="am-fade-and-scale" bs-tooltip="'FORM-BUILDER.COMPONENT.DROPDOWN-REMOVE-HELP'|translate" ng-click="removeOption($index)">
+                                                        <i class="icon icon-remove"></i></a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="{{'FORM-BUILDER.COMPONENT.ADD-OPTION' | translate}}" ng-model="newOption.name"
+                                                   ng-blur="confirmNewOption($event)" ng-keydown="optionKeyDown($event)">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-if="formElement.type === 'typeahead' || formElement.optionType == 'rest'">
+                                        <div class="panel panel-default clearfix" style="margin-bottom: 0px;">
+                                            <div class="clearfix first panel-body center" style="padding: 5px;" ng-if="getFullEndpointURL()">
+                                                <label>{{getFullEndpointURL()}}</label>
+                                                <button ng-click="executeEndpointTest()" type="button" class="btn btn-default btn-xs">{{'PROCESS-BUILDER.REST-CALL-STEP.TEST_BUTTON_LABEL' | translate}}</button>
+                                            </div>
+                                            <div class="clearfix first panel-body center" style="padding: 5px;" ng-if="!getFullEndpointURL()">
+                                                <label>{{'FORM-BUILDER.COMPONENT.NO-ENDPOINT-URL' | translate}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-if="formElement.type === 'typeahead' || formElement.optionType == 'rest'">
+                                        <label translate="FORM-BUILDER.COMPONENT.BASE-ENDPOINT"></label>
+                                        <select id="rest-endpoint-value" class="form-control"
+                                                ng-options="endpointLabel(endpoint.name, endpoint.protocol, endpoint.host, endpoint.port, endpoint.path) for endpoint in getEndpoints() track by endpoint.id"
+                                                ng-model="formElement.endpoint" ng-change="endpointChanged()">
+                                            <option value="">{{'FORM-BUILDER.COMPONENT.NO-ENDPOINT' | translate}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" ng-if="formElement.type === 'typeahead' || formElement.optionType == 'rest'">
+                                        <label translate="FORM-BUILDER.COMPONENT.REST-URL"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.restUrl" id="rest-url-value" ng-trim="false"
+                                               store-cursor-position="insertFormField.position">
+                                    </div>
+
+                                    <div class="form-group" ng-if="formElement.type === 'typeahead' || formElement.optionType == 'rest'">
+                                        <div class="btn-group btn-group-justified">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default" ng-click="setUrlFieldType('formField')" ng-model="model.urlFieldType"
+                                                        ng-class="{'active' : model.urlFieldType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default" ng-click="setUrlFieldType('restResponse')" ng-model="model.urlFieldType"
+                                                        ng-class="{'active' : model.urlFieldType === 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div ng-show="model.urlFieldType === 'formField'">
+                                            <div>
+                                                <div class="subtle" translate="FORM-BUILDER.MESSAGE.REST-HELP" style="padding: 5px 0 5px 1px;"></div>
+                                                <div field-select="insertFormField.field" include-type="true" expand-relative="true" all-steps="allSteps" step-id="stepId"
+                                                     select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'" field-type-filter="allowedTypes"></div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-show="model.urlFieldType === 'restResponse'">
+                                            <div>
+                                                <div class="subtle" translate="FORM-BUILDER.MESSAGE.RESPONSE-VARIABLE-HELP" style="padding: 5px 0 5px 1px;"></div>
+                                                <div field-select="insertFormField.field" include-type="true" variables-type="rest" editor-type="step" expand-relative="true"
+                                                     all-steps="allSteps" step-id="stepId" form-variables="formVariables"
+                                                     select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-RESPONSE-VARIABLE'"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-if="formElement.type === 'typeahead' || formElement.optionType == 'rest'">
+                                        <label translate="FORM-BUILDER.COMPONENT.REST-RESPONSE-PATH"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.restResponsePath">
+                                    </div>
+
+                                    <div class="form-group" ng-if="formElement.type === 'typeahead' || formElement.optionType == 'rest'">
+                                        <label translate="FORM-BUILDER.COMPONENT.REST-ID-PROPERTY"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.restIdProperty">
+                                    </div>
+
+                                    <div class="form-group" ng-if="formElement.type === 'typeahead' || formElement.optionType == 'rest'">
+                                        <label translate="FORM-BUILDER.COMPONENT.REST-LABEL-PROPERTY"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.restLabelProperty">
+                                    </div>
+
+                                    <!-- REQUEST HEADERS START -->
+
+									<div class="form-group"
+										ng-if="(formElement.type === 'typeahead' || formElement.optionType == 'rest') && formElement.endpoint.requestHeaders && formElement.endpoint.requestHeaders.length > 0"
+										ng-controller="RestHeadersBuilderController">
+										<label translate="FORM-BUILDER.COMPONENT.REQUEST-HEADERS-LABEL"></label>
+										<div class="row row-no-gutter">
+											<div class="col-xs-6">
+												<div class="kis-listener-grid" ui-grid="gridOptions"
+													ui-grid-selection></div>
+											</div>
+
+											<div class="col-xs-6">
+												<div ng-if="selectedRequestHeader"
+													ng-form="columnDefdEditForm">
+													<div class="form-group"
+														ng-class="{'has-error': columnDefdEditForm.headerValue.$invalid}">
+														<label for="headerValue" translate="FORM-BUILDER.COMPONENT.REQUEST-HEADER-VALUE"></label> <input
+															type="text" id="headerValue" name="headerValue"
+															class="form-control"
+															ng-model="selectedRequestHeader.value"
+															store-cursor-position="restHeaderConfig.position"
+															placeholder="{{'FORM-BUILDER.COMPONENT.PLACEHOLDER-REQUEST-HEADER-VALUE' | translate}}">
+													</div>
+
+													<div class="form-group">
+														<div class="btn-group btn-group-justified">
+															<div class="btn-group">
+																<button type="button" class="btn btn-default"
+																	ng-click="setUrlFieldType('formField')"
+																	ng-model="model.headerFieldType"
+																	ng-class="{'active' : model.headerFieldType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD'
+																	| translate}}</button>
+															</div>
+															<div class="btn-group">
+																<button type="button" class="btn btn-default"
+																	ng-click="setUrlFieldType('restResponse')"
+																	ng-model="model.headerFieldType"
+																	ng-class="{'active' : model.headerFieldType === 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE'
+																	| translate}}</button>
+															</div>
+														</div>
+
+														<div ng-show="model.headerFieldType === 'formField'">
+															<div>
+																<div class="subtle"
+																	translate="FORM-BUILDER.MESSAGE.REQUEST-HEADER-INSERT-FIELD-HELP"
+																	style="padding: 5px 0 5px 1px;"></div>
+																<div field-select="restHeaderConfig.field"
+																	include-type="true" expand-relative="true"
+																	all-steps="allSteps" step-id="stepId"
+																	select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'"
+																	field-type-filter="allowedTypes"></div>
+															</div>
+														</div>
+
+														<div ng-show="model.headerFieldType === 'restResponse'">
+															<div>
+																<div class="subtle"
+																	translate="FORM-BUILDER.MESSAGE.REQUEST-HEADER-INSERT-VARIABLE-HELP"
+																	style="padding: 5px 0 5px 1px;"></div>
+																<div field-select="restHeaderConfig.field"
+																	include-type="true" variables-type="rest"
+																	editor-type="step" expand-relative="true"
+																	select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-RESPONSE-VARIABLE'"></div>
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- REQUEST HEADERS END -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'unitField'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.AMOUNT-CURRENCY-PROPERTY"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.currency">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type == 'collapsebydefault'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-model="formElement.params.allowCollapse">
+                                                {{'FORM-BUILDER.COMPONENT.ALLOW-COLLAPSE' | translate}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="formElement.params.allowCollapse">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-model="formElement.params.collapseByDefault">
+                                                {{'FORM-BUILDER.COMPONENT.COLLAPSE-BY-DEFAULT' | translate}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'urldefinition'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.HYPERLINK-URL"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.hyperlinkUrl" id="hyperlink-url-value" ng-trim="false"
+                                               store-cursor-position="insertFormField.position">
+                                    </div>
+        
+                                    <div class="btn-group btn-group-justified">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default" ng-click="setUrlFieldType('formField')" ng-model="model.urlFieldType"
+                                                    ng-class="{'active' : model.urlFieldType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                                            </button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default" ng-click="setUrlFieldType('restResponse')" ng-model="model.urlFieldType"
+                                                    ng-class="{'active' : model.urlFieldType === 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-group" ng-show="model.urlFieldType === 'formField'">
+                                        <div class="subtle" translate="FORM-BUILDER.MESSAGE.HYPERLINK-HELP" style="padding: 5px 0 5px 1px;"></div>
+                                        <div field-select="insertFormField.field" include-type="true"  expand-relative="true" all-steps="allSteps" step-id="stepId"
+                                             select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'" field-type-filter="allowedTypes"></div>
+                                    </div>
+        
+                                    <div class="form-group" ng-show="model.urlFieldType === 'restResponse'">
+                                        <div class="subtle" translate="FORM-BUILDER.MESSAGE.HYPERLINK-HELP-RESPONSE-VARIABLE" style="padding: 5px 0 5px 1px;"></div>
+                                        <div field-select="insertFormField.field" include-type="true" variables-type="rest" expand-relative="true" all-steps="allSteps" step-id="stepId"
+                                             select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-RESPONSE-VARIABLE'" form-variables="formVariables"></div>
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.DISPLAY-TEXT"></label>
+                                        <input type="text" class="form-control" ng-model="formElement.displayText" id="display-text-value" ng-trim="false">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'uploadconfig'" ng-controller="AttachFieldBuilderController">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-model="formElement.params.multiple">
+                                                {{'FORM-BUILDER.COMPONENT.UPLOAD-ALLOW-MULTIPLE' | translate}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-model="formElement.params.link">
+                                                {{'FORM-BUILDER.COMPONENT.ONLY-LINKS-HELP' | translate}}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!--Account selector-->
+                                    <div class="detail-group clearfix first form-group" ng-if="contentAccounts.loading === false && (!contentAccounts.rawList || contentAccounts.rawList.length > 0)">
+                                        <div class="form-group">
+                                            <div class="btn-group span">
+                                                <div class="col-xs-2">
+                                                    <label translate="FORM-BUILDER.COMPONENT.ATTACH-FILE.FILE-SOURCE"></label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    <button class="selection" data-toggle="dropdown"
+                                                            ng-options="option.name for option in contentAccounts.rawList"
+                                                            bs-select ng-model="formElement.params.fileSource"
+                                                            activiti-fix-dropdown-bug>
+                                                        <i class="icon icon-caret-down"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-group clearfix first" ng-if="contentAccounts.loading === false && (!contentAccounts.rawList || contentAccounts.rawList.length === 0)">
+                                        <div class="col-xs-12">
+                                            <div class="clearfix span">
+                                                <label class="center">{{'FORM-BUILDER.COMPONENT.ATTACH-FILE.NO-ACCOUNTS' | translate}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <!--Starting folder selector for each repository-->
+                                    <!--for now is done only for a single selected repository-->
+                                    <div class="detail-group clearfix first" ng-if="(formElement.params.fileSource && formElement.params.fileSource.serviceId != 'all-file-sources' && formElement.params.fileSource.serviceId != 'local-file') && ((contentAccounts.loading === false && contentAccounts.rawList.length > 0 ) || (contentAccounts.loading === false && contentAccounts.onPrem === true && contentAccounts.rawList.length > 0))">
+                                        <div class="form-group clearfix">
+                                            <div class="col-xs-2">
+                                                <label>{{'FORM-BUILDER.COMPONENT.ATTACH-FILE.START-FOLDER' | translate}}</label>
+                                            </div>
+                                            <div class="col-xs-10">
+                                                <div class="clearfix selection narrow">
+                                                    <div class="pull-right">
+                                                        <div folder-select="formElement.params.fileSource.serviceId" account="formElement.params.fileSource" external-content on-folder-select="selectDestinationFolder(folder)"></div>
+                                                    </div>
+        
+                                                    <div class="details" ng-if="formElement.params.fileSource">
+                                                        <div ng-show="!formElement.params.fileSource.selectedFolder">
+                                                            {{'FORM-BUILDER.COMPONENT.UPLOAD-NO-FOLDER-SELECTED' | translate}}
+                                                        </div>
+                                                        <div ng-show="formElement.params.fileSource.selectedFolder">
+                                                            <div ng-if="formElement.params.fileSource.serviceId.substring(0,9) === 'alfresco-' && formElement.params.fileSource.selectedFolder.network"><span class="label">{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.NETWORK' | translate}}: </span>{{formElement.params.fileSource.selectedFolder.network}}<br></div>
+                                                            <div ng-if="formElement.params.fileSource.serviceId.substring(0,9) === 'alfresco-' && formElement.params.fileSource.selectedFolder.site"><span class="label">   {{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.SITE' | translate}}: </span>{{formElement.params.fileSource.selectedFolder.site}}<br></div>
+                                                            <span class="label">{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.PATH' | translate}}:</span> {{formElement.params.fileSource.selectedFolder.path || ('PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.DOCUMENT-LIBRARY' | translate)}}<br>
+                                                        </div>
+                                                    </div>
+        
+                                                </div>
+        
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="formElement.params.fileSource.notAllowNavigateFolders">
+                                                            {{'FORM-BUILDER.COMPONENT.UPLOAD-NOT-ALLOW-NAVIGATE' | translate}}
+                                                        </label>
+                                                    </div>
+                                                </div>
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detail-group clearfix first" ng-if="!formElement.params.multiple && formElement.params.fileSource && isGetMetaDataAllowed(formElement.params.fileSource.serviceId)">
+                                <div class="form-group clearfix">
+                                    <div class="col-xs-2">
+                                        <label>{{'FORM-BUILDER.COMPONENT.ATTACH-FILE.METADATA-LABEL' | translate}}</label>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div ng-controller="AttachFieldMetadataMappingBuilderController">
+                                            <div class="row row-no-gutter">
+                                                <div class="col-xs-6">
+                                                    <div class="kis-listener-grid" ui-grid="gridOptions" ui-grid-selection></div>
+                                                    <div class="pull-right">
+                                                        <div class="btn-group">
+                                                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.MOVE.UP | translate}}" ng-disabled="!metaDataSelectedColumnDefinition"
+                                                               data-placement="bottom" data-original-title="" title=""
+                                                               ng-click="moveDefinitionUp()"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.MOVE.DOWN | translate}}" ng-disabled="!metaDataSelectedColumnDefinition"
+                                                               data-placement="bottom" data-original-title="" title=""
+                                                               ng-click="moveDefinitionDown()"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom" data-original-title=""
+                                                               title=""
+                                                               ng-click="addNewDefinition()"><i class="glyphicon glyphicon-plus"></i></a>
+                                                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}" ng-disabled="!metaDataSelectedColumnDefinition"
+                                                               data-placement="bottom" data-original-title="" title=""
+                                                               ng-click="removeDefinition()"><i class="glyphicon glyphicon-minus"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-6">
+                                                    <div ng-if="metaDataSelectedColumnDefinition"  ng-form="columnDefdEditForm">
+                                                        <div class="form-group" ng-class="{'has-error': columnDefdEditForm.filePropertyField.$invalid}">
+                                                            <label for="filePropertyField">{{'FORM-BUILDER.COMPONENT.ATTACH-FILE.FILE-PROPERTY' | translate}}</label>
+                                                            <input type="text" id="filePropertyField" name="filePropertyField" class="form-control" ng-model="metaDataSelectedColumnDefinition.fileProperty" auto-focus
+                                                                   placeholder="{{'FORM-BUILDER.COMPONENT.ATTACH-FILE.FILE-PROPERTY' | translate}}" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label translate="FORM-BUILDER.COMPONENT.ATTACH-FILE.PROPERTY-TYPE"></label>
+                                                            <select class="form-control" ng-options="name for name in propertyTypes"
+                                                                    ng-model="metaDataSelectedColumnDefinition.propertyType"
+                                                                    ng-change="propertyTypeChanged()"/>
+                                                        </div>
+
+                                                    <div class="form-group" ng-class="{'has-error': columnDefdEditForm.variableNameField.$invalid}">
+                                                            <label translate="FORM-BUILDER.COMPONENT.ATTACH-FILE.VARIABLE-NAME"></label>
+                                                            <input type="text" id="variableNameField" name="variableNameField" class="form-control" required variable-identifier ng-model="metaDataSelectedColumnDefinition.processVariable.id"/>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div ng-show="!metaDataSelectedColumnDefinition" class="muted no-property-selected" translate>FORM-BUILDER.COMPONENT.PROPERTY-UNSELECTED</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Select a start folder from Alfresco Repository.
+                             Then end-user can then during runtime select/attach a sub-folder of this folder -->
+                        <div ng-if="tabProperty.type === 'selectfolderconfig'" ng-controller="AttachFolderBuilderController">
+                            <div class="row">
+                                <div class="col-md-8">
+
+                                    <!--Account selector (what Alfresco Repo and user/pwd to use when selecting folder) -->
+                                    <div class="detail-group clearfix first form-group"
+                                         ng-if="contentAccounts.loading === false && (!contentAccounts.rawList || contentAccounts.rawList.length > 0)">
+                                        <div class="form-group">
+                                            <div class="btn-group span">
+                                                <div class="col-xs-2">
+                                                    <label translate="FORM-BUILDER.COMPONENT.ATTACH-FOLDER.FOLDER-SOURCE"></label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    <button class="selection" data-toggle="dropdown"
+                                                            ng-options="option.name for option in contentAccounts.rawList"
+                                                            bs-select ng-model="formElement.params.folderSource"
+                                                            activiti-fix-dropdown-bug>
+                                                        <i class="icon icon-caret-down"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-group clearfix first" ng-if="contentAccounts.loading === false && (!contentAccounts.rawList || contentAccounts.rawList.length === 0)">
+                                        <div class="col-xs-12">
+                                            <div class="clearfix span">
+                                                <label class="center">{{'FORM-BUILDER.COMPONENT.ATTACH-FOLDER.NO-ACCOUNTS' | translate}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Starting folder selector for each repository-->
+                                    <!--for now is done only for a single selected repository-->
+                                    <div class="detail-group clearfix first"
+                                         ng-if="(formElement.params.folderSource) && ((contentAccounts.loading === false && contentAccounts.rawList.length > 0 ) || (contentAccounts.loading === false && contentAccounts.onPrem === true && contentAccounts.rawList.length > 0))">
+                                        <div class="form-group clearfix">
+                                            <div class="col-xs-2">
+                                                <label>{{'FORM-BUILDER.COMPONENT.ATTACH-FILE.START-FOLDER' | translate}}</label>
+                                            </div>
+                                            <div class="col-xs-10">
+                                                <div class="clearfix selection narrow">
+                                                    <div class="pull-right">
+                                                        <div folder-select="formElement.params.folderSource.serviceId"
+                                                             account="formElement.params.folderSource"
+                                                             external-content on-folder-select="selectDestinationFolder(folder)"></div>
+                                                    </div>
+
+                                                    <div class="details" ng-if="formElement.params.folderSource">
+                                                        <div ng-show="!formElement.params.folderSource.selectedFolder">
+                                                            {{'FORM-BUILDER.COMPONENT.UPLOAD-NO-FOLDER-SELECTED' | translate}}
+                                                        </div>
+                                                        <div ng-show="formElement.params.folderSource.selectedFolder">
+                                                            <div ng-if="formElement.params.folderSource.serviceId.substring(0,9) === 'alfresco-' && formElement.params.folderSource.selectedFolder.network">
+                                                                <span class="label">{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.NETWORK' | translate}}: </span>{{formElement.params.folderSource.selectedFolder.network}}<br></div>
+                                                            <div ng-if="formElement.params.folderSource.serviceId.substring(0,9) === 'alfresco-' && formElement.params.folderSource.selectedFolder.site">
+                                                                <span class="label">   {{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.SITE' | translate}}: </span>{{formElement.params.folderSource.selectedFolder.site}}<br></div>
+                                                            <span class="label">{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.PATH' | translate}}:
+                                                                </span> {{formElement.params.folderSource.selectedFolder.path || ('PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.DOCUMENT-LIBRARY' | translate)}}<br>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div ng-if="tabProperty.type == 'columndefinition'" ng-controller="DynamicTableBuilderController">
+                            <div class="row row-no-gutter">
+                                <div class="col-xs-6">
+                                    <div class="kis-listener-grid" ui-grid="gridOptions" ui-grid-selection></div>
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.MOVE.UP | translate}}" ng-disabled="!selectedColumnDefinition"
+                                               data-placement="bottom" data-original-title="" title=""
+                                               ng-click="moveDefinitionUp()"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.MOVE.DOWN | translate}}" ng-disabled="!selectedColumnDefinition"
+                                               data-placement="bottom" data-original-title="" title=""
+                                               ng-click="moveDefinitionDown()"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom" data-original-title=""
+                                               title=""
+                                               ng-click="addNewDefinition()"><i class="glyphicon glyphicon-plus"></i></a>
+                                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}" ng-disabled="!selectedColumnDefinition"
+                                               data-placement="bottom" data-original-title="" title=""
+                                               ng-click="removeDefinition()"><i class="glyphicon glyphicon-minus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div ng-if="selectedColumnDefinition"  ng-form="columnDefdEditForm">
+                                        <div class="form-group" ng-class="{'has-error': columnDefdEditForm.idField.$invalid}">
+                                            <label for="idField">{{'FORM-BUILDER.COMPONENT.HEADER-ID' | translate}}</label>
+                                            <input type="text" id="idField" name="idField" class="form-control" ng-model="selectedColumnDefinition.id" auto-focus editor-input-check
+                                                   placeholder="{{'FORM-BUILDER.COMPONENT.PLACEHOLDER-ID' | translate}}" required>
+                                        </div>
+                                        <div class="form-group" ng-class="{'has-error': columnDefdEditForm.nameField.$invalid}">
+                                            <label for="nameField">{{'FORM-BUILDER.COMPONENT.HEADER-NAME' | translate}}</label>
+                                            <input type="text" id="nameField" name="nameField" class="form-control" ng-model="selectedColumnDefinition.name"
+                                                   placeholder="{{'FORM-BUILDER.COMPONENT.PLACEHOLDER-NAME' | translate}}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="typeField">{{'FORM-BUILDER.COMPONENT.HEADER-TYPE' | translate}}</label>
+                                            <select id="typeField" class="form-control" ng-options="name for name in columnTypes" ng-model="selectedColumnDefinition.type"
+                                                    ng-change="columnTypeChanged()"/>
+                                        </div>
+
+                                        <div ng-if="selectedColumnDefinition.type === 'radio-buttons' || selectedColumnDefinition.type === 'Dropdown' || selectedColumnDefinition.type === 'typeahead'">
+                                            <div class="form-group" ng-if="selectedColumnDefinition.type !== 'typeahead'">
+                                                <label translate="FORM-BUILDER.COMPONENT.OPTIONS-TYPE"></label>
+
+                                                <div class="btn-group btn-group-justified">
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-default" ng-click="setDynamicTableManualOptions()"
+                                                                ng-model="selectedColumnDefinition.optionType"
+                                                                ng-class="{'active' : (!selectedColumnDefinition.optionType || selectedColumnDefinition.optionType == 'manual')}">
+                                                            {{'FORM-BUILDER.OPTIONS.MANUAL' | translate}}
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-default" ng-click="setDynamicTableRestOptions()"
+                                                                ng-model="selectedColumnDefinitions[0].optionType"
+                                                                ng-class="{'active' : selectedColumnDefinition.optionType === 'rest'}">{{'FORM-BUILDER.OPTIONS.REST' |
+                                                            translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group"
+                                                 ng-if="selectedColumnDefinition.type !== 'typeahead' && (!selectedColumnDefinition.optionType || selectedColumnDefinition.optionType === 'manual')">
+                                                <label translate="FORM-BUILDER.COMPONENT.OPTIONS"></label>
+
+                                                <div>
+                                                    <div ng-repeat="option in selectedColumnDefinition.options" style="margin-bottom: 5px"
+                                                         ng-class="{'input-group': $index > 0 || selectedColumnDefinition.options.length > 1, 'form-group': $index == 0}">
+                                                        <div class="input-group-addon" ng-if="selectedColumnDefinition.options.length > 1">
+                                                            <input type="radio" ng-model="selectedColumnDefinition.value" ng-value="option.name">
+                                                        </div>
+                                                        <input type="text" class="form-control" ng-model="option.name">
+                                                        <a class="input-group-addon" ng-click="removeDynamicTableOption($index)" ng-if="$index > 0"><i
+                                                                class="icon icon-remove"></i></a>
+                                                    </div>
+
+                                                    <div>
+                                                        <input type="text" class="form-control" placeholder="{{'FORM-BUILDER.COMPONENT.ADD-OPTION' | translate}}"
+                                                               ng-model="newOption.name"
+                                                               ng-blur="confirmNewDynamicTableOption($event)" ng-keydown="optionKeyDown($event)">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" ng-if="selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest'">
+                                                <div class="panel panel-default clearfix" style="margin-bottom: 0px;">
+                                                    <div class="clearfix first panel-body center" style="padding: 5px;" ng-if="getFullEndpointURL()">
+                                                        <label>{{getFullEndpointURL()}}</label>
+                                                        <button ng-click="executeEndpointTest(selectedColumnDefinition)" type="button" class="btn btn-default btn-xs">{{'PROCESS-BUILDER.REST-CALL-STEP.TEST_BUTTON_LABEL' | translate}}</button>
+                                                    </div>
+                                                    <div class="clearfix first panel-body center" style="padding: 5px;" ng-if="!getFullEndpointURL()">
+                                                        <label>{{'FORM-BUILDER.COMPONENT.NO-ENDPOINT-URL' | translate}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" ng-if="selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest'">
+                                                <label translate="FORM-BUILDER.COMPONENT.BASE-ENDPOINT"></label>
+                                                <select id="rest-endpoint-value" class="form-control"
+                                                        ng-options="endpointLabel(endpoint.name, endpoint.protocol, endpoint.host, endpoint.port, endpoint.path) for endpoint in getEndpoints() track by endpoint.id"
+                                                        ng-model="selectedColumnDefinition.endpoint" ng-change="columnDefinitionEndpointChanged()">
+                                                    <option value="">{{'FORM-BUILDER.COMPONENT.NO-ENDPOINT' | translate}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group" ng-if="selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest'">
+                                                <label translate="FORM-BUILDER.COMPONENT.REST-URL"></label>
+                                                <input type="text" class="form-control" ng-model="selectedColumnDefinition.restUrl" id="rest-url-value" ng-trim="false"
+                                                       store-cursor-position="urlDynamicTableConfig.position">
+                                            </div>
+
+                                            <div class="form-group btn-group btn-group-justified" ng-if="selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest'">
+                                                <div class="btn-group clearfix">
+                                                    <button type="button" class="btn btn-default" ng-click="setUrlFieldType('formField')" ng-model="model.urlFieldType"
+                                                            ng-class="{'active' : model.urlFieldType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group clearfix">
+                                                    <button type="button" class="btn btn-default" ng-click="setUrlFieldType('restResponse')" ng-model="model.urlFieldType"
+                                                            ng-class="{'active' : model.urlFieldType === 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix" ng-show="(selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest') && model.urlFieldType === 'formField'">
+                                                <div>
+                                                    <div class="subtle" translate="FORM-BUILDER.MESSAGE.REST-HELP" style="padding: 5px 0 5px 1px;"></div>
+                                                    <div field-select="urlDynamicTableConfig.field" include-type="true" expand-relative="true" all-steps="allSteps" step-id="stepId"
+                                                         select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'" field-type-filter="allowedTypes"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group clearfix" ng-show="(selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest') && model.urlFieldType === 'restResponse'">
+                                                <div>
+                                                    <div class="subtle" translate="FORM-BUILDER.MESSAGE.RESPONSE-VARIABLE-HELP" style="padding: 5px 0 5px 1px;"></div>
+                                                    <div field-select="urlDynamicTableConfig.field" include-type="true" variables-type="rest" expand-relative="true"
+                                                         select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-RESPONSE-VARIABLE'" all-steps="allSteps" step-id="stepId"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" ng-if="selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest'">
+                                                <label translate="FORM-BUILDER.COMPONENT.REST-RESPONSE-PATH"></label>
+                                                <input type="text" class="form-control" ng-model="selectedColumnDefinition.restResponsePath">
+                                            </div>
+
+                                            <div class="form-group" ng-if="selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest'">
+                                                <label translate="FORM-BUILDER.COMPONENT.REST-ID-PROPERTY"></label>
+                                                <input type="text" class="form-control" ng-model="selectedColumnDefinition.restIdProperty">
+                                            </div>
+
+                                            <div class="form-group" ng-if="selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest'">
+                                                <label translate="FORM-BUILDER.COMPONENT.REST-LABEL-PROPERTY"></label>
+                                                <input type="text" class="form-control" ng-model="selectedColumnDefinition.restLabelProperty">
+                                            </div>
+                                                                                        
+                                            <!-- REQUEST HEADERS START DYN TABLE -->
+
+											<div class="form-group"
+												ng-if="(selectedColumnDefinition.type === 'typeahead' || selectedColumnDefinition.optionType == 'rest') && selectedColumnDefinition.endpoint.requestHeaders && selectedColumnDefinition.endpoint.requestHeaders.length > 0"
+												ng-controller="RestHeadersBuilderDynTableController">
+												<label
+													translate="FORM-BUILDER.COMPONENT.REQUEST-HEADERS-LABEL"></label>
+												<div class="row row-no-gutter">
+													<div class="col-xs-6">
+														<div class="kis-listener-grid" ui-grid="gridOptions"
+															ui-grid-selection></div>
+													</div>
+
+													<div class="col-xs-6">
+														<div ng-if="selectedRequestHeader"
+															ng-form="columnDefdEditForm">
+															<div class="form-group"
+																ng-class="{'has-error': columnDefdEditForm.headerValue.$invalid}">
+																<label for="headerValue"
+																	translate="FORM-BUILDER.COMPONENT.REQUEST-HEADER-VALUE"></label>
+																<input type="text" id="headerValue" name="headerValue"
+																	class="form-control"
+																	ng-model="selectedRequestHeader.value"
+																	store-cursor-position="restHeaderConfig.position"
+																	placeholder="{{'FORM-BUILDER.COMPONENT.PLACEHOLDER-REQUEST-HEADER-VALUE' | translate}}">
+															</div>
+
+															<div class="form-group">
+																<div class="btn-group btn-group-justified">
+																	<div class="btn-group">
+																		<button type="button" class="btn btn-default"
+																			ng-click="setUrlFieldType('formField')"
+																			ng-model="model.headerFieldType"
+																			ng-class="{'active' : model.headerFieldType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD'
+																			| translate}}</button>
+																	</div>
+																	<div class="btn-group">
+																		<button type="button" class="btn btn-default"
+																			ng-click="setUrlFieldType('restResponse')"
+																			ng-model="model.headerFieldType"
+																			ng-class="{'active' : model.headerFieldType === 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE'
+																			| translate}}</button>
+																	</div>
+																</div>
+
+																<div ng-show="model.headerFieldType === 'formField'">
+																	<div>
+																		<div class="subtle"
+																			translate="FORM-BUILDER.MESSAGE.REQUEST-HEADER-INSERT-FIELD-HELP"
+																			style="padding: 5px 0 5px 1px;"></div>
+																		<div field-select="restHeaderConfig.field"
+																			include-type="true" expand-relative="true"
+																			all-steps="allSteps" step-id="stepId"
+																			select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'"
+																			field-type-filter="allowedTypes"></div>
+																	</div>
+																</div>
+
+																<div ng-show="model.headerFieldType === 'restResponse'">
+																	<div>
+																		<div class="subtle"
+																			translate="FORM-BUILDER.MESSAGE.REQUEST-HEADER-INSERT-VARIABLE-HELP"
+																			style="padding: 5px 0 5px 1px;"></div>
+																		<div field-select="restHeaderConfig.field"
+																			include-type="true" variables-type="rest"
+																			editor-type="step" expand-relative="true"
+																			select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-RESPONSE-VARIABLE'"></div>
+																	</div>
+																</div>
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!-- REQUEST HEADERS DYN TABLE END -->
+                                            
+                                        </div>
+
+                                        <div ng-if="selectedColumnDefinition.type === 'Amount'">
+                                            <div class="form-group">
+                                                <label translate="FORM-BUILDER.COMPONENT.AMOUNT-CURRENCY-PROPERTY"></label>
+                                                <input type="text" class="form-control" ng-model="selectedColumnDefinition.amountCurrency">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label>
+                                                    <input type="checkbox" ng-model="selectedColumnDefinition.amountEnableFractions">
+                                                    {{'FORM-BUILDER.COMPONENT.AMOUNT-ENABLE-FRACTIONS' | translate}}
+                                                    </label>
+                                                </div>
+                                                <div ng-if="selectedColumnDefinition.amountEnableFractions">
+                                                    <label translate>FORM-BUILDER.COMPONENT.AMOUNT-FRACTION-COUNT</label>
+                                                    <input ng-disabled="" type="number" min="1" class="form-control" ng-model="selectedColumnDefinition.fractionLength">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    {{'FORM-BUILDER.COMPONENT.SEPARATOR' | translate}}
+                                                </label>
+                                                <div class="radio">
+                                                    <label style="padding: 0 50px">
+                                                        <input type="radio" ng-value="false" ng-model="selectedColumnDefinition.enablePeriodSeparator">
+                                                        {{'FORM-BUILDER.COMPONENT.COMMA-SEPARATOR' | translate}}
+                                                    </label>
+                                                    <label style="padding: 0 50px">
+                                                        <input type="radio" ng-value="true" ng-model="selectedColumnDefinition.enablePeriodSeparator">
+                                                        {{'FORM-BUILDER.COMPONENT.PERIOD-SEPARATOR' | translate}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="requiredField" ng-model="selectedColumnDefinition.required"/>
+                                                <label class="form-check-label" for="requiredField">{{'FORM-BUILDER.COMPONENT.REQUIRED' | translate}}</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="editableField" ng-model="selectedColumnDefinition.editable"/>
+                                                <label class="form-check-label" for="editableField">{{'FORM-BUILDER.COMPONENT.EDITABLE' | translate}}</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="sortableField" ng-model="selectedColumnDefinition.sortable"/>
+                                                <label class="form-check-label" for="sortableField">{{'FORM-BUILDER.COMPONENT.SORTABLE' | translate}}</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="visibleField" ng-model="selectedColumnDefinition.visible"/>
+                                                <label class="form-check-label" for="visibleField">{{'FORM-BUILDER.COMPONENT.VISIBLE' | translate}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="!selectedColumnDefinition" class="muted no-property-selected" translate>FORM-BUILDER.COMPONENT.PROPERTY-UNSELECTED</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div ng-if="tabProperty.type === 'readonly'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group btn-group btn-group-justified">
+                                        <div class="btn-group clearfix">
+                                            <button type="button" class="btn btn-default" ng-click="setUrlFieldType('formField')" ng-model="model.urlFieldType"
+                                                    ng-class="{'active' : model.urlFieldType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                                            </button>
+                                        </div>
+                                        <div class="btn-group clearfix">
+                                            <button type="button" class="btn btn-default" ng-click="setUrlFieldType('restResponse')" ng-model="model.urlFieldType"
+                                                    ng-class="{'active' : model.urlFieldType === 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group clearfix" ng-show="model.urlFieldType === 'formField'">
+                                        <div>
+                                            <div field-select="formElement.params.field" include-type="true" expand-relative="true" select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-FIELD'"
+                                                 all-steps="allSteps" step-id="stepId"
+                                                 field-type-filter="['text', 'integer', 'date', 'datetime', 'boolean', 'dropdown', 'radio-buttons', 'typeahead', 'amount', 'hyperlink', 'multi-line-text', 'people', 'functional-group', 'upload', 'dynamic-table']">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group clearfix" ng-show="model.urlFieldType === 'restResponse'">
+                                        <div>
+                                            <div field-select="formElement.params.field" include-type="true" variables-type="rest" expand-relative="true" all-steps="allSteps" step-id="stepId"
+                                                 form-variables="formVariables" editor-type="form" select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-RESPONSE-VARIABLE'"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="clearfix" ng-if="formElement.params.field.type === 'upload'">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-model="formElement.params.documentsEditable">
+                                                    {{'FORM-BUILDER.COMPONENT.DOCUMENTS-EDITABLE' | translate}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="clearfix" ng-if="formElement.params.field.type === 'upload'">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-model="formElement.params.showDocumentContent">
+                                                    <span translate>FORM-BUILDER.COMPONENT.SHOW-DOCUMENT-CONTENT</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="clearfix" ng-if="formElement.params.field.type === 'dynamic-table'">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-model="formElement.params.tableEditable">
+                                                    {{'FORM-BUILDER.COMPONENT.TABLE-EDITABLE' | translate}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'readonlytext'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.READONLY-TEXT"></label>
+                                        <textarea rows="3" ng-model="formElement.value" class="form-control" id="readonly-text-value" ng-trim="false" store-cursor-position="insertFormField.position"></textarea>
+                                        <div class="subtle" translate="FORM-BUILDER.MESSAGE.READONLY-TEXT-HELP" style="padding: 5px 0 5px 1px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="btn-group btn-group-justified">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default" ng-click="model.variableType = 'formField';"
+                                                    ng-class="{'active' : model.variableType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                                            </button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default" ng-click="model.variableType = 'variable';"
+                                                    ng-class="{'active' : model.variableType === 'variable'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            <div class="row" style="margin-bottom:10px">
+                                <div class="col-md-8">
+                                    <div ng-show="model.variableType === 'formField'" field-select="insertFormField.field" include-type="true" all-steps="allSteps" step-id="stepId"
+                                         field-type-filter="['text', 'integer', 'date', 'datetime', 'boolean', 'dropdown', 'radio-buttons', 'typeahead', 'amount', 'hyperlink', 'multi-line-text', 'people', 'functional-group', 'upload', 'dynamic-table']"
+                                         expand-relative="true" select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'"></div>
+    
+                                    <div ng-show="model.variableType === 'variable'" field-select="insertFormField.field" include-type="true" variables-type="rest" expand-relative="true"
+                                         select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-RESPONSE-VARIABLE'" all-steps="allSteps" step-id="stepId"></div>
+                                 </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'grouprestriction'" ng-controller="GroupRestrictionBuilderController">
+                            <div class="form-group clearfix">
+                                <div class="col-xs-8">
+                                    <div class="col-xs-4">
+                                        <label>{{'FORM-BUILDER.GROUP-RESTRICTION.LABEL' | translate}}</label>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <label ng-if="!formElement.params.restrictWithGroup">{{'FORM-BUILDER.GROUP-RESTRICTION.NONE' | translate}}</label>
+                                        <ul class="simple-list" ng-if="formElement.params.restrictWithGroup">
+                                            <li>
+                                                <label>{{formElement.params.restrictWithGroup.name}}</label>
+
+                                                <div class="actions">
+                                                    <a ng-click="removeGroup()"><i class="icon icon-remove"></i></a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-xs-8">
+                                    <div class="col-xs-4">
+                                        <label>{{'FORM-BUILDER.LABEL.SEARCH' | translate}}:</label>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <input class="form-control" type="text" id="people-select-input" placeholder="{{'FORM-BUILDER.LABEL.SEARCH-GROUP' | translate}}" auto-focus custom-keys
+                                               up-pressed="previousGroup()" down-pressed="nextGroup()" enter-pressed="confirmGroup()" delayed-model="popup.groupFilter"
+                                               delay="200"/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="col-xs-4">
+                                        <label></label>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="subtle">
+                                            <span translate="PROPERTY.ASSIGNMENT.MATCHING"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="col-xs-4">
+                                        <label></label>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="inline-people-select">
+                                            <ul class="simple-list">
+                                                <li ng-click="confirmGroup(group);" ng-repeat="group in popup.groupResults"
+                                                    ng-class="{'active': $index == popup.selectedGroupIndex}">
+                                                    {{group.name}}
+                                                </li>
+                                            </ul>
+                                            <div class="nothing-to-see" translate="GENERAL.MESSAGE.GROUP-NO-MATCHING-RESULTS" ng-show="popup.groupResults.length == 0"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tabProperty.type === 'visibility'" ng-controller="VisibilityConditionBuilderController">
+                            <div class="row row-no-gutter">
+                                <div class="col-xs-6">
+                                    <div class="kis-listener-grid" ui-grid="visibilityGridOptions" ui-grid-selection></div>
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <a class="btn btn-icon btn-lg" ng-disabled="!model.selectedVisibilityCondition" ng-click="moveConditionUp()">
+                                                <i class="glyphicon glyphicon-arrow-up"></i>
+                                            </a>
+                                            <a class="btn btn-icon btn-lg" ng-disabled="!model.selectedVisibilityCondition" ng-click="moveConditionDown()">
+                                                <i class="glyphicon glyphicon-arrow-down"></i>
+                                            </a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a class="btn btn-icon btn-lg" ng-click="addNewCondition()">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                            </a>
+                                            <a class="btn btn-icon btn-lg" ng-disabled="!model.selectedVisibilityCondition" ng-click="removeCondition()">
+                                                <i class="glyphicon glyphicon-minus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div ng-show="model.selectedVisibilityCondition">
+                                        <div>
+                                        <label>{{'FORM-BUILDER.VISIBILITY.LEFT-FORM-FIELD' | translate}}</label>
+                                        <div class="form-group btn-group btn-group-justified">
+                                           <div class="btn-group">
+                                                <button type="button" class="btn btn-default" ng-click="setLeftFieldType('formField')" ng-model="model.leftFieldType"
+                                                        ng-class="{'active' : model.leftFieldType == 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default" ng-click="setLeftFieldType('restResponse')" ng-model="model.leftFieldType"
+                                                        ng-class="{'active' : model.leftFieldType == 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="model.leftFieldType === 'formField'">
+                                        <div id="leftVariableField" variables-select include-type="true" expand-relative="true"
+                                             target-model="model.selectedVisibilityCondition.leftFormFieldId"
+                                             select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'" fields="model.conditionFields"
+                                             selected-field="model.selectedLeftVariable"></div>
+                                    </div>
+                                    <div class="form-group" ng-show="model.leftFieldType === 'restResponse'" style="margin-top: 10px;">
+                                        <div class="btn-group span" activiti-fix-dropdown-bug>
+                                            <button class="selection" data-toggle="dropdown">
+                                                <span ng-if="model.selectedVisibilityCondition.leftRestResponseId">{{model.selectedVisibilityCondition.leftRestResponseId}}</span>
+                                                <span ng-if="!model.selectedVisibilityCondition.leftRestResponseId">{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.SELECT-REST-RESPONSE-VARIABLE' | translate}}</span>
+                                                <i class="icon icon-caret-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu large-width">
+                                                <li ng-repeat="variable in getRestResponseVariables()">
+                                                    <a ng-click="selectLeftResponseVariable(model.selectedVisibilityCondition, variable)">{{variable.processVariableName}}</a>
+                                                </li>
+                                                <li ng-repeat="formVariable in getFormVariables()">
+                                                    <a ng-click="selectLeftFormVariable(model.selectedVisibilityCondition, formVariable)">{{formVariable.name}}</a>
+                                                </li>
+                                                <li ng-if="hasNoInputVariables()">
+                                                    <a>{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.NO-REST-RESPONSE-VARIABLE-AVAILABLE' | translate}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="operatorField">{{'FORM-BUILDER.VISIBILITY.OPERATOR' | translate}}</label>
+                                        <select id="operatorField" class="form-control"
+                                                ng-options="operator.value as operator.description for operator in getConditionsForFieldId(model.selectedVisibilityCondition.leftFormFieldId, model.selectedVisibilityCondition.leftRestResponseId)"
+                                                ng-model="model.selectedVisibilityCondition.operator">
+                                        </select>
+                                    </div>
+                                    <div ng-if="(model.selectedVisibilityCondition.operator != 'empty' && model.selectedVisibilityCondition.operator != '!empty')" class="form-group btn-group btn-group-justified">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default" ng-click="setRightFieldType('staticValue')" ng-model="model.rightFieldType"
+                                                    ng-class="{'active' : model.rightFieldType == 'staticValue'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-VALUE' | translate}}
+                                            </button>
+                                        </div>
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default" ng-click="setRightFieldType('formField')" ng-model="model.rightFieldType"
+                                                    ng-class="{'active' : model.rightFieldType == 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                                            </button>
+                                        </div>
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default" ng-click="setRightFieldType('restResponse')" ng-model="model.rightFieldType"
+                                                ng-class="{'active' : model.rightFieldType == 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group" ng-show="model.rightFieldType === 'formField' && (model.selectedVisibilityCondition.operator != 'empty' && model.selectedVisibilityCondition.operator != '!empty')">
+                                        <div id="rightVariableField" variables-select include-type="true" expand-relative="true"
+                                             target-model="model.selectedVisibilityCondition.rightFormFieldId"
+                                             select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'" fields="model.conditionFields"
+                                             selected-field="model.selectedRightVariable"></div>
+                                    </div>
+                                    <div class="form-group" ng-show="model.rightFieldType === 'restResponse' && (model.selectedVisibilityCondition.operator != 'empty' && model.selectedVisibilityCondition.operator != '!empty')" style="margin-top: 10px;">
+                                        <div class="btn-group span" activiti-fix-dropdown-bug>
+                                            <button class="selection" data-toggle="dropdown">
+                                                <span ng-if="model.selectedVisibilityCondition.rightRestResponseId">{{model.selectedVisibilityCondition.rightRestResponseId}}</span>
+                                                <span ng-if="!model.selectedVisibilityCondition.rightRestResponseId">{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.SELECT-REST-RESPONSE-VARIABLE' | translate}}</span>
+                                                <i class="icon icon-caret-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu large-width">
+                                                <li ng-repeat="variable in getRestResponseVariables()">
+                                                    <a ng-click="selectRightResponseVariable(model.selectedVisibilityCondition, variable)">{{variable.processVariableName}}</a>
+                                                </li>
+                                                <li ng-repeat="formVariable in getFormVariables()">
+                                                    <a ng-click="selectRightFormVariable(model.selectedVisibilityCondition, formVariable)">{{formVariable.name}}</a>
+                                                </li>
+                                                <li ng-if="!getRestResponseVariables() || getRestResponseVariables().length == 0">
+                                                    <a>{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.NO-REST-RESPONSE-VARIABLE-AVAILABLE' | translate}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="model.rightFieldType === 'staticValue'" style="margin-top: 10px;">
+                                        <div ng-if="model.leftFieldType === 'formField' && (model.selectedVisibilityCondition.operator != 'empty' && model.selectedVisibilityCondition.operator != '!empty')" ng-switch="model.selectedLeftVariable.type">
+                                            <div ng-switch-when="text">
+                                                <input type="text" id="rightValueField" class="form-control" ng-model="model.selectedVisibilityCondition.rightValue"
+                                                       ng-disabled="(model.selectedVisibilityCondition.rightFormFieldId)"/>
+                                            </div>
+                                            <div ng-switch-when="integer">
+                                                <input type="number" id="rightValueField" class="form-control" ng-model="model.selectedVisibilityCondition.rightValue"
+                                                       ng-disabled="(model.selectedVisibilityCondition.rightFormFieldId)"/>
+                                            </div>
+                                            <div ng-switch-when="amount">
+                                                <input type="number" step="0.01" id="rightValueField" class="form-control" ng-model="model.selectedVisibilityCondition.rightValue"
+                                                       ng-disabled="(model.selectedVisibilityCondition.rightFormFieldId)"/>
+                                            </div>
+                                            <div ng-switch-when="boolean">
+                                                <select id="rightValueField" class="form-control" ng-model="model.selectedVisibilityCondition.rightValue"
+                                                        ng-disabled="(model.selectedVisibilityCondition.rightFormFieldId)"
+                                                        ng-options="option.value as option.description for option in model.rightValueOptions.boolean">
+                                                </select>
+                                            </div>
+                                            <div ng-switch-when="date">
+                                                <input id="rightValueField" name="rightValueField" type="text" class="form-control" translate-values="dateFormat:'{{getGlobalDateFormat()}}'" placeholder="{{'FORM-BUILDER.VISIBILITY.RIGHT_VALUE_DATE.DATE-FORMAT-MESSAGE' | translate:{'dateFormat':getGlobalDateFormat()} }}"  ng-model="model.selectedVisibilityCondition.rightValue"
+                                                       datepicker-timezone
+                                                       bs-datepicker template="{{appResourceRoot}}views/templates/visibility-date-picker-template.html"
+                                                       data-date-format="{{getGlobalDateFormat() | momentToAngularFormat}}" trigger="focus" autoclose="true" ng-disabled="(model.selectedVisibilityCondition.rightFormFieldId)">
+
+                                            </div>
+                                            <div ng-switch-when="datetime">
+                                            <div class='input-group'>
+                                                <input id="rightValueField" name="rightValueField" type="text" class="form-control" placeholder="{{'FORM-BUILDER.VISIBILITY.RIGHT_VALUE_DATETIME.DATETIME-FORMAT-MESSAGE' | translate:{'dateFormat':getGlobalDateFormat()} }}" ng-model="model.selectedVisibilityCondition.rightValue"
+                                                       datetimepicker valid-date-time
+                                                       date-format="{{getGlobalDateFormat() | momentTodatetimeFormat}} hh:mm A"   trigger="focus" autoclose="true" ng-disabled="(model.selectedVisibilityCondition.rightFormFieldId)">
+                                                       <span  class="input-group-addon " data-type="date-selector">
+                                                           <span  class="glyphicon glyphicon-calendar" ng-model="field.value"  ></span>
+                                                       </span>
+                                                       <span  class="input-group-addon " data-type="time-selector">
+                                                           <span  class="glyphicon glyphicon-time" ng-model="field.value"></span>
+                                                       </span>
+                                             </div> 
+                                             </div>
+                                            <div ng-switch-default>
+                                                <input type="text" id="rightValueField" class="form-control" ng-model="model.selectedVisibilityCondition.rightValue"
+                                                       ng-disabled="(model.selectedVisibilityCondition.rightFormFieldId)"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div ng-if="model.leftFieldType !== 'formField' && (model.selectedVisibilityCondition.operator != 'empty' && model.selectedVisibilityCondition.operator != '!empty')" ng-switch="model.selectedVisibilityCondition.leftRestResponseType">
+                                            <div ng-switch-when="date">
+                                                <input id="rightValueField" name="rightValueField" type="text" class="form-control" translate-values="dateFormat:'{{getGlobalDateFormat()}}'" placeholder="{{'FORM-BUILDER.VISIBILITY.RIGHT_VALUE_DATE.DATE-FORMAT-MESSAGE' | translate:{'dateFormat':getGlobalDateFormat()} }}"  ng-model="model.selectedVisibilityCondition.rightValue"
+                                                       datepicker-timezone
+                                                       bs-datepicker template="{{appResourceRoot}}views/templates/visibility-date-picker-template.html"
+                                                       data-date-format="{{getGlobalDateFormat() | momentToAngularFormat}}" trigger="focus" autoclose="true" ng-disabled="(model.selectedVisibilityCondition.rightFormFieldId)">
+                                            </div>
+                                            <div ng-switch-default>
+                                                <input type="text" id="rightValueField" class="form-control" ng-model="model.selectedVisibilityCondition.rightValue"
+                                                       ng-disabled="(model.selectedVisibilityCondition.rightFormFieldId)"/>
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nextConditionOperatorField">{{'FORM-BUILDER.VISIBILITY.NEXT-CONDITION-OPERATOR' | translate}}</label>
+                                        <select id="nextConditionOperatorField" class="form-control"
+                                                ng-options="operator.value as operator.description for operator in model.conditionOperatorsByType.condition.operators"
+                                                ng-model="model.selectedVisibilityCondition.nextConditionOperator">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-show="!model.selectedVisibilityCondition" class="muted no-property-selected" translate>FORM-BUILDER.COMPONENT.PROPERTY-UNSELECTED</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="tabProperty.type === 'dateFormat'" ng-class="{'has-error': elementEditorForm.dateFormat.$invalid}">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label translate="FORM-BUILDER.COMPONENT.DATE-DISPLAY-FORMAT.TITLE" translate-values="{dateFormat:'{{getGlobalDateFormat()}}'}"></label>
+                                    <input type="text" name="dateFormat" class="form-control" ng-model="formElement.dateDisplayFormat" required-value-check="currentDate | validdateformat:formElement.dateDisplayFormat"
+                                           placeholder="{{'FORM-BUILDER.COMPONENT.DATE-DISPLAY-FORMAT.PLACEHOLDER' | translate}}" ng-model-options="{ allowInvalid: true }">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div ng-switch on="formElement.dateDisplayFormat || 'null'">
+                                <div class="col-md-8" ng-switch-when="null">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.DATE-DISPLAY-FORMAT.CURRENT-DATE-DEFAULT-LABEL"></label>
+                                        <span>{{currentDate | dateonlyformat:((globalDateFormat || getGlobalDateFormat()) | momentTodatetimeFormat)}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-8" ng-switch-default>
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.DATE-DISPLAY-FORMAT.CURRENT-DATE-CUSTOM-LABEL"></label>
+                                        <span ng-if="(currentDate | validdateformat:formElement.dateDisplayFormat)">{{currentDate | validdateformat:formElement.dateDisplayFormat}}</span>
+                                        <span ng-if="!(currentDate | validdateformat:formElement.dateDisplayFormat)">invalid date format</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="tabProperty.type === 'datetimeFormat'" ng-class="{'has-error': elementEditorForm.dateFormat.$invalid}">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label translate="FORM-BUILDER.COMPONENT.DATETIME-DISPLAY-FORMAT.TITLE" translate-values="{datetimeFormat:'{{getGlobalDateFormat()}}'}"></label>
+                                    <input type="text" name="dateFormat" class="form-control" ng-model="formElement.dateDisplayFormat" required-value-check="currentDate | validdatetimeformat:formElement.dateDisplayFormat"
+                                           placeholder="{{'FORM-BUILDER.COMPONENT.DATETIME-DISPLAY-FORMAT.PLACEHOLDER' | translate}}" ng-model-options="{ allowInvalid: true }">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div ng-switch on="formElement.dateDisplayFormat || 'null'">
+                                <div class="col-md-8" ng-switch-when="null">
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.DATETIME-DISPLAY-FORMAT.CURRENT-DATE-DEFAULT-LABEL"></label>
+                                        <span>{{currentDate | datetimeformat:((getGlobalDateFormat() | momentTodatetimeFormat) +" hh:mm A")}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-8" ng-switch-default>
+                                    <div class="form-group">
+                                        <label translate="FORM-BUILDER.COMPONENT.DATETIME-DISPLAY-FORMAT.CURRENT-DATE-CUSTOM-LABEL"></label>
+                                        <span ng-if="(currentDate | validdatetimeformat:formElement.dateDisplayFormat)">{{currentDate | validdatetimeformat:formElement.dateDisplayFormat}}</span>
+                                        <span ng-if="!(currentDate | validdatetimeformat:formElement.dateDisplayFormat)">invalid datetime format</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-sm btn-default" ng-disabled="elementEditorForm.$invalid || readOnly" ng-click="doneEditing()">
+                                {{'GENERAL.ACTION.CLOSE' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-content" ng-if="endpointTestVisible && endpointTestVisible.visible == true" ng-controller="FormEndpointCheckController">
+            <div ng-include="'views/templates/endpoint-check-test-values-body.html?version=1'" />
+        </div>
+    </div>
+</div>

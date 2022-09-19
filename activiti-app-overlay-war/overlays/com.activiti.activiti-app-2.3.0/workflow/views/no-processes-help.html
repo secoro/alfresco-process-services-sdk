@@ -1,0 +1,27 @@
+    <div class="help-container" auto-height ng-cloak>
+        <div>
+            <div class="help-dude-jumping"></div>
+        </div>
+        <div>
+            <div ng-if="!model.filter.processId" class="help-text wide">
+                <div ng-if="!model.filter.modified" class="description" translate="PROCESS.FILTER.NO-FILTER-RESULTS" translate-values="{name: model.filter.selected.name}">
+                </div>
+                <div ng-if="model.filter.modified" class="description" translate="PROCESS.FILTER.NO-SEARCH-RESULTS">
+                </div>
+                <button ng-disabled="readOnly" class="help-entry" style="border: none;background: transparent;" ng-click="createProcessInstance()">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    <span translate="PROCESS.MESSAGE.NO-INSTANCES-HELP-START"></span>
+                </button>
+            </div>
+            <div ng-if="model.filter.processId" class="help-text wide">
+                <div class="description">
+                    {{'PROCESS.MESSAGE.NO-SUCH-PROCESS-HELP' | translate}}
+                </div>
+                <div class="help-entry" ng-click="reloadProcessList(); $event.stopPropagation();">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    <span translate="PROCESS.MESSAGE.NO-SUCH-PROCESS-RETURN-TO-LIST"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+

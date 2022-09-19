@@ -1,0 +1,16 @@
+<div class="clearfix" ng-class="{'step' : !step.meta.type.isContainer, 'step-group' : step.meta.type.isContainer, 'active' : step.id == activeStep.id}">
+    <h4 ng-click="toggleActiveStep(step)">
+        <i class="icon"
+           ng-class="step.id == activeStep.id ? 'icon-caret-down' : 'icon-caret-right' "></i>
+        {{step.name}}
+    </h4>
+
+    <div class="subtitle" ng-click="toggleActiveStep(step)" style="cursor: pointer;">
+        <div class="step-type">
+            <i ng-class="step.meta.type.icon"></i>
+        </div>
+        {{step.meta.summary}}
+    </div>
+    <div ng-include="(step.id == activeStep.id || step.meta.type.alwaysExpanded) ? step.meta.type.templateReadOnly : null"></div>
+</div>
+<div class="step-placeholder-readonly"></div>

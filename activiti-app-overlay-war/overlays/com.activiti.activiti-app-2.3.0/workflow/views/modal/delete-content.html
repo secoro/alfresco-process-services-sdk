@@ -1,0 +1,29 @@
+
+<div class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+                <div class="pull-right">
+                    <button type="button" class="close" ng-click="$hide()">&times;</button>
+                </div>
+				<h3>{{'CONTENT.TITLE.DELETE' | translate}}</h3>
+			</div>
+			<div class="modal-body">
+				<p translate="CONTENT.MESSAGE.DELETE-CONFIRMATION" translate-values="popup.content"></p>
+			</div>
+			<div class="modal-footer">
+				<div class="pull-right">
+					<button type="button" class="btn btn-sm btn-default" ng-click="$hide();" ng-disabled="popup.loading">
+						{{'GENERAL.ACTION.CANCEL' | translate}}
+					</button>
+					<button type="button" class="btn btn-sm btn-danger" ng-click="ok(); $hide();" ng-disabled="popup.loading || readOnly">
+						<span>{{'GENERAL.ACTION.CONFIRM' | translate}}</span>
+					</button>
+				</div>
+				<div class="loading pull-right" ng-show="popup.loading">
+					<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,38 @@
+<div class="modal" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" ng-click="$hide()">&times;</button>
+				<h2 ng-if="!licenseWarning">
+                    {{('LICENSE.STATUS.INVALID' | translate | limitTo:35)}}
+                    <span ng-if="('LICENSE.STATUS.INVALID' | translate).length > 35">...</span>
+                </h2>
+                <h2 ng-if="licenseWarning">
+                    {{('LICENSE.STATUS.WARNING' | translate | limitTo:35)}}
+                    <span ng-if="('LICENSE.STATUS.WARNING' | translate).length > 35">...</span>
+                </h2>
+			</div>
+			<div class="modal-body">
+
+                <div class="error-message">
+                    <span ng-if="!licenseWarning" title="{{('COMMON.WARNING.APP-LICENSE-ISSUE-' + (licenseStatus | uppercase)) | translate}}">
+                        {{(('COMMON.WARNING.APP-LICENSE-ISSUE-' + (licenseStatus | uppercase)) | translate | limitTo:150)}}
+                        <span ng-if="(('COMMON.WARNING.APP-LICENSE-ISSUE-' + (licenseStatus | uppercase)) | translate).length > 150">...</span>
+                    </span>
+                    <span ng-if="licenseWarning" title="{{('COMMON.WARNING.APP-LICENSE-WARNING-' + (licenseWarning | uppercase)) | translate}}">
+                        {{(('COMMON.WARNING.APP-LICENSE-WARNING-' + (licenseWarning | uppercase)) | translate | limitTo:150)}}
+                        <span ng-if="(('COMMON.WARNING.APP-LICENSE-WARNING-' + (licenseWarning | uppercase)) | translate).length > 150">...</span>
+                    </span>
+                    <span ng-if="!hasCapability('upload-license')" translate="COMMON.WARNING.APP-LICENSE-NO-UPLOAD-CAPABILITY"></span>
+                </div>
+				
+			</div>
+			<div class="modal-footer">
+				<div class="pull-right">
+					 <button type="button" class="btn btn-default" ng-click="$hide()">{{'GENERAL.ACTION.CLOSE' | translate}}</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

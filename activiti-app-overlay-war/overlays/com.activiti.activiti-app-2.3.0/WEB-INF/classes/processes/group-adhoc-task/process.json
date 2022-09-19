@@ -1,0 +1,29 @@
+{ "startForm" : { "id" : 1001 },
+  "steps" : [ { "assignment" : { "candidateGroupFields" : [ { "col" : 0,
+                  "fieldType" : "FormFieldRepresentation",
+                  "id" : "assigntogroup",
+                  "name" : "Assign to group",
+                  "overrideId" : false,
+                  "readOnly" : false,
+                  "required" : false,
+                  "row" : 0,
+                  "sizeX" : 0,
+                  "sizeY" : 0,
+                  "type" : "functional-group"
+                } ],
+            "initiatorCanCompleteTask" : true,
+            "type" : "groups"
+          },
+        "description" : "${taskdescription}",
+        "dueAction" : "none",
+        "formDefinition" : { "id" : 5000 },
+        "id" : "human-step-1425739802251-499",
+        "name" : "Ad hoc Group Task",
+        "overdueSteps" : [  ],
+        "taskDueDateField" : { "id" : "duedate",
+            "name" : "Due date"
+          },
+        "taskDueDateOption" : "field",
+        "type" : "human-step"
+      } ]
+}

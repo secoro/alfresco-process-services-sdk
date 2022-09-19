@@ -1,0 +1,204 @@
+{
+  "COMMON": {
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Process Services 为只读模式，因为本地许可证无效。",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Process Services 为只读模式，因为没有找到许可证。",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Activiti 为只读模式，因为许可证日期无效（过期或开始日期还未到）。",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "请注意，您的许可证即将过期！Process Services 将变为只读模式。",
+      "APP-LICENSE-UPLOAD-DISALLOWED": "To allow license upload you have to set <code>license.allow-upload=activiti-app.properties 中为真</code>",
+      "APP-LICENSE-NO-UPLOAD-CAPABILITY": "注意！您需要'上传许可证'功能来上传许可证"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Process Services",
+    "ERROR": {
+      "GENERIC": "出现错误...",
+      "UNKNOWN": "执行请求的操作时出现错误。",
+      "BAD_REQUEST": "执行请求的操作时出现错误",
+      "NOT_FOUND": "您尝试访问的资源不存在",
+      "UNAUTHORIZED": "您需要登录才能执行请求的操作。",
+      "FORBIDDEN": "您不可以执行请求的操作",
+      "INTERNAL_SERVER_ERROR": "执行请求的操作时出现意外错误。",
+      "QUOTA-EXCEEDED-RUNTIME-APPS": "作为试用用户，您同时只能部署 {{quota}} 个 App。",
+      "QUOTA-EXCEEDED-LICENSE-APPS": "许可证仅允许同时部署 {{quota}} 个 App。"
+    },
+    "ACTION": {
+      "LOGOUT": "退出",
+      "HELP": "开始",
+      "EDIT-PROFILE": "编辑配置文件",
+      "SAVE": "保存",
+      "CANCEL": "取消",
+      "CLOSE": "关闭",
+      "DEPLOY": "部署",
+      "ABOUT": "关于 Process Services",
+      "HELP-DOCS-LINK": "帮助",
+      "UPLOAD-LICENSE": "上传许可证"
+    },
+    "ABOUT": {
+      "TYPE": "类型",
+      "LICENSED-TO": "授权给",
+      "EXPIRES": "过期",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. 保留所有权利。",
+      "LEGAL": "法律和许可"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "登录",
+    "USERNAME": "用户名",
+    "USERNAME-PLACEHOLDER": "输入用户名",
+    "PASSWORD": "密码",
+    "PASSWORD-PLACEHOLDER": "输入密码",
+    "NO-ACCOUNT": "没有帐户？",
+    "FORGOT-PASSWORD": "忘记密码?",
+    "INVALID-CREDENTIALS": "凭据无效",
+    "WELCOME": "欢迎使用 Alfresco Process Services",
+    "TAG1": "<strong>简单：</strong>现成，不需要设置 - 提高用户工作效率",
+    "TAG2": "<strong>智能：</strong>易于配置 - 提供满足所有业务流程要求的结构化框架",
+    "TAG3": "<strong>开放：</strong>开源，开放标准确保支持未来进行轻松集成",
+    "PRIVACY": "隐私政策",
+    "ALL-RIGHTS": "保留所有权利",
+    "LOGIN-FORM": "登录表单",
+    "SKIP-TO-CONTENT": "跳至内容",
+    "BACK-TO-TOP": "返回页首",
+    "SSO": "单点登录",
+    "ACTION": {
+      "CONFIRM": "登录"
+    }
+  },
+  "ACCOUNT": {
+    "ACTIVATE": {
+      "TITLE": "激活帐户",
+      "ACTIVATING-MESSAGE": "{{userFullName}} 请稍候，我们正在激活您的帐户...",
+      "SUCCESS-MESSAGE": "您的帐户已激活。在下面登录以开始设计和运行流程",
+      "FAILURE-MESSAGE": "无法激活您的帐户。其已激活或者激活链接过期。"
+    },
+    "SIGNUP": {
+      "TITLE": "注册帐户",
+      "SIGNUP-TRIAL": "创建 Process Services 试用版的密码",
+      "EMAIL": "电子邮件地址",
+      "FIRSTNAME": "名字",
+      "LASTNAME": "姓氏",
+      "PASSWORD": "密码",
+      "PASSWORD-PLACEHOLDER": "输入密码",
+      "PASSWORD-REPEAT": "重复密码",
+      "PASSWORDS-NOT-EQUAL": "密码不匹配",
+      "PASSWORDS-MIN-LENGTH": "密码太短，其长度必须至少为 {{minLength}} 个字符",
+      "NEW-PASSWORD-STRENGTH": "密码强度：",
+      "EMAIL-PLACEHOLDER": "输入电子邮件",
+      "FIRSTNAME-PLACEHOLDER": "输入名字",
+      "LASTNAME-PLACEHOLDER": "输入姓氏",
+      "COMPANY": "公司（可选）",
+      "COMPANY-PLACEHOLDER": "输入公司名称",
+      "LICENSETERMS": "我接受 Alfresco 的服务条款和隐私政策",
+      "CONFIRM": "立即注册",
+      "SUCCESS-MESSAGE": "感谢您注册我们的服务。您很快会收到激活帐户的电子邮件。激活后，您可以开始设计和运行流程",
+      "SECURITY-SECTION": "安全检查",
+      "PERSONAL-SECTION": "个人信息",
+      "ACCOUNT-SECTION": "帐户",
+      "ERROR": {
+        "ALREADY-REGISTERED": "已经有用户使用提供的电子邮件地址注册过帐户。",
+        "DISABLED": "当前无法注册。"
+      }
+    },
+    "RESET-PASSWORD-REQUEST": {
+      "MESSAGE": "忘记密码?在下面输入电子邮件地址以重置密码。",
+      "TITLE": "重置密码",
+      "EMAIL": "电子邮件地址",
+      "EMAIL-PLACEHOLDER": "输入电子邮件",
+      "SECURITY-SECTION": "安全检查",
+      "CONFIRM": "请求密码重置",
+      "SUCCESS-MESSAGE": "您很快会收到密码重置链接。",
+      "ERROR": {
+        "UNEXISTING-USER": "不存在使用所提供电子邮件地址的用户。"
+      }
+    },
+    "RESET-PASSWORD": {
+      "TITLE": "重置密码",
+      "PASSWORD": "密码",
+      "PASSWORD-CONFIRM": "确认密码",
+      "PASSWORD-PLACEHOLDER": "输入新密码",
+      "PASSWORD-CONFIRM-PLACEHOLDER": "确认新密码",
+      "CONFIRM": "更改密码",
+      "LOADING": "正在重置密码...",
+      "SUCCESS-MESSAGE": "您的密码已更改。",
+      "LOGIN": "立即登录",
+      "FAILURE-MESSAGE": "您的密码无法重置。重置链接无效或过期。"
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "App Designer",
+      "DESCRIPTION": "创建流程模型、表单、决策表、App 定义、数据模型和模板定义，并将它们与其他人共享。",
+      "TITLE-PROCESSES": "流程模型",
+      "TITLE-FORMS": "表单模型",
+      "TITLE-APPS": "App 模型",
+      "TITLE-STENCILS": "模板",
+      "TITLE-DECISION-TABLES": "决策表",
+      "TITLE-DATA-MODELS": "数据模型"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "管理员",
+      "DESCRIPTION": "管理您的所有 Process Services 服务器节点和群集。"
+    },
+    "TASKS": {
+      "TITLE": "任务 App",
+      "DESCRIPTION": "访问您的完整任务列表，并处理从任何流程 App 指派给您的任何任务。另外，启动新的流程和任务。",
+      "TITLE-TASKS": "任务",
+      "TITLE-PROCESSES": "流程",
+      "TITLE-PROCESSES?MODE=START": "启动"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "配置文件",
+      "DESCRIPTION": "管理您的配置文件：更改图片、名称和其他设置。",
+      "DESCRIPTION-TENANT-ADMIN": "管理您组织中的用户和组。",
+      "TITLE-TENANT-ADMIN": "身份管理",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "租户",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "用户",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "功能",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "组织",
+      "TITLE-TENANT-ADMIN-PROFILE": "配置文件",
+      "TITLE-PROFILE": "配置文件"
+    },
+    "ANALYTICS": {
+      "TITLE": "报表与分析 App",
+      "DESCRIPTION": "生成各种报告，提供有关流程的性能和吞吐量统计数据。"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}} 任务",
+      "TITLE-PROCESSES": "{{name}} 流程",
+      "TITLE-PROCESSES?MODE=START": "{{name}} 开始"
+    },
+    "POPUP": {
+      "ADD-APP-TITLE": "添加 App 到登录页",
+      "ADD-APP-SUMMARY": "添加 App 到您的登录页",
+      "GETTING-STARTED-TITLE": "开始使用 Process Services BPMS"
+    },
+    "ACTION": {
+      "DELETE": "删除 App",
+      "ADD": "添加新 App",
+      "UPLOAD-LICENSE": "上传许可证"
+    },
+    "MESSAGE": {
+      "DELETED": "已成功删除 App",
+      "NO-CUSTOM-APPS": "欢迎使用 Alfresco Process Services，开展业务流程管理的更明智之选！您可能希望通过这个 App 完成各种不同的任务，您可以：",
+      "NO-CUSTOM-APPS-EDITOR-HINT": "设计业务流程并共享它们",
+      "NO-CUSTOM-APPS-TASKS-HINT": "处理任务或启动流程",
+      "NO-CUSTOM-APPS-PROFILE-HINT": "使用最新的照片和详细信息更新配置文件",
+      "NO-CUSTOM-APPS-GETTING-STARTED-HINT": "阅读入门指南"
+    }
+  },
+  "LICENSE": {
+    "STATUS": {
+      "INVALID": "许可证无效",
+      "WARNING": "许可证警告"
+    },
+    "UPLOAD": {
+      "UPLOAD-LICENSE-TITLE": "上传许可证",
+      "UPLOAD-LICENSE-DESCRIPTION": "从计算机中选择一个许可证或将其拖放到下面的区域。",
+      "CANCEL-UPLOAD": "取消上传",
+      "LICENSE-DROPZONE": "拖放许可证文件到此处",
+      "NO-DROP": "您的浏览器不支持拖放",
+      "ERROR": "错误"
+    }
+  }
+}

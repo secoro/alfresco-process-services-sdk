@@ -1,0 +1,570 @@
+<div ng-repeat="tab in step.meta.type.tabs">
+	<div ng-show="activeTab == tab.id" ng-repeat="property in tab.properties">
+		<div ng-if="!property.hideLabel">
+		    <div class="col-xs-12" ng-if="property.type !== 'boolean'">
+    			<div class="col-xs-3">
+    			    <label>{{property.name | translate}}</label>
+    			</div>
+    			<div class="col-xs-9">
+    			    <div class="form-group" ng-if="property.type == 'text'">
+    			        <input class="form-control" type="text" ng-model="step[property.id]" disabled>
+    			    </div>
+    			    <div class="form-group" ng-if="property.type == 'multiline text'">
+    			        <textarea rows="2" class="form-control" type="text" ng-model="step[property.id]" disabled></textarea>
+    			    </div>
+                    <div class="form-group" ng-if="property.type == 'expression-text'">
+                        <input class="form-control" type="text" ng-model="step[property.id]" disabled>
+                    </div>
+                    <div class="form-group" ng-if="property.type == 'expression-multiline-text'">
+                        <textarea rows="6" class="form-control" type="text" ng-model="step[property.id]" disabled></textarea>
+                    </div>
+    			</div>
+    	   </div>
+    	   <div class="col-xs-12" ng-if="property.type === 'boolean'">
+                <div class="col-xs-12">
+                    <label style="color: #636363; font-size: 14px;">
+                        <input type="checkbox" ng-model="step[property.id]" disabled>
+                        &nbsp;{{property.name | translate}}
+                    </label>
+                </div>
+           </div>
+		</div>
+
+		<div ng-if="property.type == 'assignment'">
+		    <div class="detail-group clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.FIELD.GENERIC.ASSIGNMENT' | translate}}:</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="btn-group span">
+                                <input class="form-control" type="text" ng-model="step.meta.assignmentOption.title" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix" ng-if="step.meta.assignmentOption.id == 'user'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.ASSIGNEE' | translate}}: </label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="read-only-select">
+                                <button class="selection" disabled>
+                                    <i class="icon icon-user" ng-show="step.assignment.assignee || step.assignment.assigneeField"></i>
+                                    <span ng-if="!step.assignment.assignee && !step.assignment.assigneeField">{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.SELECT-ASSIGNEE' | translate}}</span>
+                                    <span ng-if="step.assignment.assignee" user-link="step.assignment.assignee"></span>
+                                    <span ng-if="step.assignment.assigneeField" form-field="step.assignment.assigneeField"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix" ng-if="step.meta.assignmentOption.id == 'groupManager'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.GROUP' | translate}}: </label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="read-only-select">
+                                <button class="selection" disabled>
+                                    <span ng-if="!step.assignment.groupManager && !step.assignment.groupManagerField">{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.SELECT-GROUP' | translate}}</span>
+									<span ng-if="step.assignment.groupManager">{{step.assignment.groupManager.name}}</span>
+									<span ng-if="!step.assignment.groupManager && step.assignment.groupManagerField">{{step.assignment.groupManagerField.name}} - {{step.assignment.groupManagerField.id}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix" ng-if="step.meta.assignmentOption.id == 'users'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.CANDIDATES' | translate}}: </label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clearfix selection narrow" disabled>
+                                <ul class="simple-list" ng-show="step.assignment.candidateUsers.length || step.assignment.candidateUserFields.length">
+                                    <li ng-repeat="user in step.assignment.candidateUsers">
+                                        <i class="icon icon-user"></i>
+                                        <span user-name="user" />
+                                    </li>
+                                    <li ng-repeat="userField in step.assignment.candidateUserFields">
+                                        <i class="icon icon-user"></i>
+                                        <span>{{userField.name}}</span>
+                                        <span class="field-type"> - {{userField.id}}</span>
+                                    </li>
+                                </ul>
+
+                                <div class="no-results" ng-if="(!step.assignment.candidateUsers || !step.assignment.candidateUsers.length) && (!step.assignment.candidateUserFields || !step.assignment.candidateUserFields.length)">
+                                    {{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.NO-CANDIDATES' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group clearfix" ng-if="step.meta.assignmentOption.id == 'groups'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.GROUPS' | translate}}: </label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clearfix selection narrow" disabled>
+                                <ul class="simple-list" ng-show="step.assignment.candidateGroups.length || step.assignment.candidateGroupFields.length">
+                                    <li ng-repeat="group in step.assignment.candidateGroups">
+                                        {{group.name}}
+                                    </li>
+                                    <li ng-repeat="groupField in step.assignment.candidateGroupFields">
+                                        <span>{{groupField.name}}</span>
+                                        <span class="field-type"> - {{groupField.id}}</span>
+                                    </li>
+                                </ul>
+                                <div class="no-results" ng-if="(!step.assignment.candidateGroups || !step.assignment.candidateGroups.length) && (!step.assignment.candidateGroupFields || !step.assignment.candidateGroupFields.length)">
+                                    {{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.NO-GROUPS' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix ng-scope" ng-if="step.meta.assignmentOption.id == 'user' || step.meta.assignmentOption.id == 'users' || step.meta.assignmentOption.id == 'groups'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-12">
+                            <label class="ng-binding">
+                                <input type="checkbox" disabled ng-model="step.assignment.initiatorCanCompleteTask" class="ng-pristine ng-untouched ng-valid">
+                                &nbsp;{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.INITIATOR-CAN-COMPLETE' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+		<div ng-if="property.type == 'recipient'">
+            <div class="detail-group clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.EMAIL-STEP.RECIPIENT.TYPE' | translate}}</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="btn-group span">
+                                <input class="form-control" type="text" ng-model="step.meta.recipientOption.title" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix" ng-if="step.meta.recipientOption.id == 'user'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.EMAIL-STEP.RECIPIENT.USER' | translate}}</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="read-only-select">
+                                <button class="selection" disabled>
+                                    <i class="icon icon-user" ng-show="step.recipient.user || step.recipient.userField"></i>
+                                    <span ng-if="!step.recipient.user && !step.recipient.userField">{{'PROCESS-BUILDER.EMAIL-STEP.RECIPIENT.SELECT-USER' | translate}}</span>
+                                    <span ng-if="step.recipient.user" user-link="step.recipient.user"></span>
+                                    <span ng-if="step.recipient.userField" form-field="step.recipient.userField"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix" ng-if="step.meta.recipientOption.id == 'users'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.EMAIL-STEP.RECIPIENT.USERS' | translate}}</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clearfix selection narrow" disabled>
+                                <ul class="simple-list" ng-show="step.recipient.users.length || step.recipient.userFields.length">
+                                    <li ng-repeat="user in step.recipient.users">
+                                        <i class="icon icon-user"></i>
+                                        <span user-name="user" />
+                                    </li>
+                                    <li ng-repeat="userField in step.recipient.userFields">
+                                        <i class="icon icon-user"></i>
+                                        <span>{{userField.name}}</span>
+                                        <span class="field-type"> - {{userField.id}}</span>
+                                    </li>
+                                </ul>
+
+                                <div class="no-results" ng-if="(!step.recipient.users || !step.recipient.users.length) && (!step.recipient.userFields || !step.recipient.userFields.length)">
+                                    {{'PROCESS-BUILDER.EMAIL-STEP.RECIPIENT.USERS-NONE' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	    <div class="detail-group first" ng-if="property.type == 'form'">
+            <div class="clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.FIELD.FORM-SELECT.CURRENT-FORM' | translate}}: </label>
+                        </div>
+
+                        <div class="col-xs-9">
+                            <div class="btn-group span">
+                                <label ng-if="step.formDefinition">{{step.formDefinition.name}}</label>
+                                <label ng-if="!step.formDefinition">{{'PROCESS-BUILDER.FIELD.FORM-SELECT.NO-FORM-SELECTED' | translate}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix" ng-show="step.formDefinition">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.FIELD.FORM-SELECT.FORM-FIELDS' | translate}}:</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="btn-group pull-right">
+                                <button class="btn btn-xs" ng-click="showForm()">{{'PROCESS-BUILDER.FIELD.FORM-SELECT.OPEN-FORM' | translate}}</button>
+                            </div>
+                            <div class="detail">
+                                <span ng-repeat="field in getFieldsForForm(step.formDefinition) | limitTo : 10">
+                                    {{$index != 0 && ', ' + field.name || field.name}}
+                                </span>
+                                <span class="empty" ng-if="!getFieldsForForm(step.formDefinition).length">
+                                    {{'PROCESS-BUILDER.FIELD.FORM-SELECT.NO-FIELDS' | translate}}
+                                </span>
+                            </div>
+                       </div>
+                     </div>
+                </div>
+                <div ng-if="step.formDefinition">
+                    <div ng-include="'views/process-builder/form-variable-map.html'"  onload="readonly = true" />
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-group first" ng-if="property.type == 'subprocess'">
+            <div class="col-xs-12 clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-3">
+                        <label>{{'SUBPROCESS.TITLE' | translate}}</label>
+                    </div>
+
+                    <div class="col-xs-7">
+                        <div class="btn-group span">
+                            <label ng-if="step.subProcessDefinition">{{step.subProcessDefinition.name}}</label>
+                            <label ng-if="!step.subProcessDefinition">{{'SUBPROCESS.POPOVER.NONE-SELECTED' | translate}}</label>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <button class="btn btn-xs" ng-if="step.subProcessDefinition" ng-click="showSubProcess()">{{'SUBPROCESS.POPOVER.OPEN' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-group first" ng-if="property.type == 'goto'">
+            <div class="col-xs-12 clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-3">
+                        <label>{{'PROCESS-BUILDER.GOTO-STEP.TITLE' | translate}}</label>
+                    </div>
+
+                    <div class="col-xs-7">
+                        <div class="btn-group span">
+                            <label ng-if="step.gotoStep && step.gotoStep.name">{{step.gotoStep.name}}</label>
+                            <label ng-if="!step.gotoStep || !step.gotoStep.name">{{'PROCESS-BUILDER.GOTO-STEP.NONE-SELECTED' | translate}}</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="property.type == 'duedate'">
+            <div class="detail-group clearfix first">
+                <div class="col-xs-12">
+                    <div class="btn-group span">
+                        <label>{{getTaskDueDateLabel(step.taskDueDateOption)}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-group clearfix first" ng-if="step.taskDueDateOption === 'field'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.TIMER.DATE-FIELD' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="read-only-select">
+                            <button class="selection" disabled>
+                                <i class="icon icon-clock" ng-show="step.taskDueDateField"></i>
+                                <span ng-if="!step.taskDueDateField">{{'PROCESS-BUILDER.FIELD.FIELD-SELECT.NO-FIELD-SELECTED' | translate}}</span>
+                                <span ng-if="step.taskDueDateField" form-field="step.taskDueDateField"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix first" ng-if="step.taskDueDateOption === 'field'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.DUEDATE.CALCULATION-TYPE' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                                <button type="button" disabled class="btn btn-default" ng-model="step.taskDueDateCalculationType" ng-class="{'active' : (!step.taskDueDateCalculationType || step.taskDueDateCalculationType == 'add')}">{{'PROCESS-BUILDER.FIELD.DUEDATE.CALCULATION-OPTIONS.ADD' | translate}}</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" disabled class="btn btn-default" ng-model="step.taskDueDateCalculationType" ng-class="{'active' : step.taskDueDateCalculationType == 'subtract'}">{{'PROCESS-BUILDER.FIELD.DUEDATE.CALCULATION-OPTIONS.SUBTRACT' | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix first" ng-if="step.taskDueDateOption === 'field' || step.taskDueDateOption === 'static'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.YEARS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.taskDueDate.years">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.MONTHS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.taskDueDate.months">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.DAYS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.taskDueDate.days">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.HOURS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.taskDueDate.hours">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.MINUTES' | translate}}:<input type="number" class="form-control" readonly ng-model="step.taskDueDate.minutes">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.SECONDS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.taskDueDate.seconds">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div ng-if="property.type == 'timer'">
+            <div class="detail-group clearfix first">
+                <div class="col-xs-12">
+                    <div class="btn-group span">
+                        <label>{{getDueDateLabel(step.meta.dueDateOption)}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-group clearfix first" ng-if="step.meta.dueDateOption == 'property'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.TIMER.DATE-FIELD' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="read-only-select">
+                            <button class="selection" disabled>
+                                <i class="icon icon-clock" ng-show="step.dueField"></i>
+                                <span ng-if="!step.dueField">{{'PROCESS-BUILDER.FIELD.FIELD-SELECT.NO-FIELD-SELECTED' | translate}}</span>
+                                <span ng-if="step.dueField" form-field="step.dueField"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix first" ng-if="step.meta.dueDateOption == 'duration'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.YEARS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.dueDuration.years">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.MONTHS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.dueDuration.months">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.DAYS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.dueDuration.days">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.HOURS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.dueDuration.hours">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.MINUTES' | translate}}:<input type="number" class="form-control" readonly ng-model="step.dueDuration.minutes">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.SECONDS' | translate}}:<input type="number" class="form-control" readonly ng-model="step.dueDuration.seconds">
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix" ng-show="step.meta.dueDateOption != 'none'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.TIMER.DUE-ACTION' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="btn-group span">
+                            <button class="selection" ng-options="option as (option.title | translate) for option in dueActionOptions"
+                                    bs-select ng-model="step.meta.dueActionOption" activiti-fix-dropdown-bug ng-disabled="true">
+                            </button>
+                        </div>
+                        <div class="form-group" ng-if="step.meta.dueActionOption.description">
+                            <p class="inline-help">{{step.meta.dueActionOption.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix" ng-if="step.meta.dueActionOption && step.meta.dueActionOption.id === 'reassign-task'">
+                <div class="form-group clearfix">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.FIELD.GENERIC.ASSIGNMENT' | translate}}:</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="btn-group span">
+                                <input class="form-control" type="text" ng-model="step.meta.dueAssignmentOption.title" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix" ng-if="step.meta.dueAssignmentOption.id == 'user'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.ASSIGNEE' | translate}}: </label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="read-only-select">
+                                <button class="selection" disabled>
+                                    <i class="icon icon-user" ng-show="step.dueAssignment.assignee || step.dueAssignment.assigneeField"></i>
+                                    <span ng-if="!step.dueAssignment.assignee && !step.dueAssignment.assigneeField">{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.SELECT-ASSIGNEE' | translate}}</span>
+                                    <span ng-if="step.dueAssignment.assignee" user-link="step.dueAssignment.assignee"></span>
+                                    <span ng-if="step.dueAssignment.assigneeField" form-field="step.dueAssignment.assigneeField"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group clearfix" ng-if="step.meta.dueAssignmentOption.id == 'groupManager'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.GROUP' | translate}}: </label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="read-only-select">
+                                <button class="selection" disabled>
+                                    <span ng-if="!step.dueAssignment.groupManager && !step.dueAssignment.groupManagerField">{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.SELECT-GROUP' | translate}}</span>
+									<span ng-if="step.dueAssignment.groupManager">{{step.dueAssignment.groupManager.name}}</span>
+									<span ng-if="!step.dueAssignment.groupManager && step.dueAssignment.groupManagerField">{{step.dueAssignment.groupManagerField.name}} - {{step.dueAssignment.groupManagerField.id}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group clearfix" ng-if="step.meta.dueAssignmentOption.id == 'users'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.CANDIDATES' | translate}}: </label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clearfix selection narrow" disabled>
+                                <ul class="simple-list" ng-show="step.dueAssignment.candidateUsers.length">
+                                    <li ng-repeat="user in step.dueAssignment.candidateUsers">
+                                        <i class="icon icon-user"></i>
+                                        <span user-name="user"/>
+                                    </li>
+                                </ul>
+                                <div class="no-results" ng-if="!step.dueAssignment.candidateUsers || !step.dueAssignment.candidateUsers.length">
+                                    {{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.NO-CANDIDATES' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group clearfix" ng-if="step.meta.dueAssignmentOption.id == 'groups'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.GROUPS' | translate}}: </label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clearfix selection narrow" disabled>
+                                <ul class="simple-list" ng-show="step.dueAssignment.candidateGroups && step.dueAssignment.candidateGroups.length">
+                                    <li ng-repeat="group in step.dueAssignment.candidateGroups">
+                                        {{group.name}}
+                                    </li>
+                                </ul>
+                                <div class="no-results" ng-if="!step.dueAssignment.candidateGroups || !step.dueAssignment.candidateGroups.length">
+                                    {{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.NO-GROUPS' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group clearfix ng-scope"
+                     ng-if="step.meta.dueAssignmentOption.id == 'user' || step.meta.dueAssignmentOption.id == 'users' || step.meta.dueAssignmentOption.id == 'groups'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-12">
+                            <label class="ng-binding">
+                                <input type="checkbox" disabled ng-model="step.dueAssignment.initiatorCanCompleteTask"
+                                       class="ng-pristine ng-untouched ng-valid">
+                                &nbsp;{{'PROCESS-BUILDER.HUMAN-STEP.ASSIGNMENT.INITIATOR-CAN-COMPLETE' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="detail-group first" ng-if="property.type == 'decisionTable'">
+            <div class="col-xs-12 clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-3">
+                        <label>{{'PROCESS-BUILDER.FIELD.DECISION-TABLE-SELECT.CURRENT-DECISION-TABLE' | translate}}: </label>
+                    </div>
+
+                    <div class="col-xs-9">
+                        <div class="form-group">
+                            <input ng-if="step.decisionTableDefinition" class="form-control" type="text" value="{{step.decisionTableDefinition.name}}" disabled>
+                            <input ng-if="!step.decisionTableDefinition" class="form-control" type="text" value="{{'PROCESS-BUILDER.FIELD.DECISION-TABLE-SELECT.NO-DECISION-TABLE-SELECTED' | translate}}" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 clearfix" ng-show="step.decisionTableDefinition">
+                <div class="form-group clearfix">
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-xs" ng-click="showDecisionTable()">{{'PROCESS-BUILDER.FIELD.DECISION-TABLE-SELECT.OPEN-DECISION-TABLE' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="property.type === 'alfresco-cloud-source'" ng-include="'views/process-builder/alfresco-cloud-publish-source-template-readonly.html'"></div>
+        <div ng-if="property.type === 'alfresco-cloud-destination'" ng-include="'views/process-builder/alfresco-cloud-publish-destination-template-readonly.html'"></div>
+        <div ng-if="property.type === 'box-cloud-source'" ng-include="'views/process-builder/box-cloud-publish-source-template-readonly.html'"></div>
+        <div ng-if="property.type === 'box-cloud-destination'" ng-include="'views/process-builder/box-cloud-publish-destination-template-readonly.html'"></div>
+        <div ng-if="property.type === 'google-drive-source'" ng-include="'views/process-builder/google-drive-publish-source-template-readonly.html'"></div>
+        <div ng-if="property.type === 'google-drive-destination'" ng-include="'views/process-builder/google-drive-publish-destination-template-readonly.html'"></div>
+        <div ng-if="property.type === 'rest-endpoint'" ng-include="'views/process-builder/rest-endpoint-template-readonly.html'"></div>
+        <div ng-if="property.type === 'rest-request-message'" ng-include="'views/process-builder/rest-request-message-template-readonly.html'"></div>
+        <div ng-if="property.type === 'rest-response-message'" ng-include="'views/process-builder/rest-response-message-template-readonly.html'"></div>
+        <div ng-if="property.type === 'output-format'" ng-include="'views/process-builder/generate-doc-select-output-template-readonly.html'"></div>
+		<div ng-if="property.type === 'metadata-get'" onload="readonly = true" ng-include="'views/process-builder/metadata-alfresco-get-template.html'"></div>
+        <div ng-if="property.type === 'metadata-put'" onload="readonly = true" ng-include="'views/process-builder/metadata-alfresco-put-template.html'"></div>
+        <div ng-if="property.type === 'template-source'" ng-include="'views/process-builder/generate-doc-select-template-template-readonly.html'"></div>
+        <div ng-if="property.type === 'email-template-source' && (step.type != 'human-step' || step.allowSendEmail)" ng-include="'views/process-builder/email-template-source-readonly.html'"></div>
+        <div ng-if="property.type === 'alfresco-action-endpoint'" ng-include="'views/process-builder/alfresco-action-endpoint-template-readonly.html'"></div>
+        <div ng-if="property.type === 'alfresco-action-accessor'" ng-include="'views/process-builder/alfresco-action-accessor-template-readonly.html'"></div>
+        <div ng-if="property.type === 'alfresco-action-params'" ng-include="'views/process-builder/alfresco-action-params-template-readonly.html'"></div>
+        <div ng-if="property.type === 'alfresco-action-name'" ng-include="'views/process-builder/alfresco-action-name-template-readonly.html'"></div>
+      </div>
+</div>

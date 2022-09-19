@@ -1,0 +1,240 @@
+<div class="modal" ng-controller="KisBpmMailToPopupCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2 translate>PROPERTY.MAIL_TO.TITLE</h2>
+            </div>
+            <div class="modal-body">
+                <div class="detail-group clearfix">
+
+
+                    <div class="form-group clearfix">
+                        <div class="col-xs-12">
+                            <label class="col-xs-4">{{'PROPERTY.MAIL_TO.TYPE' | translate}}</label>
+
+                            <div class="col-xs-8">
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="popup.mailToObject.type = 'idm'"
+                                                ng-model="popup.mailToObject.type" ng-class="{'active' : popup.mailToObject.type == 'idm'}">
+                                            {{'PROPERTY.MAIL_TO.TYPE.IDENTITYSTORE' | translate}}
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="popup.mailToObject.type = 'static'"
+                                                ng-model="popup.mailToObject.type" ng-class="{'active' : popup.mailToObject.type != 'idm'}">
+                                            {{'PROPERTY.MAIL_TO.TYPE.STATIC' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group clearfix" ng-if="popup.mailToObject.type != 'idm'">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label>{{'PROPERTY.MAIL_TO.EXPRESSION' | translate}}</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="btn-group span">
+                                    <textarea auto-focus class="form-control" ng-model="popup.expression" style="width:70%; height:100%; max-width: 100%; max-height: 100%; min-height: 200px"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix" ng-show="popup.mailToObject.type == 'idm'">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label>{{'PROPERTY.MAIL_TO.IDM.TYPE' | translate}}</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="btn-group span">
+                                    <button class="selection" ng-options="option as (option.title | translate) for option in mailToOptions"
+                                            bs-select ng-model="mailToOption" activiti-fix-dropdown-bug>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix" ng-show="popup.mailToObject.type == 'idm' && mailToOption.id == 'users'">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label>{{'PROPERTY.MAIL_TO.USERS' | translate}}</label>
+                            </div>
+                            <div class="col-xs-8 clearfix">
+                                <ul class="simple-list"
+                                    ng-show="popup.mailToObject.candidateUsers.length || popup.mailToObject.candidateUserFields.length || popup.mailToObject.candidateUserEmails.length">
+                                    <li ng-repeat="user in popup.mailToObject.candidateUsers">
+                                        <i class="icon icon-user"></i>
+                                        <span user-name="user"></span>
+
+                                        <div class="actions">
+                                            <a ng-click="removeCandidateUser(user)"><i class="icon icon-remove"></i></a>
+                                        </div>
+                                    </li>
+                                    <li ng-repeat="userField in popup.mailToObject.candidateUserFields">
+                                        <i class="icon icon-user"></i>
+                                        <span>{{userField.name}}</span>
+                                        <span class="field-type"> - {{userField.id}}</span>
+
+                                        <div class="actions">
+                                            <a ng-click="removeCandidateUserField(userField)"><i class="icon icon-remove"></i></a>
+                                        </div>
+                                    </li>
+                                    <li ng-repeat="userField in popup.mailToObject.candidateUserEmails">
+                                        <i class="icon icon-user"></i>
+                                        <span>{{userField.email}}</span>
+
+                                        <div class="actions">
+                                            <a ng-click="removeCandidateUserEmail(userField)"><i class="icon icon-remove"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="no-results"
+                                     ng-if="(!popup.mailToObject.candidateUsers || !popup.mailToObject.candidateUsers.length) && (!popup.mailToObject.candidateUserFields || !popup.mailToObject.candidateUserFields.length)">
+                                    {{'PROPERTY.MAIL_TO.IDM.NO_USERS' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix" ng-show="popup.mailToObject.type == 'idm' &&  mailToOption.id == 'user'">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label>{{'PROPERTY.MAIL_TO.RECIPIENT' | translate}}</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <label ng-if="!popup.mailToObject.recipient && !popup.mailToObject.recipientField">None...</label>
+                                <ul class="simple-list" ng-if="popup.mailToObject.recipient || popup.mailToObject.recipientField">
+                                    <li>
+                                        <i class="icon icon-user"></i>
+                                        <span ng-if="popup.mailToObject.recipient" user-name="popup.mailToObject.recipient"></span>
+                                        <span ng-if="popup.mailToObject.recipientField">{{popup.mailToObject.recipientField.name}}</span>
+                                        <span ng-if="popup.mailToObject.recipientField"
+                                              class="field-type"> - {{popup.mailToObject.recipientField.id}}</span>
+
+                                        <div class="actions" ng-if="popup.mailToObject.recipient || popup.mailToObject.recipientField">
+                                            <a ng-click="removeAssignee()"><i class="icon icon-remove"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix"
+                         ng-if="popup.mailToObject.type == 'idm' &&  popup.fields && (mailToOption.id == 'user' || mailToOption.id == 'users')">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label>{{'INVOLVE-PEOPLE.SOURCE.TYPE' | translate}}</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="setSearchType()" ng-model="popup.mailToObject.mailToSourceType"
+                                                ng-class="{'active' : (!popup.mailToObject.mailToSourceType || popup.mailToObject.mailToSourceType == 'search')}">
+                                            {{'FORM-BUILDER.LABEL.SEARCH' | translate}}
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="setFormFieldType()"
+                                                ng-model="popup.mailToObject.mailToSourceType"
+                                                ng-class="{'active' : popup.mailToObject.mailToSourceType == 'field'}">{{'INVOLVE-PEOPLE.SOURCE.FIELD-OPTION' |
+                                            translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix"
+                         ng-if="popup.mailToObject.type == 'idm' && account.tenantId != null && account.tenantId != undefined && (!popup.mailToObject.mailToSourceType || popup.mailToObject.mailToSourceType == 'search') && (mailToOption.id == 'user' || mailToOption.id == 'users')">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label>Search:</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <input class="form-control" type="text" id="people-select-input" placeholder="Search user" auto-focus custom-keys
+                                       up-pressed="previousUser()" down-pressed="nextUser()" enter-pressed="confirmUser()" delayed-model="popup.filter" delay="200"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label></label>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="subtle" style="margin: 2px 0 2px 0">
+                                    <span translate="PROPERTY.MAIL_TO.MATCHING"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label></label>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="inline-people-select">
+                                    <ul class="simple-list">
+                                        <li ng-click="confirmUser(user)" ng-repeat="user in popup.userResults" ng-class="{'active': $index == popup.selectedIndex}">
+                                            <div user-picture="user" user-index="$index" user-name="user"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="nothing-to-see" translate="GENERAL.MESSAGE.PEOPLE-NO-MATCHING-RESULTS" ng-show="popup.userResults.length == 0"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix"
+                         ng-show="popup.mailToObject.type == 'idm' && (account.tenantId == null || account.tenantId == undefined) && (!popup.mailToObject.mailToSourceType || popup.mailToObject.mailToSourceType == 'search') && (mailToOption.id == 'user' || mailToOption.id == 'users')">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label>Email:</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <form name="emailForm" class="form-group">
+                                    <div class="input-group">
+                                        <input name="mailToEmailInput" class="form-control" type="email" placeholder="Enter an email address"
+                                               ng-model="popup.email"
+                                               field-focus="true"
+                                               custom-keys enter-pressed="confirmEmail()">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-sm" type="button"
+                                                    ng-disabled="popup.email == null || popup.email == undefined || popup.email.length == 0 || emailForm.mailToEmailInput.$error.email"
+                                                    ng-click="confirmEmail()">Accept
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="popup.mailToObject.type == 'idm' &&  popup.mailToObject.mailToSourceType === 'field' && (mailToOption.id == 'user' || mailToOption.id == 'users') && popup.fields"
+                         class="form-group clearfix">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                <label>{{'PROCESS-BUILDER.PUBLISH-STEP.SOURCE.FORM-FIELD' | translate}}:</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <div id="userFormField" variables-select include-type="false" expand-relative="true" field-type-filter="popup.userFieldFilter"
+                                     select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'" fields="popup.fields" selected-field="popup.userField"
+                                     ignore-selection="true"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="close()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" ng-disabled="readOnly" class="btn btn-primary" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>

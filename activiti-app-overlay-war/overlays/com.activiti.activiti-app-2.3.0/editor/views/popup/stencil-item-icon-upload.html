@@ -1,0 +1,82 @@
+
+<div class="modal" ng-controller="ChangeStencilItemIconCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header-wrapper">
+            	<div class="modal-header">
+            		<div class="pull-right">
+                        <a class="action" ng-click="cancel()">&times; {{'GENERAL.ACTION.CANCEL' | translate}}</a>
+                    </div>
+            		<h2>{{'STENCILS.POPUP.UPLOAD-ITEM-ICON-TITLE' | translate}}</h2>
+            	</div>
+            </div>
+            <div class="modal-body">
+
+                <p>
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    {{'STENCILS.POPUP.UPLOAD-ITEM-ICON-DESCRIPTION' | translate}}
+                </p>
+
+                <!--[if IE 9]>
+                <div class="import-process-form">
+
+                    <input type="file" ngf-select="" ngf-change="onFileSelect($files,true)" style="font-size: smaller; padding-top:6px;" ng-disabled="readOnly">
+                    <div class="import-process-dropbox"
+                         ngf-drop="onFileSelect($files)"
+                         ngf-drag-over-class="dragover"
+                         ng-show="dropSupported && !readOnly">
+                        {{'STENCILS.POPUP.UPLOAD-ITEM-ICON-DROPZONE' | translate}}
+                    </div>
+                    <div ngf-drop-available="dropSupported=true"
+                         ng-show="!dropSupported">{{'STENCILS.POPUP.NO-DROP' | translate}}</div>
+                    <div class="progress" ng-show="popup.loading" style="margin: 10px 0 10px 0">
+                        <div class="progress-bar progress-bar-striped active" ng-style="{width: popup.uploadProgress + '%'}">{{popup.uploadProgress}} %</div>
+                    </div>
+                    <button class="btn btn-danger btn-sm"
+                            ng-click="upload.abort()"
+                            ng-disabled="!status.loading"
+                            style="margin-bottom: 20px">
+                        {{'STENCILS.POPUP.UPLOAD-ITEM-ICON-CANCEL-UPLOAD' | translate}}
+                    </button>
+
+                </div>
+                <![endif]-->
+                <!--[if gt IE 9]> <!-- -->
+                <div class="import-process-form">
+
+                    <input type="file" ngf-select="" ngf-change="onFileSelect($files)" style="font-size: smaller; padding-top:6px;" ng-disabled="readOnly">
+                    <div class="import-process-dropbox"
+                         ngf-drop ngf-change="onFileSelect($files)"
+                         ngf-drag-over-class="dragover"
+                         ng-show="dropSupported && !readOnly">
+                        {{'STENCILS.POPUP.UPLOAD-ITEM-ICON-DROPZONE' | translate}}
+                    </div>
+                    <div ngf-drop-available="dropSupported=true"
+                         ng-show="!dropSupported">{{'STENCILS.POPUP.NO-DROP' | translate}}</div>
+                    <div class="progress" ng-show="popup.loading" style="margin: 10px 0 10px 0">
+                        <div class="progress-bar progress-bar-striped active" ng-style="{width: popup.uploadProgress + '%'}">{{popup.uploadProgress}} %</div>
+                    </div>
+                    <button class="btn btn-danger btn-sm"
+                            ng-click="upload.abort()"
+                            ng-disabled="!status.loading"
+                            style="margin-bottom: 20px">
+                        {{'STENCILS.POPUP.UPLOAD-ITEM-ICON-CANCEL-UPLOAD' | translate}}
+                    </button>
+
+                </div>
+
+                <!-- <![endif]-->
+
+            </div>
+
+            <div class="modal-footer-wrapper">
+                <div class="modal-footer">
+                    <loading></loading>
+                    <div class="pull-right modeler-processes-error" ng-if="popup.error">
+                        <span>{{'STENCILS.POPUP.UPLOAD-ITEM-ICON-ERROR' | translate}} <span ng-if="popup.errorMessage"> : </span>{{popup.errorMessage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

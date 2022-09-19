@@ -1,0 +1,34 @@
+<div class="detail-group clearfix">
+    <div ng-controller="PublishStepMetadataMappingController">
+        <div class="form-group clearfix">
+            <div class="col-xs-12">
+                <label>{{'PROCESS-BUILDER.METADATA-GET-STEP.METADATA-MAPPING.POPUP.TITLE' | translate}}</label>
+            </div>
+            <div class="col-xs-12">
+                <div class="step-editor-inline-grid" ui-grid="metaDataGridOptions" ui-grid-selection></div>
+                <div class="pull-right" ng-show="!readonly">
+                    <div class="btn-group">
+                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}"
+                           data-placement="bottom" data-original-title=""
+                           title="" id="add-request-mapping-button" ng-click="addNewPropertyMapping()">
+                            <i class="glyphicon glyphicon-plus"></i></a>
+                        <a class="btn btn-icon btn-lg" rel="tooltip"
+                           data-title="{{ACTION.REMOVE | translate}}"
+                           ng-disabled="!metaDataSelectedColumnDefinition"
+                           data-placement="bottom" data-original-title="" title=""
+                           ng-click="removePropertyMapping()"><i class="glyphicon glyphicon-minus"></i></a>
+                    </div>
+                    <div class="btn-group" ng-if="readonly===undefined || readonly">
+                        <a class="btn btn-icon btn-lg" rel="tooltip"
+                           data-title="{{ACTION.EDIT | translate}}"
+                           ng-disabled="!metaDataSelectedColumnDefinition" data-placement="bottom"
+                           data-original-title=""
+                           title="" id="edit-request-mapping-button" ng-click="editPropertyMapping()"><i
+                                class="glyphicon glyphicon-pencil"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

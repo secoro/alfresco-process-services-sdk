@@ -1,0 +1,23 @@
+<div class="form-group clearfix">
+    <div class="col-xs-3">
+        <label>{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.SOURCE' | translate}}:</label>
+    </div>
+    <div class="col-xs-9">
+        <input class="form-control" disabled
+               value="{{step.inputSourceField ? '${' + step.inputSourceField.id + '}' : 'Unknown'}}">
+    </div>
+</div>
+
+<div class="form-group clearfix">
+    <div class="col-xs-3">
+        <label>{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.ACCESS-AS' | translate}}:</label>
+    </div>
+    <div class="col-xs-9">
+        <input ng-if="step.publishAsType === 'process_initiator'"
+               class="form-control" disabled
+               value="{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.PROCESS-INITIATOR' | translate}}">
+        <input ng-if="step.publishAsType === 'user'"
+               class="form-control" disabled
+               value="{{step.userName || 'Unknown'}}">
+    </div>
+</div>

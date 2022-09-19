@@ -1,0 +1,209 @@
+
+<div class="modal" ng-controller="StencilPropertiesCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h2>{{'STENCILS.POPUP.EDIT-PROPERTIES-TITLE' | translate}} - {{model.activeStencilItem.name | translate}}</h2>
+            </div>
+            <div class="modal-body">
+            	<div class="row">
+                    <div class="col-xs-12 item-wrapper stencil-info-container">
+            
+                        <loading-left-pull></loading-left-pull>
+            
+                        <div ng-show="!status.loading">
+            
+                            <div class="stencil-info-actions" ng-show="!readOnly">
+                                <div>
+                                    <a ng-click="addNewProperty()"><i class="glyphicon glyphicon-plus"></i>{{'STENCILS.ACTION.ADD-PROPERTY' | translate}}</a>
+                                </div>
+                                <div>
+                                    <a ng-click="addExistingProperty()"><i class="glyphicon glyphicon-plus"></i>{{'STENCILS.ACTION.ADD-EXISTING-PROPERTY' | translate}}</a>
+                                </div>
+                                <div ng-show="model.candidateRestoreProperties && model.candidateRestoreProperties.length > 0">
+                                    <a ng-click="restoreProperty()"><i class="glyphicon glyphicon-trash"></i>{{'STENCILS.ACTION.RESTORE-PROPERTY' | translate}}</a>
+                                </div>
+                            </div>
+            
+                            <div class="stencil-info stencil-info-box">
+                                <div class="row">
+            
+                                    <!-- List of stencils -->
+                                    <div class="col-xs-4">
+            
+                                        <div class="stencil-info-items-box">
+                                            <div ng-repeat="property in model.activeStencilItem.stencilProperties" class="stencil-info-item" ng-if="!property.removed" ng-click="showPropertyDetails(property)">
+                                                <span ng-class="{'stencil-info-groupItem-selected' : model.activeStencilProperty.id == property.id}">{{property.name | translate}}</span>
+                                            </div>
+                                        </div>
+            
+                                    </div>
+            
+                                    <!-- Details -->
+                                    <div class="col-xs-8">
+            
+                                        <!-- Details for stencil property -->
+            
+                                        <div ng-show="model.activeStencilProperty">
+            
+                                            <div class="clearfix">
+                                                <div class="pull-right">
+                                                    <button type="button" class="btn btn-default btn-lg" ng-click="moveProperty('down')" ng-disabled="!canMoveProperty('down') || readOnly">
+                                                        <span class="glyphicon glyphicon-arrow-down stencil-info-item-icon"></span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-lg" ng-click="moveProperty('up')" ng-disabled="!canMoveProperty('up') || readOnly">
+                                                        <span class="glyphicon glyphicon-arrow-up stencil-info-item-icon" ></span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-lg" ng-click="deleteProperty()" ng-disabled="readOnly">
+                                                        <span class="glyphicon glyphicon-remove stencil-info-item-icon" ></span>
+                                                    </button>
+                                                </div>
+                                                <h2>{{model.activeStencilProperty.name | translate}}</h2>
+                                            </div>
+            
+                                            <div class="form-group">
+                                                <label for="stencilPropertyName">{{'STENCILS.ITEM.NAME' | translate}}</label>
+                                                <input id="stencilPropertyName" type="text" class="form-control" ng-model="model.activeStencilProperty.name" auto-focus>
+                                            </div>
+            
+                                            <div class="form-group">
+                                                <label for="stencilPropertyDescription">{{'STENCILS.ITEM.DESCRIPTION' | translate}}</label>
+                                                <textarea id="stencilPropertyDescription" type="text" class="form-control" ng-model="model.activeStencilProperty.description"></textarea>
+                                            </div>
+                                            
+                                            <div ng-if="model.activeStencilProperty.customStencilProperty && model.activeStencilProperty.customStencilProperty.customProperty" class="form-group">
+                                                <label for="stencilPropertyType">{{'STENCILS.PROPERTY.TYPE' | translate}}</label>
+                                                <select id="stencilPropertyType" class="form-control" ng-model="model.activeStencilProperty.type">
+                                                    <option value="String">String</option>
+                                                    <option value="Text">Text (multi line)</option>
+                                                    <option value="Boolean">Boolean</option>
+                                                    <option value="Variable">Variable select</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div ng-if="model.activeStencilProperty.customStencilProperty && model.activeStencilProperty.customStencilProperty.customProperty" class="form-group">
+                                                <label for="stencilPropertyIncludeInXML">{{'STENCILS.PROPERTY.INCLUDEINXML' | translate}}</label>
+                                                <input id="stencilPropertyIncludeInXML" type="checkbox" class="form-control" ng-model="model.activeStencilProperty.customStencilProperty.includeInXML">
+                                            </div>
+            
+            
+                                            <div ng-if="model.activeStencilProperty.customStencilProperty && model.activeStencilProperty.customStencilProperty.customProperty && model.activeStencilProperty.customStencilProperty.includeInXML" class="form-group">
+                                                <label for="stencilPropertyXMLPropertyName">{{'STENCILS.PROPERTY.XMLNAME' | translate}}</label>
+                                                <input id="stencilPropertyXMLPropertyName" type="text" class="form-control" ng-model="model.activeStencilProperty.customStencilProperty.xmlPropertyName">
+                                            </div>
+                                        </div>
+                                        
+                                        <div ng-show="model.newStencilProperty">
+            
+                                            <div class="clearfix">
+                                                <h2>{{'STENCILS.POPUP.NEW-PROPERTY-TITLE' | translate}}</h2>
+                                            </div>
+            
+                                            <div class="form-group">
+                                                <label for="stencilPropertyName">{{'STENCILS.ITEM.NAME' | translate}}</label>
+                                                <input id="stencilPropertyName" type="text" class="form-control" ng-model="model.newStencilProperty.name" auto-focus>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="id">{{'STENCILS.POPUP.CREATE-ITEM-ID' | translate}}</label>
+                                                <input ng-disabled="model.loading" type="text" class="form-control" id="id" ng-model="model.newStencilProperty.id">
+                                            </div>
+            
+                                            <div class="form-group">
+                                                <label for="stencilPropertyDescription">{{'STENCILS.ITEM.DESCRIPTION' | translate}}</label>
+                                                <textarea id="stencilPropertyDescription" type="text" class="form-control" ng-model="model.newStencilProperty.description"></textarea>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="stencilPropertyType">{{'STENCILS.PROPERTY.TYPE' | translate}}</label>
+                                                <select id="stencilPropertyType" class="form-control" ng-model="model.newStencilProperty.type">
+                                                    <option value="String">String</option>
+                                                    <option value="Text">Text (multi line)</option>
+                                                    <option value="Boolean">Boolean</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="stencilPropertyIncludeInXML">{{'STENCILS.PROPERTY.INCLUDEINXML' | translate}}</label>
+                                                <input id="stencilPropertyIncludeInXML" type="checkbox" class="form-control" ng-model="model.newStencilProperty.customStencilProperty.includeInXML">
+                                            </div>
+            
+            
+                                            <div ng-if="model.newStencilProperty.customStencilProperty.includeInXML" class="form-group">
+                                                <label for="stencilPropertyXMLPropertyName">{{'STENCILS.PROPERTY.XMLNAME' | translate}}</label>
+                                                <input id="stencilPropertyXMLPropertyName" type="text" class="form-control" ng-model="model.newStencilProperty.customStencilProperty.xmlPropertyName">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <div class="pull-right">
+                                                    <button type="button" class="btn btn-secondary" ng-click="cancelPropertyEdit()" translate>GENERAL.ACTION.CANCEL</button>
+                                                    <button type="button" class="btn btn-default" ng-click="saveNewProperty()" ng-disabled="!model.newStencilProperty.name  || !model.newStencilProperty.id" translate>STENCILS.POPUP.SAVE-PROPERTY-BUTTON</button>
+                                                </div>
+                                            </div>
+                                            
+                                            <div ng-if="model.propertyIdNotUniqueError">{{'STENCILS.POPUP.CREATE-ITEM-ERROR-ID-NOT-UNIQUE' | translate}}</div>
+            
+                                        </div>
+                                        
+                                        <div ng-show="model.existingProperties">
+                                            <div class="clearfix">
+                                                <h2>{{'STENCILS.POPUP.ADD-EXISTING-PROPERTY-TITLE' | translate}}</h2>
+                                            </div>
+                                        
+                                            <div class="stencil-info-properties-box">
+                                                <div ng-repeat="property in model.existingProperties" class="stencil-info-item" ng-click="selectCandidateProperty(property)">
+                                                    <span ng-class="{'stencil-info-groupItem-selected' : model.existingStencilProperty.id == property.id}">{{property.name}}</span>
+                                                    <span class="stencil-info-property-description"> - {{property.description}}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <div class="pull-right">
+                                                    <button type="button" class="btn btn-secondary" ng-click="cancelPropertyEdit()" translate>GENERAL.ACTION.CANCEL</button>
+                                                    <button type="button" class="btn btn-default" ng-click="saveAddExistingProperty()" ng-disabled="!model.existingStencilProperty || !model.existingStencilProperty.id" translate>STENCILS.POPUP.ADD-EXISTING-PROPERTY-BUTTON</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div ng-show="model.restoreProperties">
+                                            <div class="clearfix">
+                                                <h2>{{'STENCILS.POPUP.RESTORE-PROPERTY-TITLE' | translate}}</h2>
+                                            </div>
+                                        
+                                            <div class="stencil-info-properties-box">
+                                                <div ng-repeat="property in model.restoreProperties" class="stencil-info-item" ng-click="selectRestoreProperty(property)">
+                                                    <span ng-class="{'stencil-info-groupItem-selected' : model.restoreStencilProperty.id == property.id}">{{property.name | translate}}</span>
+                                                    <span class="stencil-info-property-description"> - {{property.description | translate}}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <div class="pull-right">
+                                                    <button type="button" class="btn btn-secondary" ng-click="cancelPropertyEdit()" translate>GENERAL.ACTION.CANCEL</button>
+                                                    <button type="button" class="btn btn-default" ng-click="saveRestoreProperty()" ng-disabled="!model.restoreStencilProperty || !model.restoreStencilProperty.id" translate>STENCILS.POPUP.RESTORE-PROPERTY-BUTTON</button>
+                                                </div>
+                                            </div>
+                                        </div>
+            
+                                    </div>
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+            
+            <div class="modal-footer">
+            	<div class="pull-right">
+            		<button type="button" class="btn btn-sm btn-default" ng-click="close()" ng-disabled="model.loading">
+            			{{'GENERAL.ACTION.CLOSE' | translate}}
+            		</button>
+            	</div>
+            	<loading></loading>
+                <div ng-if="model.idNotUniqueError">{{'STENCILS.POPUP.CREATE-ITEM-ERROR-ID-NOT-UNIQUE' | translate}}</div>
+            </div>
+        </div>
+    </div>
+</div>

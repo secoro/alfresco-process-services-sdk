@@ -1,0 +1,13 @@
+<div ng-controller="ReportingParamProcessDefinitionSelectController">
+    <span ng-if="parameter.name">{{parameter.name}}</span>
+    <span ng-if="!parameter.name && parameter.nameKey">{{(parameter.nameKey) | translate}}</span>
+
+    <span class="fetching-processdefinitions" ng-show="!model.processDefinitions">{{'REPORTING.FETCHING-PROC-DEFS' | translate}}</span>
+    <select ng-show="model.processDefinitions"
+            class="form-control"
+            ng-model="parameter.value"
+            ng-change="parameterValueUpdated()"
+            ng-options="definition.id as definition.name for definition in model.processDefinitions"
+            ng-disabled="model.loading">
+    </select>
+</div>

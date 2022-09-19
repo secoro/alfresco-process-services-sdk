@@ -1,0 +1,569 @@
+<div class="column-full-height" ng-controller="TaskDetailController">
+
+	
+    <div class="help-container" ng-if="noSuchTask" ng-cloak>
+        <div>
+            <div class="help-dude-pointing"></div>
+        </div>
+        <div>
+            <div class="help-text wide">
+                <div ng-if="noSuchTask" class="description">
+                    {{'TASK.MESSAGE.NO-SUCH-TASK-HELP' | translate}}
+                </div>
+                <div class="help-entry" ng-click="returnToTaskList(); $event.stopPropagation();">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    <span translate="TASK.MESSAGE.NO-SUCH-TASK-RETURN-TO-LIST"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="column-header-large" ng-show="model.task && !noSuchTask">
+
+        <div class="column-header-large-actions">
+            <a ng-click="detailHeaderCollapsed = false;"><span ng-if="detailHeaderCollapsed" class="glyphicon glyphicon-resize-full"></span></a>
+            <a ng-click="detailHeaderCollapsed = true;"><span ng-if="!detailHeaderCollapsed" class="glyphicon glyphicon-resize-small"></span></a>
+        </div>
+
+        <h2>
+            <span ng-if="model.task.processInstanceId || model.task.endDate">{{model.task.name && model.task.name || ('TASK.MESSAGE.NO-NAME' | translate)}}</span><a ng-if="!model.task.processInstanceId && !model.task.endDate" id="toggle-edit-task-name" style="color: inherit;" ng-click="editTaskNamePopup()" class="subtle-select toggle-edit-task-name">{{model.task.name && model.task.name || ('TASK.MESSAGE.NO-NAME' | translate)}}</a>
+        </h2>
+
+        <div ng-show="!detailHeaderCollapsed" class="detail center">
+            <span class="label">{{'TASK.FIELD.ASSIGNEE' | translate}}: </span>
+            <a class="subtle-select" ng-if="canEditAssignee()"
+                    select-people-popover
+                    exclude-user-id="model.task.assignee.id"
+                    on-people-selected="setTaskAssignee(user)"
+                    on-email-selected="setTaskAssigneeByEmail(email)"
+                    close-on-select="true"
+                    placement="bottom-left"
+                    restrict-with-group="model.task.deactivateUserTaskReassignment ? model.task.involvedGroups : undefined"
+                    restrict-with-users="model.task.deactivateUserTaskReassignment ? model.involvementSummary.items : undefined"
+                    select-yourself-mode="assign">
+                <span ng-if="model.task.assignee" user-name="model.task.assignee"></span>
+            </a>
+            <span ng-if="!canEditAssignee()" user-name="model.task.assignee"></span>
+            <span ng-if="(model.task.endDate && !model.task.assignee) || !model.task.assignee" translate="TASK.MESSAGE.NO-ASSIGNEE"></span>
+            <span class="label">{{'TASK.FIELD.DUE' | translate}}: </span>
+            <a ng-if="!model.task.endDate && !model.taskUpdating" id="due-date-select" placement="bottom-left" class="subtle-select" bs-datepicker template="{{appResourceRoot}}views/templates/due-date-picker-template.html" ng-model="model.task.dueDate" trigger="click" placement="bottom-center" title="{{model.task.dueDate | dateformat:((globalDateFormat || getGlobalDateFormat()) | momentTodatetimeFormat)}}">
+                {{model.task.dueDate && (model.task.dueDate | dateformat:'fromNow') || ('TASK.MESSAGE.NO-DUEDATE' | translate)}}
+            </a>
+            <span ng-if="model.task.endDate">{{model.task.dueDate && (model.task.dueDate | dateformat:'fromNow') || ('TASK.MESSAGE.NO-DUEDATE' | translate)}}</span>
+            <span ng-if="model.task.processInstanceId && model.processInstance" class="label">{{'TASK.FIELD.PROCESS-INSTANCE' | translate}}: </span>
+            <span ng-if="model.processInstance">
+                <a ng-click="openProcessInstance(model.processInstance.id)">{{model.processInstance.name && model.processInstance.name || model.processInstance.processDefinitionName}}</a>
+            </span>
+            
+            <span class="label" ng-if="!model.task.endDate && !model.task.processInstanceId">{{'TASK.FIELD.FORM' | translate}}: </span>
+            <a class="subtle-select" ng-if="!model.task.endDate && !model.task.processInstanceId" ng-click="showSelectForm()"><span ng-if="model.task.formKey">{{model.formData.name}}</span><span ng-if="!model.task.formKey" translate="TASK.MESSAGE.NO-FORM"></span></a>
+            
+            <span ng-if="model.task.parentTaskId" class="label">{{'TASK.FIELD.PARENT-TASK' | translate}}: </span>
+            <span ng-if="model.task.parentTaskId">
+                <a ng-click="openTask(model.task.parentTaskId)">{{model.task.parentTaskName || model.task.parentTaskId}}</a>
+            </span>
+
+            <span class="label" ng-if="model.task.endDate != null && model.task.endDate != undefined">{{'TASK.FIELD.ENDED' | translate}}: </span>
+            <span ng-if="model.task.endDate != null && model.task.endDate != undefined">{{model.task.endDate | dateformat:'fromNow'}}</span>
+
+            <span class="label" ng-if="model.task.endDate != null && model.task.endDate != undefined">{{'TASK.FIELD.DURATION' | translate}}: </span>
+            <span ng-if="model.task.endDate != null && model.task.endDate != undefined">{{model.task.duration | duration}}</span>
+        </div>
+
+        <div ng-show="!detailHeaderCollapsed" class="summary-header">
+            <div class="clearfix" ng-click="!model.task.deactivateUserTaskReassignment ? showDetails() : ''">
+                <div class="title title-lg" ng-show="model.involvementSummary.count == 0" >
+                    {{'TASK.TITLE.NO-PEOPLE-INVOLVED' | translate}}
+                </div>
+
+                <div user-picture="user" ng-repeat="user in model.involvementSummary.items"></div>
+
+                <div class="user-picture more" ng-show="model.involvementSummary.overflow">
+                    <span>...</span>
+                </div>
+            </div>
+            <div class="clearfix" ng-click="!model.task.deactivateUserTaskReassignment ? showDetails() : ''">
+                <div class="title title-lg" ng-if="!hasGroupsInvolved()">
+                    {{'TASK.TITLE.NO-GROUPS-INVOLVED' | translate}}
+                </div>
+                <div class="title title-lg" ng-if="hasGroupsInvolved()"
+                     translate="TASK.TITLE.GROUPS-INVOLVED" translate-values="{ groupCount: model.task.involvedGroups.length }">
+                </div>
+            </div>
+            <div class="clearfix" ng-click="showDetails()">
+                <div class="title title-lg" ng-show="model.contentSummary.count == 0">
+                    {{'TASK.TITLE.NO-CONTENT-ITEMS' | translate}}
+                </div>
+
+                <div class="related-content" ng-repeat="content in model.contentSummary.items" title="{{content.name}}">
+                    <i class="icon icon-{{content.simpleType}}"></i>
+                </div>
+
+                <div class="related-content more" ng-show="model.contentSummary.overflow">
+                    <span>...</span>
+                </div>
+            </div>
+            <div class="clearfix" ng-click="showDetails()">
+                <div class="title title-lg" ng-show="model.commentSummary.count == 1">
+                   1 {{'TASK.TITLE.COMMENT-COUNT' | translate}}
+                </div>
+                <div class="title title-lg" ng-show="model.commentSummary.count > 1">
+                    <span>{{model.commentSummary.count}}</span> {{'TASK.TITLE.COMMENTS-COUNT' | translate}}
+                </div>
+                <div class="title title-lg" ng-show="model.commentSummary.count == 0">
+                    {{'TASK.TITLE.NO-COMMENTS' | translate}}
+                </div>
+            </div>
+            <div class="clearfix" ng-click="showDetails()">
+                <div class="title title-lg" ng-show="model.checklistSummary.count == 1">
+                   1 {{'TASK.TITLE.CHECKLIST-COUNT' | translate}}
+                </div>
+                <div class="title title-lg" ng-show="model.checklistSummary.count > 1">
+                    <span>{{model.checklistSummary.count}}</span> {{'TASK.TITLE.CHECKLISTS-COUNT' | translate}}
+                </div>
+                <div class="title title-lg" ng-show="model.checklistSummary.count == 0">
+                    {{'TASK.TITLE.NO-CHECKLISTS' | translate}}
+                </div>
+            </div>
+            
+            <div ng-show="model.task.formKey || !model.task.processInstanceId" ng-click="toggleForm()">
+                <button class="activiti-btn">
+                    <span ng-show="activeTab == 'form'">
+                        {{'TASK.TITLE.SHOW-DETAILS' | translate}}
+                    </span>
+                    <span ng-show="activeTab == 'details'">
+                        {{'TASK.TITLE.SHOW-FORM' | translate}}
+                    </span>
+
+                </button>
+            </div>
+            <div ng-show="model.task.endDate">
+                <div class="title title-lg">
+                    <a ng-href="{{config.contextRoot}}/app/rest/tasks/{{model.task.id}}/audit" translate="TASK.ACTION.AUDIT-LOG"></a>
+                </div>
+            </div>
+
+            <div class="out-come-header" ng-if="canShowClaimedTaskHeader()">
+                <button class="activiti-btn activiti-btn" ng-if="model.task.assignee.id == ('' + account.id) &&
+                    (model.task.memberOfCandidateGroup || model.task.memberOfCandidateUsers)"
+                            ng-disabled="model.unClaimButtonDisabled || model.uploadInProgress || readOnly"
+                            translate="TASK.ACTION.UNCLAIM"
+                            ng-click="unClaimTask()"></button>
+                <button class="activiti-btn activiti-btn-primary"
+                            translate="TASK.ACTION.COMPLETE"
+                            ng-disabled="model.completeButtonDisabled || model.uploadInProgress || readOnly"
+                            ng-click="completeTask()"></button>
+            </div>
+            <div class="out-come-header" ng-if="canShowUnclaimedTaskHeader()">
+                <button class="activiti-btn activiti-btn"
+                            translate="TASK.ACTION.CLAIM"
+                            ng-disabled="model.claimButtonDisabled || model.uploadInProgress || readOnly"
+                            ng-click="claimTask()"></button>
+            </div>
+
+            <div class="out-come-header" ng-if="canShowClaimedTaskWithTaskFormHeader()">
+                <activiti-form-outcomes form-data="model.formData" un-claim="model.task.assignee.id == ('' + account.id) &&
+                    (model.task.memberOfCandidateGroup || model.task.memberOfCandidateUsers)"
+                    on-unclaim="unClaimTask"
+                    hide-buttons="hideButtonsInFormOutcomes()"
+                    un-claim-button-disabled="model.unClaimButtonDisabled"
+                    current-user-involved="isCurrentUserInvolved()"
+                    model="model.formData.model"
+                   save-form="model.formData.saveForm"
+                   complete-form="model.formData.completeForm"></activiti-form-outcomes>
+            </div>
+
+        </div>
+    </div>
+
+    <div column-list-scroll="column-header-large" ng-if="model.task && !noSuchTask" ng-class="{'split': activeTab == 'details' && hasDetails() == true}">
+
+        <div class="column-list-scroll-push"></div>
+
+        <div ng-show="activeTab == 'details' && hasDetails() == true " class="section row">
+            <div class="col-md-7">
+                <!-- INVOLVED PEOPLE, GROUPS AND CONTENT-->
+                <div ng-if="!$scope.model.commentSummary.loading">
+                    <!-- INVOLVE PEOPLE -->
+                    <div class="section pack">
+
+                        <h3 ng-if="!model.task.endDate && !readOnly && !model.task.deactivateUserTaskReassignment" close-on-select="false" select-people-popover on-people-selected="involvePerson(user)" on-email-selected="involvePersonByEmail(email)"
+                            placement="bottom-left" exclude-task-id="model.task.id" title="{{'TASK.ACTION.INVOLVE' | translate}}">
+                            {{'TASK.SECTION.PEOPLE' | translate}}
+                            <span class="action">
+                                <a>+</a>
+                            </span>
+                        </h3>
+
+                        <h3 ng-if="model.task.endDate || readOnly || model.task.deactivateUserTaskReassignment"
+                            title="{{'TASK.ACTION.INVOLVE' | translate}}">
+                            {{'TASK.SECTION.PEOPLE' | translate}}
+                        </h3>
+
+                        <div ng-if="!model.task.endDate && !model.task.involvedPeople.length && !readOnly && !model.task.deactivateUserTaskReassignment"
+                             class="help-entry">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span select-people-popover
+                                  close-on-select="true"
+                                  on-people-selected="involvePerson(user)"
+                                  on-email-selected="involvePersonByEmail(email)"
+                                  placement="bottom"
+                                  exclude-task-id="model.task.id"
+                                  title="{{'TASK.ACTION.INVOLVE' | translate}}">{{'TASK.HELP.ADD-FIRST-PEOPLE' | translate}}</span>
+                        </div>
+
+                        <ul class="simple-list selectable">
+                            <li ng-repeat="person in model.task.involvedPeople" class="clearfix">
+
+                                <div user-picture="person"></div>
+                                <span user-name="person"></span>
+                                <div class="actions" ng-if="!model.task.endDate && !model.task.deactivateUserTaskReassignment">
+                                    <a><i class="icon icon-remove" ng-click="removeInvolvedUser(person)"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- INVOLVE GROUPS -->
+                    <div class="section pack">
+                        <h3 ng-if="!model.task.endDate && !readOnly && !model.task.deactivateUserTaskReassignment"
+                            title="{{'TASK.ACTION.INVOLVE-GROUP' | translate}}"
+                            select-functional-group-popover
+                            placement="bottom-left"
+                            on-group-selected="involveGroup(group)"
+                            exclude-group-ids="currentGroupIds">
+                            {{'TASK.SECTION.GROUPS' | translate}}
+                            <span class="action">
+                                <a>+</a>
+                            </span>
+                        </h3>
+                        <h3 ng-if="model.task.endDate || readOnly || model.task.deactivateUserTaskReassignment"
+                            title="{{'TASK.ACTION.INVOLVE-GROUP' | translate}}">
+                            {{'TASK.SECTION.GROUPS' | translate}}
+                        </h3>
+                        <div ng-if="!model.task.endDate && !model.task.involvedGroups.length && !readOnly && !model.task.deactivateUserTaskReassignment"
+                             class="help-entry">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span select-functional-group-popover
+                                  placement="bottom-left"
+                                  on-group-selected="involveGroup(group)"
+                                  exclude-group-ids="currentGroupIds"
+                                  title="{{'TASK.ACTION.INVOLVE-GROUP' | translate}}">
+                                {{'TASK.HELP.ADD-FIRST-GROUP' | translate}}
+                            </span>
+                        </div>
+                        <ul class="simple-list selectable">
+                            <li ng-repeat="group in model.task.involvedGroups" class="clearfix">
+                                <span>{{group.name}}</span>
+                                <div class="actions" ng-if="!model.task.endDate & !model.task.deactivateUserTaskReassignment">
+                                    <a><i class="icon icon-remove" ng-click="removeInvolvedGroup(group)"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- INVOLVE CONTENT -->
+                    <div class="section pack" toggle-dragover="dragOverContent(over)">
+                        <h3 class="toggle-content-select" ng-click="checkTaskStatusAndToggleCreateContent()" title="{{'TASK.ACTION.ADD-CONTENT' | translate}}">{{'TASK.TITLE.CONTENT' | translate}}
+                            <span class="action" ng-if="!model.task.endDate && !readOnly"><a>+</a></span>
+                        </h3>
+
+
+                        <div ng-if="!model.task.endDate && !model.content.data.length && !readOnly"
+                             ng-click="toggleCreateContent()"
+                             ng-show="!model.contentSummary.addContent"
+                             class="help-entry">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                            <span>{{'TASK.HELP.ADD-FIRST-CONTENT' | translate}}</span>
+                        </div>
+
+                        <div external-content on-content-upload="onContentUploaded(content)" on-upload-in-progress="uploadInProgress(status)" task-id="model.task.id" is-related-content="true" ng-if="model.contentSummary.addContent"></div>
+
+                        <div class="form-group">
+                            <ul id="related-content-list" class="clearfix simple-list selectable content-list">
+                                <li ng-repeat="content in model.content.data" title="{{content.name}}">
+                                    <document-preview content="content" editable="true" read-only="false" on-delete="onContentDeleted(content)"></document-preview>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <!-- COMMENTS -->
+                <div ng-show="!model.commentSummary.loading">
+                    <div class="section pack">
+                        <h3 close-on-select="false" ng-click="toggleCreateComment()" title="{{'TASK.ACTION.ADD-COMMENT' | translate}}">{{'TASK.SECTION.COMMENTS' | translate}}
+                            <span class="action" ng-if="!model.task.endDate && !readOnly">
+                                <a>+</a>
+                            </span>
+                        </h3>
+
+                        <div ng-if="!model.task.endDate && !model.comments.data.length && !readOnly"
+                             ng-show="!model.commentSummary.addComment"
+                             ng-click="toggleCreateComment()"
+                             class="help-entry">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span>{{'TASK.HELP.ADD-FIRST-COMMENT' | translate}}</span>
+                        </div>
+
+                        <div class="form-group clearfix box comment-input"
+                             ng-show="model.commentSummary.addComment"
+                             auto-focus="model.commentSummary">
+                            <textarea class="form-control focusable" rows="2" ng-disabled="model.commentSummary.loading"
+                                      ng-model="model.commentSummary.newComment" id="add-comment-inline"
+                                      placeholder="{{'TASK.MESSAGE.NEW-COMMENT-PLACEHOLDER' | translate}}">
+                            </textarea>
+
+                            <div class="buttons">
+                                <button tabindex="-1" class="activiti-btn" translate="GENERAL.ACTION.CANCEL"
+                                        ng-click="toggleCreateComment()" ng-disabled="model.commentSummary.loading"></button>
+                                <button class="activiti-btn activiti-btn-primary" translate="TASK.ACTION.ADD-COMMENT-CONFIRM"
+                                        ng-disabled="!model.commentSummary.newComment || model.commentSummary.loading || model.commentSummary.newComment.length > 4000 || readOnly"
+                                        ng-click="confirmNewComment()"></button>
+                            </div>
+                        </div>
+                        <ul class="simple-list comments selectable" ng-show="model.comments.data.length">
+                            <li ng-repeat="comment in model.comments.data">
+                                <div class="message">
+                                    <div user-picture="comment.createdBy"></div>
+                                    {{comment.message}}
+                                </div>
+                                <div class="title">
+                                    {{'TASK.MESSAGE.COMMENT-HEADER' | translate:comment}}
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CHECKLIST -->
+                    <div class="section checklist-section">
+                        <h3 close-on-select="false" ng-click="toggleCreateChecklistTask()" title="{{'TASK.ACTION.ADD-CHECKLIST-CONFIRM' | translate}}">{{'TASK.SECTION.CHECKLISTS' | translate}}
+                            <span class="action" ng-if="!model.task.endDate && !readOnly">
+                                <a>+</a>
+                            </span>
+                        </h3>
+
+                        <div ng-if="!model.task.endDate && !(model.checklist.data.length > 0) && !readOnly"
+                             ng-show="!model.checklistSummary.addTask"
+                             ng-click="toggleCreateChecklistTask()"
+                             class="help-entry">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span>{{'TASK.HELP.ADD-FIRST-CHECKLIST' | translate}}</span>
+                        </div>
+
+                        <div class="form-group clearfix box"
+                             ng-show="model.checklistSummary.addTask"
+                             auto-focus="model.checklistSummary">
+                            <div class="checklist-input">
+                                <input type="text" class="form-control focusable" custom-keys enter-pressed="confirmChecklistNewTask(true)"
+                                       ng-model="model.checklistSummary.newTask"
+                                       escape-pressed="toggleCreateChecklistTask()"
+                                       placeholder="{{'TASK.MESSAGE.NEW-CHECKLIST-PLACEHOLDER' | translate}}">
+                            </div>
+                            <div class="buttons">
+                                <button tabindex="-1" class="activiti-btn" translate="GENERAL.ACTION.CANCEL"
+                                        ng-click="toggleCreateChecklistTask()"></button>
+                                <button class="activiti-btn activiti-btn-primary"
+                                        type="button"
+                                        ng-disabled="!model.checklistSummary.newTask || model.checklistSummary.loading || model.checklistSummary.newTask.length > 4000 || readOnly"
+                                        ng-click="confirmChecklistNewTask()"
+                                        translate="GENERAL.ACTION.ADD-CHECKLIST">
+                                </button>
+                            </div>
+                        </div>
+                        <ul ng-if="model.task.endDate" class="simple-list checklist selectable" ng-show="model.checklist.data.length">
+                            <li class="clearfix" ng-repeat="subtask in model.checklist.data">
+                                <div ng-click="openTask(subtask.id)">
+                                    <div><i class="glyphicon glyphicon-ok done"></i> {{subtask.name}}</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul ng-if="!model.task.endDate" dnd-list="model.checklist.data" dnd-allowed-types="['checklist']" class="simple-list checklist selectable" ng-show="model.checklist.data.length">
+                            <li class="clearfix" ng-repeat="subtask in model.checklist.data" dnd-type="'checklist'" dnd-draggable="subtask" dnd-moved="orderChecklist($index)">
+                                <div ng-click="openTask(subtask.id)">
+                                    <div ng-if="!subtask.endDate" class="title">
+                                        <div user-picture="subtask.assignee"></div>
+                                    </div>
+                                    <div><i ng-if="subtask.endDate" class="glyphicon glyphicon-ok done"></i> {{subtask.name}}</div>
+                                </div>
+                                <div class="actions"><span class="drag-task"><i class="glyphicon glyphicon-align-justify"></i></span><a ng-if="!subtask.endDate"><i ng-click="deleteChecklistTask(subtask)" class="icon icon-remove"></i></a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div loading="model.loading"></div>
+
+        <!-- FORM -->
+        <div auto-height
+             ng-show="!model.loading && activeTab == 'form' && model.formData != null && model.formData != undefined">
+
+            <!-- unclaimed task-->
+            <div ng-if="isUnclaimedTask()" class="column-full-height">
+                <activiti-form form-definition="model.formData" task-id="model.task.id"
+                               ng-if="model.formData"
+                               disable-form="model.task.assignee == null || model.task.assignee == undefined"
+                               hide-buttons="model.task.endDate"
+                               disable-form-text="'TASK.MESSAGE.CLAIM-TASK-FIRST'"
+                               class="column-full-height">
+                </activiti-form>
+            </div>
+
+            <!-- unclaimed task of cancelled process -->
+            <div ng-if="isUnclaimedTaskOfCancelledProcess()" class="column-full-height">
+                <activiti-form form-definition="model.formData" task-id="model.task.id"
+                               ng-if="model.formData"
+                               hide-buttons="true"
+                               class="column-full-height">
+                </activiti-form>
+            </div>
+
+            <!-- task with assignee -->
+            <div ng-if="isTaskWithAssignee()" class="column-full-height">
+                <activiti-form share-model="true" form-definition="model.formData" task-id="model.task.id"
+                               ng-if="model.formData"
+                               hide-buttons="hideButtonsInForm()"
+                               current-user-involved="isCurrentUserInvolved()"
+                               class="column-full-height">
+                </activiti-form>
+            </div>
+        </div>
+
+        <!-- adhoc task no form help -->
+        <div class="help-container fixed" auto-height ng-if="!model.loading && activeTab == 'form' && !model.task.formKey && !model.task.processInstanceId">
+            <div>
+                <div class="help-dude"></div>
+            </div>
+            <div>
+                <div class="help-text">
+
+                    <div class="description" ng-if="model.task.endDate">
+                        {{'TASK.HELP.COMPLETED-NOFORM' | translate}}
+                    </div>
+
+                    <div class="description" ng-if="!model.task.endDate">
+                        {{'TASK.HELP.ADD-FORM-DESCRIPTION' | translate}}
+                    </div>
+
+
+                    <div class="help-entry" ng-if="!model.task.endDate">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        <span ng-click="showSelectForm()">{{'TASK.HELP.ADD-FORM' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-container fixed" auto-height ng-if="activeTab == 'details' && !model.loading && model.task != null && model.task != undefined && hasDetails() == false && !model.involvementSummary.loading && !model.contentSummary.loading && !model.commentSummary.loading && !model.checklistSummary.loading">
+            <div>
+                <div class="help-dude"></div>
+            </div>
+            <div>
+                <div class="help-text" ng-if="model.task.endDate">
+                    <div class="description">
+                        {{'TASK.HELP.COMPLETED-DESCRIPTION' | translate}}
+                    </div>
+                </div>
+                <div class="help-text" ng-if="!model.task.endDate">
+
+                    <div class="description" ng-if="model.task.assignee != null && model.task.assignee != undefined">
+                        {{'TASK.HELP.DESCRIPTION' | translate}}
+                    </div>
+
+                    <div class="description" ng-if="model.task.assignee == null || model.task.assignee == undefined">
+                        {{'TASK.HELP.DESCRIPTION-WITH-CLAIM' | translate}}
+                    </div>
+
+                    <div class="help-entry" ng-if="!model.task.deactivateUserTaskReassignment">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span select-people-popover
+                              close-on-select="true"
+                              on-people-selected="involvePerson(user)"
+                              on-email-selected="involvePersonByEmail(email)"
+                              placement="bottom"
+                              exclude-task-id="model.task.id"
+                              title="{{'TASK.ACTION.INVOLVE' | translate}}">{{'TASK.HELP.ADD-PEOPLE' | translate}}</span>
+                    </div>
+                    <div class="help-entry" ng-if="!model.task.deactivateUserTaskReassignment">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span select-functional-group-popover
+                              placement="bottom-left"
+                              on-group-selected="involveGroup(group)"
+                              exclude-group-ids="currentGroupIds"
+                              title="{{'TASK.ACTION.INVOLVE-GROUP' | translate}}">
+                            {{'TASK.HELP.ADD-FIRST-GROUP' | translate}}
+                        </span>
+                    </div>
+                    <div>
+                        <div class="help-entry"
+                             ng-click="toggleCreateContent()"
+                             ng-if="model.contentSummary.addContent == null || model.contentSummary.addContent == undefined || model.contentSummary.addContent == false">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                            <span>{{'TASK.HELP.ADD-CONTENT' | translate}}</span>
+                        </div>
+
+                        <div external-content on-content-upload="onContentUploaded(content)" on-upload-in-progress="uploadInProgress(status)" task-id="model.task.id" is-related-content="true" ng-if="model.contentSummary.addContent"></div>
+                    </div>
+
+                    <div>
+                        <div ng-click="toggleCreateComment()" class="help-entry"
+                             ng-if="model.commentSummary.addComment == null || model.commentSummary.addComment == undefined || model.commentSummary.addComment == false">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span>{{'TASK.HELP.ADD-COMMENT' | translate}}</span>
+                        </div>
+
+                        <div class="form-group clearfix box comment-input"
+                             ng-if="model.commentSummary.addComment">
+                            <textarea class="form-control focusable" rows="2" ng-disabled="model.commentSummary.loading"
+                                      ng-model="model.commentSummary.newComment" id="add-comment-popup"
+                                      placeholder="{{'TASK.MESSAGE.NEW-COMMENT-PLACEHOLDER' | translate}}"
+                                      auto-focus>
+                            </textarea>
+
+                            <div class="buttons">
+                                <button tabindex="-1" class="activiti-btn" translate="GENERAL.ACTION.CANCEL"
+                                        ng-click="toggleCreateComment()" ng-disabled="model.commentSummary.loading"></button>
+                                <button class="activiti-btn activiti-btn-primary" translate="TASK.ACTION.ADD-COMMENT-CONFIRM"
+                                        ng-disabled="!model.commentSummary.newComment || model.commentSummary.loading || model.commentSummary.newComment.length > 4000 || readOnly"
+                                        ng-click="confirmNewComment()"></button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <div ng-click="toggleCreateChecklistTask()" class="help-entry"
+                             ng-if="model.checklistSummary.addTask == null || model.checklistSummary.addTask == undefined || model.checklistSummary.addTask == false">
+                            <span class="glyphicon glyphicon-plus"></span> <span>{{'TASK.HELP.ADD-CHECKLIST' | translate}}</span>
+                        </div>
+                        <div class="form-group clearfix box"
+                             ng-show="model.checklistSummary.addTask"
+                             auto-focus="model.checklistSummary">
+                            <div class="checklist-input">
+                                <input type="text" class="form-control focusable" custom-keys
+                                       enter-pressed="confirmChecklistNewTask()"
+                                       ng-model="model.checklistSummary.newTask"
+                                       escape-pressed="toggleCreateChecklistTask()"
+                                       placeholder="{{'TASK.MESSAGE.NEW-CHECKLIST-PLACEHOLDER' | translate}}">
+                            </div>
+                            <div class="buttons">
+                                <button tabindex="-1" class="activiti-btn" translate="GENERAL.ACTION.CANCEL"
+                                        ng-click="toggleCreateChecklistTask()"></button>
+                                <button class="activiti-btn activiti-btn-primary"
+                                        type="button"
+                                        ng-disabled="!model.checklistSummary.newTask || model.checklistSummary.loading || model.checklistSummary.newTask.length > 4000 || readOnly"
+                                        ng-click="confirmChecklistNewTask()"
+                                        translate="GENERAL.ACTION.ADD-CHECKLIST">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

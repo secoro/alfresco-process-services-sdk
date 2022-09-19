@@ -1,0 +1,9 @@
+<span ng-controller="ActivitiExecutionSingleVariableCtrl">
+    <input type="text" ng-model="property.value.variableName"
+           class="form-control"
+           auto-focus
+           select-text="property.value.variableName"
+           variable-identifier
+           ng-blur="inputBlurred()"
+           ng-keypress="enterPressed($event)"/>
+</span>

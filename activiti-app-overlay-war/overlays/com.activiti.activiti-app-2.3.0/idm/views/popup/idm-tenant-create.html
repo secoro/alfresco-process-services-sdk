@@ -1,0 +1,47 @@
+
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title" ng-if="model.editedTenant.id == null || model.editedTenant.id == undefined">
+                    {{'IDM.TENANT-MGMT.POPUP.CREATE-TITLE' | translate}}
+                </h4>
+                <h4 class="modal-title" ng-if="model.editedTenant.id != null && model.editedTenant.id != undefined">
+                    {{'IDM.TENANT-MGMT.POPUP.EDIT-TITLE' | translate}}
+                </h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="form-group">
+
+                    <label class="control-label">{{'IDM.TENANT-MGMT.POPUP.CREATE-NAME' | translate}}</label>
+                    <input type="text" class="form-control" ng-model="model.editedTenant.name" auto-focus>
+
+                    <label ng-if="!model.lockTenant" class="control-label">{{'IDM.TENANT-MGMT.POPUP.CREATE-DOMAIN' | translate}}</label>
+                    <input ng-if="!model.lockTenant" type="text" class="form-control" ng-model="model.editedTenant.domain">
+
+                    <label ng-if="!model.lockTenant" class="control-label">{{'IDM.TENANT-MGMT.POPUP.CREATE-MAX-USERS' | translate}}</label>
+                    <input ng-if="!model.lockTenant" type="number" class="form-control" ng-model="model.editedTenant.maxUsers">
+
+
+                    <div ng-if="!model.lockTenant" class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="model.editedTenant.active"> {{'IDM.TENANT-MGMT.POPUP.CREATE-ACTIVE' | translate}}
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide()">{{'IDM.GENERAL.ACTION.CANCEL' | translate}}</button>
+                <button type="button" class="btn btn-primary" ng-disabled="!isSaveTenantButtonEnabled() || readOnly" ng-click="saveTenant(); $hide()">{{'IDM.GENERAL.ACTION.SAVE' | translate}}</button>
+            </div>
+
+        </div>
+    </div>
+</div>

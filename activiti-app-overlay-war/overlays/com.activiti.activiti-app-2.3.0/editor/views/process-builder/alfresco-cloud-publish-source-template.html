@@ -1,0 +1,116 @@
+<div class="detail-group clearfix first">
+    <div class="col-xs-12">
+        <div class="btn-group span">
+            <button class="selection" data-toggle="dropdown" ng-options="option as (option.title | translate) for option in alfrescoSourceOptions"
+                    bs-select ng-model="step.meta.alfrescoSourceOption" activiti-fix-dropdown-bug>
+                <i class="icon icon-caret-down"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="detail-group clearfix" ng-show="step.meta.alfrescoSourceOption.id == 'field'">
+    <div class="form-group clearfix">
+        <div class="col-xs-12">
+            <label>{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-VALUE-TYPE' | translate}}</label>
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" ng-click="model.variableType = 'formField'; step.contentContainerField = {};" ng-model="variableType" ng-class="{'active' : model.variableType == 'formField'}">{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-TYPE-FIELD' | translate}}</button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" ng-click="model.variableType = 'variable'; step.contentContainerField = {};" ng-model="variableType" ng-class="{'active' : model.variableType == 'variable'}">{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-TYPE-VARIABLE' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group clearfix" ng-show="model.variableType == 'formField'">
+        <div class="col-xs-3">
+            <label>{{'PROCESS-BUILDER.PUBLISH-STEP.SOURCE.FORM-FIELD' | translate}}:</label>
+        </div>
+        <div class="col-xs-9">
+            <div field-select="step.contentContainerField" editor-type="step" step-id="step.id" all-steps="allSteps" field-type-filter="['upload']"></div>
+        </div>
+    </div>
+    <div class="form-group clearfix" ng-show="model.variableType == 'variable'">
+        <div class="col-xs-3">
+            <label>{{'PROCESS-BUILDER.PUBLISH-STEP.SOURCE.VARIABLE' | translate}}:</label>
+        </div>
+        <div class="col-xs-9">
+            <div field-select="step.contentContainerField" editor-type="step" all-steps="allSteps" variables-type="rest" step-id="step.id" field-type-filter="['document']"></div>
+        </div>
+    </div>
+</div>
+<div class="detail-group clearfix" ng-show="step.meta.alfrescoSourceOption">
+
+    <div class="col-xs-12">
+        <ul class="tabs clearfix">
+            <li role="presentation" ng-class="{active : model.currentTab == 'documentDefinition'}" ng-click="model.currentTab = 'documentDefinition'">
+                <a href="">{{'PROCESS-BUILDER.PUBLISH-STEP.DOCUMENT-DEFINITION.POPUP.TITLE' | translate}}</a>
+            </li>
+            <li role="presentation" ng-class="{active : model.currentTab == 'metadataMapping'}" ng-click="model.currentTab = 'metadataMapping'">
+                <a href="">{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.TITLE' | translate}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-controller="PublishStepDocumentDefinitionController" ng-if="model.currentTab == 'documentDefinition'">
+            <div class="form-group clearfix">
+                <div class="col-xs-12">
+                    <label for="documentType">{{'PROCESS-BUILDER.PUBLISH-STEP.DOCUMENT-DEFINITION.POPUP.DOCUMENT-TYPE'
+                        | translate}}</label>
+                    <input type="text" id="documentType" name="documentType" class="form-control"
+                           ng-model="step.documentType" auto-focus
+                           placeholder="{{'PROCESS-BUILDER.PUBLISH-STEP.DOCUMENT-DEFINITION.POPUP.DOCUMENT-TYPE' | translate}}"
+                           required>
+                </div>
+            </div>
+
+            <div class="form-group clearfix">
+                <div class="col-xs-12">
+                    <label>{{'PROCESS-BUILDER.PUBLISH-STEP.DOCUMENT-DEFINITION.POPUP.DOCUMENT-ASPECTS-TABLE-TITLE'
+                        | translate}}</label>
+                </div>
+                <div class="col-xs-8">
+                    <div class="step-editor-inline-grid-small" ui-grid="documentAspectsGrid" ui-grid-selection></div>
+
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}"
+                               data-placement="bottom" data-original-title=""
+                               title="" id="add-document-aspect-button" ng-click="addNewDocumentAspect()">
+                                <i class="glyphicon glyphicon-plus"></i></a>
+                            <a class="btn btn-icon btn-lg" rel="tooltip"
+                               data-title="{{ACTION.REMOVE | translate}}"
+                               ng-disabled="!selectedDocumentAspect"
+                               data-placement="bottom" data-original-title="" title=""
+                               ng-click="removeDocumentAspect()"><i class="glyphicon glyphicon-minus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div ng-if="selectedDocumentAspect" ng-form="columnDefdEditForm">
+                        <div class="form-group"
+                             ng-class="{'has-error': columnDefdEditForm.aspectName.$invalid}">
+                            <label for="aspectName">{{'PROCESS-BUILDER.PUBLISH-STEP.DOCUMENT-DEFINITION.POPUP.DOCUMENT-ASPECTS-TABLE-ASPECT-NAME-HEADER'
+                                | translate}}</label>
+                            <input type="text" id="aspectName" name="aspectName" class="form-control"
+                                   ng-model="selectedDocumentAspect.aspectName" auto-focus
+                                   placeholder="{{'PROCESS-BUILDER.PUBLISH-STEP.DOCUMENT-DEFINITION.POPUP.DOCUMENT-ASPECTS-TABLE-ASPECT-NAME-HEADER' | translate}}"
+                                   required>
+                        </div>
+
+                    </div>
+                    <div ng-show="!selectedDocumentAspect" class="muted no-property-selected" translate>
+                        FORM-BUILDER.COMPONENT.PROPERTY-UNSELECTED
+                    </div>
+                </div>
+
+            </div>
+    </div>
+
+    <!--grid metadata and popup to add start-->
+    <div class="detail-group clearfix">
+        <metadata-grid ng-if="model.currentTab == 'metadataMapping'"/>
+    </div>
+    <!--grid metadata and popup to add end-->
+
+</div>

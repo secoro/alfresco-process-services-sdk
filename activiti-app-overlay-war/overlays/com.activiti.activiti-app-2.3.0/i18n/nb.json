@@ -1,0 +1,204 @@
+{
+  "COMMON": {
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Process Services er i skrivebeskyttet modus, fordi den lokale lisensen er ugyldig.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Process Services er i skrivebeskyttet modus, fordi den lokal lisensen ikke ble funnet.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Activiti er i skrivebeskyttet modus, fordi lisensdatoen er ugyldig (utløpt eller fremtidig startdato).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Lisensen er i ferd med å utløpe! Process Services vil bli skrivebeskyttet.",
+      "APP-LICENSE-UPLOAD-DISALLOWED": "To allow license upload you have to set <code>license.allow-upload=sann</code> i activiti-app.properties",
+      "APP-LICENSE-NO-UPLOAD-CAPABILITY": "Merknad! Du trenger «Upload licence»-rettigheter for å laste opp en lisens"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Process Services",
+    "ERROR": {
+      "GENERIC": "Det oppstod en feil ...",
+      "UNKNOWN": "Det oppstod en feil under utførelsen av den forespurte operasjonen.",
+      "BAD_REQUEST": "Det oppstod en feil under utførelsen av den forespurte operasjonen",
+      "NOT_FOUND": "Kilden du prøver å få tilgang til eksisterer ikke",
+      "UNAUTHORIZED": "Du må logge inn for å utføre den forespurte operasjonen.",
+      "FORBIDDEN": "Du har ikke tillatelse til å utføre den forespurte operasjonen",
+      "INTERNAL_SERVER_ERROR": "Det oppsto en uventet feil under utførelsen av den forespurte operasjonen.",
+      "QUOTA-EXCEEDED-RUNTIME-APPS": "Som testbruker kan du kun ha {{quota}} apper distribuert samtidig.",
+      "QUOTA-EXCEEDED-LICENSE-APPS": "Lisensen tillater kun {{quota}} apper distribuert samtidig."
+    },
+    "ACTION": {
+      "LOGOUT": "Logg ut",
+      "HELP": "Komme i gang",
+      "EDIT-PROFILE": "Rediger profil",
+      "SAVE": "Lagre",
+      "CANCEL": "Avbryt",
+      "CLOSE": "Lukk",
+      "DEPLOY": "Distribuer",
+      "ABOUT": "Om Process Services",
+      "HELP-DOCS-LINK": "Hjelp",
+      "UPLOAD-LICENSE": "Last opp lisens"
+    },
+    "ABOUT": {
+      "TYPE": "Type",
+      "LICENSED-TO": "Lisensiert til",
+      "EXPIRES": "Utløper",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Med enerett.",
+      "LEGAL": "Juridisk og lisensiering"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "Logg på",
+    "USERNAME": "Brukernavn",
+    "USERNAME-PLACEHOLDER": "Angi brukernavn",
+    "PASSWORD": "Passord",
+    "PASSWORD-PLACEHOLDER": "Angi passord",
+    "NO-ACCOUNT": "Ingen konto enda?",
+    "FORGOT-PASSWORD": "Glemt passordet?",
+    "INVALID-CREDENTIALS": "Ugyldig brukernavn og passord",
+    "WELCOME": "Velkommen til Alfresco Process Services",
+    "TAG1": "<strong>Enkel:</strong> Klar til bruk, ingen oppsett kreves - akselererende brukerproduktivitet",
+    "TAG2": "<strong>Smart:</strong> Lett å konfigurere - tilbyr et strukturert rammeverk for alle dine forretningsprosess- krav",
+    "TAG3": "<strong>Åpne:</strong> Åpne kilde, Open standards for å sikre fremtiden med enkel integrering",
+    "PRIVACY": "Personvernerklæring",
+    "ALL-RIGHTS": "Reservert alle rettigheter",
+    "LOGIN-FORM": "Påloggingsskjema",
+    "SKIP-TO-CONTENT": "Hopp til innhold",
+    "BACK-TO-TOP": "Tilbake til toppen",
+    "SSO": "SSO-pålogging",
+    "ACTION": {
+      "CONFIRM": "Logg på"
+    }
+  },
+  "ACCOUNT": {
+    "ACTIVATE": {
+      "TITLE": "Aktiver konto",
+      "ACTIVATING-MESSAGE": "Kjør deg klar, {{userFullName}}, vi aktiverer kontoen ...",
+      "SUCCESS-MESSAGE": "Din konto har blitt aktivert. Logg på nedenfor for å starte å utforme og kjøre prosesser",
+      "FAILURE-MESSAGE": "Din konto kunne ikke aktiveres. Enten har den allerede blitt aktivert, eller så har aktiveringslinken utløpt."
+    },
+    "SIGNUP": {
+      "TITLE": "Register en konto",
+      "SIGNUP-TRIAL": "Lag et passord for prøveversjonen av Process Services",
+      "EMAIL": "E-postadresse",
+      "FIRSTNAME": "Fornavn",
+      "LASTNAME": "Etternavn",
+      "PASSWORD": "Passord",
+      "PASSWORD-PLACEHOLDER": "Angi et passord",
+      "PASSWORD-REPEAT": "Gjenta passord",
+      "PASSWORDS-NOT-EQUAL": "Passordene samsvarer ikke",
+      "PASSWORDS-MIN-LENGTH": "Passordet er for kort, det må inneholde minst {{minLength}} tegn",
+      "NEW-PASSWORD-STRENGTH": "Passordstyrke:",
+      "EMAIL-PLACEHOLDER": "Angi e-post",
+      "FIRSTNAME-PLACEHOLDER": "Angi fornavn",
+      "LASTNAME-PLACEHOLDER": "Angi etternavn",
+      "COMPANY": "Firma (valgfritt)",
+      "COMPANY-PLACEHOLDER": "Angi firma",
+      "LICENSETERMS": "Jeg godtar Alfrescos tjenestevilkår og personvernerklæring",
+      "CONFIRM": "Registrer deg nå",
+      "SUCCESS-MESSAGE": "Takk for at du registrerte deg i vår tjeneste. Du vil snart motta en e-post for å aktivere kontoen din. Når du er aktivert kan du starte å designe og kjøre prosesser",
+      "SECURITY-SECTION": "Sikkerhetssjekk",
+      "PERSONAL-SECTION": "Personlig info",
+      "ACCOUNT-SECTION": "Konto",
+      "ERROR": {
+        "ALREADY-REGISTERED": "En bruker med den oppgitte e-postadressen har allerede blitt registrert.",
+        "DISABLED": "Registrering er for tiden ikke mulig."
+      }
+    },
+    "RESET-PASSWORD-REQUEST": {
+      "MESSAGE": "Glemt passordet? Oppgi e-postadressen din nedenfor for å motta en e-post for å tilbakestille passordet ditt.",
+      "TITLE": "Tilbakestill passord",
+      "EMAIL": "E-postadresse",
+      "EMAIL-PLACEHOLDER": "Angi e-postadresse",
+      "SECURITY-SECTION": "Sikkerhetssjekk",
+      "CONFIRM": "Be om tilbakestilling av passord",
+      "SUCCESS-MESSAGE": "Du vil snart motta en mail med en link for å tilbakestille ditt passord.",
+      "ERROR": {
+        "UNEXISTING-USER": "Bruker med den oppgitte e-postadressen eksisterer ikke."
+      }
+    },
+    "RESET-PASSWORD": {
+      "TITLE": "Tilbakestill passord",
+      "PASSWORD": "Passord",
+      "PASSWORD-CONFIRM": "Bekreft passord",
+      "PASSWORD-PLACEHOLDER": "Oppgi et nytt passord",
+      "PASSWORD-CONFIRM-PLACEHOLDER": "Bekreft det nye passordet",
+      "CONFIRM": "Endre passord",
+      "LOADING": "Tilbakestiller passordet ...",
+      "SUCCESS-MESSAGE": "Passordet ditt har blitt endret.",
+      "LOGIN": "Logg på nå",
+      "FAILURE-MESSAGE": "Passordet ditt kan ikke tilbakestilles. Tilbakestillingslenken er ugyldig eller har utløpt."
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "Appdesigner",
+      "DESCRIPTION": "Opprett prosessmodeller, skjemaer, beslutningstabeller, appdefinisjoner, datamodeller, stensildefinisjoner og del de med andre.",
+      "TITLE-PROCESSES": "Prosessmodeller",
+      "TITLE-FORMS": "Skjemamodeller",
+      "TITLE-APPS": "Appmodeller",
+      "TITLE-STENCILS": "Stensiler",
+      "TITLE-DECISION-TABLES": "Beslutningstabeller",
+      "TITLE-DATA-MODELS": "Datamodeller"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Administrator",
+      "DESCRIPTION": "Administrer alle dine Process Services-servernoder og klynger."
+    },
+    "TASKS": {
+      "TITLE": "Oppgaveapp",
+      "DESCRIPTION": "Gå inn på den fulle oppgavelisten og jobb med oppgaver som er tilordnet til deg fra en prosessapp. Du kan også starte prosesser og oppgaver.",
+      "TITLE-TASKS": "Oppgaver",
+      "TITLE-PROCESSES": "Prosesser",
+      "TITLE-PROCESSES?MODE=START": "Start"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profil",
+      "DESCRIPTION": "Administrer profilen din: bytt bilde, navn og andre innstillinger.",
+      "DESCRIPTION-TENANT-ADMIN": "Administrer brukerne og gruppene i organisasjonen.",
+      "TITLE-TENANT-ADMIN": "Identitetsbehandling",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Leietakere",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Brukere",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Kapasiteter",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organisasjon",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profil",
+      "TITLE-PROFILE": "Profil"
+    },
+    "ANALYTICS": {
+      "TITLE": "Analyseapp",
+      "DESCRIPTION": "Generer ulike rapporter som gir ytelses- og produksjonsstatistikk for prosessene."
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}} oppgaver",
+      "TITLE-PROCESSES": "{{name}} prosesser",
+      "TITLE-PROCESSES?MODE=START": "{{name}} start"
+    },
+    "POPUP": {
+      "ADD-APP-TITLE": "Legg til app på målside",
+      "ADD-APP-SUMMARY": "Legg til en app til målssiden din",
+      "GETTING-STARTED-TITLE": "Kom i gang med Process Services BPMS"
+    },
+    "ACTION": {
+      "DELETE": "Fjern app",
+      "ADD": "Legg til ny app",
+      "UPLOAD-LICENSE": "Last opp lisens"
+    },
+    "MESSAGE": {
+      "DELETED": "Appen ble fjernet",
+      "NO-CUSTOM-APPS": "Velkommen til Alfresco Process Services, den smartere måten å administrere forretningsprosesser på! Det er forskjellig ting du kanskje vil gjøre her i fra, du kan:",
+      "NO-CUSTOM-APPS-EDITOR-HINT": "Design forretningsprosesser, og del dem",
+      "NO-CUSTOM-APPS-TASKS-HINT": "Arbeid på dine oppgaver eller start en prosess",
+      "NO-CUSTOM-APPS-PROFILE-HINT": "Oppdater profilen med det nyeste bildet ditt og detaljer",
+      "NO-CUSTOM-APPS-GETTING-STARTED-HINT": "Les Kom i gang-veiledningen"
+    }
+  },
+  "LICENSE": {
+    "STATUS": {
+      "INVALID": "Ugyldig lisens",
+      "WARNING": "Lisensadvarsel"
+    },
+    "UPLOAD": {
+      "UPLOAD-LICENSE-TITLE": "Last opp lisens",
+      "UPLOAD-LICENSE-DESCRIPTION": "Velg en lisens fra din datamaskin eller slipp den i sonen under.",
+      "CANCEL-UPLOAD": "Avbryt opplasting",
+      "LICENSE-DROPZONE": "Slipp lisensfilen her",
+      "NO-DROP": "Slipp er ikke støttet av din leser",
+      "ERROR": "Feil"
+    }
+  }
+}

@@ -1,0 +1,445 @@
+
+<div class="modal" ng-controller="AddAppDefinitionPopupCrtl">
+<div class="modal-dialog wide">
+<div class="modal-content">
+
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$hide()">&times;</button>
+    <h3 class="modal-title" translate="APP.POPUP.GETTING-STARTED-TITLE"></h3>
+</div>
+
+<div class="modal-body">
+
+<p>
+    Activiti is a BPM platform available as an online multi-tenant service (SaaS) or as on-premise installation.
+</p>
+
+<p>Once you have registered and signed in for the first time, you'll see your <b>Landing Page</b> with some helpful
+    hints from James.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/1.png" class="center-block" width="650" height="389"></p>
+
+<p>
+    The first thing you might want to do is add a photo to your profile, so click on the <b>Profile management</b> tile.
+</p>
+
+<p>
+    On the <b>Personal</b> page you can edit your details, such as your name, change your password, and also
+    view your group membership and capabilities.
+</p>
+<img ng-src="{{webRootUrl()}}/images/getting-started/4.png" class="center-block" style="margin-bottom: 20px" width="402" height="164">
+
+<p>
+    To add your photo, click on the image to the left of your name and upload a photo to use.
+</p>
+
+<p>
+    <img ng-src="{{webRootUrl()}}/images/getting-started/3.png" class="center-block" style="margin-bottom: 20px;" width="611"
+         height="425">
+    <img ng-src="{{webRootUrl()}}/images/getting-started/2.png" class="center-block" width="402" height="164">
+</p>
+
+<p>
+    You can click on the Alfresco Activiti logo at any time to return to your <b>Landing Page</b>, so now you've got
+    your photo uploaded, let's return there.
+</p>
+
+<p>
+    The <b>Kickstart</b> tile takes you to the process design tools, while the <b>My Tasks</b> tile takes you to your
+    task inbox or queue. The
+    <b>Analytics</b> tile takes you to a set or reports on process performance. Depending on the capabilities of your
+    account you may
+    not get access to <b>Kickstart</b> or <b>Analytics</b>.
+</p>
+
+<p>
+    If you have administrator capabilities, then the <b>Profile management</b> tile
+    will show as the <b>Identity management</b> tile, giving access to
+    your profile page as well as to user, group and capability management
+    pages for your tenant or the whole system.
+</p>
+
+<h2 name="kickstart">Kickstart for Process Design</h2>
+
+<p>Click on the <b>Kickstart</b> tile and you will be taken to the set of tools you can use to design business
+    processes. There are several main pages
+    within <b>Kickstart</b>:</p>
+<ul>
+    <li><b>Process</b>
+        a library of processes created by the Visual or Step Editors
+    </li>
+    <li><b>Forms</b>
+        a library of forms that can be referenced from process models
+    </li>
+    <li><b>Apps</b>
+        a library of Process App that define packages of process models
+    </li>
+    <li><b>Stencils</b>
+        a library of process palette definitions that can be used by the process editors
+    </li>
+</ul>
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/5.png" class="center-block" width="611" height="366"></p>
+
+<p>You will land on the
+    <b>Process</b> page by default and have the option of creating a new
+    process or editing an existing process model. If your account has
+    the capability, you can also import existing models defined in the
+    BPMN 2.0 standard format.</p>
+
+<p>Let's start by
+    creating a process model using the <b>Step Editor</b>. You can do
+    this by clicking on the hint given by James, or by clicking the
+    <b>Create Process</b> button. You will be presented with a dialog
+    that allows you to give a name and description to the model, as well
+    as specify which editor to use and which stencil. Give your process a
+    name and click the <b>Create new process</b> button in the dialog.
+    You will then be taken to the <b>Step Editor</b>.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/6.png" class="center-block" width="600" height="166"></p>
+
+<p>The <b>Step Editor</b>
+    allows you to define a business process through a sequence of steps.
+    There a number of <b>Steps</b> provided by default, but this can
+    depend on the <b>Stencil</b> that you selected for editing the
+    process model.
+</p>
+
+<p>We're going to begin by setting the process to start by the user completing a form.
+    Click on the <b>Process start</b> box and it will expand to allow you
+    to choose to start by filling a form.
+</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/8.png" class="center-block" width="600" height="190">
+
+<p>
+    If you already had some forms
+    in your <b>Forms</b> library you could pick one, otherwise click the
+    <b>Create form</b> button.</p>
+
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/7.png" class="center-block" style="margin-bottom: 20px" width="600"
+        height="362">
+
+<p>You will now be
+    taken to the <b>Form Editor</b>. Any form you create this way will
+    not be generally available in your <b>Forms</b> library as it was
+    created as part of this process model. If you wish to create a form
+    you can reuse in other process models, you can do this from the main
+    <b>Forms</b> page. As we're happy for this form to be just used by
+    this process, we'll continue defining the form from the <b>Step
+        Editor</b>. The <b>Form Editor</b> has two main tabs: one for the
+    layout of form fields, the other to define the outcome buttons for
+    the form.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/9.png" class="center-block" style="margin-bottom: 20px" width="600"
+        height="359">
+
+<p>To design the form
+    layout you can drag and drop the desired types of field from the
+    palette on the left side. For each field dropped in the <b>Design</b>
+    area, you can hover over it to either select the pencil icon to edit
+    the field's properties or to remove the field from the form.
+    Depending on the type of field you will have different options. Most
+    fields allow you to give a display label, which can be used later in
+    the process design to reference a value entered into a field by a
+    user in a running process. You can also define if the field is
+    required to be filled before the form can be completed. For now,
+    just give labels for the fields.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/10.png" class="center-block" style="margin-bottom: 20px" width="600"
+        height="332">
+
+<p>When you've
+    finished designing the form, click the <b>Save</b> button at the top
+    left and you will be returned to the <b>Step Editor</b>. By clicking
+    on the <b>+</b> icon at the bottom of the <b>Process start</b> box
+    you can add the first step in your process. The steps available to
+    you are defined by the <b>Stencil</b> you created the model with. In
+    the default stencil there is a <b>Human step</b> that can be used to
+    assign a task to a user. Select the <b>Human step</b> and fill in a
+    name within the step box just created.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/11.png" class="center-block" style="margin-bottom: 20px" width="336"
+        height="381">
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/12.png" class="center-block" style="margin-bottom: 20px" width="600"
+        height="440">
+
+<p>You can also choose
+    who this task should be assigned to, including the person who
+    initiated the process; a single user; a set of candidate users; or
+    depending on your type of account, a group of users. When a task is
+    assigned to a group or a list of candidate users, all of those users
+    can see the task in their task list, but need to claim it in order to
+    complete the task. For this process, we're going to keep all tasks
+    assigned to the process initiator so you can run the process and have
+    the tasks assigned to yourself to keep things simple. On the <b>Form</b>
+    tab, choose to create a new form, add a multiline text field and name
+    it <i>Review comment</i>. Then select the <b>Outcomes</b> tab,
+    choose the option for custom outcomes and add two outcomes: <i>Accept</i>
+    and <i>Reject</i>, then save the form, returning to the <b>Step
+        Editor</b>.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/13.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="342">
+
+<p>For the next step we
+    are going to do different things depending on the outcome selected.
+    To do this, add a <b>Choice step</b> by clicking the <b>+</b> icon
+    below the <i>Review Project</i> step.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/14.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="479">
+
+<p>You can add more
+    than two choices by clicking on the <b>+</b> icon in the middle of
+    the <b>Choice step</b>, but we only need two based on the outcomes we
+    have. To set the condition for following a choice, click on the
+    choice box and a popup dialog allows you to select the condition
+    based on existing form fields or outcomes. In this case we're
+    going to set the <i>First choice</i> to a form outcome, so select
+    that button in the dialog. You can now select the review form from
+    the list of those already added to the process and then select it to
+    be <i>Equal</i> to <i>Accept</i>.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/15.png" class="center-block" style="margin-bottom: 20px" width="600"
+        height="234">
+
+<p>Similarly, we can
+    set the condition on the <i>Second choice</i> to be equal to <i>Reject</i>.
+    You can change the name for each choice so it is more meaningful if
+    you wish. We can now add a task to be done if a project review is
+    accepted by clicking the + under the <i>First choice</i> box.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/16.png" class="center-block" style="margin-bottom: 20px" width="557"
+        height="420">
+
+<p>We're going to add
+    a simple human task with a name of <i>Update Project List</i>. Under
+    the <i>Second choice</i> box we'll add a human task with a name
+    <i>Inform Project Leader of Rejection</i>. We now want the process
+    to stop if the rejection task has completed, so add a <b>Stop step</b>
+    on to the bottom of this task..</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/17.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="273">
+
+<p>We can continue to
+    add steps to the <i>First choice</i>, or in this case continue to add
+    them after the complete <b>Choice step</b> by clicking the <b>+</b>
+    at the very bottom. We'll just add a Human task with the name Show
+    Project Details.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/18.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="479">
+
+<p>On the <b>Form</b>
+    tab for this task, create a new form. Drag a <b>Display text</b>
+    field on and enter the text message to display. The text can contain
+    references to values added by a user in previous forms. There is a
+    helper dropdown that you can select from to insert the given
+    reference at the cursor position in the text.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/19.png" class="center-block" style="margin-bottom: 20px" width="600"
+        height="384">
+
+<p>Add some text as
+    shown. Then drag on a <b>Display value</b> field, setting it to
+    display the project files by selecting the appropriate field from the
+    list.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/20.png" class="center-block" style="margin-bottom: 20px" width="600"
+        height="303">
+
+<p>Now save the form,
+    return to the <b>Step Editor</b> and save the process model you've
+    just designed. All your processes are listed with a thumbnail of the
+    process. You can edit a process from the list by clicking the <b>Visual
+        Edit</b> button in the top right corner of the thumbnail. You can
+    see additional information about a model by clicking on the thumbnail
+    itself or the <b>Show Details</b> button in the top right corner of
+    the thumbnail. This takes you to the <b>Details</b> page for the
+    process model. Here, you can see a read-only preview of the model as
+    well as some actions you can perform on it.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/21.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="480">
+
+<p>When you edit and
+    save a model you can choose for the changes to be saved as a new
+    version. Previous versions can be accessed from the <b>History</b>
+    popup, as can any commentary from the <b>Comments</b> popup, where
+    you can add further comments. The other action buttons are fairly
+    self-explanatory, including deleting, starring (favorites), sharing
+    or downloading the model.</p>
+
+<p>Now we have a
+    process defined, we can create a process app using the <b>Apps</b>
+    page. A process app is simply a collection of processes that you
+    want to group together to make available to yourself or other users
+    you share it with. On the <b>Apps</b> page, click <b>the Create app
+        definition</b> button, then choose an icon and theme for the app's
+    tile. You can have an app without any process definitions linked to
+    it, which lets you create a custom simple task list. We're going
+    to use the process we've just defined, so click the <b>Edit
+        included models</b> button and add the model.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/22.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="425">
+
+<p>Save the app,
+    selecting the option to publish the app in the <b>Save</b> dialog,
+    then you will be returned to the Apps list view. You can do similar
+    actions on an app in its <b>Details</b> page as for all models, such
+    as deleting and sharing. An additional action is available here to
+    <b>Publish</b> the app definition, without needing to use the save
+    dialog. Publishing an app makes it available to everyone you've
+    shared it with to add to their landing page. Let's add it to our
+    landing page so we can see our process in action.</p>
+
+<p>On your <b>Landing
+    Page</b>, click on the tile with the + to get the <b>Add app</b>
+    dialog. Choose the apps you wish to add and click the <b>Deploy</b>
+    button. A new tile will be added to your landing page.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/23.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="327">
+
+<h2 id="tasks">Using My Tasks and Process Apps</h2>
+
+<p>Click on the new
+    tile and you will be taken to its <b>Task</b> page. This will only
+    show you tasks created within this app or as part of the processes
+    from the app. Click on the hint from James to create a task and fill
+    in some text.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/24.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="382">
+
+<p>You will now have a
+    task in your task list. You can complete a task by clicking the
+    <b>Complete</b> button and it will disappear from your task list –
+    but don't do that yet! We can do a variety of things with a task,
+    such as give it a due date or assign it to someone else. James also
+    has some hints on adding reference documents, comments or even
+    involving other people.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/25.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="404">
+
+<p>When you involve
+    someone else with a task, it will appear in their task list. They
+    then will be able to help you with the task, adding comments,
+    documents, or even involving further people. However, only the
+    person who is assigned the task can actually complete it. Below,
+    we've added a document, a comment and involved a person.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/26.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="479">
+
+<p>You can click the
+    <b>Complete</b> button now. If you wish to view that task again, you
+    can select the filter area above the task list and set the <b>State</b>
+    to be <i>Completed</i>. You can also filter the task list based on
+    the process related to tasks, by the task containing given text in
+    its name, or based on who the task is assigned to. By default you
+    will see all the tasks you are involved with, but you can change that
+    to be only tasks directly assigned to you, or tasks where you are
+    listed as a candidate or you're the member of a group. Groups are
+    only available for certain kinds of user account.</p>
+
+<p>And now we're
+    going to start the process we designed earlier. You can click on the
+    hint from James on the <b>Tasks</b> page or the <b>Process</b> page.
+    A list of available process will be displayed, which in our case will
+    be only one. Select it and modify the name given to this instance of
+    the process; by default it has the date added to the end of the
+    process name.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/27.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="421">
+
+<p>When you click the
+    <b>Start</b> button, the initial form we designed pops up. Fill in
+    the details, adding any documents, and click the <b>Start process</b>
+    button.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/28.png" class="center-block" style="margin-bottom: 20px" width="600"
+        height="270">
+
+<p>You will then be
+    returned to the <b>Process</b> page, showing the newly started
+    process in your process list.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/29.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="214">
+
+<p>You can always view
+    a process to see what the current and completed tasks are, as well as
+    add comments that will be available for anyone involved in the
+    process at any stage. If you go to our <b>Task</b> page now, you
+    will see the first step in the process that was a task to review the
+    project and accept or reject it. The task was assigned to you
+    because it was set to the process initiator, and you started the
+    process.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/30.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="259">
+
+<p>Before you fill in
+    the review summary and choose accept or reject, you can still add
+    people, documents and comments by clicking on the <b>Show details</b>
+    button in the task header area. You can get back to the form from
+    there by clicking the <b>Show form</b> button. If you click the
+    <b>Accept</b> button, the <i>Review Project</i> task will disappear,
+    but a new task, <i>Update Project List</i>, will appear. This is
+    because it is the step defined if the choice was to accept the
+    project. You can just click the <b>Complete</b> button to move to
+    the next step, which was a task that shows the details of the
+    accepted project.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/31.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="243">
+
+<p>When you complete this task, your task list will be empty, as will
+    your process list. If you prefer to see all your tasks and processes
+    in one place rather than through different process apps, you can use
+    the <b>My Tasks</b> tile to get your complete task and process lists.</p>
+
+<h2 id="analytics">Process Analytics and Performance Reports</h2>
+
+<p>Once you have run a
+    few processes a number of times you can see some reports about your
+    processes, provided you have an account with the Analytics
+    capability. Click on the Analytics tile to go to the Reports page,
+    and if you have not done so yet, click to add the standard reports.
+    Once they have been added, you can select a report from the reports
+    list and set the parameters you desire. The data, if available, will
+    be presented in graph and tabular form, depending on the report
+    selected. We'll leave you to explore the reports and data
+    available.</p>
+
+<p><img ng-src="{{webRootUrl()}}/images/getting-started/32.png" class="center-block" style="margin-bottom: 20px" width="800"
+        height="489">
+
+<h2 id="summary">Summary</h2>
+
+<p>We've taken a very
+    quick tour through some of the features of Alfresco Activiti to give
+    you an idea of what's possible and how it generally works. We
+    haven't explored the Visual Editor, which offers a rich process
+    design tool for creating BPMN 2.0 standard models. We haven't
+    explored how to define a Stencil and use it to extend the features
+    available to the process designer in the Visual or Step Editors.
+    There's always more you can learn to do with Alfresco Activiti!</p>
+
+
+<div class="modal-footer">
+    <div loading="popup.loading"></div>
+    <button ng-click="cancel()" class="btn btn-primary" translate>GENERAL.ACTION.CLOSE</button>
+</div>
+
+</div>
+</div>
+</div>
+</div>

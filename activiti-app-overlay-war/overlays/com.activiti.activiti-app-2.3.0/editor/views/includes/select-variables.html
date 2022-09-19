@@ -1,0 +1,19 @@
+<div class="btn-group span" activiti-fix-dropdown-bug>
+    <button class="selection" data-toggle="dropdown" ng-click="fixPosition($event)">
+        {{!ignoreSelection && selectedField && selectedField.name || (selectTitle && (selectTitle | translate) || (('PROCESS-BUILDER.FIELD.FIELD-SELECT.SELECT-FIELD' | translate) + '...'))}}
+        <span class="field-type" ng-show="!ignoreSelection && selectedField && selectedField.name"> - {{selectedField.id}}</span>
+        <span class="field-type" ng-show="includeType && !ignoreSelection && selectedField && selectedField.type"> - {{selectedField.type}}</span>
+        <i class="icon icon-caret-down"></i>
+    </button>
+    <ul class="dropdown-menu">
+        <li ng-repeat="field in filteredFields">
+            <a ng-click="selectField(field)">{{field.name}}
+            <span class="field-type"> - {{field.id}}</span>
+            <span class="field-type" ng-show="includeType && field.type"> - {{field.type}}</span>
+            </a>
+        </li>
+        <li ng-if="!fields || fields.length == 0">
+            <a>{{'PROCESS-BUILDER.FIELD.FIELD-SELECT.NO-FIELDS' | translate}}</a>
+        </li>
+    </ul>
+</div>

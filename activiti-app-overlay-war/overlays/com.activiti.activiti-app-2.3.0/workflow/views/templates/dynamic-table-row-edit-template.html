@@ -1,0 +1,122 @@
+<div class="modal" ng-controller="DynamicTableRowEditController">
+  <div class="modal-dialog modal-wide">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 ng-if="!dynamicTableReadOnly">{{'TASK.DYNAMIC-TABLE.ROW-EDIT-HEADER' | translate}}</h2>
+        <h2 ng-if="dynamicTableReadOnly">{{'TASK.DYNAMIC-TABLE.ROW-DETAILS-HEADER' | translate}}</h2>
+      </div>
+      <div class="modal-body">
+        <div class="center-pane">
+          <div class="content" style="overflow-y: visible;">
+            <div class="clearfix" ng-form="tableForm" >
+
+              <div ng-repeat="columnDefinition in currentField.columnDefinitions">
+
+                <div ng-if="columnDefinition.type === 'String'" class="form-group" ng-class="{'has-error': isTableColumnInvalid(tableForm, columnDefinition.id)}">
+                  <label class="control-label">{{columnDefinition.name}}</label>
+                  <span class="marker" ng-if="columnDefinition.required">*</span>
+                  <input id="{{activitiFieldIdPrefix + columnDefinition.id}}"  type="text" name="{{columnDefinition.id}}" class="form-control" placeholder="{{field.placeholder}}" ng-model="editRow[columnDefinition.id]"
+                         ng-disabled="!columnDefinition.editable || dynamicTableReadOnly" ng-required="columnDefinition.required" ng-change="onTableFieldValueChange(columnDefinition)" ng-blur="onTableFieldBlur(columnDefinition)" ng-focus="onTableFieldFocus(columnDefinition)">
+                </div>
+
+                <div ng-if="columnDefinition.type === 'Number'" class="form-group" ng-class="{'has-error': isTableColumnInvalid(tableForm, columnDefinition.id)}">
+                  <label class="control-label">{{columnDefinition.name}}</label>
+                  <span class="marker" ng-if="columnDefinition.required">*</span>
+                  <input id="{{activitiFieldIdPrefix + columnDefinition.id}}"  type="text" name="{{columnDefinition.id}}" class="form-control" placeholder="{{field.placeholder}}" ng-model="editRow[columnDefinition.id]"
+                         ng-disabled="!columnDefinition.editable || dynamicTableReadOnly" number-input-check ng-required="columnDefinition.required" ng-change="onTableFieldValueChange(columnDefinition)" ng-blur="onTableFieldBlur(columnDefinition)" ng-focus="onTableFieldFocus(columnDefinition)">
+                </div>
+                
+                <div ng-if="columnDefinition.type === 'Amount'" class="form-group" ng-class="{'has-error': isTableColumnInvalid(tableForm, columnDefinition.id)}">
+                  <label class="control-label">{{columnDefinition.name}}</label>
+                  <span class="marker" ng-if="columnDefinition.required">*</span>
+                  <div class="input-group amount-field">
+  					<span class="input-group-addon">{{columnDefinition.amountCurrency || '$'}}</span>
+  					<input id="{{activitiFieldIdPrefix + columnDefinition.id}}" name="{{columnDefinition.id}}" type="text" class="form-control" ng-disabled="!columnDefinition.editable || dynamicTableReadOnly" ng-model="tableAmountValues[columnDefinition.id].numberValue" ng-change="onTableFieldValueChange(columnDefinition)" ng-blur="onTableFieldBlur(columnDefinition)" ng-focus="onTableFieldFocus(columnDefinition)" number-input-check ng-required="columnDefinition.required">
+  					<span ng-if="columnDefinition.amountEnableFractions" class="input-group-addon  amount-fraction-addon">
+                        <span ng-if="!columnDefinition.enablePeriodSeparator" class="amount-decimal">.</span>
+                        <span ng-if="columnDefinition.enablePeriodSeparator" class="amount-decimal">,</span>
+                        <span class="amount-fraction">
+  						    <input id="{{activitiFieldIdPrefix + columnDefinition.id + '_fractions'}}" ng-disabled="!columnDefinition.editable || dynamicTableReadOnly" maxlength="{{columnDefinition.fractionLength}}" type="text" class="form-control" ng-model="tableAmountValues[columnDefinition.id].fractionsValue" ng-change="onTableFieldValueChange(columnDefinition)" ng-blur="onTableFieldBlur(columnDefinition)" ng-focus="onTableFieldFocus(columnDefinition)" number-input-check data-number-positive-only="true" data-number-money-fraction="true"  number-input-check ng-required="columnDefinition.required">
+  					    </span>
+                    </span>
+  					<span ng-if="!columnDefinition.amountEnableFractions && !columnDefinition.enablePeriodSeparator" class="input-group-addon">.00</span>
+  					<span ng-if="!columnDefinition.amountEnableFractions && columnDefinition.enablePeriodSeparator" class="input-group-addon">,00</span>
+				  </div>
+                </div>
+
+                <div ng-if="columnDefinition.type === 'Date'" class="form-group" ng-class="{'has-error': isTableColumnInvalid(tableForm, columnDefinition.id)}">
+                  <label class="control-label"><i class="glyphicon glyphicon-calendar"></i> {{columnDefinition.name}}</label>
+                  <span class="marker" ng-if="columnDefinition.required">*</span>
+                  <input id="{{activitiFieldIdPrefix + columnDefinition.id}}"  name="{{columnDefinition.id}}" type="text" class="form-control" ng-model="editRow[columnDefinition.id]"
+                  		 datepicker-timezone
+                         bs-datepicker
+                         template="{{appResourceRoot}}views/templates/date-picker-row-edit-template.html" data-date-format="{{getGlobalDateFormat() | momentToAngularFormat}}" trigger="focus" autoclose="true"
+                         ng-disabled="!columnDefinition.editable || dynamicTableReadOnly" ng-required="columnDefinition.required" ng-change="onTableFieldValueChange(columnDefinition)">
+                </div>
+                <div ng-if="columnDefinition.type === 'Datetime'" class="form-group" ng-class="{'has-error': isTableColumnInvalid(tableForm, columnDefinition.id)}">
+                  <label class="control-label"><i class="glyphicon glyphicon-calendar"></i> {{columnDefinition.name}}</label>
+                  <span class="marker" ng-if="columnDefinition.required">*</span>
+                  <!--<input id="{{activitiFieldIdPrefix + columnDefinition.id}}"  name="{{columnDefinition.id}}" type="text" class="form-control" ng-model="editRow[columnDefinition.id]"
+                         text-date-input datetimepicker
+                         date-format="{{(globalDateFormat || getGlobalDateFormat()) | momentTodatetimeFormat}} hh:mm A"
+                         template="{{appResourceRoot}}views/templates/date-picker-row-edit-template.html" trigger="focus" autoclose="true"
+                         ng-disabled="!columnDefinition.editable || dynamicTableReadOnly" ng-required="columnDefinition.required" ng-change="onTableFieldValueChange(columnDefinition)">-->
+                  <div class='input-group'>
+                    <input type="text" class="form-control"
+                           ng-model="editRow[columnDefinition.id]"
+                           text-date-input datetimepicker
+                           template="{{appResourceRoot}}views/templates/date-picker-row-edit-template.html"
+                           date-format="{{getGlobalDateFormat() | momentTodatetimeFormat}} hh:mm A"
+                           trigger="focus" autoclose="true"
+                           ng-disabled="!columnDefinition.editable || dynamicTableReadOnly" ng-required="columnDefinition.required" ng-change="onTableFieldValueChange(columnDefinition)">
+                    <span  class="input-group-addon " data-type="date-selector">
+                                               <span  class="glyphicon glyphicon-calendar"  ></span>
+                                          </span>
+                    <span  class="input-group-addon " data-type="time-selector">
+                                               <span  class="glyphicon glyphicon-time"></span>
+                                          </span>
+                  </div>
+
+                </div>
+
+                <div ng-if="columnDefinition.type === 'Boolean'" class="form-group">
+                  <input id="{{activitiFieldIdPrefix + columnDefinition.id}}"  type="checkbox" ng-model="editRow[columnDefinition.id]" ng-disabled="!columnDefinition.editable || dynamicTableReadOnly" ng-change="onTableFieldValueChange(columnDefinition)" ng-blur="onTableFieldBlur(columnDefinition)" ng-focus="onTableFieldFocus(columnDefinition)">
+                  <label class="control-label"> {{columnDefinition.name}}</label>
+                  <span class="marker" ng-if="columnDefinition.required">*</span>
+                </div>
+
+                <div ng-if="columnDefinition.type === 'Dropdown'" class="form-group" ng-class="{'has-error': isTableColumnInvalid(tableForm, columnDefinition.id)}">
+                    <label class="control-label">{{columnDefinition.name}}</label>
+                    <span class="marker" ng-if="columnDefinition.required">*</span>
+                    <select id="{{activitiFieldIdPrefix + columnDefinition.id}}" name="{{activitiFieldIdPrefix + columnDefinition.id}}" class="form-control" ng-if="columnDefinition.optionType !== 'rest' || (!columnDefinition.endpoint && !columnDefinition.restUrl)"
+                        ng-options="option.name for option in columnDefinition.options" ng-model="editRow[columnDefinition.id]" ng-disabled="!columnDefinition.editable || dynamicTableReadOnly"
+                        ng-change="onTableFieldValueChange(columnDefinition)" ng-blur="onTableFieldBlur(columnDefinition)" ng-focus="onTableFieldFocus(columnDefinition)" ng-required="columnDefinition.required">
+                        <option value=""></option>
+                    </select>
+                    <select id="{{activitiFieldIdPrefix + columnDefinition.id}}" name="{{activitiFieldIdPrefix + columnDefinition.id}}" class="form-control" ng-if="columnDefinition.editable && !dynamicTableReadOnly && columnDefinition.optionType === 'rest' && ((columnDefinition.endpoint && columnDefinition.endpoint.id) || columnDefinition.restUrl)"
+                        ng-options="option.name for option in tableRestValues[columnDefinition.id]" data-ng-model="editRow[columnDefinition.id]"
+                        ng-change="onTableFieldValueChange(columnDefinition)" ng-blur="onTableFieldBlur(columnDefinition)" ng-focus="onTableFieldFocus(columnDefinition)" ng-required="columnDefinition.required">
+                        <option value=""></option>
+                    </select>
+                    <input id="{{activitiFieldIdPrefix + columnDefinition.id}}"  name="{{activitiFieldIdPrefix + columnDefinition.id}}" class="form-control" ng-if="(!columnDefinition.editable || dynamicTableReadOnly) && columnDefinition.optionType === 'rest' && ((columnDefinition.endpoint && columnDefinition.endpoint.id) || columnDefinition.restUrl)"
+                        ng-model="editRow[columnDefinition.id]" ng-disabled="true"></select>
+                </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="pull-right" ng-if="!dynamicTableReadOnly">
+            <button class="btn btn-default" ng-click="cancelForm(tableRowEditModal)">{{'GENERAL.ACTION.CANCEL' | translate}}</button>
+            <button id="table_form_complete_button" class="btn btn-default" ng-disabled="!popup.model.valid || tableFormCompleteButtonDisabled || readOnly" ng-click="completeForm(tableRowEditModal)">{{'GENERAL.ACTION.SAVE' | translate}}</button>
+        </div>
+        <div class="pull-right" ng-if="dynamicTableReadOnly">
+          <button class="btn btn-default" ng-click="cancelForm(tableRowEditModal)">{{'GENERAL.ACTION.CLOSE' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

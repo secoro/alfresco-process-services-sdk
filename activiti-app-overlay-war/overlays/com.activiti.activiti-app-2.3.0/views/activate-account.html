@@ -1,0 +1,48 @@
+
+<div class="container full">
+    <div class="row">
+        <div class="col-xs-4">&nbsp;</div>
+        <div class="col-xs-4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="simple-content-wrapper">
+                <h2 translate="ACCOUNT.ACTIVATE.TITLE"></h2>
+                <div class="pull-left loading" ng-show="model.loading">
+                    <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                </div>
+                <p ng-show="model.loading">
+                    <span class="loading-text">{{'ACCOUNT.ACTIVATE.ACTIVATING-MESSAGE' | translate:model}}</span>
+                </p>
+                <div class="alert" ng-show="model.success && !model.loading">
+                   <i class="glyphicon glyphicon-ok"></i>
+                   <span translate="ACCOUNT.ACTIVATE.SUCCESS-MESSAGE"></span>
+                </div>
+                <div class="alert error" ng-show="!model.success && !model.loading">
+                   <i class="glyphicon glyphicon-remove"></i>
+                   <span translate="ACCOUNT.ACTIVATE.FAILURE-MESSAGE"></span>
+                </div>
+                <p ng-show="model.loading">
+                    <span class="loading-text">{{'ACCOUNT.ACTIVATE.ACTIVATING-MESSAGE' | translate:model}}</span>
+                </p>
+                <form class="form clearfix" role="form" ng-show="!model.loading && model.success">
+                    <div class="form-group">
+                        <label for="username" translate="LOGIN.USERNAME"></label>
+                        <input type="text" class="form-control" id="username" placeholder="{{'LOGIN.USERNAME-PLACEHOLDER' | translate}}" ng-model="model.email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" translate="LOGIN.PASSWORD"></label>
+                        <input type="password" class="form-control" id="password" placeholder="{{'LOGIN.PASSWORD-PLACEHOLDER' | translate}}" ng-model="model.password">
+                    </div>
+                    <div class="btn-group pull-right">
+                        <button type="submit" class="btn btn-primary" ng-click="login()" translate="LOGIN.ACTION.CONFIRM">Authenticate</button>
+                    </div>
+                    <p ng-if="!config.onPremise" class="subtle"><a href="#/reset-password" translate="LOGIN.FORGOT-PASSWORD"></a></p>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title">{{'IDM.SYSTEM-GROUP-MGMT.POPUP.DELETE-CAPABILITY-TITLE' | translate}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <div ng-if="!model.deletingCapability">
+                    {{'IDM.SYSTEM-GROUP-MGMT.POPUP.DELETE-CAPABILITY-DESCRIPTION' | translate:model}}
+                </div>
+
+                <div loading="model.deletingCapability"></div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide()" ng-disabled="model.deletingCapability">{{'IDM.GENERAL.ACTION.CANCEL' | translate}}</button>
+                <button type="button" class="btn btn-primary" ng-click="deleteCapability()" ng-disabled="model.deletingCapability || readOnly">{{'IDM.SYSTEM-GROUP-MGMT.POPUP.DELETE-CONFIRM' | translate}}</button>
+            </div>
+
+        </div>
+    </div>
+</div>

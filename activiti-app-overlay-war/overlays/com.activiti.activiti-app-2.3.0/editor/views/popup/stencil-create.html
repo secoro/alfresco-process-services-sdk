@@ -1,0 +1,44 @@
+
+<div class="modal" ng-controller="CreateNewStencilCrtl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h2>{{'STENCILS.POPUP.CREATE-TITLE' | translate}}</h2>
+            </div>
+            <div class="modal-body">
+            	<p>{{'STENCILS.POPUP.CREATE-HELP' | translate}}</p>
+            	<div class="form-group">
+            	    <label for="newStencilName">{{'STENCILS.POPUP.CREATE-NAME' | translate}}</label>
+            	    <input ng-disabled="model.loading" type="text" class="form-control" maxlength="255"
+                           id="newStencilName" ng-model="model.stencil.name" auto-focus>
+            	</div>
+            	<div class="form-group">
+            	    <label for="newStencilDescription">{{'STENCILS.POPUP.CREATE-DESCRIPTION' | translate}}</label>
+            		<textarea ng-disabled="model.loading" class="form-control" id="newStencilDescription" rows="5" ng-model="model.stencil.description"></textarea>
+            	</div>
+            	<div class="form-group">
+			   		<label for="typeSelect" class="control-label">{{'STENCILS.POPUP.CREATE-TYPE' | translate}}</label>
+			   		<select id="typeSelect" class="form-control" ng-model="model.stencil.stencilType">
+					    <option ng-disabled="model.loading" value="1">{{'STENCILS.POPUP.STENCIL-TYPE.BPMN' | translate}}</option>
+					    <option ng-disabled="model.loading" value="3">{{'STENCILS.POPUP.STENCIL-TYPE.FORM' | translate}}</option>
+						<option ng-disabled="model.loading" value="2">{{'STENCILS.POPUP.STENCIL-TYPE.STEP' | translate}}</option>
+			   		</select>
+				</div>
+            </div>
+            
+            <div class="modal-footer">
+            	<div class="pull-right">
+            		<button type="button" class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="model.loading">
+            			{{'GENERAL.ACTION.CANCEL' | translate}}
+            		</button>
+            		<button type="button" class="btn btn-sm btn-default" ng-click="ok()" ng-disabled="model.loading || !model.stencil.name || readOnly">
+            			{{'STENCILS.ACTION.CREATE' | translate}}
+            		</button>
+            	</div>
+            	<div class="loading pull-right" ng-show="model.loading">
+            		<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>

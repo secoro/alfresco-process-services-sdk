@@ -1,0 +1,58 @@
+<div class="detail-group clearfix first" ng-if="step.account.name">
+  <div class="form-group clearfix">
+    <div class="col-xs-3">
+      <label>{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.ACCOUNT' | translate}}:</label>
+    </div>
+    <div class="col-xs-9">
+      <div class="clearfix selection narrow">
+        <div class="details">
+          <div>
+           {{step.account.name}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="detail-group clearfix">
+    <div class="form-group clearfix">
+        <div class="col-xs-3">
+            <label>{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.DESTINATION' | translate}}:</label>
+        </div>
+        <div class="col-xs-9">
+            <div class="clearfix selection narrow">
+                <div class="details">
+                    <div ng-show="!step.path">
+                        {{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.NO-DESTINATION' | translate}}
+                    </div>
+
+                    <div ng-show="step.path">
+                        <span class="label">{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.PATH' | translate}}:</span> {{step.path.title}}<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="detail-group clearfix" >
+        <div class="form-group clearfix">
+            <div class="col-xs-3">
+                <label>{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.SUB-FOLDER' | translate}}:</label>
+            </div>
+            <div class="col-xs-9">
+                <label>
+                    <input type="checkbox" ng-model="step.meta.destinationUseSubfolder" ng-disabled="true"> {{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.USE-SUB-FOLDER' | translate}}
+                </label>
+            </div>
+        </div>
+
+    <div class="form-group clearfix" ng-show="step.meta.destinationUseSubfolder && step.createFolderField">
+        <div class="col-xs-3">
+            <label>{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.FIELD' | translate}}:</label>
+        </div>
+        <div class="col-xs-9">
+            <label>{{step.createFolderField.name}}</label>
+        </div>
+    </div>
+</div>

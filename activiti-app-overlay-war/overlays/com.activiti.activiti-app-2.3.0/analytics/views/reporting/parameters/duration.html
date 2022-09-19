@@ -1,0 +1,13 @@
+<div ng-controller="ReportingParamDurationController" ng-init="setParameter(parameter)">
+    <span ng-if="parameter.name">{{parameter.name}}</span>
+    <span ng-if="!parameter.name && parameter.nameKey">{{(parameter.nameKey) | translate}}</span>
+
+    <div>
+        <input type="number" ng-model="parameter.valueForUser" ng-blur="reportingParamDurationChanged(parameter)">
+        <select ng-options="option.id as option.name for option in model.durationOptions"
+                ng-disabled="model.loading"
+                ng-model="parameter.durationUnit"
+                ng-change="reportingParamDurationChanged(parameter)">
+    </select>
+    </div>
+</div>

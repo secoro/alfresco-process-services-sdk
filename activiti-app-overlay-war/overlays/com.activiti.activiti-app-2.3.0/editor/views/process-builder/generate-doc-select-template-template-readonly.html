@@ -1,0 +1,11 @@
+<div class="detail-group clearfix first" style="padding: 0 30px;">
+	<div class="row">
+		<div class="col-xs-3">
+			<label translate="PROCESS-BUILDER.GENERATE-DOC-STEP.LABELS.TEMPLATE"></label>
+		</div>
+		<div class="col-xs-9">
+			<label ng-if="!step.template" translate="PROCESS-BUILDER.GENERATE-DOC-STEP.LABELS.NO-TEMPLATE"></label>
+			<label ng-if="step.template" ng-bind="step.template.name"></label>
+		</div>
+	</div>
+</div>

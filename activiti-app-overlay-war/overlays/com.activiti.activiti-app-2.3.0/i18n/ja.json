@@ -1,0 +1,204 @@
+{
+  "COMMON": {
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "ローカルのライセンスが無効なため、Process Services は読み取り専用モードで実行しています。",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "ライセンスが見つからないため、Process Services は読み取り専用モードで実行しています。",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "ライセンスの日付が無効である (期限切れか、まだ開始日が来ていない) ため 、アプリケーションは読み取り専用モードで実行しています。",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "ライセンスの有効期限が近づいているので注意してください。有効期限が切れると、Process Services は読み取り専用モードになります。",
+      "APP-LICENSE-UPLOAD-DISALLOWED": "ライセンスをアップロードできるようにするには、activiti-app.properties で <code>license.allow-upload=true</code> と設定してください。",
+      "APP-LICENSE-NO-UPLOAD-CAPABILITY": "注意：ライセンスをアップロードするには、[ライセンスのアップロード] 機能が必要です。"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Process Services",
+    "ERROR": {
+      "GENERIC": "エラーが発生しました...",
+      "UNKNOWN": "指定した処理の実行中にエラーが発生しました。",
+      "BAD_REQUEST": "指定した処理の実行中にエラーが発生しました。",
+      "NOT_FOUND": "アクセスしようとしているリソースは存在しません",
+      "UNAUTHORIZED": "指定した処理を実行するにはサインインする必要があります。",
+      "FORBIDDEN": "指定した処理の実行は許可されていません",
+      "INTERNAL_SERVER_ERROR": "指定した処理の実行中に不明なエラーが発生しました。",
+      "QUOTA-EXCEEDED-RUNTIME-APPS": "トライアルユーザーが一度にデプロイできるアプリは {{quota}} 個のみです。",
+      "QUOTA-EXCEEDED-LICENSE-APPS": "このライセンスで同時にデプロイできるアプリは {{quota}} 個のみです。"
+    },
+    "ACTION": {
+      "LOGOUT": "サインアウト",
+      "HELP": "使い方",
+      "EDIT-PROFILE": "プロフィールの編集",
+      "SAVE": "保存",
+      "CANCEL": "キャンセル",
+      "CLOSE": "閉じる",
+      "DEPLOY": "デプロイ",
+      "ABOUT": "Process Services について",
+      "HELP-DOCS-LINK": "ヘルプ",
+      "UPLOAD-LICENSE": "ライセンスのアップロード"
+    },
+    "ABOUT": {
+      "TYPE": "種類",
+      "LICENSED-TO": "ライセンス先",
+      "EXPIRES": "有効期限",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. All rights reserved.",
+      "LEGAL": "法的情報とライセンス"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "サインイン",
+    "USERNAME": "ユーザー名",
+    "USERNAME-PLACEHOLDER": "ユーザー名を入力してください",
+    "PASSWORD": "パスワード",
+    "PASSWORD-PLACEHOLDER": "パスワードを入力してください",
+    "NO-ACCOUNT": "まだアカウントをお持ちではないですか?",
+    "FORGOT-PASSWORD": "パスワードをお忘れですか?",
+    "INVALID-CREDENTIALS": "資格情報が無効です",
+    "WELCOME": "Alfresco Process Services へようこそ",
+    "TAG1": "<strong>シンプル:</strong>セットアップは不要。すぐに使えるため、ユーザーの生産性がアップします。",
+    "TAG2": "<strong>スマート:</strong>設定が簡単。構造化されたフレームワークで、すべてのビジネスプロセスの要件に対応します。",
+    "TAG3": "<strong>オープン:</strong>オープンソース、オープン規格であるため、将来の拡大にも容易に対応できます。",
+    "PRIVACY": "個人情報保護方針",
+    "ALL-RIGHTS": "All Rights reserved",
+    "LOGIN-FORM": "ログインフォーム",
+    "SKIP-TO-CONTENT": "Skip to Content",
+    "BACK-TO-TOP": "先頭に戻る",
+    "SSO": "SSO ログイン",
+    "ACTION": {
+      "CONFIRM": "サインイン"
+    }
+  },
+  "ACCOUNT": {
+    "ACTIVATE": {
+      "TITLE": "アカウントのアクティブ化",
+      "ACTIVATING-MESSAGE": "{{userFullName}} のアカウントをアクティブ化しています。しばらくお待ちください...",
+      "SUCCESS-MESSAGE": "アカウントがアクティブ化されました。下でサインインすると、プロセスの作成と実行を開始できます。",
+      "FAILURE-MESSAGE": "アカウントをアクティブ化できません。アカウントは既にアクティブ化されているか、アクティブ化リンクの期限が切れています。"
+    },
+    "SIGNUP": {
+      "TITLE": "アカウントの登録",
+      "SIGNUP-TRIAL": "Process Services トライアル版用のパスワードを作成してください",
+      "EMAIL": "E メールアドレス",
+      "FIRSTNAME": "名",
+      "LASTNAME": "姓",
+      "PASSWORD": "パスワード",
+      "PASSWORD-PLACEHOLDER": "パスワードを入力してください",
+      "PASSWORD-REPEAT": "パスワードの再入力",
+      "PASSWORDS-NOT-EQUAL": "パスワードが一致していません",
+      "PASSWORDS-MIN-LENGTH": "パスワードが短すぎます。{{minLength}} 文字以上でなければなりません。",
+      "NEW-PASSWORD-STRENGTH": "パスワードの安全性:",
+      "EMAIL-PLACEHOLDER": "E メールを入力してください",
+      "FIRSTNAME-PLACEHOLDER": "名前を入力してください",
+      "LASTNAME-PLACEHOLDER": "姓を入力してください",
+      "COMPANY": "会社名 (任意)",
+      "COMPANY-PLACEHOLDER": "会社名を入力してください",
+      "LICENSETERMS": "Alfresco のサービス利用規約と個人情報保護方針に同意する",
+      "CONFIRM": "今すぐ登録",
+      "SUCCESS-MESSAGE": "当サービスのご利用アカウントを登録いただき、ありがとうございました。後ほど、アカウントをアクティブ化するための E メールをお送りします。アカウントがアクティブ化されると、プロセスの作成と実行を開始できます。",
+      "SECURITY-SECTION": "セキュリティチェック",
+      "PERSONAL-SECTION": "個人情報",
+      "ACCOUNT-SECTION": "アカウント",
+      "ERROR": {
+        "ALREADY-REGISTERED": "ご指定の E メールアドレスのユーザーは既に登録されています。",
+        "DISABLED": "登録は現在できません。"
+      }
+    },
+    "RESET-PASSWORD-REQUEST": {
+      "MESSAGE": "パスワードをお忘れですか?下に E メールアドレスを入力してください。後ほどパスワードをリセットできる E メールをお送りします。",
+      "TITLE": "パスワードのリセット",
+      "EMAIL": "E メールアドレス",
+      "EMAIL-PLACEHOLDER": "E メールアドレスを入力してください",
+      "SECURITY-SECTION": "セキュリティチェック",
+      "CONFIRM": "パスワードのリセットリクエスト",
+      "SUCCESS-MESSAGE": "後ほどパスワードをリセットできるリンクが付いた E メールをお送りします。",
+      "ERROR": {
+        "UNEXISTING-USER": "ご指定の E メールアドレスのユーザーは存在しません。"
+      }
+    },
+    "RESET-PASSWORD": {
+      "TITLE": "パスワードのリセット",
+      "PASSWORD": "パスワード",
+      "PASSWORD-CONFIRM": "パスワードの確認入力",
+      "PASSWORD-PLACEHOLDER": "新しいパスワードを入力してください",
+      "PASSWORD-CONFIRM-PLACEHOLDER": "新しいパスワードをもう一度入力してください",
+      "CONFIRM": "パスワードの変更",
+      "LOADING": "パスワードをリセットしています...",
+      "SUCCESS-MESSAGE": "パスワードが変更されました。",
+      "LOGIN": "今すぐサインイン",
+      "FAILURE-MESSAGE": "パスワードをリセットできません。リセット用リンクが無効か、期限が切れています。"
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "アプリデザイナー",
+      "DESCRIPTION": "プロセスモデル、フォーム、意思決定表、アプリ定義、データモデル、ステンシル定義を作成して、それらを他の人と共有できます。",
+      "TITLE-PROCESSES": "プロセスモデル",
+      "TITLE-FORMS": "フォームモデル",
+      "TITLE-APPS": "アプリモデル",
+      "TITLE-STENCILS": "ステンシル",
+      "TITLE-DECISION-TABLES": "意思決定表",
+      "TITLE-DATA-MODELS": "データモデル"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "管理者",
+      "DESCRIPTION": "すべての Process Services サーバーノードとクラスターを管理できます。"
+    },
+    "TASKS": {
+      "TITLE": "タスクアプリ",
+      "DESCRIPTION": "あなたのタスク一覧にアクセスして、あなたに割り当てられているタスクをプロセスアプリから処理できます。新しいプロセスとタスクも開始できます。",
+      "TITLE-TASKS": "タスク",
+      "TITLE-PROCESSES": "プロセス",
+      "TITLE-PROCESSES?MODE=START": "開始"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "プロフィール",
+      "DESCRIPTION": "あなたのプロフィール (写真、氏名、その他の設定) を管理します。",
+      "DESCRIPTION-TENANT-ADMIN": "あなたの組織のユーザーやグループを管理します。",
+      "TITLE-TENANT-ADMIN": "ID の管理",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "テナント",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "ユーザー",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "権限",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "組織",
+      "TITLE-TENANT-ADMIN-PROFILE": "プロフィール",
+      "TITLE-PROFILE": "プロフィール"
+    },
+    "ANALYTICS": {
+      "TITLE": "分析アプリ",
+      "DESCRIPTION": "プロセスのパフォーマンスと処理量の統計をまとめた様々なレポートを作成します。"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}} のタスク",
+      "TITLE-PROCESSES": "{{name}} のプロセス",
+      "TITLE-PROCESSES?MODE=START": "{{name}} の開始"
+    },
+    "POPUP": {
+      "ADD-APP-TITLE": "ランディングページにアプリを追加",
+      "ADD-APP-SUMMARY": "ランディングページにアプリを追加します",
+      "GETTING-STARTED-TITLE": "Process Services BPMS の使い方"
+    },
+    "ACTION": {
+      "DELETE": "アプリの削除",
+      "ADD": "新しいアプリの追加",
+      "UPLOAD-LICENSE": "ライセンスのアップロード"
+    },
+    "MESSAGE": {
+      "DELETED": "アプリは問題なく削除されました",
+      "NO-CUSTOM-APPS": "ビジネスプロセスの管理をよりスマートに行える Alfresco Process Services へようこそ。ここから、次のように様々な作業を行えます。",
+      "NO-CUSTOM-APPS-EDITOR-HINT": "ビジネスプロセスを作成して共有する",
+      "NO-CUSTOM-APPS-TASKS-HINT": "タスクに取りかかる、またはプロセスを開始する",
+      "NO-CUSTOM-APPS-PROFILE-HINT": "プロフィールの写真と詳細を更新する",
+      "NO-CUSTOM-APPS-GETTING-STARTED-HINT": "使い方ガイドを読む"
+    }
+  },
+  "LICENSE": {
+    "STATUS": {
+      "INVALID": "無効なライセンス",
+      "WARNING": "ライセンスの警告"
+    },
+    "UPLOAD": {
+      "UPLOAD-LICENSE-TITLE": "ライセンスのアップロード",
+      "UPLOAD-LICENSE-DESCRIPTION": "コンピュータ上でライセンスを選択するか、そのライセンスを下の領域にドロップしてください。",
+      "CANCEL-UPLOAD": "アップロードのキャンセル",
+      "LICENSE-DROPZONE": "ここにライセンスファイルをドロップしてください",
+      "NO-DROP": "お使いのブラウザでは、ファイルをドロップできません",
+      "ERROR": "エラー"
+    }
+  }
+}

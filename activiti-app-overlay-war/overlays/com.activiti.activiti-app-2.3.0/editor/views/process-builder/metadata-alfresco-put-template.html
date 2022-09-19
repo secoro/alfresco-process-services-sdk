@@ -1,0 +1,96 @@
+<div class="form-group clearfix">
+    <div class="col-xs-12">
+        <label>{{'PROCESS-BUILDER.METADATA-PUT-STEP.DESCRIPTION' | translate}}</label>
+    </div>
+</div>
+<div class="form-group clearfix">
+    <div class="col-xs-3">
+        <label>{{'PROCESS-BUILDER.METADATA-PUT-STEP.FILE' | translate}}</label>
+    </div>
+    <div class="col-xs-9">
+        <div class="detail-group clearfix">
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button ng-disabled="readonly" type="button" class="btn btn-default" ng-click="setInputSourceType('formField');"
+                            ng-model="step.inputSourceType"
+                            ng-class="{'active' : !step.inputSourceType ||  step.inputSourceType === 'formField'}">
+                        {{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button ng-disabled="readonly" type="button" class="btn btn-default" ng-click="setInputSourceType('restResponse');"
+                            ng-model="step.inputSourceType"
+                            ng-class="{'active' : step.inputSourceType === 'restResponse'}">
+                        {{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group clearfix">
+    <div class="col-xs-3">
+    </div>
+    <div class="col-xs-9">
+        <div ng-show="!step.inputSourceType || step.inputSourceType === 'formField'">
+            <div>
+                <div field-select="step.inputSourceField" include-type="true" expand-relative="true"
+                     select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'"
+                     step-id="step.id" all-steps="allSteps" editor-type="step"
+                     field-type-filter="['upload']"
+                     ng-disabled="readonly" ></div>
+            </div>
+        </div>
+        <div  ng-show="step.inputSourceType === 'restResponse'">
+            <div>
+                <div field-select="step.inputSourceField" include-type="true" variables-type="rest"
+                     editor-type="step" step-id="step.id" all-steps="allSteps"
+                     expand-relative="true" select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-RESPONSE-VARIABLE'"
+                     field-type-filter="['document']"  ng-disabled="readonly"  ></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--grid metadata and popup to add start-->
+<div class="detail-group clearfix">
+    <metadata-grid ng-readonly="readonly" />
+</div>
+<!--grid metadata and popup to add end-->
+
+<div class="form-group clearfix"
+     ng-if="(contentAlfrescoAccounts.loading === false && contentAlfrescoAccounts.rawList.length > 0 ) || (contentAlfrescoAccounts.loading === false && contentAlfrescoAccounts.onPrem === true && alfrescoAccount.selected && contentAlfrescoAccounts.rawList.length > 0)">
+    <div class="col-xs-3">
+        <label>{{'PROCESS-BUILDER.METADATA-PUT-STEP.DESTINATION.UPDATE-AS-LABEL' | translate}}:</label>
+    </div>
+    <div class="col-xs-9">
+        <div class="btn-group btn-group-justified">
+            <div class="btn-group">
+                <button ng-disabled="readonly" type="button" class="btn btn-default" ng-click="setPublishAs('process_initiator')"
+                        ng-class="{'active' : (!step.publishAsType || step.publishAsType == 'process_initiator')}">
+                    {{'PROCESS-BUILDER.METADATA-PUT-STEP.DESTINATION.PROCESS-INITIATOR' | translate}}
+                </button>
+            </div>
+            <div class="btn-group">
+                <button ng-disabled="readonly" type="button" class="btn btn-default" ng-click="setPublishAs('user')"
+                        ng-class="{'active' : step.publishAsType == 'user'}">
+                    {{'PROCESS-BUILDER.METADATA-PUT-STEP.DESTINATION.SPECIFIC-USER' | translate}}
+                </button>
+            </div>
+        </div>
+        <div class="people-select clearfix" ng-if="step.publishAsType === 'user'">
+            <br/>
+            <button ng-disabled="readonly" class="selection" select-people-popover select-people-form-fields="availableFormFields"
+                    popover-title="Select user" placement="bottom" on-people-selected="addPublishAs(user, userField)"
+                    email-mode-disabled="true">
+                <i class="icon icon-user" ng-show="step.user || step.userField"></i>
+                <span ng-if="(!step.user && !step.userField)">{{'PROCESS-BUILDER.METADATA-PUT-STEP.DESTINATION.SELECT-USER' | translate}}</span>
+                <span ng-if="step.user">{{step.userName}}</span>
+                <span ng-if="step.userField">{{step.userField.name}}</span>
+                <span ng-if="step.userField" class="field-type"> - {{step.userField.id}}</span>
+                <i class="icon icon-caret-down"></i>
+            </button>
+        </div>
+    </div>
+</div>

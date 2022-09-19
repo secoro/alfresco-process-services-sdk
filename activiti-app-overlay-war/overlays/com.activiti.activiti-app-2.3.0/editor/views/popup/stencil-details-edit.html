@@ -1,0 +1,42 @@
+
+<div class="modal" ng-controller="StencilDetailsEditCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h2>{{'STENCILS.POPUP.EDIT-STENCIL-TITLE' | translate}}</h2>
+            </div>
+            <div class="modal-body">
+            
+            	<div class="form-group">
+            	    <label for="editStencilName">{{'STENCILS.POPUP.EDIT-STENCIL-NAME' | translate}}</label>
+            	    <input ng-disabled="model.loading"
+                           type="text" class="form-control"
+                           id="editStencilName"
+                           ng-model="model.stencil.name"
+                           maxlength="255"
+                           auto-focus>
+            	</div>
+            
+            	<div class="form-group">
+            	    <label for="editStencilDescription">{{'STENCILS.POPUP.EDIT-STENCIL-DESCRIPTION' | translate}}</label>
+            		<textarea ng-disabled="model.loading" class="form-control" id="editStencilDescription" rows="5"  ng-model="model.stencil.description"></textarea>
+            	</div>
+            
+            </div>
+            
+            <div class="modal-footer">
+            	<div class="pull-right">
+            		<button type="button" class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="model.loading">
+            			{{'GENERAL.ACTION.CANCEL' | translate}}
+            		</button>
+            		<button type="button" class="btn btn-sm btn-default" ng-click="ok()" ng-disabled="model.loading || !model.stencil.name || readOnly">
+            			{{'GENERAL.ACTION.SAVE' | translate}}
+            		</button>
+            	</div>
+            	<div class="loading pull-right" ng-show="model.loading">
+            		<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>

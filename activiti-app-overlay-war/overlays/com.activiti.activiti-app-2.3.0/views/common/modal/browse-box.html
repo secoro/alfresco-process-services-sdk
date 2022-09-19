@@ -1,0 +1,62 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog wide google-drive-browse">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h3 class="modal-title">{{'INTEGRATION.BOX.MESSAGE.ACCOUNT_NAME' | translate}}</h3>
+
+                <div class="summary">
+                    <span ng-if="!folderSelect">
+                        {{'INTEGRATION.BOX.MESSAGE.SELECT-FILE-DESCRIPTION' | translate}}
+                    </span>
+                    <span ng-if="folderSelect">
+                        {{'INTEGRATION.BOX.MESSAGE.SELECT-FOLDER-DESCRIPTION' | translate}}
+                    </span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>{{'INTEGRATION.BOX.MESSAGE.FILTER' | translate}}: </label>
+                    <input type="text" class="form-control" delayed-model="filter" auto-focus="filter">
+                </div>
+                <div class="crumbs"  ng-if="!contentSource || (contentSource && !contentSource.notAllowNavigateFolders)">
+                    <span>{{'INTEGRATION.BOX.MESSAGE.SEARCHING' | translate}}:</span>
+                    <span class="crumb" ng-click="navigateToBoxRoot()">Root</span>
+                    <span class="crumb" ng-repeat="folder in currentFolderTree" ng-click="navigateToBoxFolder($index)">
+                        <i class="icon icon-caret-right"></i>
+                            {{folder.title}}
+                    </span>
+                </div>
+                <ul class="simple-list selection selectable">
+                    <div loading="contentAccounts['box'].loading"></div>
+                    <li class="nothing-to-see"  ng-show="(folderSelect && boxFiles.data && ( boxFiles.data | filter:{folder:true}).length == 0)
+                    || (!folderSelect && boxFiles.data && (boxFiles.data | filter: filterNavigableContent).length == 0) ">
+                        <span>{{'INTEGRATION.BOX.MESSAGE.NO-CONTENT' | translate}}</span>
+                    </li>
+
+                    <li ng-if="folderSelect" ng-click="boxContentSelected(content)" ng-repeat="content in boxFiles.data | filter:{folder:true}" class="truncate">
+                        <span ng-if="!folderSelect || (folderSelect && content.folder)"><i
+                                class="icon icon-{{content.simpleType}}" ng-if="content.simpleType"></i> {{content.title}}</span>
+                        <i ng-if="!folderSelect || (folderSelect && content.folder)" class="icon icon-caret-right"
+                           ng-show="content.folder"></i>
+                    </li>
+
+                    <li ng-if="!folderSelect" ng-click="boxContentSelected(content)" ng-repeat="content in boxFiles.data | filter: filterNavigableContent" class="truncate">
+                        <span><i class="icon icon-{{content.simpleType}}" ng-if="content.simpleType"></i> {{content.title}}</span>
+                        <i ng-if="content.folder" class="icon icon-caret-right"
+                           ng-show="content.folder"></i>
+                    </li>
+                </ul>
+                <div class="modal-footer" ng-if="folderSelect">
+                    <div class="btn-group pull-right">
+                        <button class="btn" ng-click="confirmFolderSelection()">
+                            {{currentFolderTree.length && ( ('INTEGRATION.BOX.MESSAGE.SELECT-FOLDER' | translate) + ': '
+                            + currentFolderTree[currentFolderTree.length - 1].title) ||
+                            ('INTEGRATION.BOX.MESSAGE.SELECT-FOLDER' | translate) + ': /'}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

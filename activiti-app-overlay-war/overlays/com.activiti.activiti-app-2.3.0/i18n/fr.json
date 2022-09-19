@@ -1,0 +1,204 @@
+{
+  "COMMON": {
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Process Services est en mode lecture seule car la licence locale n'est pas valide.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Process Services est en mode lecture seule car aucune licence n'a été trouvée.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "L'application est en mode lecture seule car les dates de la licence ne sont pas valides (elle a expiré ou la date de début est postérieure à aujourd'hui).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Votre licence va bientôt expirer ! Process Services passera en mode lecture seule.",
+      "APP-LICENSE-UPLOAD-DISALLOWED": "Pour permettre l'importation de la licence, vous devez configurer <code>license.allow-upload=true</code> dans activiti-app.properties",
+      "APP-LICENSE-NO-UPLOAD-CAPABILITY": "Attention ! La capacité 'Importer la licence' est nécessaire pour importer une licence"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Process Services",
+    "ERROR": {
+      "GENERIC": "Une erreur est survenue...",
+      "UNKNOWN": "Une erreur est survenue lors de l'exécution de l'opération demandée.",
+      "BAD_REQUEST": "Une erreur est survenue lors de l'exécution de l'opération demandée",
+      "NOT_FOUND": "La ressource à laquelle vous essayez d'accéder n'existe pas",
+      "UNAUTHORIZED": "Vous devez vous connecter pour exécuter l'opération demandée.",
+      "FORBIDDEN": "Vous n'êtes pas autorisé à exécuter l'opération demandée",
+      "INTERNAL_SERVER_ERROR": "Une erreur inattendue est survenue lors de l'exécution de l'opération demandée.",
+      "QUOTA-EXCEEDED-RUNTIME-APPS": "En tant qu'utilisateur d'essai, vous ne pouvez avoir que {{quota}} applications déployées simultanément.",
+      "QUOTA-EXCEEDED-LICENSE-APPS": "La licence n'autorise le déploiement simultané de seulement {{quota}} applications."
+    },
+    "ACTION": {
+      "LOGOUT": "Déconnexion",
+      "HELP": "Guide de démarrage",
+      "EDIT-PROFILE": "Modifier le profil",
+      "SAVE": "Enregistrer",
+      "CANCEL": "Annuler",
+      "CLOSE": "Fermer",
+      "DEPLOY": "Déployer",
+      "ABOUT": "A propos de Process Services",
+      "HELP-DOCS-LINK": "Aide",
+      "UPLOAD-LICENSE": "Importer la licence"
+    },
+    "ABOUT": {
+      "TYPE": "Type",
+      "LICENSED-TO": "Licence de",
+      "EXPIRES": "Expire",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Tous droits réservés.",
+      "LEGAL": "Informations légales et licences"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "Connexion",
+    "USERNAME": "Nom d'utilisateur",
+    "USERNAME-PLACEHOLDER": "Entrer votre nom d'utilisateur",
+    "PASSWORD": "Mot de passe",
+    "PASSWORD-PLACEHOLDER": "Entrer votre mot de passe",
+    "NO-ACCOUNT": "Pas encore de compte ?",
+    "FORGOT-PASSWORD": "Vous avez oublié votre mot de passe ?",
+    "INVALID-CREDENTIALS": "Informations d'identification non valides",
+    "WELCOME": "Bienvenue dans Alfresco Process Services",
+    "TAG1": "<strong>Simple :</strong> Prêt à l'emploi, aucune configuration nécessaire, pour une productivité optimisée",
+    "TAG2": "<strong>Smart :</strong> Simple à configurer, environnement structuré pour une gestion complète des processus métiers",
+    "TAG3": "<strong>Open :</strong> Open source, standards ouverts, adapté aux besoins futurs, intégration simplifiée",
+    "PRIVACY": "Politique de confidentialité",
+    "ALL-RIGHTS": "Tous droits réservés",
+    "LOGIN-FORM": "Formulaire de connexion",
+    "SKIP-TO-CONTENT": "Passer au contenu",
+    "BACK-TO-TOP": "Début",
+    "SSO": "Authentification SSO",
+    "ACTION": {
+      "CONFIRM": "Connexion"
+    }
+  },
+  "ACCOUNT": {
+    "ACTIVATE": {
+      "TITLE": "Activer mon compte",
+      "ACTIVATING-MESSAGE": "Veuillez patienter {{userFullName}} pendant que nous activons votre compte...",
+      "SUCCESS-MESSAGE": "Votre compte a été activé. Connectez-vous ci-dessous pour commencer à concevoir et à exécuter des processus",
+      "FAILURE-MESSAGE": "Votre compte ne peut pas être activé. Il a déjà été activé ou le lien d'activation a expiré."
+    },
+    "SIGNUP": {
+      "TITLE": "Créer un compte",
+      "SIGNUP-TRIAL": "Créer un mot de passe pour votre version d'essai de Process Services",
+      "EMAIL": "Adresse email",
+      "FIRSTNAME": "Prénom",
+      "LASTNAME": "Nom",
+      "PASSWORD": "Mot de passe",
+      "PASSWORD-PLACEHOLDER": "Entrer un mot de passe",
+      "PASSWORD-REPEAT": "Confirmer le mot de passe",
+      "PASSWORDS-NOT-EQUAL": "Les mots de passe ne correspondent pas",
+      "PASSWORDS-MIN-LENGTH": "Le mot de passe est trop court ; il doit comporter {{minLength}} caractères minimum",
+      "NEW-PASSWORD-STRENGTH": "Sécurité du mot de passe :",
+      "EMAIL-PLACEHOLDER": "Entrer une adresse email",
+      "FIRSTNAME-PLACEHOLDER": "Entrer le prénom",
+      "LASTNAME-PLACEHOLDER": "Entrer le nom",
+      "COMPANY": "Société (facultatif)",
+      "COMPANY-PLACEHOLDER": "Entrer le nom de votre société",
+      "LICENSETERMS": "J'accepte les conditions d'utilisation du service et la politique de confidentialité d'Alfresco",
+      "CONFIRM": "Créer un compte maintenant",
+      "SUCCESS-MESSAGE": "Merci de vous être inscrit à notre service. Vous recevrez un email sous peu pour activer votre compte. Une fois activé, vous pourrez commencer à concevoir et à exécuter des processus",
+      "SECURITY-SECTION": "Vérification de sécurité",
+      "PERSONAL-SECTION": "Informations personnelles",
+      "ACCOUNT-SECTION": "Compte",
+      "ERROR": {
+        "ALREADY-REGISTERED": "Un utilisateur avec cette adresse email a déjà été enregistré.",
+        "DISABLED": "Connexion impossible pour l'instant."
+      }
+    },
+    "RESET-PASSWORD-REQUEST": {
+      "MESSAGE": "Vous avez oublié votre mot de passe ? Saisissez votre adresse email ci-dessous pour recevoir un email vous invitant à réinitialiser votre mot de passe.",
+      "TITLE": "Réinitialiser le mot de passe",
+      "EMAIL": "Adresse email",
+      "EMAIL-PLACEHOLDER": "Entrer votre adresse email",
+      "SECURITY-SECTION": "Vérification de sécurité",
+      "CONFIRM": "Demander la réinitialisation du mot de passe",
+      "SUCCESS-MESSAGE": "Vous recevrez un email sous peu avec un lien pour réinitialiser votre mot de passe.",
+      "ERROR": {
+        "UNEXISTING-USER": "L'utilisateur avec cette adresse email n'existe pas."
+      }
+    },
+    "RESET-PASSWORD": {
+      "TITLE": "Réinitialiser le mot de passe",
+      "PASSWORD": "Mot de passe",
+      "PASSWORD-CONFIRM": "Confirmer le mot de passe",
+      "PASSWORD-PLACEHOLDER": "Entrer un nouveau mot de passe.",
+      "PASSWORD-CONFIRM-PLACEHOLDER": "Confirmer le nouveau mot de passe",
+      "CONFIRM": "Modifier le mot de passe",
+      "LOADING": "Réinitialisation du mot de passe...",
+      "SUCCESS-MESSAGE": "Votre mot de passe a été modifié.",
+      "LOGIN": "Connexion",
+      "FAILURE-MESSAGE": "Votre mot de passe ne peut pas être réinitialisé. Le lien de réinitialisation n'est pas valide ou a expiré."
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "Concepteur d'application",
+      "DESCRIPTION": "Créez des modèles de processus, formulaires, tables de décision, définitions d'application, modèles de données et définitions de gabarit, et partagez-les avec d'autres.",
+      "TITLE-PROCESSES": "Modèles de processus",
+      "TITLE-FORMS": "Modèles de formulaires",
+      "TITLE-APPS": "Modèles d'applications",
+      "TITLE-STENCILS": "Gabarits",
+      "TITLE-DECISION-TABLES": "Tables de décision",
+      "TITLE-DATA-MODELS": "Modèles de données"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Administrateur",
+      "DESCRIPTION": "Gérez tous vos nœuds et clusters de serveur Process Services."
+    },
+    "TASKS": {
+      "TITLE": "Application Tâches",
+      "DESCRIPTION": "Accédez à la liste complète de vos tâches et travaillez sur toute tâche qui vous est assignée depuis n'importe quelle application de processus. Commencez de nouveaux processus et de nouvelles tâches.",
+      "TITLE-TASKS": "Tâches",
+      "TITLE-PROCESSES": "Processus",
+      "TITLE-PROCESSES?MODE=START": "Démarrer"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profil",
+      "DESCRIPTION": "Gérer votre profil : modifier votre photo, votre nom et d'autres paramètres.",
+      "DESCRIPTION-TENANT-ADMIN": "Gérez les utilisateurs et les groupes dans votre organisation.",
+      "TITLE-TENANT-ADMIN": "Gestion des identités",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Clients",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Utilisateurs",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Capacités",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organisation",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profil",
+      "TITLE-PROFILE": "Profil"
+    },
+    "ANALYTICS": {
+      "TITLE": "Application Analyse",
+      "DESCRIPTION": "Générez divers rapports fournissant des statistiques de performance et de débit sur les processus."
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "Tâches {{name}}",
+      "TITLE-PROCESSES": "Processus {{name}}",
+      "TITLE-PROCESSES?MODE=START": "Démarrage de {{name}}"
+    },
+    "POPUP": {
+      "ADD-APP-TITLE": "Ajouter une application à la page d'arrivée",
+      "ADD-APP-SUMMARY": "Ajouter une application à votre page d'arrivée",
+      "GETTING-STARTED-TITLE": "Démarrage du logiciel Process Services de gestion des processus métier"
+    },
+    "ACTION": {
+      "DELETE": "Supprimer l'application",
+      "ADD": "Ajouter une nouvelle application",
+      "UPLOAD-LICENSE": "Importer la licence"
+    },
+    "MESSAGE": {
+      "DELETED": "L'application a été supprimée",
+      "NO-CUSTOM-APPS": "Bienvenue dans Alfresco Process Services, une manière plus intelligente de gérer vos processus métier ! Différentes opérations sont à votre disposition ici, vous pouvez :",
+      "NO-CUSTOM-APPS-EDITOR-HINT": "Concevoir des processus métier et les partager",
+      "NO-CUSTOM-APPS-TASKS-HINT": "Travailler sur vos tâches ou démarrer un nouveau processus",
+      "NO-CUSTOM-APPS-PROFILE-HINT": "Mettre à jour votre profil avec votre photo et vos détails les plus récents",
+      "NO-CUSTOM-APPS-GETTING-STARTED-HINT": "Lire le Guide de démarrage"
+    }
+  },
+  "LICENSE": {
+    "STATUS": {
+      "INVALID": "Licence non valide",
+      "WARNING": "Avertissement relatif aux licences"
+    },
+    "UPLOAD": {
+      "UPLOAD-LICENSE-TITLE": "Importer la licence",
+      "UPLOAD-LICENSE-DESCRIPTION": "Sélectionnez une licence à partir de votre ordinateur et déposez-la dans la zone ci-dessous.",
+      "CANCEL-UPLOAD": "Annuler l'importation",
+      "LICENSE-DROPZONE": "Déposer le fichier de licence ici",
+      "NO-DROP": "Le dépôt de fichier n'est pas pris en charge par votre navigateur",
+      "ERROR": "Erreur"
+    }
+  }
+}

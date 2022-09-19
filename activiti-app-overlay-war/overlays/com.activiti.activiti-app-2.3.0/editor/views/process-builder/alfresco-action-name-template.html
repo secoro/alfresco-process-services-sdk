@@ -1,0 +1,22 @@
+<div class="detail-group clearfix">
+    <div class="col-xs-12">
+        <div class="col-xs-3">
+            <label>Action</label>
+        </div>
+        <div class="col-xs-9">
+            <div class="input-group">
+                <input class="form-control" type="text" ng-model="step.actionName" name="propertyId" select-text="step.meta.new" editor-input-check>
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right" activiti-fix-dropdown-bug>
+                        <li ng-repeat="preset in presets">
+                            <a href="#" ng-click="onPresetSelected($event, preset)">
+                                {{preset.title}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

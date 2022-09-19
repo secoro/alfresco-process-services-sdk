@@ -1,0 +1,415 @@
+<div ng-repeat="tab in step.meta.type.tabs">
+	<div ng-show="activeTab == tab.id" ng-repeat="property in tab.properties">
+		<div ng-if="property.type != 'select-fields' && !property.hideLabel">
+		    <div class="col-xs-12" ng-if="property.type !== 'boolean'">
+    			<div class="col-xs-3">
+    			    <label>{{property.name | translate}}</label>
+    			</div>
+    			<div class="col-xs-9" ng-form="variableForm">
+    			    <div class="form-group" ng-if="property.type == 'text'">
+    			        <input class="form-control" type="text" ng-model="step[property.id]" name="propertyId" placeholder="{{property.placeholder | translate}}" select-text="step.meta.new" editor-input-check="{{property.allowExpressions}}">
+    			    </div>
+                    <div class="form-group" ng-if="property.type == 'free-text'">
+    			        <input class="form-control" type="text" ng-model="step[property.id]" name="propertyId" placeholder="{{property.placeholder | translate}}" select-text="step.meta.new">
+    			    </div>
+                    <div ng-if="property.type == 'expression-text'">
+                        <div class="form-group">
+                            <input class="form-control" type="text" ng-readonly="true" ng-model="step[property.id]" name="propertyId"  placeholder="{{property.placeholder | translate}}" select-text="step.meta.new">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-xs" ng-click="editExpressionText(property.id)">{{'PROCESS-BUILDER.FIELD.GENERIC.EDIT' | translate}}</button>
+                        </div>
+                    </div>
+                    <div ng-if="property.type == 'expression-multiline-text'">
+                        <div class="form-group">
+                            <textarea rows="6" class="form-control" type="text" ng-readonly="true" ng-model="step[property.id]" ng-bind-attrs="{placeholder: '{{property.placeholder | translate}}'}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-xs" ng-click="editExpressionText(property.id)">{{'PROCESS-BUILDER.FIELD.GENERIC.EDIT' | translate}}</button>
+                        </div>
+                    </div>
+    			    <div class="form-group" ng-if="property.type == 'multiline text'">
+    			        <textarea rows="2" class="form-control" ng-model="step[property.id]" ng-bind-attrs="{placeholder: '{{property.placeholder | translate}}'}"></textarea>
+    			    </div>
+    			</div>
+    	     </div>
+    	     <div class="col-xs-12" ng-if="property.type === 'boolean'">
+    	        <div class="col-xs-12">
+                    <label style="color: #636363; font-size: 14px;">
+                        <input type="checkbox" ng-model="step[property.id]">
+                        &nbsp;{{property.name | translate}}
+                    </label>
+                </div>
+             </div>
+		</div>
+
+		<div assignment-select="step.assignment" all-steps="allSteps" step-id="step.id" ng-if="property.type == 'assignment'"></div>
+
+        <div recipient-select="step.recipient" all-steps="allSteps" step-id="step.id" ng-if="property.type == 'recipient'"></div>
+
+		<div fields-select="property" fields-select-step="step" ng-if="property.type == 'select-fields'"></div>
+
+	    <div class="detail-group first" ng-if="property.type == 'form'">
+            <div class="col-xs-12 clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-3">
+                        <label>{{'PROCESS-BUILDER.FIELD.FORM-SELECT.CURRENT-FORM' | translate}}: </label>
+                    </div>
+
+                    <div class="col-xs-9">
+                        <div class="btn-group span">
+                            <button activiti-fix-dropdown-bug select-form-popover on-form-create="createForm()" on-clear="selectForm()" on-form-selected="selectForm(form)" class="selection" data-toggle="dropdown">
+
+                                <span ng-if="step.formDefinition">
+                                     <i class="glyphicon glyphicon-list"></i>
+                                    {{step.formDefinition.name}}
+                                </span>
+                                <span class="empty" ng-if="!step.formDefinition">
+                                   {{'PROCESS-BUILDER.FIELD.FORM-SELECT.NO-FORM-SELECTED' | translate}}
+                                </span>
+
+                                <i class="icon icon-caret-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix" ng-show="step.formDefinition">
+                    <div class="col-xs-3">
+                        <label>{{'PROCESS-BUILDER.FIELD.FORM-SELECT.FORM-FIELDS' | translate}}:</label>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-xs" ng-click="showForm()">{{'PROCESS-BUILDER.FIELD.FORM-SELECT.OPEN-FORM' | translate}}</button>
+                        </div>
+                        <div class="detail">
+                            <span ng-repeat="field in model.fieldsForCurrentForm | limitTo : 10">
+                                {{$index != 0 && ', ' + field.name || field.name}}
+                            </span>
+                            <span class="empty" ng-if="!model.fieldsForCurrentForm.length">
+                                {{'PROCESS-BUILDER.FIELD.FORM-SELECT.NO-FIELDS' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="step.formDefinition  && isReusable(step.formDefinition)">
+                    <div ng-include="'views/process-builder/form-variable-map.html'" />
+                </div>
+            </div>
+        </div>
+        <div class="detail-group first" ng-if="property.type == 'subprocess'">
+            <div class="col-xs-12 clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-3">
+                        <label>{{'SUBPROCESS.TITLE' | translate}}</label>
+                    </div>
+
+                    <div class="col-xs-7">
+                        <div class="btn-group span">
+                            <button activiti-fix-dropdown-bug select-subprocess-popover on-subprocess-create="createSubProcess()" on-clear="selectSubProcess()" on-subprocess-selected="selectSubProcess(subProcess)" class="selection" data-toggle="dropdown" ng-disabled="readOnly">
+
+                                <span ng-if="step.subProcessDefinition">
+                                     <i class="glyphicon glyphicon-list"></i>
+                                    {{step.subProcessDefinition.name}}
+                                </span>
+                                <span class="empty" ng-if="!step.subProcessDefinition">
+                                   {{'SUBPROCESS.POPOVER.NONE-SELECTED' | translate}}
+                                </span>
+
+                                <i class="icon icon-caret-down"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <button class="btn btn-xs" ng-if="step.subProcessDefinition" ng-click="showSubProcess()">{{'SUBPROCESS.POPOVER.OPEN' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-group first" ng-if="property.type == 'goto'">
+            <div class="col-xs-12 clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-3">
+                        <label>{{'PROCESS-BUILDER.GOTO-STEP.TITLE' | translate}}</label>
+                    </div>
+
+                    <div class="col-xs-7">
+                        <div class="btn-group span">
+                            <div class="btn-group span" activiti-fix-dropdown-bug>
+                                <button class="selection" data-toggle="dropdown" ng-click="fixPosition($event)">
+                                    {{(step.gotoStep && step.gotoStep.name) || 'PROCESS-BUILDER.GOTO-STEP.SELECT' | translate}}
+                                    <span class="field-type"> - {{step.gotoStep.stepType}}</span>
+                                    <i class="icon icon-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="step in flatStepArray">
+                                        <a ng-click="selectStep(step)">{{step.name}}
+                                        <span class="field-type"> - {{step.type}}</span>
+                                        </a>
+                                    </li>
+                                    <li ng-if="!flatStepArray || flatStepArray.length == 0">
+                                        <a>{{'PROCESS-BUILDER.GOTO-STEP.NONE' | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="property.type == 'duedate'">
+            <div class="detail-group clearfix first">
+                <div class="col-xs-12">
+                    <div class="col-xs-12">
+                        <div class="btn-group span">
+                            <button class="selection" data-toggle="dropdown" ng-options="option.id as (option.title | translate) for option in taskDueDateOptions"
+                                bs-select ng-model="step.taskDueDateOption" activiti-fix-dropdown-bug>
+                               <i class="icon icon-caret-down"></i>
+                           </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix first" ng-if="step.taskDueDateOption === 'field'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.TIMER.DATE-FIELD' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div field-select="step.taskDueDateField" step-id="step.id" all-steps="allSteps" editor-type="step" field-type-filter="['date','datetime']" basic-field-info="true"></div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="detail-group clearfix first" ng-if="step.taskDueDateOption === 'variable'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.TIMER.DATE-VARIABLE' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+
+                        <div class="btn-group span" activiti-fix-dropdown-bug>
+                            <button class="selection" data-toggle="dropdown">
+                                <span ng-if="step.taskDueDateVariable">{{step.taskDueDateVariable.processVariableName}}</span>
+                                <span ng-if="!step.taskDueDateVariable">{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.SELECT-REST-RESPONSE-VARIABLE' | translate}}</span>
+                                <i class="icon icon-caret-down"></i>
+                            </button>
+                            <ul class="dropdown-menu large-width">
+                                <li ng-repeat="variable in getRestResponseVariables()">
+                                    <a ng-click="selectTaskDueDateResponseVariable(variable)">{{variable.processVariableName}}</a>
+                                </li>
+                                <li ng-if="!getRestResponseVariables() || getRestResponseVariables().length == 0">
+                                    <a>{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.NO-REST-RESPONSE-VARIABLE-AVAILABLE' |
+                                        translate}}</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix first" ng-if="step.taskDueDateOption === 'variable' || step.taskDueDateOption === 'field'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.DUEDATE.CALCULATION-TYPE' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="btn-group btn-group-justified">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="setAddCalculationType()" ng-model="step.taskDueDateCalculationType" ng-class="{'active' : (!step.taskDueDateCalculationType || step.taskDueDateCalculationType == 'add')}">{{'PROCESS-BUILDER.FIELD.DUEDATE.CALCULATION-OPTIONS.ADD' | translate}}</button>
+                          </div>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="setSubtractCalculationType()" ng-model="step.taskDueDateCalculationType" ng-class="{'active' : step.taskDueDateCalculationType == 'subtract'}">{{'PROCESS-BUILDER.FIELD.DUEDATE.CALCULATION-OPTIONS.SUBTRACT' | translate}}</button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix first" ng-if="step.taskDueDateOption === 'variable' || step.taskDueDateOption === 'field' || step.taskDueDateOption === 'static'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.YEARS' | translate}}:<input type="number" class="form-control" ng-model="step.taskDueDate.years">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.MONTHS' | translate}}:<input type="number" class="form-control" ng-model="step.taskDueDate.months">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.DAYS' | translate}}:<input type="number" class="form-control" ng-model="step.taskDueDate.days">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.HOURS' | translate}}:<input type="number" class="form-control" ng-model="step.taskDueDate.hours">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.MINUTES' | translate}}:<input type="number" class="form-control" ng-model="step.taskDueDate.minutes">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.SECONDS' | translate}}:<input type="number" class="form-control" ng-model="step.taskDueDate.seconds">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div ng-if="property.type == 'timer'">
+            <div class="detail-group clearfix first">
+                <div class="col-xs-12">
+                    <div class="btn-group span">
+                        <button class="selection" data-toggle="dropdown" ng-options="option.id as (option.title | translate) for option in dueDateOptions"
+                            bs-select ng-model="step.meta.dueDateOption" activiti-fix-dropdown-bug>
+                           <i class="icon icon-caret-down"></i>
+                       </button>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-group clearfix first" ng-if="step.meta.dueDateOption == 'property'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.TIMER.DATE-FIELD' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div field-select="step.dueField" step-id="step.id" all-steps="allSteps" editor-type="step" field-type-filter="['date','datetime']" basic-field-info="true"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix first" ng-if="step.meta.dueDateOption == 'variable'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.TIMER.DATE-VARIABLE' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+
+                        <div class="btn-group span" activiti-fix-dropdown-bug>
+                            <button class="selection" data-toggle="dropdown">
+                                <span ng-if="step.dueVariable">{{step.dueVariable.processVariableName}}</span>
+                                <span ng-if="!step.dueVariable">{{'PROCESS-BUILDER.HUMAN-STEP.TIMER.SELECT-REST-RESPONSE-VARIABLE' | translate}}</span>
+                                <i class="icon icon-caret-down"></i>
+                            </button>
+                            <ul class="dropdown-menu large-width">
+                                <li ng-repeat="variable in getRestResponseVariables()">
+                                    <a ng-click="selectTimerDueDateResponseVariable(variable)">{{variable.processVariableName}}</a>
+                                </li>
+                                <li ng-if="!getRestResponseVariables() || getRestResponseVariables().length == 0">
+                                    <a>{{'PROCESS-BUILDER.HUMAN-STEP.TIMER.NO-REST-RESPONSE-VARIABLE-AVAILABLE' |
+                                        translate}}</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix first" ng-if="step.meta.dueDateOption == 'duration'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.YEARS' | translate}}:<input type="number" class="form-control" ng-model="step.dueDuration.years">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.MONTHS' | translate}}:<input type="number" class="form-control" ng-model="step.dueDuration.months">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.DAYS' | translate}}:<input type="number" class="form-control" ng-model="step.dueDuration.days">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.HOURS' | translate}}:<input type="number" class="form-control" ng-model="step.dueDuration.hours">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.MINUTES' | translate}}:<input type="number" class="form-control" ng-model="step.dueDuration.minutes">
+                    </div>
+                    <div class="col-xs-4">
+                        {{'PROCESS-BUILDER.FIELD.TIMER.SECONDS' | translate}}:<input type="number" class="form-control" ng-model="step.dueDuration.seconds">
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-group clearfix" ng-show="step.meta.dueDateOption != 'none'">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.FIELD.TIMER.DUE-ACTION' | translate}}: </label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="btn-group span">
+                            <button class="selection" ng-options="option as (option.title | translate) for option in dueActionOptions"
+                                    bs-select ng-model="step.meta.dueActionOption" activiti-fix-dropdown-bug>
+                            </button>
+                        </div>
+                        <div class="form-group" ng-if="step.meta.dueActionOption.description">
+                            <p class="inline-help">{{step.meta.dueActionOption.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div assignment-select="step.dueAssignment" assignment-form-fields="availableFormFields" ng-if="step.meta.dueActionOption.id == 'reassign-task'" title="'Reassign'"></div>
+
+        </div>
+
+        <div class="detail-group first" ng-if="property.type == 'decisionTable'">
+            <div class="col-xs-12 clearfix">
+                <div class="form-group clearfix">
+                    <div class="col-xs-3">
+                        <label>{{'PROCESS-BUILDER.FIELD.DECISION-TABLE-SELECT.CURRENT-DECISION-TABLE' | translate}}: </label>
+                    </div>
+
+                    <div class="col-xs-9">
+                        <div class="btn-group span">
+                            <button activiti-fix-dropdown-bug select-decision-table-popover on-decision-table-create="createDecisionTable()" on-clear="selectDecisionTable()" on-decision-table-selected="selectDecisionTable(decisionTable)" class="selection" data-toggle="dropdown">
+
+                                <span ng-if="step.decisionTableDefinition">
+                                     <i class="glyphicon glyphicon-list"></i>
+                                    {{step.decisionTableDefinition.name}}
+                                </span>
+                                <span class="empty" ng-if="!step.decisionTableDefinition">
+                                   {{'PROCESS-BUILDER.FIELD.DECISION-TABLE-SELECT.NO-DECISION-TABLE-SELECTED' | translate}}
+                                </span>
+
+                                <i class="icon icon-caret-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 clearfix" ng-show="step.decisionTableDefinition">
+                <div class="form-group clearfix">
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-xs" ng-click="showDecisionTable()">{{'PROCESS-BUILDER.FIELD.DECISION-TABLE-SELECT.OPEN-DECISION-TABLE' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="step.decisionTableDefinition  && isReusable(step.decisionTableDefinition)">
+                <div ng-include="'views/process-builder/decision-step-variable-map.html'" />
+            </div>
+        </div>
+
+        <div ng-if="property.type === 'alfresco-cloud-source'" ng-include="'views/process-builder/alfresco-cloud-publish-source-template.html'"></div>
+        <div ng-if="property.type === 'alfresco-cloud-destination'" ng-include="'views/process-builder/alfresco-cloud-publish-destination-template.html'"></div>
+        <div ng-if="property.type === 'box-cloud-source'" ng-include="'views/process-builder/box-cloud-publish-source-template.html'"></div>
+        <div ng-if="property.type === 'box-cloud-destination'" ng-include="'views/process-builder/box-cloud-publish-destination-template.html'"></div>
+        <div ng-if="property.type === 'google-drive-source'" ng-include="'views/process-builder/google-drive-publish-source-template.html'"></div>
+        <div ng-if="property.type === 'google-drive-destination'" ng-include="'views/process-builder/google-drive-publish-destination-template.html'"></div>
+        <div ng-if="property.type === 'rest-endpoint'" ng-include="'views/process-builder/rest-endpoint-template.html'"></div>
+        <div ng-if="property.type === 'rest-request-message'" ng-include="'views/process-builder/rest-request-message-template.html'"></div>
+        <div ng-if="property.type === 'rest-response-message'" ng-include="'views/process-builder/rest-response-message-template.html'"></div>
+        <div ng-if="property.type === 'output-format'" ng-include="'views/process-builder/generate-doc-select-output-template.html'"></div>
+		<div ng-if="property.type === 'metadata-get'" ng-include="'views/process-builder/metadata-alfresco-get-template.html'"></div>
+        <div ng-if="property.type === 'metadata-put'" ng-include="'views/process-builder/metadata-alfresco-put-template.html'"></div>
+        <div ng-if="property.type === 'template-source'" ng-include="'views/process-builder/generate-doc-select-template-template.html'"></div>
+        <div ng-if="property.type === 'alfresco-action-endpoint'" ng-include="'views/process-builder/alfresco-action-endpoint-template.html'"></div>
+        <div ng-if="property.type === 'alfresco-action-accessor'" ng-include="'views/process-builder/alfresco-action-accessor-template.html'"></div>
+        <div ng-if="property.type === 'alfresco-action-params'" ng-include="'views/process-builder/alfresco-action-params-template.html'"></div>
+        <div ng-if="property.type === 'alfresco-action-name'" ng-include="'views/process-builder/alfresco-action-name-template.html'"></div>
+        
+        <div email-template-source="step.emailTemplateSource" all-steps="allSteps" step-id="step.id" ng-if="property.type == 'email-template-source' && (step.type != 'human-step' || step.allowSendEmail)"></div>
+
+    </div>
+</div>

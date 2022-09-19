@@ -1,0 +1,204 @@
+{
+  "COMMON": {
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Process Services bevindt zich in de modus Alleen-lezen omdat de lokale licentie ongeldig is.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Process Services bevindt zich in de modus Alleen-lezen omdat er geen licentie is gevonden.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "De toepassing bevindt zich in de modus Alleen-lezen vanwege ongeldige licentiedatums. (Ze zijn verlopen of de startdatum ligt in de toekomst.)",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Uw licentie is bijna verlopen! Process Services zal overgaan op de modus Alleen-lezen.",
+      "APP-LICENSE-UPLOAD-DISALLOWED": "Om een licentie te uploaden, moet u <code>license.allow-upload=true</code> instellen in uw activiti-app.properties",
+      "APP-LICENSE-NO-UPLOAD-CAPABILITY": "Opmerking! U hebt de functie 'Licentie uploaden' nodig om een licentie te kunnen uploaden"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Process Services",
+    "ERROR": {
+      "GENERIC": "Er is een fout opgetreden...",
+      "UNKNOWN": "Bij het uitvoeren van de aangevraagde bewerking is een fout opgetreden.",
+      "BAD_REQUEST": "Bij het uitvoeren van de aangevraagde bewerking is een fout opgetreden.",
+      "NOT_FOUND": "De resource die u wilt openen bestaat niet.",
+      "UNAUTHORIZED": "U moet zich aanmelden om de aangevraagde bewerking te kunnen uitvoeren.",
+      "FORBIDDEN": "U bent niet gemachtigd om de aangevraagde bewerking uit te voeren.",
+      "INTERNAL_SERVER_ERROR": "Bij het uitvoeren van de aangevraagde bewerking is een onverwachte fout opgetreden.",
+      "QUOTA-EXCEEDED-RUNTIME-APPS": "Als testgebruiker kunt u slechts {{quota}} geïmplementeerde apps tegelijk hebben.",
+      "QUOTA-EXCEEDED-LICENSE-APPS": "De licentie staat slechts {{quota}} geïmplementeerde apps tegelijk toe."
+    },
+    "ACTION": {
+      "LOGOUT": "Afmelden",
+      "HELP": "Aan de slag",
+      "EDIT-PROFILE": "Profiel bewerken",
+      "SAVE": "Opslaan",
+      "CANCEL": "Annuleren",
+      "CLOSE": "Sluiten",
+      "DEPLOY": "Implementeren",
+      "ABOUT": "Over Process Services",
+      "HELP-DOCS-LINK": "Help",
+      "UPLOAD-LICENSE": "Licentie uploaden"
+    },
+    "ABOUT": {
+      "TYPE": "Type",
+      "LICENSED-TO": "Gelicentieerd voor",
+      "EXPIRES": "Geldig tot",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Alle rechten voorbehouden.",
+      "LEGAL": "Juridische kennisgevingen en licentie-informatie"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "Aanmelden",
+    "USERNAME": "Gebruikersnaam",
+    "USERNAME-PLACEHOLDER": "Uw gebruikersnaam invoeren",
+    "PASSWORD": "Wachtwoord",
+    "PASSWORD-PLACEHOLDER": "Voer uw wachtwoord in",
+    "NO-ACCOUNT": "Nog geen account?",
+    "FORGOT-PASSWORD": "Wachtwoord vergeten?",
+    "INVALID-CREDENTIALS": "Ongeldige referenties",
+    "WELCOME": "Welkom bij Alfresco Process Services",
+    "TAG1": "<strong>Eenvoudig:</strong> Klaar voor gebruik, instellen is niet nodig - verbetert de productiviteit van gebruikers",
+    "TAG2": "<strong>Slim:</strong> Eenvoudige configuratie - biedt een gestructureerd framework voor al uw bedrijfsprocesvereisten",
+    "TAG3": "<strong>Open:</strong> Open source - open standaarden zorgen voor toekomstbestendigheid en eenvoudige integratie",
+    "PRIVACY": "Privacybeleid",
+    "ALL-RIGHTS": "Alle rechten voorbehouden",
+    "LOGIN-FORM": "Aanmeldingsformulier",
+    "SKIP-TO-CONTENT": "Ga naar content",
+    "BACK-TO-TOP": "Naar boven",
+    "SSO": "SSO-aanmelding",
+    "ACTION": {
+      "CONFIRM": "Aanmelden"
+    }
+  },
+  "ACCOUNT": {
+    "ACTIVATE": {
+      "TITLE": "Account activeren",
+      "ACTIVATING-MESSAGE": "Even geduld {{userFullName}}, uw account wordt geactiveerd...",
+      "SUCCESS-MESSAGE": "Uw account is geactiveerd. Meld u hieronder aan om te beginnen met het ontwerpen en uitvoeren van processen",
+      "FAILURE-MESSAGE": "Uw account kan niet worden geactiveerd. Het is al geactiveerd of de activeringskoppeling is verlopen."
+    },
+    "SIGNUP": {
+      "TITLE": "Meld u aan voor een account.",
+      "SIGNUP-TRIAL": "Maak een wachtwoord voor uw Process Services-testversie",
+      "EMAIL": "E-mailadres",
+      "FIRSTNAME": "Voornaam",
+      "LASTNAME": "Achternaam",
+      "PASSWORD": "Wachtwoord",
+      "PASSWORD-PLACEHOLDER": "Wachtwoord invoeren",
+      "PASSWORD-REPEAT": "Wachtwoord herhalen",
+      "PASSWORDS-NOT-EQUAL": "Wachtwoorden komen niet overeen",
+      "PASSWORDS-MIN-LENGTH": "Het wachtwoord is te kort; het moet uit minimaal {{minLength}} tekens bestaan",
+      "NEW-PASSWORD-STRENGTH": "Wachtwoordsterkte:",
+      "EMAIL-PLACEHOLDER": "E-mailadres invoeren",
+      "FIRSTNAME-PLACEHOLDER": "Voornaam invoeren",
+      "LASTNAME-PLACEHOLDER": "Achternaam invoeren",
+      "COMPANY": "Bedrijf (optioneel)",
+      "COMPANY-PLACEHOLDER": "Voer uw bedrijf in",
+      "LICENSETERMS": "Ik ga akkoord met de servicevoorwaarden en het privacybeleid van Alfresco.",
+      "CONFIRM": "Nu aanmelden",
+      "SUCCESS-MESSAGE": "Hartelijk bedankt dat u zich hebt aangemeld voor onze service. U ontvangt binnenkort een e-mail waarmee u uw account kunt activeren. Zodra uw account geactiveerd is, kunt u beginnen met het ontwerpen en uitvoeren van processen.",
+      "SECURITY-SECTION": "Beveiligingscontrole",
+      "PERSONAL-SECTION": "Persoonlijke gegevens",
+      "ACCOUNT-SECTION": "Account",
+      "ERROR": {
+        "ALREADY-REGISTERED": "Er is al een gebruiker aangemeld met het opgegeven e-mailadres.",
+        "DISABLED": "Aanmelden is op dit moment niet mogelijk."
+      }
+    },
+    "RESET-PASSWORD-REQUEST": {
+      "MESSAGE": "Wachtwoord vergeten? Voer hieronder uw e-mailadres in; u ontvangt dan een e-mail waarmee u uw wachtwoord opnieuw kunt instellen.",
+      "TITLE": "Wachtwoord opnieuw instellen",
+      "EMAIL": "E-mailadres",
+      "EMAIL-PLACEHOLDER": "Voer uw e-mailadres in",
+      "SECURITY-SECTION": "Beveiligingscontrole",
+      "CONFIRM": "Opnieuw instellen van wachtwoord aanvragen",
+      "SUCCESS-MESSAGE": "U ontvangt binnenkort een e-mail met een koppeling waarmee u uw wachtwoord opnieuw kunt instellen.",
+      "ERROR": {
+        "UNEXISTING-USER": "De gebruiker met het ingevoerde e-mailadres bestaat niet."
+      }
+    },
+    "RESET-PASSWORD": {
+      "TITLE": "Wachtwoord opnieuw instellen",
+      "PASSWORD": "Wachtwoord",
+      "PASSWORD-CONFIRM": "Wachtwoord bevestigen",
+      "PASSWORD-PLACEHOLDER": "Voer een nieuw wachtwoord in.",
+      "PASSWORD-CONFIRM-PLACEHOLDER": "Bevestig het nieuwe wachtwoord.",
+      "CONFIRM": "Wachtwoord wijzigen",
+      "LOADING": "Wachtwoord opnieuw instellen...",
+      "SUCCESS-MESSAGE": "Uw wachtwoord is gewijzigd.",
+      "LOGIN": "Meld u nu aan.",
+      "FAILURE-MESSAGE": "Uw wachtwoord kan niet opnieuw worden ingesteld. De koppeling voor het opnieuw instellen is ongeldig of verlopen."
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "App Designer",
+      "DESCRIPTION": "Maak procesmodellen, formulieren, beslissingstabellen, app-definities, gegevensmodellen, stencildefinities en deel ze met anderen.",
+      "TITLE-PROCESSES": "Procesmodellen",
+      "TITLE-FORMS": "Formuliermodellen",
+      "TITLE-APPS": "App-modellen",
+      "TITLE-STENCILS": "Stencils",
+      "TITLE-DECISION-TABLES": "Beslissingstabellen",
+      "TITLE-DATA-MODELS": "Gegevensmodellen"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Administrator",
+      "DESCRIPTION": "Beheer al uw Process Services-servernodes en clusters."
+    },
+    "TASKS": {
+      "TITLE": "Task App",
+      "DESCRIPTION": "Open uw volledige takenlijst en werk aan taken die door proces-apps aan u zijn toegewezen. U kunt ook nieuwe processen en taken starten.",
+      "TITLE-TASKS": "Taken",
+      "TITLE-PROCESSES": "Processen",
+      "TITLE-PROCESSES?MODE=START": "Start"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profiel",
+      "DESCRIPTION": "Beheer uw profiel: wijzig uw afbeelding, naam en andere instellingen.",
+      "DESCRIPTION-TENANT-ADMIN": "Beheer de gebruikers en groepen in uw organisatie.",
+      "TITLE-TENANT-ADMIN": "Identiteitsbeheer",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenants",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Gebruikers",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Functies",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organisatie",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profiel",
+      "TITLE-PROFILE": "Profiel"
+    },
+    "ANALYTICS": {
+      "TITLE": "Analytics App",
+      "DESCRIPTION": "Genereer verschillende rapporten met prestatie- en doorvoerstatistieken voor processen."
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}}-taken",
+      "TITLE-PROCESSES": "{{name}}-processen",
+      "TITLE-PROCESSES?MODE=START": "{{name}}-start"
+    },
+    "POPUP": {
+      "ADD-APP-TITLE": "App toevoegen aan landing page",
+      "ADD-APP-SUMMARY": "Voeg een app toe aan uw landing page.",
+      "GETTING-STARTED-TITLE": "Aan de slag met Process Services BPMS"
+    },
+    "ACTION": {
+      "DELETE": "App verwijderen",
+      "ADD": "Nieuwe app toevoegen",
+      "UPLOAD-LICENSE": "Licentie uploaden"
+    },
+    "MESSAGE": {
+      "DELETED": "App is verwijderd",
+      "NO-CUSTOM-APPS": "Welkom bij Alfresco Process Services, de slimmere oplossing voor bedrijfsprocesbeheer! Van hieruit kunt u verschillende dingen doen, bijvoorbeeld:",
+      "NO-CUSTOM-APPS-EDITOR-HINT": "Bedrijfsprocessen ontwerpen en delen",
+      "NO-CUSTOM-APPS-TASKS-HINT": "Werken aan uw taken of een proces starten",
+      "NO-CUSTOM-APPS-PROFILE-HINT": "Uw profiel bijwerken met uw nieuwste foto en gegevens",
+      "NO-CUSTOM-APPS-GETTING-STARTED-HINT": "De Aan de slag-handleiding lezen"
+    }
+  },
+  "LICENSE": {
+    "STATUS": {
+      "INVALID": "Ongeldige licentie",
+      "WARNING": "Licentiewaarschuwing"
+    },
+    "UPLOAD": {
+      "UPLOAD-LICENSE-TITLE": "Licentie uploaden",
+      "UPLOAD-LICENSE-DESCRIPTION": "Selecteer een licentie op uw computer of zet een licentie neer in de onderstaande zone.",
+      "CANCEL-UPLOAD": "Uploaden annuleren",
+      "LICENSE-DROPZONE": "Hier een licentiebestand neerzetten",
+      "NO-DROP": "Uw browser biedt geen ondersteuning voor het neerzetten van bestanden.",
+      "ERROR": "Fout"
+    }
+  }
+}

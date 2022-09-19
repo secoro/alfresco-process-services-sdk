@@ -1,0 +1,79 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog wide alfresco-cloud-browse">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h3 class="modal-title" ng-if="uploadModel.noNetwork">{{'INTEGRATION.ALFRESCO-CLOUD.TITLE.BROWSE-ON-PREM' | translate:currentAccount}}</h3>
+
+                <h3 class="modal-title" ng-if="!uploadModel.noNetwork" translate="INTEGRATION.ALFRESCO-CLOUD.TITLE.BROWSE-CLOUD"></h3>
+                <div class="summary">
+                    <span ng-if="!folderSelect">
+                        <span ng-if="uploadModel.noNetwork">{{'INTEGRATION.ALFRESCO-CLOUD.MESSAGE.ON-PREM-BROWSE' | translate:currentAccount}}</span>
+                        <span ng-if="!uploadModel.noNetwork">{{'INTEGRATION.ALFRESCO-CLOUD.MESSAGE.CLOUD-BROWSE' | translate}}</span>
+                    </span>
+                    <span ng-if="folderSelect">
+                        {{'INTEGRATION.ALFRESCO.MESSAGE.SELECT-FOLDER-DESCRIPTION' | translate}}
+                    </span>
+                </div>
+            </div>
+            <div class="modal-body" ng-if="currentAccount.errorMessage">
+                <div class="error-message">
+                    {{currentAccount.errorMessage}}
+                </div>
+            </div>
+            <div class="modal-body"  ng-if="currentAccount.errorMessage === undefined">
+
+                <div class="clearfix" ng-show="!selectedSite">
+                    <div class="col-xs-6" ng-show="!uploadModel.noNetwork">
+                        <h4>{{'INTEGRATION.ALFRESCO.MESSAGE.CHOOSE-NETWORK' | translate}}:</h4>
+                        <ul class="simple-list selection selectable">
+                            <div loading="!alfrescoNetworks"></div>
+                            <li ng-click="selectNetwork(network)" ng-repeat="network in alfrescoNetworks.data" ng-class="{'active': network.id == selectedNetwork.id}">
+                                {{network.id}}
+                                <i class="icon icon-caret-right"></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-class="{'col-xs-6' : !uploadModel.noNetwork}">
+                        <h4>{{'INTEGRATION.ALFRESCO.MESSAGE.CHOOSE-SITE' | translate}}:</h4>
+                        <ul class="simple-list selection selectable">
+                            <div loading="(selectedNetwork || uploadModel.noNetwork) && !alfrescoSites"></div>
+                            <li ng-click="selectSite(site)" ng-repeat="site in alfrescoSites.data" ng-class="{'active': site.id == selectedSite.id}">
+                                {{site.title}}
+                                <i class="icon icon-caret-right"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clearfix" ng-if="selectedSite">
+                    <div class="crumbs" ng-if="!contentSource || (contentSource && !contentSource.notAllowNavigateFolders)">
+                        <span class="crumb" ng-click="selectSite()">{{selectedNetwork.id && selectedNetwork.id + ' ' + ('INTEGRATION.ALFRESCO.MESSAGE.NETWORK' | translate) || currentAccount.name}}  <i class="icon icon-caret-right"></i></span>
+                        <span class="crumb" ng-click="loadSiteContent()">{{selectedSite.title}}</span>
+                        <span class="crumb" ng-repeat="folder in currentFolderTree" ng-click="navigateToFolder($index)">
+                            <i class="icon icon-caret-right"></i>{{folder.title}}
+                        </span>
+                    </div>
+                    <ul class="simple-list selection selectable">
+                        <div loading="(selectedSite && !currentContent) || currentAccount.loading"></div>
+                        <li class="nothing-to-see" ng-if="(currentContent.data | filter: filterNavigableContent)== 0">
+                            <span>{{'INTEGRATION.ALFRESCO.MESSAGE.NO-CONTENT' | translate}}</span>
+                        </li>
+                        <li ng-click="selectAlfrescoContent(content)" ng-repeat="content in currentContent.data | filter: filterNavigableContent" ng-class="{'active': content.id == selectedContent.id}">
+                            <i class="icon icon-{{content.simpleType}}"></i>
+                            {{content.title}}
+                            <i class="icon icon-caret-right" ng-if="content.folder"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer" ng-if="folderSelect">
+                <div class="btn-group pull-right">
+                    <button class="btn" ng-disabled="!currentFolderTree.length" ng-click="confirmFolderSelection()">
+                        {{currentFolderTree.length && ( ('INTEGRATION.ALFRESCO.MESSAGE.SELECT-FOLDER' | translate) + ': ' + currentFolderTree[currentFolderTree.length - 1].title) || ('INTEGRATION.ALFRESCO.MESSAGE.SELECT-FOLDER' | translate) + '...'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

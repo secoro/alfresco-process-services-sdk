@@ -1,0 +1,150 @@
+<div class="modal">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h2>
+            </div>
+            <div class="modal-body">
+
+                <p>
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    {{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.DESCRIPTION' | translate}}
+                </p>
+
+                <p style="margin: 30px 0 30px 0;">
+                    <strong>{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.SELECTED-TEMPLATE' | translate}}</strong>
+                    <a href="{{documentTemplateModel.currentTemplateDownloadUrl}}"><em ng-if="documentTemplate && documentTemplate.name">
+                        {{documentTemplate.name}}
+                    </em></a>
+                    <em ng-if="!documentTemplate && !documentTemplate.name">{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.NO-TEMPLATE-SELECTED' | translate}}</em>
+                </p>
+
+                <ul class="nav nav-tabs" style="font-size:16px;">
+                    <li role="presentation" ng-class="{ 'active' : documentTemplateModel.currentTab == 'tenantTemplates'}" ng-click="documentTemplateModel.currentTab = 'tenantTemplates'">
+                        <a href="">{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.TAB-TENANT-TEMPLATES-TTITLE' | translate}}</a>
+                    </li>
+                    <li role="presentation" ng-class="{ 'active' : documentTemplateModel.currentTab == 'uploadTemplate'}" ng-click="documentTemplateModel.currentTab = 'uploadTemplate'">
+                        <a href="">{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.TAB-UPLOAD-TITLE' | translate}}</a>
+                    </li>
+                </ul>
+
+
+                <div ng-if="documentTemplateModel.currentTab == 'tenantTemplates'" style="margin-top: 20px;font-size:14px;">
+
+                    <div class="input-group" style="width: 50%; margin-bottom: 10px;">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </span>
+                        <input type="text" ng-model="documentTemplateModel.nameFilter" class="form-control" ng-change="refreshDelayed()">
+                    </div>
+
+                    <span ng-if="documentTemplateModel.templates.data && documentTemplateModel.templates.data.length > 0" class="pull-left">
+                        {{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.MATCHING-TEMPLATES' | translate:documentTemplateModel.templates}}
+                        <a ng-click="showPreviousTemplates()" ng-show="documentTemplateModel.page > 0">&laquo;
+                            {{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.SHOW-PREVIOUS' | translate}} {{documentTemplateModel.pageSize}}
+                        </a>
+                        <span ng-show="documentTemplateModel.page > 0 && documentTemplateModel.moreTemplates">|</span>
+                            <a ng-click="showNextTemplates()" ng-show="documentTemplateModel.moreTemplates">{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.SHOW-NEXT' | translate}} {{documentTemplateModel.pageSize}} &raquo;</a>
+                        </span>
+
+                    <div class="sort pull-right">
+                        <div class="dropdown btn-group btn-group-sm">
+                            <a class="dropdown-toggle" trigger="click" placement="bottom-right"
+                               ng-model="documentTemplateModel.sort" ng-change="sortChanged()"
+                               ng-options="sort.id as (sort.title | translate) for sort in documentTemplateModel.possibleSorts"
+                               bs-select></a>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="generate-document-templates-container"
+                         ng-if="documentTemplateModel.templates.data && documentTemplateModel.templates.data.length > 0">
+                        <table class="generate-document-templates">
+                            <thead>
+                                <tr>
+                                    <th width="50%">{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.NAME' | translate}}</th>
+                                    <th width="30%">{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.UPLOAD-DATE' | translate}}</th>
+                                    <th width="20%"></th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="template in documentTemplateModel.templates.data" ng-class="{ 'selected-template' : template.id === documentTemplate.id}" ng-click="selectTemplate(template)">
+                                <td>{{template.name}}</td>
+                                <td>{{template.created | dateformat}}</td>
+                                <td align="center">
+                                    <a href="{{template.downloadUrl}}" style="margin-right: 20px;">{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.DOWNLOAD' | translate}}</a>
+                                    <a href="" ng-click="selectTemplate(template)">{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.SELECT' | translate}}</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div ng-if="!documentTemplateModel.templates.data || documentTemplateModel.templates.data.length == 0"
+                         class="actions">
+                        <span>{{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.NO-FOUND' | translate}}</span>
+                    </div>
+
+                </div>
+
+                <div ng-if="documentTemplateModel.currentTab == 'uploadTemplate'" style="margin-top: 20px;">
+
+                    <!--[if IE 9]>
+
+                    <div class="upload-document-template">
+
+                        <input type="file" ngf-select="" ngf-change="onNewUploadSelected($files, true)" style="padding-top:6px;" ng-disabled="readOnly">
+                        <div class="upload-document-template-dropbox"
+                             ngf-drop="onNewUploadSelected($files)"
+                             ngf-drag-over-class="dragover"
+                             ng-show="dropSupported && !readOnly">
+                            {{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.UPLOAD-DROPZONE' | translate}}
+                        </div>
+                        <div ngf-drop-available="dropSupported=true"
+                             ng-show="!dropSupported">{{'PROCESS.POPUP.IMPORT.NO-DROP' | translate}}</div>
+                        <div class="progress" ng-show="documentTemplateModel.loading" style="margin: 10px 0 10px 0">
+                            <div class="progress-bar progress-bar-striped active" ng-style="{width: documentTemplateModel.uploadProgress + '%'}">{{documentTemplateModel.uploadProgress}} %</div>
+                        </div>
+                        <button class="btn btn-danger btn-sm"
+                                ng-click="upload.abort()"
+                                ng-disabled="!documentTemplateModel.loading"
+                                style="margin-bottom: 20px">
+                            {{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.UPLOAD-CANCEL' | translate}}
+                        </button>
+
+                    </div>
+                    <![endif]-->
+                    <!--[if gt IE 9]> <!-- -->
+                    <div class="upload-document-template">
+
+                        <input type="file" ngf-select="" ngf-change="onNewUploadSelected($files)" style="font-size: smaller; padding-top:6px;" ng-disabled="readOnly">
+                        <div class="upload-document-template-dropbox"
+                             ngf-drop ngf-change="onNewUploadSelected($files)"
+                             ngf-drag-over-class="dragover"
+                             ng-show="dropSupported && !readOnly">
+                            {{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.UPLOAD-DROPZONE' | translate}}
+                        </div>
+                        <div ngf-drop-available="dropSupported=true"
+                             ng-show="!dropSupported">{{'PROCESS.POPUP.IMPORT.NO-DROP' | translate}}</div>
+                        <div class="progress" ng-show="documentTemplateModel.loading" style="margin: 10px 0 10px 0">
+                            <div class="progress-bar progress-bar-striped active" ng-style="{width: documentTemplateModel.uploadProgress + '%'}">{{documentTemplateModel.uploadProgress}} %</div>
+                        </div>
+                        <button class="btn btn-danger btn-sm"
+                                ng-click="upload.abort()"
+                                ng-disabled="!documentTemplateModel.loading"
+                                style="margin-bottom: 20px">
+                            {{'PROPERTY.GENERATEDOCUMENT.TEMPLATE.UPLOAD-CANCEL' | translate}}
+                        </button>
+                    </div>
+
+                    <!-- <![endif]-->
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" ng-disabled="readOnly" class="btn btn-primary" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,244 @@
+{
+  "COMMON": {
+    "ACCOUNTS": {
+      "box": "Box",
+      "alfresco-*": "Alfresco ({{name}})",
+      "alfresco-cloud": "Alfresco Content Services in the Cloud",
+      "google-drive": "Google ドライブ"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "ローカルのライセンスが無効なため、Alfresco Process Services は読み取り専用モードで実行されています。",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "ローカルのライセンスが見つからなかったため、Alfresco Process Services は読み取り専用モードで実行されています。",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "ローカルのライセンスの日付が無効である (期限切れか、まだ開始日が来ていない) ため、Alfresco Process Services は読み取り専用モードで実行されています。",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "ライセンスの有効期限が近づいています。有効期限が切れると、Alfresco Process Services は読み取り専用モードになるので注意してください。"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "分析",
+    "ERROR": {
+      "GENERIC": "エラーが発生しました...",
+      "UNKNOWN": "指定した処理の実行中にエラーが発生しました。",
+      "BAD_REQUEST": "指定した処理の実行中にエラーが発生しました。",
+      "NOT_FOUND": "アクセスしようとしているリソースは存在しません",
+      "UNAUTHORIZED": "指定した処理を実行するにはサインインする必要があります。",
+      "FORBIDDEN": "指定した処理の実行は許可されていません",
+      "INTERNAL_SERVER_ERROR": "指定した処理の実行中に不明なエラーが発生しました。"
+    },
+    "NAVIGATION": {
+      "REPORTS": "レポート",
+      "CONFIGURE": "設定"
+    },
+    "ACTION": {
+      "LOGOUT": "サインアウト",
+      "SAVE": "保存",
+      "CANCEL": "キャンセル",
+      "CLOSE": "閉じる",
+      "ABOUT": "Alfresco Process Services について",
+      "HELP-DOCS-LINK": "ヘルプ"
+    },
+    "ABOUT": {
+      "TYPE": "種類",
+      "LICENSED-TO": "ライセンス先",
+      "EXPIRES": "有効期限",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. All rights reserved.",
+      "LEGAL": "法的情報とライセンス"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "プロセスに関するあらゆる種類の重要なレポートを取得して、ボトルネックの特定やパフォーマンスの改善に使うことができます。",
+    "GENERATE-REPORTS": "ここで標準レポートを追加してください。",
+    "NO-REPORT-SELECTED": "レポートが選択されていません。左側のリストからレポートを選択してください",
+    "NO-DATA-FOUND": "データが見つかりません",
+    "CONFIG-REPORTS": "レポートの設定",
+    "RESET-ALL-REPORTS": "あなたのすべてのレポートをリセット",
+    "FETCHING-PROC-DEFS": "プロセス定義を取得しています...",
+    "GENERATING": "レポートを生成しています...",
+    "SAVE-REPORT": "このレポートを保存します",
+    "EXPORT-REPORT": "データのエクスポート",
+    "SHOW": "表示するにはここクリックします",
+    "HIDE": "非表示にするにはもう一度ここをクリックします",
+    "FILL-PARAMS": "レポートデータはありません。レポートを生成するためのパラメータを入力してください",
+    "PROCESS-STATUS": "プロセスのステータス",
+    "TASK-STATUS": "タスクのステータス",
+    "STATUS": {
+      "ACTIVE": "アクティブ",
+      "ALL": "すべて",
+      "COMPLETE": "完了"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "現在のプロセス定義で完了したタスクはありません",
+      "DATE-RANGE": {
+        "TODAY": "今日",
+        "YESTERDAY": "昨日",
+        "LAST-7-DAYS": "最近 7 日間",
+        "PREVIOUS-MONTH": "前月",
+        "CURRENT-YEAR": "今年",
+        "CUSTOM-RANGE": "期間の指定",
+        "APPLY": "適用",
+        "CANCEL": "キャンセル",
+        "FROM": "開始日",
+        "TO": "終了日"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "1 時間に 1 回",
+        "DAY": "1 日に 1 回",
+        "WEEK": "週 1 回",
+        "MONTH": "月 1 回",
+        "YEAR": "1 年に 1 回"
+      },
+      "DURATION": {
+        "SECONDS": "秒",
+        "MINUTES": "分",
+        "HOURS": "時",
+        "DAYS": "日"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "TITLE": "タスクの概要",
+        "PROCESS-DEFINITION": "プロセス定義",
+        "DATE-RANGE": "日付範囲",
+        "DATE-RANGE-INTERVAL": "集計単位 (日数)",
+        "TASK-COUNT-TITLE": "タスク数",
+        "TASK-COUNT-DESCRIPTION": "このグラフは、指定した日付範囲内のタスクの合計数を示します。",
+        "TASK-DURATIONS-TITLE": "タスクの期間",
+        "TASK-DURATIONS-DESCRIPTION": "このグラフは、指定した日付範囲内に完了したタスクの期間の平均値、最初値、最大値 (時間数) を示します。x 軸は、下の表のタスクの行番号の値です。",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "担当者別のタスク数",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "この円グラフは、選択したプロセス定義のタスクの数を担当者別に示します。",
+        "DETAILED-TASK-STATS-TITLE": "タスクの集計結果",
+        "DETAILED-TASK-STATS-DESCRIPTION": "この表は、すべてのタスクの集計データです。タスクをクリックすると、その詳細情報が表示されます。時間に関する情報は、すべて時間数で示されます。",
+        "DETAILED-TASK-STATS-TASK": "タスク",
+        "DETAILED-TASK-STATS-ASSIGNEE": "担当者",
+        "TASK-HISTOGRAM-TITLE": "期間別タスク数",
+        "TASK-HISTOGRAM-TABLE": "表: 前のグラフのデータを表形式にしたもの",
+        "TASK-HISTOGRAM-TABLE-DATE": "日付",
+        "COUNT": "数",
+        "SUM": "合計",
+        "MIN-DURATION": "最小期間",
+        "MAX-DURATION": "最大期間",
+        "AVERAGE": "平均",
+        "STDDEV": "標準偏差"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "TITLE": "プロセスインスタンスの概要",
+        "PROCESS-DEFINITION": "プロセス定義",
+        "DATE-RANGE": "日付範囲",
+        "SLOW-PROC-INST-NUMBER": "最も遅いプロセスインスタンスの表示数",
+        "HISTOGRAM-TITLE": "プロセスインスタンス数",
+        "HISTOGRAM-DESCRIPTION": "次のグラフは、選択した日付範囲内に開始され完了したプロセスインスタンスの数を示します。",
+        "ACTIVITY-DURATION-TABLE-TITLE": "アクティビティ期間の詳細",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "次の表は、プロセスのさまざまなアクティビティのタイミングを、延べ所要時間別に示します。時間に関する情報は、すべて時間数で示されます。",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "アクティビティ",
+        "ACTIVITY-DURATION-CHART-TITLE": "プロセスステップの合計時間",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "このグラフは、アクティビティの所要時間を示します。数値は、下の表の各アクティビティの所要時間を全期間合計したものです。",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "最も遅いプロセスインスタンス",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "この表は、指定した日付範囲内に完了した最も遅いプロセスインスタンスを示します。データをクリックすると、そのプロセスインスタンスのプロセス変数が表示されます。",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "期間",
+        "SLOWEST-PROCESS-INSTANCES-ID": "内部 ID",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "ビジネスキー",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "作成時刻",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "終了時刻",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "変数",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "変数名",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "変数の値",
+        "COUNT": "数",
+        "SUM": "合計",
+        "MIN-DURATION": "最小期間",
+        "MAX-DURATION": "最大期間",
+        "AVERAGE": "平均",
+        "STDDEV": "標準偏差"
+      },
+      "TASK-SLA": {
+        "TITLE": "タスクのサービスレベルアグリーメント",
+        "PROCESS-DEFINITION": "プロセス定義",
+        "TASK": "タスク",
+        "DATE-RANGE": "日付範囲",
+        "SLA-DURATION": "このタスクを SLA の範囲内で完了するために必要な時間",
+        "SLA-NOT-OK": "サービスレベルアグリーメント (SLA) を満たしたタスクと満たさなかったタスク",
+        "ASSIGNEE-TABLE": "SLA の範囲内でタスクを完了しなかった担当者",
+        "ASSIGNEE": "担当者",
+        "COUNT": "数"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "TITLE": "プロセス定義の概要",
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "プロセス定義の合計数: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "プロセスインスタンスの合計数: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "アクティブなプロセスインスタンスの合計数: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "完了したプロセスインスタンスの合計数: ",
+        "DETAIL-TABLE": "プロセス定義の詳細",
+        "DETAIL-TABLE-PROCESS": "プロセス定義",
+        "DETAIL-TABLE-TOTAL": "合計",
+        "DETAIL-TABLE-ACTIVE": "アクティブ",
+        "DETAIL-TABLE-COMPLETED": "完了日",
+        "PROC-INST-CHART-TITLE": "プロセスインスタンスの集計",
+        "DURATIONS-CHART-TITLE": "各プロセス定義の平均タイミング",
+        "DURATIONS-CHART-DESCRIPTION": "完了したプロセスインスタンスの平均期間と標準偏差 (時間数)。x 軸の数値は、上の表のデータを表したものです。"
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "プロセスのヒートマップ",
+        "TYPE-FILTERING": "すべてのプロセスステップを含む (このオプションのチェックを外すと、開始イベントやゲートウェイなどのパススルーステップが削除されます)",
+        "METRIC-TOTAL-COUNT": "ステップが実行された回数",
+        "METRIC-TOTAL-TIME": "プロセスステップの合計所要時間",
+        "METRIC-AVG-TIME": "プロセスステップの平均所要時間",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "回",
+        "METRIC-TOTAL-TIME-TOOLTIP": "時",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "時",
+        "GENERATING": "プロセスのヒートマップを作成しています ..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "レポートの保存",
+        "DESCRIPTION": "現在のパラメータ設定が保存され、新しいレポートがレポートリストに表示されます。そのレポートをクリックすると、保存されたパラメータ値を使用してレポートが生成されます。",
+        "NAME": "名前"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "データのエクスポート",
+        "NAME": "名前"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "レポートの削除",
+        "DESCRIPTION": "このレポートを削除しますか?",
+        "CONFIRM": "レポートの削除"
+      }
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "アプリデザイナー",
+      "TITLE-PROCESSES": "プロセスモデル",
+      "TITLE-FORMS": "フォームモデル",
+      "TITLE-APPS": "アプリモデル",
+      "TITLE-STENCILS": "ステンシル",
+      "TITLE-DECISION-TABLES": "意思決定表",
+      "TITLE-DATA-MODELS": "データモデル"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "管理アプリ"
+    },
+    "TASKS": {
+      "TITLE": "タスクアプリ",
+      "TITLE-TASKS": "タスク",
+      "TITLE-PROCESSES": "プロセス",
+      "TITLE-PROCESSES?MODE=START": "開始"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "プロフィール",
+      "TITLE-TENANT-ADMIN": "ID の管理",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "テナント",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "ユーザー",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "権限",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "組織",
+      "TITLE-TENANT-ADMIN-PROFILE": "プロフィール",
+      "TITLE-PROFILE": "プロフィール"
+    },
+    "ANALYTICS": {
+      "TITLE": "分析アプリ"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}} のタスク",
+      "TITLE-PROCESSES": "{{name}} のプロセス",
+      "TITLE-PROCESSES?MODE=START": "{{name}} の開始"
+    }
+  }
+}

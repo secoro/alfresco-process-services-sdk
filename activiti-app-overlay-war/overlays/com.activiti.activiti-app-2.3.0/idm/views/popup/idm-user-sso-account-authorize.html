@@ -1,0 +1,33 @@
+
+<div class="modal" tabindex="-1" role="dialog" [config]="{backdrop: 'static',  keyboard: false}" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title" ng-if="!model.editRepository.edit">
+                    {{'IDM.PROFILE-MGMT.POPUP.CREATE-SSO-REPOSITORY-TITLE' | translate:model.editedRepository}}
+                </h4>
+                <h4 class="modal-title" ng-if="model.editRepository.edit">
+                    {{'IDM.PROFILE-MGMT.POPUP.EDIT-SSO-REPOSITORY-TITLE' | translate:model.editedRepository}}
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div ng-if="!model.editedRepository.ownerEmail">
+                    {{'IDM.PROFILE-MGMT.POPUP.NO-SSO-REPOSITORY-CONFIGURED' | translate:model.editedRepository}}
+                </div>
+                <div ng-if="model.editedRepository.ownerEmail">
+                    {{'IDM.PROFILE-MGMT.POPUP.SSO-REPOSITORY-CONFIGURED' | translate}}<br/>
+                    {{'IDM.PROFILE-MGMT.POPUP.SSO-REPOSITORY-KEY-EXPIRE-AT' | translate: {expireDateTime:model.editedRepository.expireDate} }}
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"
+                        ng-show="!model.editedRepository.ownerEmail"
+                        ng-click="authorizeAndSaveSSORepository(); $hide()">{{'IDM.GENERAL.ACTION.AUTHORIZE' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

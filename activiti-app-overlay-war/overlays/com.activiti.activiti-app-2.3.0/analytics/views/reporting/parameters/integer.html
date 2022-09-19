@@ -1,0 +1,7 @@
+<div ng-controller="ReportingParamIntegerController">
+
+    <span ng-if="parameter.name">{{parameter.name}}</span>
+    <span ng-if="!parameter.name && parameter.nameKey">{{(parameter.nameKey) | translate}}</span>
+
+    <input type="number" class="form-control" ng-model="parameter.value" ng-blur="reportingParamIntegerChanged(parameter)" >
+</div>

@@ -1,0 +1,207 @@
+{
+  "COMMON": {
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Process Services befindet sich im schreibgeschützten Modus, weil die lokale Lizenz ungültig ist.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Process Services befindet sich im schreibgeschützten Modus, weil keine Lizenz gefunden wurde.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Die Anwendung befindet sich im schreibgeschützten Modus, weil die Datumsangaben der Lizenz nicht gültig sind (bereits abgelaufen oder Startdatum noch nicht erreicht).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Ihre Lizenz läuft bald ab! Process Services kann dann nur noch im schreibgeschützten Modus geöffnet werden.",
+      "APP-LICENSE-UPLOAD-DISALLOWED": "Damit eine Lizenz hochgeladen werden kann, müssen Sie <code>license.allow-upload=true</code> in den activiti-app.properties einrichten.",
+      "APP-LICENSE-NO-UPLOAD-CAPABILITY": "Achtung: Eine Lizenz kann nur hochgeladen werden, wenn die Funktion 'Lizenz hochladen' aktiviert ist"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Process Services",
+    "ERROR": {
+      "GENERIC": "Es ist ein Fehler aufgetreten...",
+      "UNKNOWN": "Beim Ausführen des angeforderten Vorgangs ist ein Fehler aufgetreten.",
+      "BAD_REQUEST": "Beim Ausführen des angeforderten Vorgangs ist ein Fehler aufgetreten",
+      "NOT_FOUND": "Die Ressource, auf die Sie zugreifen möchten, existiert nicht.",
+      "UNAUTHORIZED": "Sie müssen sich anmelden, um den angeforderten Vorgang auszuführen.",
+      "FORBIDDEN": "Sie verfügen nicht über die Berechtigung, den angeforderten Vorgang auszuführen.",
+      "INTERNAL_SERVER_ERROR": "Beim Ausführen des angeforderten Vorgangs ist ein Fehler aufgetreten.",
+      "QUOTA-EXCEEDED-RUNTIME-APPS": "Als Testbenutzer können Ihnen nur {{quota}} Anwendungen gleichzeitig bereitgestellt werden.",
+      "QUOTA-EXCEEDED-LICENSE-APPS": "Die Lizenz erlaubt nur die Bereitstellung von {{quota}} Anwendungen zur selben Zeit."
+    },
+    "ACTION": {
+      "LOGOUT": "Abmelden",
+      "HELP": "Erste Schritte",
+      "EDIT-PROFILE": "Profil bearbeiten",
+      "SAVE": "Speichern",
+      "CANCEL": "Abbrechen",
+      "CLOSE": "Schließen",
+      "DEPLOY": "Bereitstellen",
+      "ABOUT": "Über Process Services",
+      "HELP-DOCS-LINK": "Hilfe",
+      "UPLOAD-LICENSE": "Lizenz hochladen"
+    },
+    "ABOUT": {
+      "TYPE": "Typ",
+      "LICENSED-TO": "Lizenziert für",
+      "EXPIRES": "Gültig bis",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Alle Rechte vorbehalten.",
+      "LEGAL": "Rechtliche Hinweise und Lizenzinformationen"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "Anmelden",
+    "USERNAME": "Benutzername",
+    "USERNAME-PLACEHOLDER": "Geben Sie Ihren Benutzernamen ein.",
+    "PASSWORD": "Passwort",
+    "PASSWORD-PLACEHOLDER": "Geben Sie Ihr Passwort ein.",
+    "NO-ACCOUNT": "Sie haben noch kein Konto?",
+    "FORGOT-PASSWORD": "Sie haben Ihr Passwort vergessen?",
+    "INVALID-CREDENTIALS": "Ungültige Anmeldeinformationen",
+    "WELCOME": "Willkommen bei Alfresco Process Services",
+    "TAG1": "<strong>Einfach:</strong> Einsatzbereich, keine Konfiguration erforderlich - schneller produktiv arbeiten",
+    "TAG2": "<strong>Intelligent:</strong> Einfache Konfiguration - bietet einen strukturierten Rahmen für all Ihre Geschäftsabläufe",
+    "TAG3": "<strong>Offen:</strong> Open Source und offene Standards sorgen für einfache Integration und zukunftsfähiges Ausbaupotenzial",
+    "PRIVACY": "Datenschutzrichtlinien",
+    "ALL-RIGHTS": "Alle Rechte vorbehalten",
+    "LOGIN-FORM": "Anmeldeformular",
+    "SKIP-TO-CONTENT": "Zum Content",
+    "BACK-TO-TOP": "Zurück nach oben",
+    "SSO": "SSO-Login",
+    "ACTION": {
+      "CONFIRM": "Anmelden"
+    }
+  },
+  "ACCOUNT": {
+    "ACTIVATE": {
+      "TITLE": "Konto aktivieren",
+      "ACTIVATING-MESSAGE": "Bitte warten, {{userFullName}}, wir aktivieren Ihr Konto...",
+      "SUCCESS-MESSAGE": "Ihr Konto wurde aktiviert. Melden Sie sich unten an, um mit dem Entwerfen und Ausführen von Prozessen zu beginnen",
+      "FAILURE-MESSAGE": "Ihr Konto kann nicht aktiviert werden. Entweder wurde es bereits aktiviert oder der Aktivierungslink ist abgelaufen."
+    },
+    "SIGNUP": {
+      "TITLE": "Registrieren Sie sich für ein Konto.",
+      "SIGNUP-TRIAL": "Erstellen Sie ein Passwort für Ihren Process Services-Test",
+      "EMAIL": "E-Mail-Adresse",
+      "FIRSTNAME": "Vorname",
+      "LASTNAME": "Nachname",
+      "PASSWORD": "Passwort",
+      "PASSWORD-PLACEHOLDER": "Passwort eingeben",
+      "PASSWORD-REPEAT": "Passwort wiederholen",
+      "PASSWORDS-NOT-EQUAL": "Passwörter stimmen nicht überein.",
+      "PASSWORDS-MIN-LENGTH": "Password ist zu kurz; es muss mindestens {{minLength}} Zeichen lang sein",
+      "NEW-PASSWORD-STRENGTH": "Passwortstärke:",
+      "EMAIL-PLACEHOLDER": "E-Mail-Adresse eingeben",
+      "FIRSTNAME-PLACEHOLDER": "Vornamen eingeben",
+      "LASTNAME-PLACEHOLDER": "Nachnamen eingeben",
+      "COMPANY": "Firma (optional)",
+      "COMPANY-PLACEHOLDER": "Geben Sie Ihre Firma ein.",
+      "LICENSETERMS": "Ich stimme den Nutzungsbedingungen und den Datenschutzrichtlinien von Alfresco zu.",
+      "CONFIRM": "Jetzt registrieren",
+      "SUCCESS-MESSAGE": "Vielen Dank, dass Sie sich für unseren Service registriert haben. Sie erhalten in Kürze eine E-Mail, um Ihr Konto zu aktivieren. Sobald Ihr Konto aktiviert ist, können Sie mit den Entwerfen und Ausführen von Prozessen beginnen.",
+      "SECURITY-SECTION": "Sicherheitsprüfung",
+      "PERSONAL-SECTION": "Persönliche Informationen",
+      "ACCOUNT-SECTION": "Konto",
+
+      "ERROR": {
+        "ALREADY-REGISTERED": "Es ist bereits ein Benutzer mit der eingegebenen E-Mail-Adresse registriert.",
+        "DISABLED": "Eine Registrierung ist zurzeit nicht möglich."
+      }
+    },
+
+    "RESET-PASSWORD-REQUEST": {
+      "MESSAGE": "Sie haben Ihr Passwort vergessen? Geben Sie unten Ihre E-Mail-Adresse ein, um eine E-Mail zum Zurücksetzen Ihres Passworts zu erhalten.",
+      "TITLE": "Passwort zurücksetzen",
+      "EMAIL": "E-Mail-Adresse",
+      "EMAIL-PLACEHOLDER": "Geben Sie Ihre E-Mail-Adresse ein.",
+      "SECURITY-SECTION": "Sicherheitsprüfung",
+      "CONFIRM": "Zurücksetzen des Passworts beantragen",
+      "SUCCESS-MESSAGE": "Sie erhalten in Kürze eine E-Mail mit einem Link zum Zurücksetzen Ihres Passworts.",
+      "ERROR": {
+        "UNEXISTING-USER": "Der Benutzer mit der eingegebenen E-Mail-Adresse existiert nicht."
+      }
+    },
+
+    "RESET-PASSWORD": {
+      "TITLE": "Passwort zurücksetzen",
+      "PASSWORD": "Passwort",
+      "PASSWORD-CONFIRM": "Passwort bestätigen",
+      "PASSWORD-PLACEHOLDER": "Geben Sie ein neues Passwort ein.",
+      "PASSWORD-CONFIRM-PLACEHOLDER": "Bestätigen Sie das neue Passwort.",
+      "CONFIRM": "Passwort ändern",
+      "LOADING": "Passwort wird zurückgesetzt...",
+      "SUCCESS-MESSAGE": "Ihr Passwort wurde geändert.",
+      "LOGIN": "Melden Sie sich jetzt an.",
+      "FAILURE-MESSAGE": "Ihr Passwort kann nicht zurückgesetzt werden. Der Link zum Zurücksetzen ist ungültig oder abgelaufen."
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "App Designer",
+      "DESCRIPTION": "Erstellen Sie Prozessmodelle, Formulare, Entscheidungstabellen, Anwendungsdefinitionen, Datenmodelle und Vorlagendefinitionen, und geben Sie diese für andere frei.",
+      "TITLE-PROCESSES": "Prozessmodelle",
+      "TITLE-FORMS": "Formularmodelle",
+      "TITLE-APPS": "Anwendungsmodell",
+      "TITLE-STENCILS": "Vorlagen",
+      "TITLE-DECISION-TABLES": "Entscheidungstabellen",
+      "TITLE-DATA-MODELS": "Datenmodelle"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Administrator",
+      "DESCRIPTION": "Verwalten Sie alle Ihre Process Services Serverknoten und Cluster."
+    },
+    "TASKS": {
+      "TITLE": "Aufgabenanwendung",
+      "DESCRIPTION": "Greifen Sie auf Ihre vollständige Aufgabenliste zu und arbeiten Sie an Aufgaben, die Ihnen von Prozessanwendungen zugewiesen wurden. Starten Sie außerdem neue Prozesse und Aufgaben.",
+      "TITLE-TASKS": "Aufgaben",
+      "TITLE-PROCESSES": "Prozesse",
+      "TITLE-PROCESSES?MODE=START": "Start"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profil",
+      "DESCRIPTION": "Verwalten Sie Ihr Profil: Ändern Sie Ihr Bild, Ihren Namen und andere Einstellungen.",
+      "DESCRIPTION-TENANT-ADMIN": "Verwalten Sie die Benutzer und Gruppen in Ihrer Organisation.",
+      "TITLE-TENANT-ADMIN": "Identitätsverwaltung",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Mandanten",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Benutzer",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Funktionen",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organisation",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profil",
+      "TITLE-PROFILE": "Profil"
+    },
+    "ANALYTICS": {
+      "TITLE": "Analytik-Anwendung",
+      "DESCRIPTION": "Generieren Sie verschiedene Berichte, die Leistungs- und Durchsatzstatistiken für Prozesse zur Verfügung stellen."
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}}-Aufgaben",
+      "TITLE-PROCESSES": "{{name}}-Prozesse",
+      "TITLE-PROCESSES?MODE=START": "{{name}}-Start"
+    },
+    "POPUP": {
+      "ADD-APP-TITLE": "Anwendung zur Startseite hinzufügen",
+      "ADD-APP-SUMMARY": "Fügen Sie eine Anwendung zu Ihrer Startseite hinzu.",
+      "GETTING-STARTED-TITLE": "Erste Schritte mit Process Services-BPMS"
+    },
+    "ACTION": {
+      "DELETE": "Anwendung entfernen",
+      "ADD": "Neue App hinzufügen",
+      "UPLOAD-LICENSE": "Lizenz hochladen"
+    },
+    "MESSAGE": {
+      "DELETED": "Anwendung wurde erfolgreich entfernt.",
+      "NO-CUSTOM-APPS": "Willkommen zu Alfresco Process Services, der intelligenteren Lösung zur Geschäftsprozessverwaltung! Es gibt verschiedene Dinge, die Sie von hier aus tun können, zum Beispiel:",
+      "NO-CUSTOM-APPS-EDITOR-HINT": "Geschäftsprozesse entwerfen und freigeben",
+      "NO-CUSTOM-APPS-TASKS-HINT": "An Ihren Aufgaben arbeiten und einen Prozess starten",
+      "NO-CUSTOM-APPS-PROFILE-HINT": "Ihr Profil mit Ihrem neuesten Foto und Informationen aktualisieren",
+      "NO-CUSTOM-APPS-GETTING-STARTED-HINT": "Lesen Sie das Erste-Schritte-Handbuch"
+    }
+  },
+  "LICENSE": {
+    "STATUS": {
+      "INVALID": "Ungültige Lizenz",
+      "WARNING": "Lizenzwarnung"
+    },
+    "UPLOAD": {
+      "UPLOAD-LICENSE-TITLE": "Lizenz hochladen",
+      "UPLOAD-LICENSE-DESCRIPTION": "Wählen Sie eine Lizenz von Ihrem Computer oder legen Sie sie in der Zone unten ab.",
+      "CANCEL-UPLOAD": "Upload abbrechen",
+      "LICENSE-DROPZONE": "Lizenzdatei hier ablegen",
+      "NO-DROP": "Das Ablegen wird von Ihrem Browser nicht unterstützt.",
+      "ERROR": "Fehler"
+    }
+  }
+}

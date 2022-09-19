@@ -1,0 +1,21 @@
+<div ng-controller="HumanStepController">
+    <div ng-if="activeStep.id == step.id" class="details">
+        <div tab-control="humanStepTabs" active-tab="activeTab"></div>
+        <div class="detail-group clearfix first" ng-include="'views/process-builder/generic-step-template.html'">
+        </div>
+    </div>
+    <div class="details" ng-show="step.meta.dueActionOption.nextSteps && step.meta.dueActionOption != 'none'">
+
+	    <div class="detail-group clearfix step-container has-line" ng-controller="HumanStepOverdueStepsController">
+	        <div class="line-marker">
+	            <h4>{{'PROCESS-BUILDER.HUMAN-STEP.DUE.DATE-REACHED' | translate}}</h4>
+	        </div>
+            <div ng-show="readOnly" class="step-placeholder-readonly"></div>
+	        <div ng-show="!readOnly" class="step-placeholder"
+	             ng-click="insertStepBelow($event, undefined, stepContainer)" ng-class="{'no-move no-click': isMoveDisabled(step, stepContainer, moveState)}"></div>
+	        <div ng-if="stepContainer.overdueSteps" ng-repeat="step in stepContainer.overdueSteps"
+	             ng-include="'views/process-builder/step-list.html'">
+	        </div>
+	    </div>
+    </div>
+</div>

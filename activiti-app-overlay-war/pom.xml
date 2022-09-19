@@ -10,6 +10,61 @@
 		<version>2.1.6</version>
 	</parent>
 
+	<properties>
+		<environment>default</environment>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>incentro-bb-dev</id>
+			<properties>
+				<environment>incentro-bb-dev</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>incentro-bb-test</id>
+			<properties>
+				<environment>incentro-bb-test</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>incentro-diva-integration</id>
+			<properties>
+				<environment>incentro-diva-integration</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>local</id>
+			<properties>
+				<environment>local</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>rotterdam-acc</id>
+			<properties>
+				<environment>rotterdam-acc</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>rotterdam-edu</id>
+			<properties>
+				<environment>rotterdam-edu</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>rotterdam-prod</id>
+			<properties>
+				<environment>rotterdam-prod</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>rotterdam-test</id>
+			<properties>
+				<environment>rotterdam-test</environment>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.alfresco.activiti</groupId>
@@ -34,6 +89,27 @@
 				<configuration>
 					<packagingExcludes>com.activiti/</packagingExcludes>
 					<workDirectory>./target/activiti-app</workDirectory>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp/config/base</directory>
+							<targetPath>scripts</targetPath>
+						</resource>
+						<resource>
+							<directory>src/main/webapp/config/profiles/${environment}</directory>
+							<include>**/*.properties</include>
+							<targetPath>WEB-INF/classes/META-INF/activiti-app</targetPath>
+						</resource>
+						<resource>
+							<directory>src/main/webapp/config/profiles/${environment}</directory>
+							<include>**/*.css</include>
+							<targetPath>styles</targetPath>
+						</resource>
+						<resource>
+							<directory>src/main/webapp/WEB-INF</directory>
+							<include>*.Integrator</include>
+							<targetPath>WEB-INF/classes/META-INF/services</targetPath>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 		</plugins>

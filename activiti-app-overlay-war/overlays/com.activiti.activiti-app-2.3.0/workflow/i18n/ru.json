@@ -1,0 +1,764 @@
+{
+  "COMMON": {
+    "SELECT-FOLDER": "Выбрать папку...",
+    "ACCOUNTS": {
+      "ALFRESCO": "Alfresco ({{name}})",
+      "box": "Box",
+      "google-drive": "Google Диск"
+    },
+    "AUTHORIZE": {
+      "EXTERNAL-REPOSITORY-CONFIGURED": "Учетная запись {{moduleName}} настроена для вас.",
+      "EXTERNAL-REPOSITORY-KEY-EXPIRE-AT": "Срок действия ключа истекает:{{expireDateTime  | date: 'dd.MM.yyyy h:mma' }}",
+      "NO-EXTERNAL-REPOSITORY-CONFIGURED": "Учетная запись {{moduleName}} не настроена для вас.",
+      "EXTERNAL-REPOSITORY-REAUTHORIZE-REQUIRED": "Задачу нельзя выполнить без повторной авторизации.",
+      "EXTERNAL-REAUTHORIZE-ADVICE": "Повторно авторизуйте Alfresco Process Services на подключение к {{moduleName}} с помощью нижеприведенной кнопки.",
+      "MODULE-DISABLED": "Интеграция с {{moduleName}} в настоящее время отключена.",
+      "TITLE": "Авторизовать"
+    },
+    "AUTHORIZATION_COMPLETED": "Авторизация завершена",
+    "NOBODY": "Никто",
+    "NOBODY-LETTERS": "NB",
+    "FILTER": {
+      "NEW-FILTER": "Новый фильтр",
+      "EDIT": "Редактировать",
+      "RESET": "Сброс",
+      "DELETE": "Удалить",
+      "NEW-FILTER-NAME": "Новый фильтр",
+      "FILTER-ICON-AND-NAME": "Фильтровать значок и имя",
+      "SAVE": "Сохранить",
+      "SAVE-HINT": "Вас устраивает фильтр?<br/> Выберите значок и имя, затем нажмите кнопку Сохранить.",
+      "SEARCH-RESULTS": "Результаты поиска"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services работает в режиме только для чтения, поскольку локальная лицензия недействительна.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services работает в режиме только для чтения, поскольку локальная лицензия не найдена.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services работает в режиме только для чтения, поскольку даты локальной лицензии являются недействительными (срок действия лицензии истек либо еще не наступил).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Срок действия вашей лицензии истекает в ближайшее время! Приложение Alfresco Process Services будет доступно только для чтения."
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Мои задачи",
+    "ERROR": {
+      "GENERIC": "Произошла ошибка...",
+      "UNKNOWN": "При выполнении запрошенной операции произошла ошибка.",
+      "BAD_REQUEST": "При выполнении запрошенной операции произошла ошибка",
+      "NOT_FOUND": "Ресурс, к которому вы пытаетесь получить доступ, не существует",
+      "UNAUTHORIZED": "Чтобы выполнить запрошенную операцию, вы должны войти систему.",
+      "FORBIDDEN": "Вам не разрешено выполнить запрошенную операцию",
+      "INTERNAL_SERVER_ERROR": "При выполнении запрошенной операции произошла непредвиденная ошибка.",
+      "UPLOAD-LIMIT-EXCEEDED": "Файл, который вы пытаетесь отправить, слишком большой",
+      "UPLOAD-LIMIT-EXCEEDED-TRIAL-USER": "Файл, который вы пытаетесь отправить, слишком большой. Перейдите на корпоративный уровень, чтобы отправлять файлы размером более {{quota}}!",
+      "QUOTA-EXCEEDED-RUNTIME-PROCESSES": "Как пользователь пробной версии вы можете выполнять не более {{quota}} активных процессов одновременно.",
+      "QUOTA-EXCEEDED-COMPLETED-PROCESSES": "Как пользователь пробной версии вы можете иметь не более {{quota}} завершенных процессов. Удалите завершенный процесс, чтобы начать новый.",
+      "QUOTA-EXCEEDED-TOTAL-CONTENT-SIZE": "Как пользователь пробной версии вы можете хранить в общей сложности не более {{quota}} содержимого. Удалите содержимое или завершите процессы, чтобы освободить место для нового содержимого."
+    },
+    "NAVIGATION": {
+      "TASKS": "Задачи",
+      "PROCESSES": "Процессы",
+      "START-PROCESS": "Запустить",
+      "DESIGN": "Проект",
+      "CREATE": "+ Создать",
+      "LOGIN": "Войти",
+      "REPORTS": "Отчеты"
+    },
+    "TITLE": {
+      "ADD-COMMENT": "Создать комментарий",
+      "INVOLVE-PEOPLE": "Выбрать пользователя",
+      "RECENT-PEOPLE": "Недавние пользователи",
+      "MATCHING-PEOPLE": "Подходящие пользователи",
+      "SELECT-GROUP": "Выбрать группу",
+      "MATCHING-GROUPS": "Подходящие группы",
+      "FILTER": "Фильтр",
+      "SELECT-DATE": "Выбрать дату"
+    },
+    "ACTION": {
+      "ABOUT": "О системе Alfresco Process Services",
+      "LOGOUT": "Выйти",
+      "EDIT-PROFILE": "Редактировать профиль",
+      "ADD-COMMENT": "Добавить комментарий",
+      "ADD-CHECKLIST": "Добавить контрольный список",
+      "SAVE": "Сохранить",
+      "CANCEL": "Отмена",
+      "CLOSE": "Закрыть",
+      "CONFIRM": "Подтвердить",
+      "SHOW-MORE": "Больше",
+      "HELP-DOCS-LINK": "Справка"
+    },
+    "MESSAGE": {
+      "SELECT-PEOPLE-HELP": "Используйте &uparrow; и &downarrow;, чтобы выбрать, и нажмите Ввод, чтобы подтвердить выбор",
+      "SELECT-GROUP-HELP": "Используйте &uparrow; и &downarrow;, чтобы выбрать, и нажмите Ввод, чтобы подтвердить выбор",
+      "SELECT-GROUP-SEARCH-PLACEHOLDER": "Поиск группы",
+      "SELECT-GROUP-NO-MATCHING-RESULTS": "Используйте для поиска групп представленное выше поле поиска.",
+      "UPLOAD-CONTENT": "Выберите или перетащите файл",
+      "UPLOAD-CONTENT-NO-DROP": "Выберите файл, который нужно отправить",
+      "DROPZONE": "Перетащите файл, который нужно отправить",
+      "YES": "Да",
+      "NO": "Нет"
+    },
+    "TIME": {
+      "HOURS": "ч.",
+      "MINUTES": "мин.",
+      "SECONDS": "сек."
+    },
+    "ABOUT": {
+      "TYPE": "Тип",
+      "LICENSED-TO": "Лицензия зарегистрирована на",
+      "EXPIRES": "Срок действия истекает",
+      "COPYRIGHT": "© 2005–2021 Alfresco Software Inc. Все права защищены.",
+      "LEGAL": "Юридическая информация и лицензия"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "Войти",
+    "USERNAME": "Имя пользователя",
+    "USERNAME-PLACEHOLDER": "Введите имя пользователя",
+    "PASSWORD": "Пароль",
+    "PASSWORD-PLACEHOLDER": "Введите пароль",
+    "ACTION": {
+      "CONFIRM": "Войти"
+    }
+  },
+  "TASK": {
+    "SECTION": {
+      "PEOPLE": "Люди",
+      "GROUPS": "Группы",
+      "CONTENT": "Содержимое",
+      "COMMENTS": "Комментарии",
+      "CHECKLISTS": "Контрольный список",
+      "NOTES": "Примечания"
+    },
+    "FILTER": {
+      "SORT": "Сортировать",
+      "CREATED-DESC": "От новых к старым",
+      "CREATED-ASC": "От старых к новым",
+      "DUE-DESC": "По сроку выполнения, от наибольшего к наименьшему",
+      "DUE-ASC": "По сроку выполнения, от наименьшего к наибольшему",
+      "TEXT": "Фильтр",
+      "TEXT-PLACEHOLDER": "Искать по имени задачи",
+      "TEXT-SUMMARY": "Отфильтровано по: {{text}}",
+      "PROCESS-DEFINITION": "Определение процесса",
+      "PROCESS-DEFINITION-PLACEHOLDER": "Выбрать определение процесса...",
+      "STATE": "Состояние",
+      "STATE-OPEN": "открытые",
+      "STATE-COMPLETED": "завершенные",
+      "ASSIGNMENT": "Назначение",
+      "ASSIGNMENT-INVOLVED": "Задачи с моим участием",
+      "ASSIGNMENT-ASSIGNEE": "Задачи, где я исполнитель",
+      "ASSIGNMENT-CANDIDATE": "Задачи, где я один из кандидатов",
+      "ASSIGNMENT-GROUP": "Задачи, назначенные группе \"{{name}}\"",
+      "RESET": "Сбросить фильтры",
+      "SINGLE-TASK": "Отображается '{{name || (\"TASK.MESSAGE.NO-NAME\" | translate)}}'",
+      "NO-SINGLE-TASK": "Задачи с идентификатором '{{id}}' не найдены",
+      "INVOLVED-FILTER-NAME": "Задачи с участием",
+      "ASSIGNEE-FILTER-NAME": "Мои задачи",
+      "COMPLETED-FILTER-NAME": "Завершенные задачи",
+      "CANDIDATE-FILTER-NAME": "Задачи в очереди",
+      "TASK-NAME": "Имя задачи",
+      "SEARCH": "Искать",
+      "NEW-SEARCH": "Новый поиск?",
+      "CREATE-FILTER": "Создать новый фильтр или выбрать из предложенных ниже",
+      "EDIT-FILTER": "Редактировать поиск",
+      "FILTER-NAME-PLACEHOLDER": "Имя пользовательского фильтра",
+      "CREATE-TASK": "Создать задачу",
+      "SEARCH-PLACEHOLDER": "Искать",
+      "NO-FILTER-RESULTS": "В \"{{name}}\" ничего не найдено, попробуйте использовать другой список. Для того, чтобы начать работать с чем-либо новым, можно:",
+      "NO-SEARCH-RESULTS": "По вашему запросу не найдено ни одной задачи, выберите другие критерии. Для того, чтобы начать работать с чем-либо новым, можно:"
+    },
+    "ALERT": {
+      "COMMENT-ADDED": "Комментарий был добавлен к \"{{name}}\"",
+      "CHECKLIST-ADDED": "Задача \"{{name}}\" была добавлена в контрольный список",
+      "CHECKLIST-REMOVED": "Задача \"{{name}}\" была удалена из контрольного списка",
+      "PERSON-INVOLVED": "{{userName}} теперь участвует в \"{{taskName}}\"",
+      "PERSON-INVOLVED-EMAIL-NOT-ALLOWED": "Не удается привлечь внешних пользователей по адресу электронной почты '{{emailAddress}}'.\"",
+      "PERSON-NO-LONGER-INVOLVED": "{{userName}} больше не участвует в \"{{taskName}}\"",
+      "GROUP-INVOLVED": "Группа \"{{groupName}}\" сейчас привлечена к задаче \"{{taskName}}\"",
+      "GROUP-NO-LONGER-INVOLVED": "Группа \"{{groupName}}\" уже не привлечена к задаче \"{{taskName}}\"",
+      "CREATED": "Задача \"{{name}}\" создана",
+      "COMPLETED": "Задача завершена",
+      "SAVED": "Форма задачи сохранена",
+      "ASSIGNED": "Задача \"{{taskName}}\" теперь назначена пользователю {{userName}}",
+      "RELATED-CONTENT-ADDED": "Выполнено добавление \"{{name}}\" к задаче",
+      "RELATED-CONTENT-ADDED-LOADING": "Выполнено добавление \"{{name}}\" к задаче. Содержимое будет доступно сразу после получения из внешнего источника.",
+      "FORM-ATTACHED": "Прикрепленная форма \"{{name}}\"",
+      "FORM-REMOVED": "Удаленная форма \"{{name}}\""
+    },
+    "ACTION": {
+      "BACK-TO-LIST": "Назад к списку задач",
+      "COMPLETE-TASK-WITH-FORM": "Заполнить форму",
+      "COMPLETE": "Заполнить",
+      "CLAIM": "Принять",
+      "UNCLAIM": "Повторно поставить в очередь",
+      "ASSIGN": "Назначить",
+      "REASSIGN": "Переназначить",
+      "CREATE": "+ Создать задачу",
+      "CREATE-CONFIRM": "Создать",
+      "INVOLVE": "+ Привлечь пользователей",
+      "INVOLVE-GROUP": "Привлечь группу",
+      "ADD-COMMENT": "+ Добавить комментарий",
+      "ADD-COMMENT-CONFIRM": "Добавить комментарий",
+      "ADD-CHECKLIST": "+ Добавить задачу в контрольный список",
+      "ADD-CHECKLIST-CONFIRM": "Добавить задачу в контрольный список",
+      "ADD-CONTENT": "+ Добавить содержимое",
+      "CLEAR-DUEDATE": "Очистить срок",
+      "DUE-TODAY": "Срок сегодня",
+      "CLEAR-DATE": "Очистить дату",
+      "DATE-TODAY": "Дата сегодня",
+      "AUDIT-LOG": "Журнал аудита"
+    },
+    "TITLE": {
+      "ASSIGN": "Выбрать исполнителя",
+      "ASSIGNEE": "Исполнитель",
+      "CONTENT": "Связанное содержимое",
+      "CREATE-NEW": "Новая задача",
+      "NEW-TASK-NAME": "Новая задача",
+      "EDIT-NAME": "Редактировать имя задачи",
+      "FORM": "Форма",
+      "DETAILS": "Сведения",
+      "ADD-RELATED-CONTENT": "Добавить связанное содержимое",
+      "SELECT-DUEDATE": "Выбрать срок",
+      "SELECT-DATE": "Выбрать дату",
+      "NO-CONTENT-ITEMS": "Нет элементов содержимого",
+      "NO-PEOPLE-INVOLVED": "Нет участников",
+      "NO-GROUPS-INVOLVED": "Привлеченных групп нет",
+      "NO-COMMENTS": "Нет комментариев",
+      "COMMENT-COUNT": "комментарий",
+      "COMMENTS-COUNT": "комментарии",
+      "NO-CHECKLISTS": "Нет контрольных списков",
+      "CHECKLIST-COUNT": "задача в контрольном списке",
+      "CHECKLISTS-COUNT": "задачи в контрольном списке",
+      "SHOW-DETAILS": "Показать сведения",
+      "SHOW-FORM": "Показать форму",
+      "GROUPS-INVOLVED": "Привлечено групп: {{groupCount}}"
+    },
+    "FIELD": {
+      "NAME": "Имя",
+      "DESCRIPTION": "Описание",
+      "ASSIGNEE": "Исполнитель",
+      "DUE": "Срок",
+      "FORM": "Форма",
+      "PROCESS-INSTANCE": "Часть процесса",
+      "PARENT-TASK": "Часть",
+      "ENDED": "Завершено",
+      "DURATION": "Продолжительность"
+    },
+    "MESSAGE": {
+      "NO-NAME": "Безымянная задача",
+      "NO-ASSIGNEE": "Никому не назначенные",
+      "NO-DUEDATE": "Без срока",
+      "DUE-ON": "Срок",
+      "NO-FORM": "Без формы",
+      "CREATED-ON": "Созданные",
+      "ENDED-ON": "Завершенные",
+      "EXECUTION-FAILED": "Невыполненные",
+      "COMPLETED-BY": "Завершенные пользователем {{username}}, ",
+      "NO-DESCRIPTION": "У этой задачи нет описания",
+      "NO-RELATED-CONTENT": "У этой задачи пока нет связанного содержимого...",
+      "NO-PEOPLE-INVOLVED": "У этой задачи пока нет участников...",
+      "NO-COMMENTS": "У этой задачи пока нет комментариев...",
+      "INVOLVE-PEOPLE-PLACEHOLDER": "+ Добавить пользователя",
+      "CONTENT-UPLOADED-BY": "Добавлено пользователем ",
+      "ASSIGNEE": "Назначено пользователю {{username}}",
+      "NEW-COMMENT-PLACEHOLDER": "Введите комментарий к этой задаче",
+      "NEW-CHECKLIST-PLACEHOLDER": "Ввести имя задачи",
+      "COMMENT-HEADER": "Добавлено пользователем {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+      "NO-FILTER": "Отображение ваших задач без применения фильтров",
+      "FILTERED": "Отображение ваших задач с применением фильтров",
+      "NO-TASKS": "Подходящих задач не найдено...",
+      "DURATION": "Потребовалось {{duration}}",
+      "CLAIM-TASK-FIRST": "Для работы с этой задачей сначала нужно принять ее. Это можно сделать, нажав на кнопку Принять выше.",
+      "NO-TASKS-HELP": "Похоже, для вас задач нет! Чтобы начать работу, можно:",
+      "NO-SUCH-TASK-HELP": "Не удается найти задачу, которую вы ищете. Вы можете вместо этого:",
+      "NO-SUCH-TASK-RETURN-TO-LIST": "Вернуться к списку задач",
+      "NO-TASKS-CREATE-TASK": "Создать задачу для себя или назначить ее другому пользователю",
+      "NO-TASKS-CREATE-PROCESS": "Запустить новый процесс, а затем отслеживать прогресс",
+      "CANNOT-CLAIM-TASK": "Эту задачу больше невозможно принять."
+    },
+    "HELP": {
+      "DESCRIPTION": "Об этой задаче пока нет сведений. Это можно изменить, выбрав одно из следующих действий:",
+      "COMPLETED-DESCRIPTION": "Об этой завершенной задаче нет сведений.",
+      "DESCRIPTION-WITH-CLAIM": "Об этой задаче пока нет сведений. Это можно изменить, выбрав одно из следующих действий. Кроме того, для выполнения этой задачи сначала вам нужно принять ее, нажав на кнопку Принять выше.",
+      "ADD-FORM-DESCRIPTION": "У этой задачи пока нет формы. Можно использовать формы из библиотеки, чтобы получить больше информации для этой задачи:",
+      "ADD-FORM": "Добавить форму сейчас",
+      "COMPLETED-NOFORM": "У этой завершенной задачи нет формы.",
+      "ADD-PEOPLE": "Привлечь других пользователей и начать совместную работу",
+      "ADD-FIRST-PEOPLE": "Привлечь других пользователей и начать совместную работу",
+      "ADD-FIRST-GROUP": "Пригласить группы людей и начать совместную работу",
+      "ADD-COMMENT": "Проинформировать других, добавив комментарий",
+      "ADD-FIRST-COMMENT": "Добавить комментарий для себя или других участников",
+      "ADD-CHECKLIST": "Добавить задачу в контрольный список",
+      "ADD-FIRST-CHECKLIST": "Создайте собственный контрольный список элементов, необходимых для выполнения этой задачи. Можно назначить элемент другому пользователю, установить срок и прикрепить форму из библиотеки",
+      "ADD-CONTENT": "Добавить документ и обмениваться информацией",
+      "ADD-FIRST-CONTENT": "Прикреплять дополнительные файлы, относящиеся к этой задаче"
+    },
+    "DYNAMIC-TABLE": {
+      "ROW-EDIT-HEADER": "Редактировать строку таблицы",
+      "ROW-DETAILS-HEADER": "Детали строки таблицы"
+    },
+    "FORM-SELECT": {
+      "TITLE": "Выбрать форму",
+      "EMPTY": "Нет выбранных форм",
+      "FORMS-ERROR": "При загрузке форм произошла ошибка",
+      "LOADING": "Загружаются формы...",
+      "NO-FORMS": "Формы не найдены",
+      "ATTACH-FORM": "Прикрепить форму",
+      "REMOVE-FORM": "Удалить форму",
+      "CURRENT-FORM": "{{name}} (текущее)",
+      "FORM-LOAD-ERROR": "При загрузке формы произошла ошибка"
+    }
+  },
+  "PROCESS": {
+    "ALERT": {
+      "COMMENT-ADDED": "Комментарий добавлен",
+      "STARTED": "Новый процесс \"{{processDefinitionName}}\" начат",
+      "START-PROCESS-CONTENT-ADD-FAILED": "Не удалось добавить к процессу {{noOfFiles}} файл (файла/файлов)"
+    },
+    "TITLE": {
+      "DIAGRAM": "Схема процесса"
+    },
+    "FILTER": {
+      "CREATED-DESC": "От новых к старым",
+      "CREATED-ASC": "От старых к новым",
+      "ENDED-DESC": "Завершенные недавно",
+      "ENDED-ASC": "Завершенные давно",
+      "STATE-SUMMARY": "Отображаются процессы {{state.title | translate}}",
+      "STATE": "Состояние процесса",
+      "STATE-RUNNING": "Выполняются",
+      "STATE-COMPLETED": "Завершенные",
+      "STATE-ALL": "Все",
+      "PROCESS-NAME": "Имя процесса",
+      "PROCESS-DEFINITION": "Определение процесса",
+      "SORT": "Сортировать",
+      "TEXT-PLACEHOLDER": "Искать по имени процесса",
+      "RUNNING-FILTER-NAME": "Выполняются",
+      "COMPLETED-FILTER-NAME": "Завершенные",
+      "ALL-FILTER-NAME": "Все",
+      "SINGLE-PROCESS": "Отображается '{{name || processDefinitionName}}'",
+      "NO-SINGLE-PROCESS": "Процессы с идентификатором '{{id}}' не найдены",
+      "NO-FILTER-RESULTS": "В \"{{name}}\" ничего не найдено, выберите другой список. Для того, чтобы начать работать с чем-либо новым, можно:",
+      "NO-SEARCH-RESULTS": "По вашему запросу не найдено ни одного процесса, выберите другие критерии. Для того, чтобы начать работать с чем-либо новым, можно:",
+      "FILTER-NAME-PLACEHOLDER": "Имя пользовательского фильтра"
+    },
+    "MESSAGE": {
+      "NO-DESCRIPTION": "У этого экземпляра процесса нет описания",
+      "NO-FILTER": "Отображаются все экземпляры процесса без применения фильтров",
+      "NO-INSTANCES": "Подходящие экземпляры процесса не найдены...",
+      "NO-INSTANCES-HELP": "В настоящее время запущенных процессов нет. После завершения процессов их можно найти с помощью фильтра для списка процессов. Для того, чтобы начать работать с чем-либо новым, можно:",
+      "NO-INSTANCES-HELP-START": "Запустить новый процесс и отслеживать прогресс",
+      "NO-TASKS": "В настоящее время нет активных задач...",
+      "NO-COMPLETED-TASKS": "Завершенных задач пока нет...",
+      "NO-BUSINESS-KEY": "Бизнес-ключ не установлен",
+      "CATEGORY": "Категория: {{processDefinitionCategory}}",
+      "NEW-COMMENT-PLACEHOLDER": "Введите комментарий к этому процессу",
+      "COMMENT-HEADER": "Добавлено пользователем {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+      "SELECT-DEFINITION": "Выберите из списка ниже процесс, который нужно запустить",
+      "NO-PROCESS-DEFINITIONS": "Вы не можете запустить процесс, поскольку нет определений процесса",
+      "START-PROCESS": "Запустить процесс",
+      "STARTED-BY": "Запущено пользователем {{username}}",
+      "NO-PROCESS-DEFINITION-SELECTED-HELP": "Выбрать определение процесса",
+      "NO-SUCH-PROCESS-HELP": "Не удается найти процесс, который вы ищете. Вы можете вместо этого:",
+      "NO-SUCH-PROCESS-RETURN-TO-LIST": "Вернуться к списку процессов"
+    },
+    "HELP": {
+      "ADD-FIRST-COMMENT": "Добавить комментарий для себя или других участников"
+    },
+    "ACTION": {
+      "CREATE": "Запустить процесс",
+      "BACK-TO-LIST": "Назад к экземплярам процесса",
+      "SHOW-DIAGRAM": "Показать схему",
+      "CANCEL": "Отменить процесс",
+      "DELETE": "Удалить процесс",
+      "ADD-COMMENT": "+ Добавить комментарий",
+      "ADD-COMMENT-CONFIRM": "Добавить комментарий",
+      "AUDIT-LOG": "Журнал аудита",
+      "SEARCH-PLACEHOLDER": "Поиск",
+      "ZOOMIN": "Увеличить",
+      "ZOOMOUT": "Уменьшить"
+    },
+    "FIELD": {
+      "BUSINESS-KEY": "Бизнес-ключ",
+      "CATEGORY": "Категория",
+      "PROCESS-DEFINITION": "Определение процесса",
+      "STARTED": "Запущено",
+      "STARTED-BY": "Запущено пользователем",
+      "ENDED": "Завершено",
+      "NAME": "Имя экземпляра процесса",
+      "NAME-PLACEHOLDER": "Введите имя запускаемого процесса (необязательно)"
+    },
+    "SECTION": {
+      "ACTIVE-TASKS": "Активные задачи",
+      "START-FORM": "Запустить форму",
+      "COMPLETED-TASKS": "Завершенные задачи",
+      "COMPLETED-DECISION-TASKS": "Выполненные таблицы принятия решения   ",
+      "COMMENTS": "Комментарии",
+      "CONTENT": "Содержимое"
+    },
+    "POPUP": {
+      "CANCEL-TITLE": "Отменить процесс?",
+      "CANCEL-DESCRIPTION": "Вы действительно желаете отменить процесс {{name}}?",
+      "DELETE-TITLE": "Удалить процесс?",
+      "DELETE-DESCRIPTION": "Вы действительно желаете удалить процесс {{name}}? Все задачи, содержимое и комментарии, связанные с этим процессом, будут безвозвратно удалены."
+    },
+    "DECISION": {
+      "TABLE": {
+        "HEADER": "Таблица принятия решения \"{{name}}\"",
+        "HIT-POLICY": "Политика выбора результатов",
+        "HIT-POLICIES": {
+          "FIRST": "Первый (один проход)",
+          "ANY": "Любой (один проход)"
+        },
+        "TOOLTIP": {
+          "INPUT-EXCEPTION": "Возникло исключение при проверке соответствия выражения введенному значению: {{error}}",
+          "INPUT-MATCH": "Введенное значение соответствует выражению.",
+          "INPUT-EMPTYEXPRESSION": "Пустые выражения рассматриваются как соответствие.",
+          "INPUT-NOMATCH": "Введенное значение не соответствует выражению.",
+          "INPUT-NOTEXECUTED": "Выражение не проверялось.",
+          "OUTPUT-EXCEPTION": "Возникло исключение при установке значения с использованием выражения: \n {{expression}}.\nСообщение об ошибке: {{error}}",
+          "OUTPUT-RESULT": "Значение было установлено с использованием следующего выражения: \n {{expression}}",
+          "OUTPUT-NOTEXECUTED": "Следующее выражение никогда не выполнялось: \n {{expression}}",
+          "OUTPUT-NOEXPRESSION": "Для данной ячейки выражение не было определено"
+        },
+        "INPUT-VARIABLE": "Условие",
+        "OUTPUT-VARIABLE": "Результат",
+        "INPUT-VARIABLES": "Введенные значения",
+        "NO-INPUT-VARIABLES": "При выполнении таблицы принятия решения введенных значений не было",
+        "OUTPUT-VARIABLES": "Рассчитанные значения",
+        "NO-OUTPUT-VARIABLES": "Из таблиц принятия решения рассчитанные значения не были получены",
+        "METADATA-NAME": "Имя",
+        "METADATA-VALUE": "Значение",
+        "LOAD-ERROR": "Произошел сбой при отправке таблицы принятия решения и контрольного журнала для выполнения '{{executionId}}' действия '{{activityId}}'."
+      }
+    }
+  },
+  "INVOLVE-PEOPLE": {
+    "NO-MATCHING-RESULTS": "Используйте для поиска пользователей представленное выше поле поиска или ",
+    "NO-MATCHING-RESULTS-NO-EMAIL": "Используйте для поиска пользователей представленное выше поле поиска",
+    "SEARCH-PLACEHOLDER": "Искать пользователя",
+    "USE-EMAIL": "выбрать кого-либо с помощью адреса электронной почты",
+    "ASSIGN-YOURSELF-LEAD": "или",
+    "ASSIGN-YOURSELF": "назначить себя",
+    "SELECT-YOURSELF-LEAD": "или",
+    "SELECT-YOURSELF": "выбрать себя",
+    "EMAIL-PLACEHOLDER": "Введите адрес электронной почты",
+    "EMAIL-HELP": "Чтобы продолжить, нажмите Ввод или на кнопку. Этот пользователь получит уведомление по электронной почте и приглашение зарегистрироваться",
+    "BACK-TO-SEARCH": "Назад к поиску",
+    "ACTION-SELECT": "Выбрать"
+  },
+  "INTEGRATION": {
+    "GENERIC": {
+      "MESSAGE": {
+        "FILTER": "Фильтр",
+        "SEARCHING": "Идет поиск",
+        "NO_MATCHING_RESULTS_FOUND": "Результаты не найдены."
+      }
+    },
+    "ALFRESCO": {
+      "MESSAGE": {
+        "SELECT-FOLDER-DESCRIPTION": "Выберите папку из своей учетной записи Alfresco",
+        "SELECT-FOLDER": "Выбрать папку",
+        "CHOOSE-NETWORK": "Выбрать сеть",
+        "NETWORK": "Сеть",
+        "CHOOSE-SITE": "Выбрать сайт",
+        "NO-CONTENT": "В этой папке ничего нет"
+      }
+    },
+    "BOX": {
+      "MESSAGE": {
+        "ACCOUNT_NAME": "Box",
+        "FILTER": "Фильтр",
+        "SEARCHING": "Идет поиск",
+        "NO-CONTENT": "Результаты не найдены.",
+        "SELECT-FOLDER-DESCRIPTION": "Выберите папку из своей учетной записи Box",
+        "SELECT-FILE-DESCRIPTION": "Выберите файл из своей учетной записи Box",
+        "SELECT-FOLDER": "Выбрать папку"
+      }
+    },
+    "ALFRESCO-CLOUD": {
+      "TITLE": {
+        "BROWSE-CLOUD": "Обзор Alfresco Content Services in the Cloud",
+        "BROWSE-ON-PREM": "Обзор {{name}}"
+      },
+      "MESSAGE": {
+        "ON-PREM-BROWSE": "Выберите файл, который нужно импортировать из {{name}}",
+        "CLOUD-BROWSE": "Выберите файл, который нужно импортировать из вашей учетной записи Alfresco Content Services in the Cloud"
+      }
+    },
+    "GOOGLE": {
+      "MESSAGE": {
+        "TITLE": "Google Диск",
+        "FILTER": "Фильтр",
+        "SEARCHING": "Идет поиск",
+        "NO-CONTENT": "Результаты не найдены",
+        "SELECT-FILE-DESCRIPTION": "Выберите файл из своей учетной записи Google Диск",
+        "SELECT-FOLDER-DESCRIPTION": "Выберите папку из своей учетной записи Google Диск"
+      }
+    },
+    "ALERT": {
+      "ALFRESCO-CLOUD-NOT-AUTHORIZED": "Истек срок доступа к Alfresco Content Services in the Cloud, вам нужно ввести учетные данные снова.",
+      "GOOGLE-DRIVE-NOT-AUTHORIZED": "Истек срок доступа к Google Диск, вам нужно ввести учетные данные снова.",
+      "ALFRESCO-ERROR": "Произошла ошибка при подключении к Alfresco",
+      "BOX-ERROR": "Произошла ошибка при подключении к Box",
+      "GOOGLE-DRIVE-ERROR": "Произошла ошибка при подключении к Google Диск"
+    }
+  },
+  "CONTENT": {
+    "SIMPLE-TYPE": {
+      "WORD": "Документ",
+      "EXCEL": "Электронная таблица",
+      "PDF": "Документ в формате PDF",
+      "IMAGE": "Изображение",
+      "FOLDER": "Папка",
+      "CONTENT": "Содержимое"
+    },
+    "MESSAGE": {
+      "NO-PREVIEW-AVAILABLE": "Предварительный просмотр недоступен",
+      "PREVIEW-PENDING": "Создается предварительный просмотр...",
+      "CONTENT-PENDING": "Получение содержимого...",
+      "NOT-FOUND": "Не удается найти данное содержимое",
+      "DELETE-CONFIRMATION": "Вы действительно желаете удалить {{name}}?",
+      "DROP": "Перетащить или ",
+      "SELECT": "Выбрать файл",
+      "DRAGOVER": "Перетащите файл, который нужно отправить",
+      "EXTERNAL-ONLY": "Выбрать источник содержимого",
+      "NO-EXTERNAL-SOURCE": "Внешний источник недоступен"
+    },
+    "TITLE": {
+      "DELETE": "Удалить содержимое",
+      "NOT-FOUND": "Файл не найден"
+    },
+    "ACTION": {
+      "OPEN-IN-GOOGLE-DRIVE": "Открыть в Google Диске",
+      "OPEN-IN-ALFRESCO-CLOUD": "Открыть в Alfresco Content Services in the Cloud",
+      "OPEN-IN-ALFRESCO": "Открыть в Alfresco",
+      "OPEN-IN-BOX": "Открыть в Box"
+    }
+  },
+  "FORM": {
+    "ACTION": {
+      "SAVE": "Сохранить"
+    },
+    "DEFAULT-OUTCOME": {
+      "COMPLETE": "Заполнить",
+      "START-PROCESS": "Запустить процесс"
+    },
+    "MESSAGE": {
+      "SELECT-PERSON": "Нет выбранных пользователей...",
+      "SELECT-GROUP": "Нет выбранных групп...",
+      "EMPTY": "(пусто)"
+    },
+    "FIELD-PREVIEW": {
+      "DISPLAY-REF": "Отображать значение",
+      "SELECT-FIELD": "(Нет выбранных полей)",
+      "FIELD-VALUE": "Показывать значение поля \"{{name}}\"",
+      "UNKNOWN-TYPE": "Неизвестный тип {{type}} поля",
+      "TEXT-VALUE": "Текст",
+      "MULTI-TEXT-VALUE": "Многострочный текст",
+      "NUMBER-VALUE": "123",
+      "DATE-VALUE": "Дата",
+      "DATETIME-VALUE": "Дата и время",
+      "DROPDOWN-VALUE": "Выбрать...",
+      "UPLOAD-VALUE": "Отправить или импортировать содержимое...",
+      "RADIOS-OPTION1": "Параметр 1"
+    }
+  },
+  "APP-DEFINITION": {
+    "MESSAGE": {
+      "NOT-FOUND": "По данному идентификатору определения приложения не найдены",
+      "MISSING": "Alfresco Process Services работает в режиме интеграции, но необходимое определение приложения отсутствует"
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "App Designer",
+      "TITLE-PROCESSES": "Модели процесса",
+      "TITLE-FORMS": "Модели форм",
+      "TITLE-APPS": "Модели приложений",
+      "TITLE-STENCILS": "Образцы",
+      "TITLE-DECISION-TABLES": "Таблицы принятия решения",
+      "TITLE-DATA-MODELS": "Модели данных"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Приложение для администраторов"
+    },
+    "TASKS": {
+      "TITLE": "Приложение для задач",
+      "TITLE-TASKS": "Задачи",
+      "TITLE-PROCESSES": "Процессы",
+      "TITLE-PROCESSES?MODE=START": "Запустить"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Профиль",
+      "TITLE-TENANT-ADMIN": "Управление средствами идентификации",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Клиенты",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Пользователи",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Возможности",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Организация",
+      "TITLE-TENANT-ADMIN-PROFILE": "Профиль",
+      "TITLE-PROFILE": "Профиль"
+    },
+    "ANALYTICS": {
+      "TITLE": "Приложение для анализа данных"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "Задачи {{name}}",
+      "TITLE-PROCESSES": "Процессы {{name}}",
+      "TITLE-PROCESSES?MODE=START": "Запуск {{name}}"
+    },
+    "TITLE": {
+      "ERROR": "Ошибка"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "Вы можете получать всевозможные отчеты о своих процессах, способствующие выявлению узких мест или повышению производительности.",
+    "GENERATE-REPORTS": "Добавьте сейчас стандартные отчеты.",
+    "NO-REPORT-SELECTED": "Нет выбранных отчетов. Выберите отчет из списка слева",
+    "NO-DATA-FOUND": "Данные не найдены",
+    "CONFIG-REPORTS": "Настроить отчеты с помощью приложения для анализа данных",
+    "FETCHING-PROC-DEFS": "Получение определений процесса...",
+    "GENERATING": "Создание отчета...",
+    "SAVE-REPORT": "Сохранить этот отчет",
+    "EXPORT-REPORT": "Экспортировать данные",
+    "SHOW": "Нажмите, чтобы отобразить",
+    "HIDE": "Нажмите, чтобы снова скрыть",
+    "FILL-PARAMS": "Данные отчета не найдены. Заполните параметры для создания отчета",
+    "PROCESS-STATUS": "Статус процесса",
+    "TASK-STATUS": "Статус задачи",
+    "STATUS": {
+      "ACTIVE": "Активные",
+      "ALL": "Все",
+      "COMPLETE": "Заполнить"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "Для текущего определения процесса завершенные задачи не найдены",
+      "DATE-RANGE": {
+        "TODAY": "Сегодня",
+        "YESTERDAY": "Вчера",
+        "LAST-7-DAYS": "Последние 7 дней",
+        "PREVIOUS-MONTH": "Предыдущий месяц",
+        "CURRENT-YEAR": "Текущий год",
+        "CUSTOM-RANGE": "Пользовательский диапазон",
+        "APPLY": "Применить",
+        "CANCEL": "Отмена",
+        "FROM": "От",
+        "TO": "До"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "По часам",
+        "DAY": "По дням",
+        "WEEK": "По неделе",
+        "MONTH": "По месяцу",
+        "YEAR": "По году"
+      },
+      "DURATION": {
+        "SECONDS": "Секунды",
+        "MINUTES": "Минуты",
+        "HOURS": "Часы",
+        "DAYS": "Дни"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "PROCESS-DEFINITION": "Определение процесса",
+        "DATE-RANGE": "Диапазон дат",
+        "DATE-RANGE-INTERVAL": "Объединить даты по",
+        "TASK-COUNT-TITLE": "Счетчики задач",
+        "TASK-COUNT-DESCRIPTION": "На графике показано общее количество задач в заданном диапазоне дат",
+        "TASK-DURATIONS-TITLE": "Продолжительность задач",
+        "TASK-DURATIONS-DESCRIPTION": "На графике показана средняя, минимальная и максимальная продолжительность (в часах) завершенных задач в заданном диапазоне дат. На оси х указан номер строки задачи в подробной таблице, представленной ниже.",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "Количество задач по исполнителю",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "На круговой диаграмме показано количество задач для выбранного определения процесса по каждому исполнителю",
+        "DETAILED-TASK-STATS-TITLE": "Подробная статистика задач",
+        "DETAILED-TASK-STATS-DESCRIPTION": "В таблице показана сводная статистика всех задач. Нажмите на любую задачу, чтобы увидеть более подробную информацию. Вся информация о времени приводится в часах.",
+        "DETAILED-TASK-STATS-TASK": "Задача",
+        "DETAILED-TASK-STATS-ASSIGNEE": "Исполнитель",
+        "TASK-HISTOGRAM-TITLE": "Количество задач, поделенное на интервал дат",
+        "TASK-HISTOGRAM-TABLE": "Таблица: данные предыдущей диаграммы в табличном формате",
+        "TASK-HISTOGRAM-TABLE-DATE": "Дата",
+        "COUNT": "Счетчик",
+        "SUM": "Сумма",
+        "MIN-DURATION": "Мин. продолжительность",
+        "MAX-DURATION": "Макс. продолжительность",
+        "AVERAGE": "Средн.",
+        "STDDEV": "Стандартное отклонение"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "PROCESS-DEFINITION": "Определение процесса",
+        "DATE-RANGE": "Диапазон дат",
+        "SLOW-PROC-INST-NUMBER": "Сколько самых медленных экземпляров процесса должно отображаться?",
+        "HISTOGRAM-TITLE": "Счетчик экземпляров процесса",
+        "HISTOGRAM-DESCRIPTION": "На следующей диаграмме показано количество экземпляров процесса, которые запускаются и завершаются в течение выбранного диапазона дат",
+        "ACTIVITY-DURATION-TABLE-TITLE": "Сведения о продолжительности действия",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "В следующей таблице показаны временные интервалы различных действий процесса, упорядоченные по общему затраченному времени нарастающим итогом. Вся информация о времени приводится в часах.",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "Действие",
+        "ACTIVITY-DURATION-CHART-TITLE": "Общее время для шагов процесса",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "На графике показано, на какие действия потрачено время. Цифры представляют собой суммарную продолжительность данного действия, как показано в таблице ниже.",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "Самые медленные экземпляры процесса",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "В таблице приведены самые медленные экземпляры процесса, которые были завершены в заданном диапазоне дат. Нажмите на любую из записей, чтобы увидеть переменные процесса для конкретного экземпляра процесса",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Продолжительность",
+        "SLOWEST-PROCESS-INSTANCES-ID": "Внутренний идентификатор",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Бизнес-ключ",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Время создания",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "Время окончания",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Переменные",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "имя переменной",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Значение переменной",
+        "COUNT": "Счетчик",
+        "SUM": "Сумма",
+        "MIN-DURATION": "Мин. продолжительность",
+        "MAX-DURATION": "Макс. продолжительность",
+        "AVERAGE": "Средн.",
+        "STDDEV": "Стандартное отклонение"
+      },
+      "TASK-SLA": {
+        "PROCESS-DEFINITION": "Определение процесса",
+        "TASK": "Задача",
+        "DATE-RANGE": "Диапазон дат",
+        "SLA-DURATION": "За какое время должна быть завершена задача, чтобы соответствовать соглашению об уровне обслуживания?",
+        "SLA-NOT-OK": "Соответствующие соглашению об уровне обслуживания в сравнении с несоответствующими",
+        "ASSIGNEE-TABLE": "Исполнители, не завершившие задачу в сроки, установленные соглашением об уровне обслуживания",
+        "ASSIGNEE": "Исполнитель",
+        "COUNT": "Счетчик"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Общее количество определений процесса: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Общее количество экземпляров процесса: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Общее количество активных экземпляров процесса: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Общее количество завершенных экземпляров процесса: ",
+        "DETAIL-TABLE": "Сведения об определении процесса",
+        "DETAIL-TABLE-PROCESS": "Определение процесса",
+        "DETAIL-TABLE-TOTAL": "Итого",
+        "DETAIL-TABLE-ACTIVE": "Активные",
+        "DETAIL-TABLE-COMPLETED": "Завершенные",
+        "PROC-INST-CHART-TITLE": "Обзор общего количества экземпляров процесса",
+        "DURATIONS-CHART-TITLE": "Средние временные интервалы для каждого определения процесса",
+        "DURATIONS-CHART-DESCRIPTION": "Средняя продолжительность (и стандартное отклонение) завершенных экземпляров процесса, в часах. Число на оси х соответствует записи в таблице выше."
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "Тепловая карта процесса",
+        "TYPE-FILTERING": "Включить все этапы процесса? (Если снять этот флажок, будут удалены такие проходные шаги, как стартовые события, шлюзы и т. д.)",
+        "METRIC-TOTAL-COUNT": "Количество выполнений шага",
+        "METRIC-TOTAL-TIME": "Общее время, затраченное на шаг процесса",
+        "METRIC-AVG-TIME": "Среднее время, затраченное на шаг процесса",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "выполнений",
+        "METRIC-TOTAL-TIME-TOOLTIP": "ч.",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "ч.",
+        "GENERATING": "Создание тепловой карты процесса..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "Сохранить отчет",
+        "DESCRIPTION": "Текущие настройки параметров будут сохранены, а в списке отчетов будет отображаться новый отчет. При нажатии на конкретный отчет он будет создан с помощью этих сохраненных значений параметров.",
+        "NAME": "Имя"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "Экспортировать данные",
+        "NAME": "Имя"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "Удалить отчет",
+        "DESCRIPTION": "Вы действительно желаете удалить этот отчет?",
+        "CONFIRM": "Удалить отчет"
+      }
+    }
+  }
+}

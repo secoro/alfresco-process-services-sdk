@@ -1,0 +1,137 @@
+<div class="modal" ng-controller="ActivitiEntityAttributeMappingPopupCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content" ng-form="globalForm">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h2>
+            </div>
+            <div class="modal-body">
+
+                <div class="row row-no-gutter">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="mappedDataModel">{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.MAPPEDDATAMODEL.LABEL' | translate}}</label>
+                            <select id="mappedDataModel" class="form-control" ng-model="entityObject.mappedDataModel"
+                                    ng-options="dataModel.id as dataModel.name for dataModel in dataModels" ng-change="selectDataModel()">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row row-no-gutter">
+                    <div class="col-xs-6">
+                        <div class="form-group" ng-if="dataModelEntities && entityObject.mappedDataModel">
+                            <label for="mappedEntity">{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.MAPPEDENTITY.LABEL' | translate}}</label>
+                            <select id="mappedEntity" class="form-control" ng-model="entityObject.mappedEntity"
+                                    ng-options="entity.name as entity.name for entity in dataModelEntities" ng-change="selectEntity()">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row row-no-gutter">
+                    <div class="col-xs-6">
+                        <div class="form-group clearfix">
+                            <label>{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VARIABLE.LABEL' | translate}}</label>
+                            <div class="btn-group btn-group-justified">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-click="setVariableTypeNewVariable()" ng-model="entityObject.variableType" ng-class="{'active' : (!entityObject.variableType || entityObject.variableType == 'new')}">{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VARIABLE-TYPE-NEW' | translate}}</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-click="setVariableTypeExistingVariable()" ng-model="entityObject.variableType" ng-class="{'active' : entityObject.variableType == 'existing'}">{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VARIABLE-TYPE-EXISTING' | translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group clearfix" ng-show="!entityObject.variableType || entityObject.variableType == 'new'">
+                            <label>{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VARIABLE-TYPE-NEW' | translate}}</label>
+                            <input class="form-control" type="text" id="newVariableName" placeholder="New variable name" ng-model="entityObject.newVariableName" />
+                        </div>
+
+                        <div class="form-group clearfix" ng-show="entityObject.variableType == 'existing'">
+                            <label>{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VARIABLE-TYPE-EXISTING' | translate}}:</label>
+                            <select id="entityVariable" class="form-control" ng-model="entityObject.existingVariable"
+                                    ng-options="entityVariable as (entityVariable.mappedVariableName + ' - ' + entityVariable.entityName) for entityVariable in entityVariables">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row row-no-gutter">
+                    <hr/>
+                </div>
+               
+                <div class="row row-no-gutter">
+                    <div class="col-xs-6" ng-show="entityObject.mappedEntity">
+                        <div ng-if="translationsRetrieved" class="kis-listener-grid" ui-grid="gridOptions" ui-grid-selection ui-grid-auto-resize></div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div ng-if="selectedAttributeMapping" ng-form="variableForm">
+                            
+                            <div class="form-group">
+                                <label for="attributeName">{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.ATTRIBUTE-NAME.LABEL' | translate}}</label>
+                                <input id="attributeName" type="text" class="form-control" ng-model="selectedAttributeMapping.attributeName" disabled />
+                            </div>
+                            
+                            <div ng-show="!selectedDataModel.dataModelDefinition.dataSourceType || selectedDataModel.dataModelDefinition.dataSourceType === 'database'">
+                                <label style="color: #636363; font-size: 14px;">
+                                    <input id="primaryKeyCheckbox" type="checkbox" ng-model="selectedAttributeMapping.attributePrimaryKey" disabled>
+                                    &nbsp;{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.PRIMARY-KEY.LABEL' | translate}}
+                                </label>
+                            </div>
+                            
+                            <div>
+                                <label style="color: #636363; font-size: 14px; margin-bottom: 10px;">
+                                    <input id="requiredCheckbox" type="checkbox" ng-model="selectedAttributeMapping.attributeRequired" disabled>
+                                    &nbsp;{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.REQUIRED.LABEL' | translate}}
+                                </label>
+                            </div>
+                           
+                            <div class="form-group clearfix">
+                                <label>{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.MAPPING-VALUE-TYPE.LABEL' | translate}}</label>
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="setMappedValueType('static')" ng-model="selectedAttributeMapping.valueType" ng-class="{'active' : (!selectedAttributeMapping.valueType || selectedAttributeMapping.valueType == 'static')}">{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VALUE-TYPE-STATIC' | translate}}</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="setMappedValueType('field')" ng-model="selectedAttributeMapping.valueType" ng-class="{'active' : selectedAttributeMapping.valueType == 'field'}">{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VALUE-TYPE-FIELD' | translate}}</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="setMappedValueType('variable')" ng-model="selectedAttributeMapping.valueType" ng-class="{'active' : selectedAttributeMapping.valueType == 'variable'}">{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VALUE-TYPE-VARIABLE' | translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group clearfix" ng-show="(!selectedAttributeMapping.valueType || selectedAttributeMapping.valueType == 'static')">
+                                <label>{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VALUE-TYPE-STATIC' | translate}}</label>
+                                <input class="form-control" type="text" id="attributeStaticValue" placeholder="Enter a value" ng-model="selectedAttributeMapping.staticValue" />
+                            </div>
+
+                            <div class="form-group clearfix" ng-show="selectedAttributeMapping.valueType == 'field'">
+                                <label>{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VALUE-TYPE-FIELD' | translate}}:</label>
+                                <div field-select="selectedAttributeMapping.formField" editor-type="bpmn" all-steps="allSteps" step-id="selectedShape.resourceId" include-current-step="true"
+                                    include-type="true" expand-relative="true" field-type-filter="endpointElementFieldTypes"></div>
+                                <div class="form-group clearfix" ng-show="isFieldValuePath && selectedAttributeMapping.valueType == 'field'">
+                                    <label>{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VALUE-TYPE-FIELD-VALUE-PATH' | translate}}:</label>
+                                    <input class="form-control" type="text" id="fieldValuePath" placeholder="Enter a value" ng-model="selectedAttributeMapping.fieldValuePath" />
+                                </div>
+                            </div>
+
+                            <div class="form-group clearfix" ng-show="selectedAttributeMapping.valueType == 'variable'">
+                                <label>{{'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.VALUE-TYPE-VARIABLE' | translate}}:</label>
+                                <div field-select="selectedAttributeMapping.variable" include-type="true" variables-type="rest" editor-type="bpmn" expand-relative="true"
+                                     select-title="'PROPERTY.ENTITY-ATTRIBUTE-MAPPING.SELECT-VARIABLE.LABEL'" all-steps="allSteps" step-id="selectedShape.resourceId"></div>
+                            </div>
+                        </div>
+                        <div ng-if="!selectedAttributeMapping && entityObject.mappedEntity" class="muted no-property-selected" translate>PROPERTY.ENTITY-ATTRIBUTE-MAPPING.UNSELECTED</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" ng-disabled="readOnly" class="btn btn-primary" ng-disabled="globalForm.$invalid" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

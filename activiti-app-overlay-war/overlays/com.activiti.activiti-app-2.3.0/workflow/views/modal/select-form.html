@@ -1,0 +1,73 @@
+
+<div class="modal form-select" ng-controller="FormSelectPopupCrtl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$hide()">&times;</button>
+                <h3>
+                    {{'TASK.FORM-SELECT.TITLE' | translate}}
+                    <span ng-show="selectedForm != null"> - {{selectedForm.name}}</span>
+                    <span ng-show="selectedForm == null"> - {{'TASK.FORM-SELECT.EMPTY' | translate}}</span> 
+                </h3>
+            </div>
+            <div class="form-select-modal-body">
+            	<div class="main-list" style="padding-right: 0;margin-right:5px;">
+            		<div class="list-wrapper">
+            			<ul class="full-list">
+            			<li ng-if="currentForm" ng-click="selectForm(currentForm)" ng-class="{'active' : currentForm == selectedForm, 'current' : currentForm != selectedForm}">
+                           <div translate="TASK.FORM-SELECT.CURRENT-FORM" translate-values="{name: currentForm.name}"></div>
+                         </li>
+                        <li ng-repeat="form in forms" ng-click="selectForm(form)" ng-class="{'active' : form == selectedForm}">
+                           <div>{{form.name}}</div>
+                         </li>
+                    </ul>
+                    <div loading="state.loadingForms"></div>
+                    <div ng-if="state.formsError">
+                    	<p translate>TASK.FORM-SELECT.FORMS-ERROR</p>
+                    </div>
+            		</div>
+            	</div>
+            	<div class="main-content-wrapper">
+            		<div>
+            			<div class="section">
+            				<div loading="selectedForm.loading && forms.length != 0"></div>
+            				<div ng-if="!state.loadingForms && !currentForm && forms.length == 0">
+                    			<p translate>TASK.FORM-SELECT.NO-FORMS</p>
+                    		</div>
+                    		<div ng-if="selectedForm.loadingError">
+                    			<p translate>TASK.FORM-SELECT.FORM-LOAD-ERROR</p>
+                    		</div>
+            				<div class="form-wrapper container-fluid">
+            				    <div class="form-center-pane" ng-if="selectedForm.tabs && selectedForm.tabs.length > 0">
+                                    <div class="content">
+                                       <div class="clearfix">
+                                           <ul class="tabs clearfix">
+                                               <li ng-repeat="tab in selectedForm.tabs" ng-class="{'active': tab.id == activeFormTab.id}">
+                                                   <a ng-click="formTabClicked(tab)">{{tab.title | translate}}</a>
+                                               </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+            				
+            					<div ng-if="!activeFormTab || !activeFormTab.id || (activeFormTab && activeFormTab.id && activeFormTab.id === field.tab)" ng-repeat="field in selectedForm.fields">
+                    				<field-preview field="field" custom-field-templates="selectedForm.customFieldTemplates"></field-preview>
+                				</div>
+                				
+                				<div class="center out-come-buttons" ng-if="selectedForm.outcomes && selectedForm.outcomes.length > 0">
+									<button class="activiti-btn" disabled="disabled" ng-repeat="outcome in selectedForm.outcomes">{{outcome.name}}</button>
+								</div>
+            				</div>
+            			</div>
+            		</div>
+            	</div>
+         
+            </div>
+            <div class="modal-footer">
+            <button ng-if="selectedForm && selectedForm == currentForm" ng-click="removeForm(); $hide()" class="btn btn-danger" translate>TASK.FORM-SELECT.REMOVE-FORM</button>
+            	<button ng-click="$hide()" class="btn" translate>GENERAL.ACTION.CANCEL</button>
+                <button ng-disabled="selectedForm == currentForm || forms.length == 0 || readOnly" ng-click="attachForm(selectedForm); $hide();" class="btn btn-primary" translate>TASK.FORM-SELECT.ATTACH-FORM</button>
+            </div>
+        </div>
+    </div>
+</div>

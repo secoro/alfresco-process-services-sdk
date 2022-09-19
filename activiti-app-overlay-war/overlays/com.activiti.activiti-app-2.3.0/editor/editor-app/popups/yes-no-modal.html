@@ -1,0 +1,22 @@
+
+<div class="modal" ng-controller="EditorYesNoCancelPopupCrtl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 translate="EDITOR.POPUP.YES-NO.TITLE"></h2>
+            </div>
+            <div class="modal-body">
+                <p translate="EDITOR.POPUP.YES-NO.DESCRIPTION" translate-values="{action:operationAction?operationAction.toLowerCase():''}"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button class="btn btn-success" ng-click="yes()" translate="EDITOR.POPUP.ACTION.YES"></button>
+                    <button class="btn btn-danger" ng-click="no()" translate="EDITOR.POPUP.ACTION.NO"></button>
+                </div>
+                <div class="loading pull-right" ng-show="loading">
+                    <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

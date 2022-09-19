@@ -1,0 +1,25 @@
+<div ng-if="accountType === 'disabled'">
+    <button class="btn btn-xs" ng-disabled="true">
+        {{'COMMON.AUTHORIZE.TITLE' | translate}}
+    </button>
+</div>
+<div ng-if="accountType !== 'disabled'">
+    <div ng-if="contentAccounts[accountType]">
+        <div ng-if="!contentAccounts[accountType].authorized">
+            {{'COMMON.AUTHORIZE.NO-EXTERNAL-REPOSITORY-CONFIGURED' | translate:{moduleName:accountType.toUpperCase()} }}
+        </div>
+        <div ng-if="contentAccounts[accountType].authorized">
+            {{'COMMON.AUTHORIZE.EXTERNAL-REPOSITORY-REAUTHORIZE-REQUIRED' | translate:{moduleName:accountType.toUpperCase()} }}<br/><br/>
+            {{'COMMON.AUTHORIZE.EXTERNAL-REAUTHORIZE-ADVICE' | translate:{moduleName:accountType.toUpperCase()} }}<br/><br/>
+        </div>
+        <div class="form-field">
+            <button class="btn btn-xs" ng-click="openAuthenticationPopup($event,accountType)">
+                {{'COMMON.AUTHORIZE.TITLE' | translate}}
+            </button>
+        </div>
+    </div>
+
+    <div ng-if="!contentAccounts[accountType]">
+            {{'COMMON.AUTHORIZE.MODULE-DISABLED' | translate:{moduleName:accountType.toUpperCase()} }}
+    </div>
+</div>

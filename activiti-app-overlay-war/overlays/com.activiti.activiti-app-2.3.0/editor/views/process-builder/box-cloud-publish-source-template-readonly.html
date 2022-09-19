@@ -1,0 +1,23 @@
+<div class="detail-group clearfix first">
+    <div class="col-xs-12">
+        <div class="btn-group span">
+            {{step.meta.boxSourceOption.title}}
+        </div>
+    </div>
+</div>
+<div class="detail-group clearfix" ng-show="step.meta.boxSourceOption.id == 'field'">
+    <div class="form-group clearfix">
+        <div class="col-xs-3">
+            <label>{{'PROCESS-BUILDER.PUBLISH-STEP.SOURCE.FORM-FIELD' | translate}}:</label>
+        </div>
+        <div class="col-xs-9" ng-if="step.contentContainerField && step.contentContainerField.id">
+            <label>{{step.contentContainerField.name}}</label>
+        </div>
+    </div>
+</div>
+
+<!--grid metadata and popup to add start-->
+<div class="detail-group clearfix" ng-show="step.meta.boxSourceOption && isMetaDataAllowed">
+    <metadata-grid />
+</div>
+<!--grid metadata and popup to add end-->

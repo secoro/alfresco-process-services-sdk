@@ -1,0 +1,54 @@
+<div class="modal" ng-controller="ModalDisplayTextPopupCtrl" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h2>
+            </div>
+            <div class="modal-body">
+                <div class="detail-group clearfix">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label translate="FORM-BUILDER.COMPONENT.READONLY-TEXT"></label>
+                                <textarea rows="3" ng-model="displayText" class="form-control" id="readonly-text-value" ng-trim="false" store-cursor-position="insertFormField.position"></textarea>
+                                <div class="subtle" translate="FORM-BUILDER.MESSAGE.READONLY-TEXT-HELP" style="padding: 5px 0 5px 1px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group btn-group btn-group-justified">
+                        <div class="btn-group clearfix">
+                            <button type="button" class="btn btn-default" ng-click="setUrlFieldType('formField')" ng-model="model.urlFieldType"
+                                    ng-class="{'active' : model.urlFieldType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                            </button>
+                        </div>
+                        <div class="btn-group clearfix">
+                            <button type="button" class="btn btn-default" ng-click="setUrlFieldType('restResponse')" ng-model="model.urlFieldType"
+                                    ng-class="{'active' : model.urlFieldType === 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div ng-show="model.urlFieldType === 'formField'">
+                        <div>
+                            <div field-select="insertFormField.field" include-type="true" expand-relative="true" all-steps="allSteps" step-id="stepId"
+                                 select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'" field-type-filter="allowedTypes"></div>
+                        </div>
+                    </div>
+
+                    <div ng-show="model.urlFieldType === 'restResponse'">
+                        <div>
+                            <div field-select="insertFormField.field" include-type="true" variables-type="rest" editor-type="step" expand-relative="true"
+                                 all-steps="allSteps" step-id="stepId"
+                                 select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-RESPONSE-VARIABLE'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="save()" class="btn btn-primary">{{'GENERAL.ACTION.SAVE' | translate}}</button>
+                <button ng-click="close()" class="btn btn-primary">{{'GENERAL.ACTION.CLOSE' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

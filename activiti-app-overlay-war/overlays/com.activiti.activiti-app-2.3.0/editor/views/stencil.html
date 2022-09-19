@@ -1,0 +1,183 @@
+
+<div class="subheader" id="list-header">
+	<div class="fixed-container">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default" ng-click="openEditor()" ng-if="model.stencil.latestVersion" ng-disabled="readOnly || model.stencil.permission != 'write'">
+                <i class="glyphicon glyphicon-edit icon-and-label"></i> {{'STENCIL.ACTION.OPEN-IN-EDITOR' | translate}}
+            </button>
+            <button type="button" class="btn btn-default" ng-click="useAsNewVersion()" ng-if="!model.stencil.latestVersion" ng-disabled="model.stencil.permission != 'write' || readOnly">
+                {{'STENCIL.ACTION.USE-AS-NEW-VERSION' | translate}}
+            </button>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" ng-click="toggleFavorite()" class="btn btn-default" title="{{'STENCIL.ACTION.FAVORITE' | translate}}"
+                title="{{'STENCIL.ACTION.FAVORITE' | translate}}" ng-disabled="!model.stencil.latestVersion || model.favoritePending || readOnly" >
+                <i class="glyphicon" ng-class="{'glyphicon-star highlight': model.stencil.favorite, 'glyphicon-star-empty': !model.stencil.favorite}"></i>
+            </button>
+            <button type="button" ng-click="shareStencil()" class="btn btn-default" title="{{'STENCIL.ACTION.SHARE' | translate}}"
+                title="{{'STENCIL.ACTION.SHARE' | translate}}" ng-disabled="!model.stencil.latestVersion || model.stencil.createdBy != account.id || readOnly">
+                <i class="glyphicon glyphicon-share"></i>
+            </button>
+            <a href="{{model.stencilDownloadUrl}}" class="btn btn-default" title="{{'STENCIL.ACTION.EXPORT-JSON' | translate}}"
+               title="{{'STENCIL.ACTION.EXPORT-JSON' | translate}}">
+                <i class="glyphicon glyphicon-save"></i>
+            </a>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default" ng-click="editStencil()" ng-disabled="!model.stencil.latestVersion || model.stencil.permission != 'write' || readOnly"
+                title="{{'STENCIL.ACTION.EDIT' | translate}}">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="deleteStencil()" title="{{'STENCIL.ACTION.DELETE' | translate}}"
+                 title="{{'STENCIL.ACTION.DELETE' | translate}}" ng-disabled="!model.stencil.latestVersion || model.stencil.permission != 'write' || readOnly">
+                <i class="glyphicon glyphicon-trash"></i>
+            </button>
+        </div>
+        <div class="pull-right">
+            <a ng-click="returnToList()" class="action">&larr; {{'STENCIL.ACTION.RETURN-TO-LIST' | translate}}</a>
+        </div>
+        <h2><span class="version">v{{model.stencil.version}}</span>{{model.stencil.name}}</h2>
+        <div class="clearfix">
+            <div class="col-xs-4 details">
+                <span><i class="glyphicon glyphicon-user"></i><span translate="STENCIL.DETAILS.CREATED-BY" translate-values="model.stencil"></span></span>
+                <span><i class="glyphicon glyphicon-pencil"></i><span translate="STENCIL.DETAILS.LAST-UPDATED-BY" translate-values="model.stencil"></span>{{model.stencil.lastUpdated | dateformat:((globalDateFormat || getGlobalDateFormat()) | momentTodatetimeFormat)}}</span>
+            </div>
+            <div class="col-xs-8 details clearfix">
+                <div class="related btn-group">
+
+                    <button id="toggle-comment" type="button" class="btn btn-subtle" ng-disabled="!model.stencil.latestVersion" ng-click="toggleComments($event)"
+                            title="{{'STENCIL.ACTION.ADD-COMMENT' | translate}}">
+                        <span ng-if="!model.comments.data.length">
+						   {{'STENCIL.ACTION.ADD-COMMENT' | translate}}
+                        </span>
+                        <span ng-if="model.comments.data.length">
+						     {{'STENCIL.DETAILS.COMMENTS-TITLE' | translate}} <span class="counter">{{model.comments.data.length}}</span>
+                        </span>
+                    </button>
+                    <button id="toggle-history" type="button" class="btn btn-subtle" ng-click="toggleHistory($event)"
+                        title="{{'STENCIL.ACTION.EDIT' | translate}}">
+                        {{'STENCIL.DETAILS.HISTORY-TITLE' | translate}} <span class="counter" ng-show="model.versions.data.length">{{model.versions.data.length}}</span>
+                    </button>
+                </div>
+                <p ng-if="model.stencil.description">
+                    {{model.stencil.description}}
+                </p>
+                <span class="detail" ng-if="model.stencil.comment" title="{{'STENCIL.VERSION-COMMENT' | translate}}"><i class="glyphicon glyphicon-comment"></i>{{model.stencil.comment}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid content" auto-height offset="40">
+        <!-- Stencil details -->
+		<div class="col-xs-12" >
+
+            <!-- Stencil details -->
+            <div ng-show="model.stencil && !status.loading">
+
+                <div class="container-fluid stencil-info stencil-info-box" >
+                    <div class="row">
+
+                        <!-- List of stencil -->
+                        <div class="col-xs-4">
+
+                            <div class="stencil-info-items-box">
+
+                                <div ng-repeat="item in model.stencilItems" class="stencil-info-item" ng-if="model.stencil.stencilType == 1 && !item.removed">
+
+                                    <!-- Root stencil item -->
+                                    <span id="stencil_item_{{item.id}}"
+                                          ng-if="item.type && (item.type == 'node' || item.type === 'edge') "
+                                          ng-class="{'stencil-info-groupItem-selected' : model.activeStencilItem.id == item.id}"
+                                          ng-click="showItemDetails(item)"
+                                          ng-if="!item.removed">
+                                        <stencil-item-icon stencil-item="item"></stencil-item-icon>
+                                        {{item.name | translate}}
+                                    </span>
+
+                                    <!-- Stencil group -->
+                                    <div id="group_{{item.id}}" ng-if="item.type && item.type == 'group'" ng-class="{'stencil-info-group-selected' : item == model.activeGroup}">
+                                        <i class="glyphicon " ng-class="isGroupExpanded(item) && 'glyphicon-chevron-down' || 'glyphicon-chevron-right'" ng-click="toggleGroupCollapseState(item)"></i>
+                                        <span ng-class="{'stencil-info-group' : item.type && item.type == 'group'}" ng-click="showGroupDetails(item)">{{item.name | translate}}</span>
+                                    </div>
+
+                                    <!-- Stencil items in a group -->
+                                    <div ng-if="item.type && item.type == 'group'">
+                                        <div ng-repeat="groupItem in item.items"
+                                             id="stencil_item_{{groupItem.id}}"
+                                             ng-show="isGroupExpanded(item)"
+                                             class="stencil-info-groupitem"
+                                             ng-class="{'stencil-info-groupItem-selected' : model.activeStencilItem.id == groupItem.id}"
+                                             ng-click="showItemDetails(groupItem)"
+                                             ng-if="!groupItem.removed">
+                                            <stencil-item-icon stencil-item="groupItem"></stencil-item-icon>
+                                            <span>{{groupItem.name | translate}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div ng-repeat="item in model.stencilItems" class="stencil-info-item" ng-if="model.stencil.stencilType == 2 && !item.removed">
+
+                                    <!-- Root stencil item -->
+                                    <div id="stencil_item_{{item.id}}"
+                                          ng-class="{'stencil-info-groupItem-selected' : model.activeStencilItem.id == item.id}"
+                                          ng-click="showItemDetails(item)"
+                                          ng-if="!item.type">
+                                        <stencil-step-item-icon stencil-item="item"></stencil-step-item-icon>
+                                       <span>{{item.name | translate}}</span>
+                                    </div>
+                                    
+                                    <!-- Stencil group -->
+                                    <div id="group_{{item.id}}" ng-if="item.type && item.type == 'group'" ng-class="{'stencil-info-group-selected' : item == model.activeGroup}">
+                                        <i class="glyphicon " ng-class="isGroupExpanded(item) && 'glyphicon-chevron-down' || 'glyphicon-chevron-right'" ng-click="toggleGroupCollapseState(item)"></i>
+                                        <span ng-class="{'stencil-info-group' : item.type && item.type == 'group'}" ng-click="showGroupDetails(item)">{{item.name | translate}}</span>
+                                    </div>
+                                    
+                                    <!-- Stencil items in a group -->
+                                    <div ng-if="item.type && item.type == 'group'">
+                                        <div ng-repeat="groupItem in item.items"
+                                             id="stencil_item_{{groupItem.id}}"
+                                             ng-show="isGroupExpanded(item)"
+                                             class="stencil-info-groupitem"
+                                             ng-class="{'stencil-info-groupItem-selected' : model.activeStencilItem.id == groupItem.id}"
+                                             ng-click="showItemDetails(groupItem)"
+                                             ng-if="!groupItem.removed">
+                                            <stencil-step-item-icon stencil-item="groupItem"></stencil-step-item-icon>
+                                            <span>{{groupItem.name | translate}}</span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div ng-repeat="item in model.stencilItems" class="stencil-info-item" ng-if="model.stencil.stencilType == 3 && !item.removed">
+
+                                    <div id="stencil_item_{{item.id}}"
+                                          ng-class="{'stencil-info-groupItem-selected' : model.activeStencilItem.id == item.id}"
+                                          ng-click="showItemDetails(item)"
+                                          ng-if="!item.removed">
+                                        <stencil-form-field-icon stencil-item="item"></stencil-form-field-icon> 
+                                        <span>{{item.name | translate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Details -->
+                        <div class="col-xs-8">
+
+                            <!-- Details for stencil group -->
+                            <div ng-include="'views/includes/stencil-group-details.html?version=1'" ng-if="model.activeGroup"></div>
+
+                            <!-- Details for stencil item -->
+                            <div ng-include="'views/includes/stencil-item-details.html?version=2'" ng-if="model.activeStencilItem"></div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+		</div>
+</div>

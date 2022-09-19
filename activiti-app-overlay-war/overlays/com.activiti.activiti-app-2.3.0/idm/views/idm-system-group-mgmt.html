@@ -1,0 +1,194 @@
+<div class="main-list" id="main-list">
+    <div class="list-subheader clearfix" style="margin-top: 0px; min-height: 60px">
+        <div ng-if="hasTenantManagementCapability()">
+            <select ng-options="tenant.id as tenant.name for tenant in model.tenants"
+                    class="form-control pull-left"
+                    style="width: 50%;margin: 10px 0 0 10px;"
+                    ng-model="common.selectedTenantId"
+                    ng-change="fetchGroups()">
+            </select>
+        </div>
+        <div class="btn-group pull-right">
+            <button class="btn" translate="IDM.SYSTEM-GROUP-MGMT.CREATE" ng-click="showCreateGroupPopup()" ng-disabled="readOnly">&nbsp;</button>
+        </div>
+    </div>
+    <div class="list-wrapper" auto-height>
+
+        <span loading="model.loading"></span>
+
+        <ul class="full-list" ng-if="!model.loading">
+            <li ng-repeat="group in model.groups"
+                ng-class="{'active': model.selectedGroup.id == group.id}"
+                ng-click="selectGroup(group.id)">
+                <div class="title" href="">{{group.name}}</div>
+            </li>
+        </ul>
+
+        <div class="nothing-to-see" ng-if="model.groups.length == 0">
+            <span  translate="IDM.SYSTEM-GROUP-MGMT.NO-GROUPS"></span>
+        </div>
+
+    </div>
+</div>
+
+<div class="main-content-wrapper">
+
+    <div class="main-content" ng-show="!model.loadingGroup">
+
+        <div class="header" ng-if="model.selectedGroup">
+
+            <div class="pull-right">
+                <button class="btn btn-clean" ng-click="showEditGroupModal()" ng-disabled="readOnly">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn btn-clean" ng-click="showDeleteGroupModal()" ng-disabled="readOnly">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+
+            <h2>{{model.selectedGroup.name}}</h2>
+
+        </div>
+
+        <div class="content" ng-show="model.selectedGroup" auto-height="model.selectedGroup" offset="6">
+
+            <span loading="model.loadingGroup"></span>
+
+            <div ng-if="!model.loadingGroup">
+
+                <!-- Capabilities -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>
+                            {{'IDM.SYSTEM-GROUP-MGMT.CAPABILITIES-SECTION' | translate}}
+                             <span class="action">
+                                <a id="toggle-add-capability" ng-click="showAddCapabilityPopover($event)" style="font-weight: normal">{{'IDM.SYSTEM-GROUP-MGMT.ADD-CAPABILITY' | translate}}</a>
+                             </span>
+                        </h3>
+
+
+                        <ul class="simple-list pack"
+                            ng-if="model.selectedGroup.capabilities && model.selectedGroup.capabilities.length > 0">
+                            <li ng-repeat="capability in model.selectedGroup.capabilities">
+                                <i class="glyphicon glyphicon-ok-circle"></i>
+                                <span> {{'IDM.SYSTEM-GROUP-MGMT.CAPABILITIES.' +  capability.name  | translate}}</span>
+                                <div class="actions">
+                                    <a ng-show="!readOnly"><i class="glyphicon glyphicon-trash" ng-click="showRemoveCapabilityModal(capability)"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div ng-if="!model.selectedGroup.capabilities || model.selectedGroup.capabilities.length == 0">
+                            <span>{{'IDM.SYSTEM-GROUP-MGMT.NO-CAPABILITIES' | translate}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Groups -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>
+                            {{'IDM.SYSTEM-GROUP-MGMT.ORGANIZATIONAL-GROUPS' | translate}}
+                            <span class="action">
+                                <a id="toggle-add-organizational-group"
+                                   select-functional-group-popover
+                                   placement="bottom-left"
+                                   on-group-selected="addOrganizationalGroup(group)"
+                                   exclude-group-ids="model.currentGroupIds"
+                                   style="font-weight: normal">
+                                    {{'IDM.SYSTEM-GROUP-MGMT.ADD-GROUP' | translate}}
+                                </a>
+                            </span>
+                        </h3>
+                        <span loading="model.loadingGroups"></span>
+                        <ul class="simple-list pack"
+                            ng-if="!model.loadingGroups && model.organizationalGroups && model.organizationalGroups.length > 0">
+                            <li ng-repeat="group in model.organizationalGroups">
+                                <span><i class="glyphicon glyphicon-list-alt" style="margin-right: 5px;"></i>{{group.name}}</span>
+                                <div class="actions">
+                                    <a><i class="glyphicon glyphicon-trash" ng-click="deleteOrganizationalGroup(group)"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div ng-if="!model.organizationalGroups || model.organizationalGroups.length == 0" class="actions">
+                            <span>{{'IDM.SYSTEM-GROUP-MGMT.NO-GROUPS' | translate}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <!-- Users -->
+                    <div class="col-md-6">
+                        <h3>
+                            {{'IDM.SYSTEM-GROUP-MGMT.MEMBERS' | translate}}
+                                <span class="action">
+                                    <a id="toggle-add-group-member"
+                                       select-people-popover
+                                       popover-title="IDM.SYSTEM-GROUP-MGMT.ADD-POPOVER-TITLE"
+                                       placement="bottom"
+                                       on-people-selected="addGroupMember(user)"
+                                       email-mode-disabled="true"
+                                       tenant-id="common.selectedTenantId"
+                                       type="'idm'"
+                                       style="font-weight: normal">
+                                        {{'IDM.SYSTEM-GROUP-MGMT.ADD-USER' | translate}}
+                                    </a>
+
+                                    <a id="toggle-add-all-users"
+                                       ng-click="addAllUsers()"
+                                       ng-show="!readOnly"
+                                       style="font-weight: normal">
+                                        {{'IDM.SYSTEM-GROUP-MGMT.ADD-ALL-USERS' | translate}}
+                                    </a>
+                                </span>
+                        </h3>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </span>
+                            <input type="text" ng-model="model.userFilter" class="form-control" ng-change="refreshDelayed()">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>
+                            <span loading="model.loadingUsers"></span>
+
+                            <span ng-if="model.users.data && model.users.data.length > 0 && !model.loadingUsers">
+                                {{'IDM.USER-MGMT.MATCHING-USERS' | translate:model.users}}
+                                <a ng-click="showPreviousUsers()" ng-show="model.userPage > 0">&laquo; {{'IDM.USER-MGMT.SHOW-PREVIOUS' | translate}} {{model.pageSize}}</a>
+                                <span ng-show="model.userPage > 0 && model.moreUsers">|</span>
+                                <a ng-click="showNextUsers()" ng-show="model.moreUsers">{{'IDM.USER-MGMT.SHOW-NEXT' | translate}} {{model.pageSize}} &raquo;</a>
+                            </span>
+                        </p>
+                        <table class="table users" ng-if="model.users.data && model.users.data.length > 0 && !model.loadingUsers">
+                            <tr>
+                                <th width="50%">{{'IDM.USER-MGMT.EMAIL' | translate}}</th>
+                                <th width="40%%">{{'IDM.USER-MGMT.NAME' | translate}}</th>
+                                <th width="10%"></th>
+                            </tr>
+                            <tr ng-repeat="user in model.users.data">
+                                <td>{{user.email}}</td>
+                                <td>{{user.firstName}} {{user.lastName}}</td>
+                                <td align="center"><a ng-click="showRemoveMemberModal(user)" ng-show="!readOnly"><i class="glyphicon glyphicon-trash" ></i></a></td>
+                            </tr>
+                        </table>
+
+                        <div ng-if="!model.loadingUsers && (!model.users.data || model.users.data.length == 0)" class="actions">
+                            <span>{{'IDM.SYSTEM-GROUP-MGMT.NO-MEMBERS' | translate}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nothing-to-see" ng-if="model.groups.length > 0 && !model.selectedGroup && !model.loading">
+            <span>{{'IDM.SYSTEM-GROUP-MGMT.NO-SELECTION' | translate}}</span>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="modal" ng-controller="AlfrescoActionRepositoryPopupCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h3>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h3>
+            </div>
+            <div class="modal-body">
+
+                <div class="detail-group clearfix" ng-if="contentAlfrescoAccounts.loading === false && contentAlfrescoAccounts.onPrem === true">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.ACCOUNT' | translate}}:</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <select id="alfrescoAccount" class="form-control" ng-options="account as account.name for account in contentAlfrescoAccounts.rawList"
+                                    ng-model="alfrescoAccount.selected"
+                                    ng-change="onAccountChanged()"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-group clearfix" ng-if="contentAlfrescoAccounts.loading === false && (!contentAlfrescoAccounts.rawList || contentAlfrescoAccounts.rawList.length === 0)">
+                    <div class="col-xs-12">
+                        <div class="clearfix span">
+                            <label class="center">{{'PROCESS-BUILDER.PUBLISH-STEP.DESTINATION.NO-ACCOUNTS' | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button ng-click="close()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" ng-disabled="readOnly" class="btn btn-primary" translate >ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

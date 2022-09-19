@@ -1,0 +1,195 @@
+<div ng-controller="StencilItemDetailsCtrl">
+    <div class="clearfix">
+        <h2>{{model.activeStencilItem.name | translate}}</h2>
+    </div>
+    
+    <div class="form-group" ng-if="model.activeStencilItem.customStencilItem">
+        <label for="stencilItemType">{{'STENCILS.ITEM.CUSTOM-TYPE' | translate}}</label>
+        <input id="stencilItemType" type="text" class="form-control" ng-model="model.activeStencilItem.customStencilItem.customType" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="stencilItemName">{{'STENCILS.ITEM.NAME' | translate}}</label>
+        <input id="stencilItemName" type="text" class="form-control" ng-model="model.activeStencilItem.name" disabled />
+    </div>
+
+    <div class="form-group">
+        <label for="stencilItemDescription">{{'STENCILS.ITEM.DESCRIPTION' | translate}}</label>
+        <textarea id="stencilItemDescription" type="text" class="form-control" ng-model="model.activeStencilItem.description" disabled></textarea>
+    </div>
+
+    <div class="form-group">
+        <span>{{'STENCILS.ITEM.ID' | translate}}</span>
+        <span class="greyish">{{model.activeStencilItem.id}}</span>
+    </div>
+
+    <div class="form-group" ng-if="model.stencil.stencilType == 1">
+        <label for="group">{{'STENCILS.POPUP.CREATE-ITEM-GROUP' | translate}}</label>
+        <input id="group" type="text" disabled class="form-control" ng-model="model.activeStencilItem.group">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <span>{{'STENCILS.ITEM.ICON' | translate}}</span>
+        <stencil-item-icon stencil-item="model.activeStencilItem" ng-if="model.stencil.stencilType == 1"></stencil-item-icon>
+        <stencil-step-item-icon stencil-item="model.activeStencilItem" ng-if="model.stencil.stencilType == 2"></stencil-step-item-icon>
+        <stencil-form-field-icon stencil-item="model.activeStencilItem" ng-if="model.stencil.stencilType == 3"></stencil-form-field-icon>
+    </div>
+
+    <div ng-if="model.stencil.stencilType == 3 && model.activeStencilItem.customFormField">
+    	<div class="form-group">
+        	<label for="fieldValue">{{'STENCILS.ITEM.FORM-FIELD-VALUE' | translate}}</label>
+        	<input id="fieldValue" type="text" class="form-control" ng-model="model.activeStencilItem.fieldValue" disabled />
+    	</div>
+    	<div class="form-group">
+        	<label for="valueType">{{'STENCILS.ITEM.FORM-VALUE-TYPE' | translate}}</label>
+        	<input id="valueType" type="text" class="form-control" ng-model="model.activeStencilItem.valueType" disabled />
+    	</div>
+        <div class="form-group">
+            <label for="runtimeTemplate">{{'STENCILS.ITEM.FORM-RUNTIME-TEMPLATE' | translate}}</label>
+            <textarea disabled id="runtimeTemplate" type="text" class="form-control" rows="8" ng-model="model.activeStencilItem.template"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="builderTemplate">{{'STENCILS.ITEM.FORM-EDITOR-TEMPLATE' | translate}}</label>
+            <textarea disabled id="builderTemplate" type="text" class="form-control" rows="8" ng-model="model.activeStencilItem.formBuilderTemplate"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="javascriptController">{{'STENCILS.ITEM.JAVASCRIPT-CONTROLLER' | translate}}</label>
+            <button ng-click="showComponentController()" class="btn btn-default btn-sm" id="javascriptController" translate>GENERAL.ACTION.SHOW</button>
+        </div>
+        <div class="row row-no-gutter">
+            <div class="col-xs-12">
+                <label>{{'STENCILS.ITEM.SCRIPT-LIBRARY-IMPORTS' | translate}}</label>
+                <div ng-if="translationsRetrieved" class="kis-listener-grid" ui-grid="importLibOptions"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom stencil item details -->
+    <div ng-if="model.activeStencilItem.customStencilItem">
+
+        <div class="form-group" ng-if="model.activeStencilItem.customStencilItem.customType === 'Service task'">
+            <label for="stencilItemClassName">{{'STENCILS.ITEM.CLASSNAME' | translate}}</label>
+            <input id="stencilItemClassName" type="text" class="form-control" ng-model="model.activeStencilItem.customStencilItem.className" disabled>
+        </div>
+
+        <div class="form-group" ng-if="model.activeStencilItem.customStencilItem.customType === 'Service task'">
+            <label for="stencilItemExpresssion">{{'STENCILS.ITEM.EXPRESSION' | translate}}</label>
+            <input id="stencilItemExpresssion" type="text" class="form-control" ng-model="model.activeStencilItem.customStencilItem.expression" disabled>
+        </div>
+
+        <div class="form-group" ng-if="model.activeStencilItem.customStencilItem.customType === 'Service task'">
+            <label for="stencilItemDelegateExpresssion">{{'STENCILS.ITEM.DELEGATE-EXPRESSION' | translate}}</label>
+            <input id="stencilItemDelegateExpresssion" type="text" class="form-control" ng-model="model.activeStencilItem.customStencilItem.delegateExpression" disabled>
+        </div>
+        
+        <div class="form-group" ng-if="model.activeStencilItem.customStencilItem.customType === 'Script task'">
+            <label for="scriptFormat" translate>{{'STENCILS.ITEM.SCRIPT-FORMAT' | translate}}</label>
+            <input id="scriptFormat" type="text" class="form-control" ng-model="model.activeStencilItem.customStencilItem.scriptFormat" disabled>
+        </div>
+        
+        <div class="form-group" ng-if="model.activeStencilItem.customStencilItem.customType === 'Script task' && model.activeStencilItem.customStencilItem.scriptFormat">
+            <label for="scriptTaskScript">{{'STENCILS.ITEM.SCRIPT' | translate}}</label>
+            <div id="scriptTaskScript" ui-ace="{mode: model.activeStencilItem.customStencilItem.scriptFormat}" ng-model="model.activeStencilItem.customStencilItem.script" style="height: 100px;" readonly></div>
+        </div>
+        
+        <div class="col-xs-12">
+            <label style="color: #636363; font-size: 14px;">
+                <input id="stencilItemAsynchronous" type="checkbox" ng-model="model.activeStencilItem.customStencilItem.asynchronous" disabled>
+                &nbsp;{{'STENCILS.ITEM.ASYNCHRONOUS' | translate}}
+            </label>
+        </div>
+        
+        <div class="col-xs-12" style="margin-bottom: 10px">
+            <label style="color: #636363; font-size: 14px;">
+                <input id="stencilItemExclusive" type="checkbox" ng-model="model.activeStencilItem.customStencilItem.exclusive" disabled>
+                &nbsp;{{'STENCILS.ITEM.EXCLUSIVE' | translate}}
+            </label>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <label>{{'STENCILS.ITEM.EXECUTION-LISTENERS' | translate}}</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-6">
+                <div ng-if="translationsRetrieved" class="kis-listener-grid" ui-grid="executionListenerGridOptions" ui-grid-selection></div>
+            </div>
+
+            <div class="col-xs-6">
+                 <div ng-show="selectedExecutionListener">
+
+                     <div class="form-group">
+                         <label translate>PROPERTY.EXECUTIONLISTENERS.EVENT</label>
+                         <input id="eventField" type="text" class="form-control" ng-model="selectedExecutionListener.event" disabled />
+                     </div>
+                     <div class="form-group">
+                        <label for="classField">{{'PROPERTY.EXECUTIONLISTENERS.CLASS' | translate}}</label>
+                        <input type="text" id="classField" class="form-control" ng-model="selectedExecutionListener.className" disabled />
+                     </div>
+                     <div class="form-group">
+                        <label for="expressionField">{{'PROPERTY.EXECUTIONLISTENERS.EXPRESSION' | translate}}</label>
+                        <input type="text" id="expressionField" class="form-control" ng-model="selectedExecutionListener.expression" disabled />
+                     </div>
+                     <div class="form-group">
+                        <label for="delegateExpressionField">{{'PROPERTY.EXECUTIONLISTENERS.DELEGATEEXPRESSION' | translate}}</label>
+                        <input type="text" id="delegateExpressionField" class="form-control" ng-model="selectedExecutionListener.delegateExpression" disabled />
+                     </div>
+                </div>
+                <div ng-show="!selectedExecutionListener" class="muted no-property-selected" translate>STENCILS.ITEM.EXECUTION-LISTENERS-EMPTY</div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <label>{{'STENCILS.ITEM.VARIABLES' | translate}}</label>
+            </div>
+        </div>
+        
+        <div class="row" >
+            <div class="col-xs-6">
+                <div ng-if="translationsRetrieved" class="kis-listener-grid" ui-grid="variableGridOptions" ui-grid-selection></div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="model.stencil.stencilType != 2">
+            <span>{{'STENCILS.ITEM.COLOR' | translate}}</span>
+            <spectrum-colorpicker id="color" ng-model="model.activeStencilItem.customStencilItem.backgroundColor" disabled></spectrum-colorpicker>
+        </div>
+
+    </div>
+
+    <!-- Properties -->
+    <div ng-if="model.stencil.stencilType === 1">
+        <span>{{'STENCILS.ITEM.PROPERTIES' | translate}}</span>
+        <a ng-click="showProperties()" class="stencil-info-edit-properties">
+            <span class="glyphicon glyphicon-search" ></span>
+            {{'STENCILS.ACTION.SHOW-PROPERTIES' | translate}}
+        </a>
+        <ul>
+            <li ng-repeat="property in model.activeStencilItem.stencilProperties" ng-show="!property.removed">
+                {{property.id}}
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Tabs and properties -->
+    <div ng-if="model.stencil.stencilType === 2 || model.stencil.stencilType === 3">
+        <span>{{'STENCILS.ITEM.TABS-AND-PROPERTIES' | translate}}</span>
+        <a ng-click="showProperties()" class="stencil-info-edit-properties">
+            <span class="glyphicon glyphicon-search" ></span>
+            {{'STENCILS.ACTION.SHOW-PROPERTIES' | translate}}
+        </a>
+        <ul>
+            <li ng-repeat="tab in model.activeStencilItem.tabs">
+                {{tab.name | translate}}:&nbsp;
+                <span ng-repeat="property in tab.stencilProperties">
+                	<span ng-if="$index > 0">,&nbsp;</span>
+                	{{property.id}}
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

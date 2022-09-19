@@ -1,0 +1,82 @@
+<div class="modal" ng-controller="KisBpmCollapsedSubprocessReferencePopupCrtl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+        	<div class="modal-header" ng-if="popup.state == 'mapping'">
+				<div ng-include onload="embedded = true" src="'editor-app/configuration/properties/variablesmappingsubprocess-edit.html?version='+ Date.now()"></div>
+			</div>
+
+			<div class="modal-header" ng-if="popup.state == 'subProcessReference'">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+			    <h2>
+			        {{'PROPERTY.SUBPROCESSREFERENCE.TITLE' | translate}}
+			        <span ng-show="selectedSubProcess != null"> - {{selectedSubProcess.name}}</span>
+			        <span ng-show="selectedSubProcess == null"> - {{'PROPERTY.SUBPROCESSREFERENCE.EMPTY' | translate}}</span>
+
+			    </h2>
+			</div>
+			<div class="modal-header" ng-if="popup.state == 'newSubProcess'"><h2>{{'PROPERTY.SUBPROCESSREFERENCE.CREATE-TITLE' | translate}}</h2></div>
+			<div class="modal-body-with-overflow" ng-if="popup.state == 'subProcessReference'">
+			    <div class="detail-group clearfix">
+                    <div class="col-xs-12">
+			            <div class="alert alert-error" ng-show="(!state.loadingFolders && !state.loadingSubprocesses) && state.subprocessError" translate>PROPERTY.SUBPROCESSREFERENCE.ERROR.SUBPROCESS</div>
+			        </div>
+			    </div>
+			    <div class="detail-group clearfix">
+                    <div class="col-xs-12 editor-item-picker">
+			            <div ng-if="!state.loadingSubprocesses && !state.subprocessError" class="col-xs-4 editor-item-picker-component" ng-repeat="sub in subProcesses" ng-class="{'selected' : sub.id == selectedSubProcess.id}" ng-click="selectSubProcess(sub, $event)">
+			               <div class="controls">
+			                   <input type="checkbox" value="option1" ng-click="selectSubProcess(sub, $event)" ng-checked="sub.id == selectedSubProcess.id" />
+			               </div>
+							<div ng-show="!sub.referenceId"  class="private">
+								<span  data-placement="top" title="{{'PROPERTY.SUBPROCESSREFERENCE.REUSABLE' | translate}}" class="glyphicon glyphicon-globe pull-right fa-2x" aria-hidden="true" />
+							</div>
+			               <h4>{{sub.name}}</h4>
+			               <img ng-src="{{config.contextRoot}}/app/rest/models/{{sub.id}}/thumbnail" />
+			             </div>
+			             <div ng-show="state.loadingSubprocesses">
+			               <p class="loading" translate>PROPERTY.SUBPROCESSREFERENCE.SUBPROCESS.LOADING</p>
+			             </div>
+			             <div ng-show="!state.loadingSubprocesses && subProcesses.length == 0">
+			                <p translate>PROPERTY.SUBPROCESSREFERENCE.SUBPROCESS.EMPTY</p>
+			             </div>
+			        </div>
+			    </div>
+			</div>
+
+			<div class="modal-body" ng-if="popup.state == 'newSubProcess'">
+                <p>{{'PROPERTY.SUBPROCESSREFERENCE.CREATE-DESCRIPTION' | translate}}</p>
+                <div class="form-group">
+                    <label for="newSubProcessName">{{'PROPERTY.SUBPROCESSREFERENCE.NAME' | translate}}</label>
+                    <input type="text" class="form-control" id="newSubProcessName" ng-model="model.subProcess.name" custom-keys enter-pressed="ok()" auto-focus editor-input-check>
+                </div>
+                <div class="form-group">
+                    <label for="newSubProcessDescription">{{'PROPERTY.SUBPROCESSREFERENCE.DESCRIPTION' | translate}}</label>
+                    <textarea ng-disabled="model.loading" class="form-control" id="newSubProcessDescription" rows="5" ng-model="model.subProcess.description"></textarea>
+                </div>
+            </div>
+
+
+            <!--  FOOTER BUTTONS MENU -->
+
+			<div class="modal-footer" ng-if="popup.state == 'subProcessReference'">
+				<button ng-disabled="!isReusableSelected()" ng-click="mapVariables()" class="btn btn-primary" translate>GENERAL.ACTION.MAP-VARIABLES</button>
+
+                <button ng-click="cancel()" class="btn btn-primary" translate>GENERAL.ACTION.CANCEL</button>
+
+                <button ng-disabled="state.subprocessError || readOnly" ng-click="newSubProcess()" class="btn btn-primary" translate>GENERAL.ACTION.NEW-SUBPROCESS</button>
+
+                <button ng-disabled="!selectedSubProcess || !selectedSubProcess.id || state.subprocessError" ng-click="open()" class="btn btn-primary" translate>GENERAL.ACTION.OPEN</button>
+
+                <button ng-disabled="state.subprocessError || readOnly" ng-click="save()" class="btn btn-primary" translate>GENERAL.ACTION.SAVE</button>
+            </div>
+
+
+
+			<div class="modal-footer" ng-if="popup.state == 'newSubProcess'">
+                <button ng-click="cancel()" class="btn btn-primary" translate>GENERAL.ACTION.CANCEL</button>
+
+                <button ng-disabled="state.subprocessError || readOnly" ng-click="createSubProcess()" class="btn btn-primary" translate>GENERAL.ACTION.CREATE-SUBPROCESS</button>
+            </div>
+		</div>
+	</div>
+</div>

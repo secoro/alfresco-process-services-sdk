@@ -1,0 +1,32 @@
+<div class="main-content-wrapper">
+    <div class="main-content">
+        <div class="content report-configuration-content" auto-height offset="6">
+            <div class="help-container">
+                <div>
+                    <div class="help-text">
+                        <div class="description" translate>REPORTING.NO-REPORTS</div>
+
+                        <div class="help-entry" ng-if="account.type === 'enterprise'" ng-click="generateDefaultReports()">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                            <span>{{'REPORTING.GENERATE-REPORTS' | translate}}</span>
+                        </div>
+                        <hr>
+                        <ul class="list-unstyled" ng-if="account.type === 'enterprise'">
+                            <li ng-repeat="generator in model.generators" ng-click="generateReport(generator)">
+                                <div class="help-entry">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                    {{generator.titleKey | translate}}
+                                </div>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="help-entry" ng-if="account.type === 'enterprise'" ng-click="resetReports()">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            <span>{{'REPORTING.RESET-ALL-REPORTS' | translate}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

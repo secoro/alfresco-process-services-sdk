@@ -1,0 +1,4 @@
+<span ng-if="!property.noValue && property.value != null && property.value.variableName != null">{{property.value.variableName|limitTo:20}}</span>
+<span ng-if="!property.noValue && property.value != null && property.value.variableName != null && property.value.variableName.length > 20">...</span>
+<span ng-if="property.noValue && property.key === 'oryx-executionvariable_document'" translate>PROPERTY.EXECUTION.VARIABLE.DOCUMENT.EMPTY</span>
+<span ng-if="property.noValue && property.key === 'oryx-executionvariable_string'" translate>PROPERTY.EXECUTION.VARIABLE.STRING.EMPTY</span>

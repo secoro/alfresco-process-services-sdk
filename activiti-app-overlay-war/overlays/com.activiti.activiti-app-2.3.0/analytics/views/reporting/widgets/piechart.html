@@ -1,0 +1,42 @@
+<div ng-if="element.values && element.values.length > 0">
+
+    <h2 ng-if="element.title">{{element.title}}</h2>
+    <h2 ng-if="!element.title && element.titleKey">{{element.titleKey | translate}}</h2>
+
+    <div ng-if="element.description" class="well">{{element.description}}</div>
+    <div ng-if="!element.description && element.descriptionKey" class="well">{{element.descriptionKey | translate}}</div>
+
+    <!-- Chart with default colors -->
+    <nvd3-pie-chart ng-if="!element.customColors"
+            data="element.values"
+            id="{{element.id}}"
+            width="{{calculateChartWidth()}}"
+            height="{{calculateChartHeight()}}"
+            showLabels="true"
+            x="xFunction()"
+            y="yFunction()"
+            tooltips="true"
+            tooltipcontent="toolTipContentFunctionXtoY()">
+        <svg ng-style="{width: calculateChartWidth(), height: calculateChartHeight()}"></svg>
+    </nvd3-pie-chart>
+
+
+    <!-- Chart with provided colors -->
+    <nvd3-pie-chart ng-if="element.customColors"
+                    data="element.values"
+                    id="{{element.id}}"
+                    width="{{calculateChartWidth()}}"
+                    height="{{calculateChartHeight()}}"
+                    showLabels="true"
+                    x="xFunction()"
+                    y="yFunction()"
+                    tooltips="true"
+                    tooltipcontent="toolTipContentFunctionXtoY()"
+                    color="colorFunction(element)">
+        <svg ng-style="{width: calculateChartWidth(), height: calculateChartHeight()}"></svg>
+    </nvd3-pie-chart>
+
+
+</div>
+
+<div ng-if="!element.values || element.values.length == 0" class="no-reporting-data">{{'REPORTING.NO-DATA-FOUND' | translate}}</div>

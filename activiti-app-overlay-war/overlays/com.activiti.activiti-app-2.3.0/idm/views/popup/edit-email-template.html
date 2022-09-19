@@ -1,0 +1,48 @@
+<div class="modal">
+	<div class="modal-dialog modal-wide">
+		<div class="modal-content">
+			<div class="modal-header-wrapper">
+				<div class="modal-header">
+					<h2 ng-if="emailTemplateModel.selectedTemplate.id || emailTemplateModel.selectedTemplate.systemTemplateId" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATE.EDIT" translate-values="{ name: emailTemplateModel.selectedTemplate.name }"></h2>
+					<h2 ng-if="!emailTemplateModel.selectedTemplate.id && !emailTemplateModel.selectedTemplate.systemTemplateId" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATE.CREATE"></h2>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="templateName" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATE.NAME"></label>
+					<input ng-model="emailTemplateModel.selectedTemplate.name"
+						id="templateName" class="form-control" auto-focus
+						ng-disabled="emailTemplateModel.selectedTemplate.systemTemplateId">
+				</div>
+				<div class="form-group">
+					<label for="templateSubject" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATE.SUBJECT"></label>
+					<input ng-model="emailTemplateModel.selectedTemplate.subject"
+						id="templateName" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="templateContent" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATE.CONTENT-LABEL"></label>
+					<textarea ng-model="emailTemplateModel.selectedTemplate.template"
+						rows="15" id="templateContent" class="form-control"
+						ng-disabled="model.loading"></textarea>
+				</div>
+				
+				<div class="pull-right" style="color:red" ng-if="emailTemplateModel.errorMessage">
+                        <span>{{'IDM.TENANT-MGMT.EMAIL-TEMPLATE.SAVE-ERROR' | translate}} <span ng-if="emailTemplateModel.errorMessage"> : </span>{{emailTemplateModel.errorMessage}}</span>
+                    </div>
+
+			</div>
+
+			<div class="modal-footer-wrapper">
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="$hide()">{{'IDM.GENERAL.ACTION.CANCEL'
+						| translate}}</button>
+					<button type="button" class="btn btn-primary" ng-disabled="!emailTemplateModel.selectedTemplate.name || !emailTemplateModel.selectedTemplate.subject || !emailTemplateModel.selectedTemplate.template || readOnly"
+						ng-click="updateTemplate();">{{'IDM.GENERAL.ACTION.SAVE' | translate}}</button>
+				    <button ng-if="emailTemplateModel.selectedTemplate.systemTemplateId" type="button" class="btn btn-primary" ng-disabled="readOnly"
+						ng-click="resetTemplate();$hide();">{{'IDM.TENANT-MGMT.EMAIL-TEMPLATE.RESET' | translate}}</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

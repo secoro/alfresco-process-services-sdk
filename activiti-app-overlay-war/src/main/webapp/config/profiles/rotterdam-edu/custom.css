@@ -1,0 +1,9 @@
+.navbar {
+    background-color: #c48436;
+}
+
+.user-menu-con:before {
+    content: "ROTTERDAM-EDU";
+    color: white;
+    padding-right: 15px;
+}

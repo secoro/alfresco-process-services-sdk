@@ -1,0 +1,29 @@
+{ "startForm" : { "id" : 1000 },
+  "steps" : [ { "assignment" : { "assigneeField" : { "col" : 0,
+                "fieldType" : "FormFieldRepresentation",
+                "id" : "assignee",
+                "name" : "Assignee",
+                "overrideId" : false,
+                "readOnly" : false,
+                "required" : false,
+                "row" : 0,
+                "sizeX" : 0,
+                "sizeY" : 0,
+                "type" : "people"
+              },
+            "initiatorCanCompleteTask" : true,
+            "type" : "user"
+          },
+        "description" : "${taskdescription}",
+        "dueAction" : "none",
+        "formDefinition" : { "id" : 1002 },
+        "id" : "human-step-1425739251572-662",
+        "name" : "Ad hoc Task",
+        "overdueSteps" : [  ],
+        "taskDueDateField" : { "id" : "duedate",
+            "name" : "Due Date"
+          },
+        "taskDueDateOption" : "field",
+        "type" : "human-step"
+      } ]
+}

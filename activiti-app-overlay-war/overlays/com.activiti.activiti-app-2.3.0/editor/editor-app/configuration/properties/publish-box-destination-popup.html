@@ -1,0 +1,128 @@
+
+<div class="modal" ng-controller="KisBpmBoxDestinationPopupCtrl">
+  <div class="modal-dialog modal-wide">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+          <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h2>
+      </div>
+      <div class="modal-body">
+
+        <div class="detail-group clearfix first">
+          <div class="form-group clearfix">
+            <div class="col-xs-3">
+              <label>{{'BOX-PUBLISH-TASK.DESTINATION.ACCOUNT' | translate}}:</label>
+            </div>
+            <div class="col-xs-9">
+              <select id="boxAccount" class="form-control" ng-options="account as account.name for account in contentBoxAccounts.rawList" ng-model="boxAccount.selected" ng-change="resetDestination()"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-group clearfix first">
+          <div class="form-group clearfix">
+            <div class="col-xs-3">
+              <label>{{'BOX-PUBLISH-TASK.DESTINATION.DESTINATION' | translate}}:</label>
+            </div>
+            <div class="col-xs-9">
+              <div class="clearfix selection narrow">
+                <div class="pull-right">
+                  <div folder-select="'box'" account="boxAccount.selected" external-content on-folder-select="selectDestinationFolder(folder)"></div>
+                </div>
+                <div class="details">
+                  <div ng-show="!path">
+                    {{'BOX-PUBLISH-TASK.DESTINATION.NO-DESTINATION' | translate}}
+                  </div>
+
+                  <div ng-show="path">
+                    <span class="label">{{'BOX-PUBLISH-TASK.DESTINATION.PATH' | translate}}:</span> {{path}}<br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <div class="col-xs-3">
+            <label>{{'BOX-PUBLISH-TASK.DESTINATION.PUBLISH-AS-LABEL' | translate}}:</label>
+          </div>
+          <div class="col-xs-9">
+            <div class="btn-group btn-group-justified">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default" ng-click="setPublishAs('process_initiator')" ng-class="{'active' : (!publishAsType || publishAsType == 'process_initiator')}">{{'BOX-PUBLISH-TASK.DESTINATION.PROCESS-INITIATOR' | translate}}</button>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default" ng-click="setPublishAs('user')" ng-class="{'active' : publishAsType == 'user'}">{{'BOX-PUBLISH-TASK.DESTINATION.SPECIFIC-USER' | translate}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group clearfix" ng-show="publishAsType === 'user'">
+            <div class="col-xs-3">
+              <label>{{'PROPERTY.ASSIGNMENT.ASSIGNEE' | translate}}</label>
+            </div>
+            <div class="col-xs-9">
+              <label ng-if="!userName">None...</label>
+              <label>{{userName}}</label>
+            </div>
+        </div>
+
+        <div class="form-group clearfix" ng-show="publishAsType === 'user'">
+            <div class="col-xs-3">
+              <label>{{'BOX-PUBLISH-TASK.DESTINATION.SEARCH' | translate}}:</label>
+            </div>
+            <div class="col-xs-9">
+              <input class="form-control" type="text" id="people-select-input" placeholder="Search user" custom-keys
+                     up-pressed="previousUser()" down-pressed="nextUser()" enter-pressed="confirmUser()" delayed-model="popup.filter" delay="200"/>
+            </div>
+            <div class="col-xs-3">
+              <label></label>
+            </div>
+            <div class="col-xs-9">
+              <div class="subtle" style="margin: 2px 0 2px 0">
+                <span translate="PROPERTY.ASSIGNMENT.MATCHING"></span>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <label></label>
+            </div>
+            <div class="col-xs-9">
+              <div class="inline-people-select">
+                <ul class="simple-list">
+                  <li ng-click="confirmUser(user)" ng-repeat="user in popup.userResults" ng-class="{'active': $index == popup.selectedIndex}">
+                    <div user-picture="user" user-index="$index" user-name="user"></div>
+                  </li>
+                </ul>
+                <div class="nothing-to-see" translate="GENERAL.MESSAGE.PEOPLE-NO-MATCHING-RESULTS" ng-show="popup.userResults.length == 0"></div>
+              </div>
+            </div>
+        </div>
+        <div class="detail-group clearfix">
+          <div class="form-group clearfix">
+            <div class="col-xs-3">
+              <label>{{'BOX-PUBLISH-TASK.DESTINATION.SUB-FOLDER' | translate}}:</label>
+            </div>
+            <div class="col-xs-9">
+              <label>
+                <input type="checkbox" ng-model="popup.useSubFolder"> &nbsp;{{'BOX-PUBLISH-TASK.DESTINATION.USE-SUB-FOLDER' | translate}}
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group clearfix" ng-show="popup.useSubFolder">
+            <div class="col-xs-3">
+              <label>{{'BOX-PUBLISH-TASK.DESTINATION.FIELD' | translate}}:</label>
+            </div>
+            <div class="col-xs-9">
+              <div field-select="createFolderField.field" all-steps="allSteps" step-id="selectedShape.resourceId" editor-type="bpmn" field-type-filter="['text']"></div>
+             </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+        <button ng-click="save()" ng-disabled="readOnly" class="btn btn-primary" translate>ACTION.SAVE</button>
+      </div>
+    </div>
+  </div>
+</div>

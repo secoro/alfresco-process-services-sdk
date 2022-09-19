@@ -1,0 +1,9 @@
+.navbar {
+    background-color: #c43d36;
+}
+
+.user-menu-con:before {
+    content: "INCENTRO-DIVA-INTEGRATION";
+    color: white;
+    padding-right: 15px;
+}

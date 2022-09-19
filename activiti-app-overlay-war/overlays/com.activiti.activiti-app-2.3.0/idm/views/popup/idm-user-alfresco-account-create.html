@@ -1,0 +1,92 @@
+<div class="modal" tabindex="-1" role="dialog" xmlns="http://www.w3.org/1999/html">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" ng-click="$hide()" ng-disabled="isWaitingResponse()">&times;</button>
+                <h4 class="modal-title" ng-if="!model.editedRepository.edit && model.editedRepository.type !== 'sso'">
+                    {{'IDM.PROFILE-MGMT.POPUP.CREATE-ALFRESCO-REPOSITORY-TITLE' | translate:model.editedRepository}}
+                </h4>
+                <h4 class="modal-title" ng-if="model.editedRepository.edit && model.editedRepository.type !== 'sso'">
+                    {{'IDM.PROFILE-MGMT.POPUP.EDIT-ALFRESCO-REPOSITORY-TITLE' | translate:model.editedRepository}}
+                </h4>
+            </div>
+
+            <div class="modal-body" ng-if="systemProperties.authConfiguration === null">
+
+                <div class="form-group" ng-if="model.editedRepository.type !== 'sso'">
+                    <label class="control-label">{{'IDM.PROFILE-MGMT.POPUP.ALFRESCO-REPOSITORY-USERNAME' | translate}}</label>
+                    <input type="text" class="form-control" ng-model="model.editedRepository.accountUsername" auto-focus ng-disabled="isWaitingResponse()">
+                </div>
+                <div class="form-group" ng-if="model.editedRepository.type !== 'sso'">
+                    <label class="control-label">{{'IDM.PROFILE-MGMT.POPUP.ALFRESCO-REPOSITORY-PASSWORD' | translate}}</label>
+                    <input type="password" class="form-control" ng-model="model.editedRepository.password" ng-disabled="isWaitingResponse()">
+                </div>
+
+                <div class="form-group" ng-if="!model.editedRepository.edit && model.editedRepository.type === 'sso'">
+                    <span>{{'IDM.PROFILE-MGMT.POPUP.SSO-REPOSITORY-ERROR' | translate:model.editedRepository}}</span>
+                </div>
+
+                <div class="form-group" ng-if="model.editedRepository.edit && model.editedRepository.type === 'sso'">
+                    <span>{{'IDM.PROFILE-MGMT.POPUP.SSO-REPOSITORY-DEAUTHORIZE' | translate:model.editedRepository}}</span>
+                </div>
+
+                <div class="has-error" ng-if="model.editedRepository.error" style="color:#a94442">
+                    <span>{{'IDM.PROFILE-MGMT.POPUP.CREATE-ALFRESCO-REPOSITORY-ERROR' | translate:model.editedRepository}}</span>
+                </div>
+
+
+                <div class="loading pull-center ng-scope" style="margin:0" ng-show="isWaitingResponse()">
+                    <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                </div>
+
+            </div>
+
+            <div class="modal-body" ng-if="systemProperties.authConfiguration !== null">
+
+                <div class="form-group" ng-if="model.editedRepository.type !== 'sso'">
+                    <label class="control-label">{{'IDM.PROFILE-MGMT.POPUP.ALFRESCO-REPOSITORY-USERNAME' | translate}}</label>
+                    <input type="text" class="form-control" ng-model="model.editedRepository.accountUsername" auto-focus ng-disabled="isWaitingResponse()">
+                </div>
+                <div class="form-group" ng-if="model.editedRepository.type !== 'sso'">
+                    <label class="control-label">{{'IDM.PROFILE-MGMT.POPUP.ALFRESCO-REPOSITORY-PASSWORD' | translate}}</label>
+                    <input type="password" class="form-control" ng-model="model.editedRepository.password" ng-disabled="isWaitingResponse()">
+                </div>
+
+                <div class="form-group" ng-if="!model.editedRepository.edit && model.editedRepository.type === 'sso'">
+                    <span>{{'IDM.PROFILE-MGMT.POPUP.SSO-REPOSITORY-AUTHORIZE' | translate:model.editedRepository}}</span>
+                </div>
+                <div class="form-group" ng-if="model.editedRepository.edit && model.editedRepository.type === 'sso'">
+                    <span>{{'IDM.PROFILE-MGMT.POPUP.SSO-REPOSITORY-DEAUTHORIZE' | translate:model.editedRepository}}</span>
+                </div>
+
+                <div class="has-error" ng-if="model.editedRepository.error" style="color:#a94442">
+                    <span>{{'IDM.PROFILE-MGMT.POPUP.CREATE-ALFRESCO-REPOSITORY-ERROR' | translate:model.editedRepository}}</span>
+                </div>
+
+                <div class="loading pull-center ng-scope" style="margin:0" ng-show="isWaitingResponse()">
+                    <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer" ng-if="model.editedRepository.type !== 'sso'">
+                <button type="button" class="btn btn-default" ng-click="$hide()" ng-disabled="isWaitingResponse()">{{'IDM.GENERAL.ACTION.CANCEL' | translate}}</button>
+                <button type="button" class="btn btn-primary"
+                        ng-disabled="isWaitingResponse() || !credentialsProvided() || readOnly"
+                        ng-click="saveAlfrescoRepository($hide);">{{'IDM.GENERAL.ACTION.SAVE' | translate}}</button>
+            </div>
+
+            <div class="modal-footer" ng-if="systemProperties.authConfiguration !== null && !model.editedRepository.edit && model.editedRepository.type === 'sso'">
+                <button type="button" class="btn btn-primary"
+                        ng-disabled="isWaitingResponse()"
+                        ng-click="saveAlfrescoRepository($hide);">{{'IDM.GENERAL.ACTION.YES' | translate}}</button>
+                <button type="button" class="btn btn-default" ng-click="$hide()" ng-disabled="isWaitingResponse()">{{'IDM.GENERAL.ACTION.NO' | translate}}</button>
+            </div>
+            <div class="modal-footer" ng-if="model.editedRepository.edit && model.editedRepository.type === 'sso' || !model.editedRepository.useLoggedUser && model.editedRepository.edit && model.editedRepository.type === 'sso'">
+                <button type="button" class="btn btn-primary"
+                        ng-click="removeAlfrescoRepository(model.editedRepository, $hide());">{{'IDM.GENERAL.ACTION.YES' | translate}}</button>
+                <button type="button" class="btn btn-default" ng-click="$hide()" ng-disabled="isWaitingResponse()">{{'IDM.GENERAL.ACTION.NO' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

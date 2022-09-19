@@ -1,0 +1,52 @@
+<div id="decisiontabledisplay" class="column-full-height">
+
+    <div loading="model.loading"></div>
+
+    <div ng-show="!model.loading && model.decisionTableDefinition != null" class="container-fluid activiti-table" >
+        <div class="section pack">
+            <h3>{{ 'PROCESS.DECISION.TABLE.HEADER' | translate: {'name': model.decisionTableDefinition.name} }}</h3>
+            <hr/>
+            <div>
+                <div class="form-group">
+                    <label translate="PROCESS.DECISION.TABLE.HIT-POLICY"></label>:
+                    <span>{{'PROCESS.DECISION.TABLE.HIT-POLICIES.' + model.decisionTableDefinition.hitIndicator | translate}}</span>
+                </div>
+                <br>
+                <div id="decisionTableGrid" ui-grid="gridOptions" class="activiti-ui-grid-noscroll" ui-grid-cellnav ui-grid-auto-resize></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="section pack">
+            <h3 class="header-expandable"
+                ng-click="model.outputListExpanded = !model.outputListExpanded"
+                ng-class="{'header-expanded': model.outputListExpanded }">
+                <span class="glyphicon glyphicon-play"></span>
+                <span translate="PROCESS.DECISION.TABLE.OUTPUT-VARIABLES"></span>
+            </h3>
+            <hr/>
+            <div ng-show="model.outputListExpanded">
+                <div ng-show="model.outputVariableValues.length" id="outputVariablesGrid" ui-grid="outputVariablesGridOptions" class="activiti-ui-grid-noscroll" ui-grid-cellnav ui-grid-auto-resize></div>
+                <div ng-show="!model.outputVariableValues.length"  translate="PROCESS.DECISION.TABLE.NO-OUTPUT-VARIABLES"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="section pack">
+            <h3 class="header-expandable"
+                ng-click="model.inputListExpanded = !model.inputListExpanded"
+                ng-class="{'header-expanded': model.inputListExpanded }">
+                <span class="glyphicon glyphicon-play"></span>
+                <span translate="PROCESS.DECISION.TABLE.INPUT-VARIABLES"></span>
+            </h3>
+            <hr/>
+            <div ng-show="model.inputListExpanded">
+                <div ng-show="model.inputVariableValues.length" id="inputVariablesGrid" ui-grid="inputVariablesGridOptions" class="activiti-ui-grid-noscroll" ui-grid-cellnav ui-grid-auto-resize></div>
+                <div ng-show="!model.inputVariableValues.length" translate="PROCESS.DECISION.TABLE.NO-INPUT-VARIABLES"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+
+</div>

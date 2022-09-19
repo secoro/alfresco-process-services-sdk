@@ -1,0 +1,99 @@
+
+<div class="subheader" ng-if="model.form">
+	<div class="fixed-container">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn btn-default" ng-click="openEditor()" ng-if="model.form.latestVersion && !(model.form.referenceId || currentKickstartModel)" ng-disabled="model.form.permission != 'write' || readOnly">
+				<i class="glyphicon glyphicon-edit icon-and-label"></i> {{'FORM.ACTION.OPEN-IN-EDITOR' | translate}}
+			</button>
+			<button type="button" class="btn btn-default" ng-click="useAsNewVersion()" ng-if="!model.form.latestVersion" ng-disabled="model.form.permission != 'write' || readOnly">
+				{{'FORM.ACTION.USE-AS-NEW-VERSION' | translate}}
+			</button>
+		</div>
+		<div class="btn-group pull-right">
+			<button type="button" ng-click="toggleFavorite()" class="btn btn-default" title="{{'FORM.ACTION.FAVORITE' | translate}}" ng-disabled="readOnly"
+			    title="{{'FORM.ACTION.FAVORITE' | translate}}" ng-if="!(model.form.referenceId || currentKickstartModel)" ng-disabled="!model.form.latestVersion || model.favoritePending" >
+				<i class="glyphicon" ng-class="{'glyphicon-star highlight': model.form.favorite, 'glyphicon-star-empty': !model.form.favorite}"></i>
+			</button>
+			<button type="button" ng-click="shareForm()" class="btn btn-default" title="{{'FORM.ACTION.SHARE' | translate}}"
+			    title="{{'FORM.ACTION.SHARE' | translate}}" ng-if="!(model.form.referenceId || currentKickstartModel)" ng-disabled="!model.form.latestVersion || model.form.createdBy != account.id || readOnly">
+				<i class="glyphicon glyphicon-share"></i>
+			</button>
+			<a href="{{model.formDownloadUrl}}" class="btn btn-default" title="{{'FORM.ACTION.EXPORT' | translate}}"
+	           ng-if="!model.process.referenceId">
+	            <i class="glyphicon glyphicon-save"></i>
+	        </a>
+		</div>
+		<div class="btn-group pull-right">
+			<button type="button" class="btn btn-default" ng-click="editForm()" ng-if="!(model.form.referenceId || currentKickstartModel)" ng-disabled="!model.form.latestVersion || model.form.permission != 'write' || readOnly"
+				title="{{'FORM.ACTION.EDIT' | translate}}">
+				<i class="glyphicon glyphicon-pencil"></i>
+			</button>
+			<button type="button" class="btn btn-default" ng-click="duplicateForm()" ng-if="!(model.form.referenceId || currentKickstartModel)" ng-disabled="!model.form.latestVersion || model.form.referenceId || readOnly"
+					title="{{'FORM.ACTION.DUPLICATE' | translate}}">
+				<i class="editor-icon editor-icon-copy"></i>
+			</button>
+			<button type="button" class="btn btn-default" ng-click="deleteForm()" title="{{'FORM.ACTION.DELETE' | translate}}"
+				 title="{{'FORM.ACTION.DELETE' | translate}}" ng-if="!(model.form.referenceId || currentKickstartModel)" ng-disabled="!model.form.latestVersion || model.form.permission != 'write' || readOnly">
+				<i class="glyphicon glyphicon-trash"></i>
+			</button>
+		</div>		
+		<div class="pull-right" ng-if="!(model.form.referenceId || currentKickstartModel)">
+			<a ng-click="returnToList()" class="action">&larr; {{'GENERAL.ACTION.RETURN-TO-LIST' | translate}}</a>
+		</div>
+		<h2><span class="version">v{{model.form.version}}</span>{{model.form.name}}</h2>
+		<div class="clearfix">
+			<div class="col-xs-4 details">
+				<span><i class="glyphicon glyphicon-user"></i><span translate="FORM.DETAILS.CREATED-BY" translate-values="model.form"></span></span> 
+				<span><i class="glyphicon glyphicon-pencil"></i><span translate="FORM.DETAILS.LAST-UPDATED-BY" translate-values="model.form"></span>{{model.form.lastUpdated | dateformat:((globalDateFormat || getGlobalDateFormat()) | momentTodatetimeFormat)}}</span>
+			</div>
+			<div class="col-xs-8 details clearfix">
+			    <div class="related btn-group">
+					<button id="toggle-comment" type="button" class="btn btn-subtle" ng-disabled="!model.form.latestVersion" ng-click="toggleComments($event)"
+						title="{{'FORM.ACTION.ADD-COMMENT' | translate}}">
+                        <span ng-if="!model.comments.data.length">
+						    {{'FORM.ACTION.ADD-COMMENT' | translate}}
+                        </span>
+                        <span ng-if="model.comments.data.length">
+						    {{'FORM.DETAILS.COMMENTS-TITLE' | translate}} <span class="counter">{{model.comments.data.length}}</span>
+                        </span>
+					</button>
+					<button id="toggle-history" ng-if="!(model.form.referenceId || currentKickstartModel)" type="button" class="btn btn-subtle" ng-click="toggleHistory($event)"
+						title="{{'FORM.ACTION.EDIT' | translate}}">
+						{{'FORM.DETAILS.HISTORY-TITLE' | translate}} <span class="counter" ng-show="model.versions.data.length">{{model.versions.data.length}}</span>
+					</button>
+				</div>
+				<p ng-if="model.form.description">
+					{{model.form.description}}
+				</p>
+				<span class="detail" ng-if="model.form.comment" title="{{'FORM.VERSION-COMMENT' | translate}}"><i class="glyphicon glyphicon-comment"></i>{{model.form.comment}}</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid content" ng-if="model.form" auto-height offset="40">
+	<div class="center-pane" style="overflow-x:hidden">
+		
+        <div class="content roweditor-canvas container-fluid" ng-controller="FormReadonlyViewController">
+            <div class="form-center-pane" ng-if="formLoaded && formTabs && formTabs.length > 0">
+                <div class="content">
+                   <div class="clearfix">
+                       <ul class="tabs clearfix">
+                           <li ng-repeat="tab in formTabs" ng-class="{'active': tab.id == activeFormTab.id}">
+                               <a ng-click="formTabClicked(tab)">{{tab.title && (tab.title | translate) || tab.name | translate}}</a>
+                           </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="canvasSection" class="content-canvas-wrapper" ng-class="{'editing': editState.editing}" ng-if="formLoaded">
+
+                <ul style="min-height:400px; width: 100%" class="form-canvas content-canvas">
+                     
+                    <li ng-repeat="field in currentFormItems track by field._guid" class="form-field-wrapper">
+                        <div form-builder-element form-element="field" edit-state="editState" form-mode="formMode" stencil-set="stencilSet" file-source-options="fileSourceOptions"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+
+<div class="modal" ng-controller="CreateNewProcessModelCrtl">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"><h2>{{'PROCESS.POPUP.CREATE-TITLE' | translate}}</h2></div>
+			<div class="modal-body">
+				<p>{{'PROCESS.POPUP.CREATE-DESCRIPTION' | translate}}</p>
+				<div class="form-group">
+				    <label for="newProcessName">{{'PROCESS.NAME' | translate}}</label>
+				    <input ng-disabled="model.loading" type="text" class="form-control" maxlength="400"
+			               id="newProcessName" ng-model="model.process.name" auto-focus editor-input-check>
+				</div>
+				<div class="form-group">
+				    <label for="newProcessDescription">{{'PROCESS.DESCRIPTION' | translate}}</label>
+					<textarea ng-disabled="model.loading" class="form-control" id="newProcessDescription" rows="5" ng-model="model.process.description"></textarea>
+				</div>
+				<div class="form-group">
+			   		<label for="typeSelect" class="control-label">{{'PROCESS.EDITOR-TYPE' | translate}}</label>
+			   		<select id="typeSelect" class="form-control" ng-model="model.process.modelType" ng-change="resetSelectedStencilSet()">
+			   		    <option ng-disabled="model.loading" value="0">{{'STENCILS.POPUP.STENCIL-TYPE.BPMN' | translate}}</option>
+			   			<option ng-disabled="model.loading" value="1">{{'STENCILS.POPUP.STENCIL-TYPE.STEP' | translate}}</option>
+			   		</select>
+				</div>
+				<div class="form-group" ng-if="account.type === 'enterprise'">
+			   		<label for="stencilSetSelect" class="control-label">{{'PROCESS.STENCIL' | translate}}</label>
+			   		<select id="stencilSetSelect" class="form-control" ng-model="model.process.stencilSet" ng-show="model.process.modelType == 0">
+			   		    <option ng-disabled="model.loading" value="0">{{"PROCESS.STENCIL-TYPE.DEFAULT-BPMN" | translate}}</option>
+			   			<option ng-disabled="model.loading" ng-repeat="stencilSet in model.bpmnStencilSets" value="{{stencilSet.id}}" ng-selected="stencilSet.id === model.process.stencilSet">{{stencilSet.name}}</option>
+			   		</select>
+			   		<select id="stencilSetSelect" class="form-control" ng-model="model.process.stencilSet" ng-show="model.process.modelType == 1">
+			   		    <option ng-disabled="model.loading" value="0">{{"PROCESS.STENCIL-TYPE.DEFAULT-STEPS" | translate}}</option>
+			   			<option ng-disabled="model.loading" ng-repeat="stencilSet in model.stepStencilSets" value="{{stencilSet.id}}" ng-selected="stencilSet.id === model.process.stencilSet">{{stencilSet.name}}</option>
+			   		</select>
+				</div>
+			</div>
+			
+			<div class="modal-footer">
+				<div class="pull-right">
+					<button type="button" class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="model.loading">
+						{{'GENERAL.ACTION.CANCEL' | translate}}
+					</button>
+					<button type="button" class="btn btn-sm btn-default" ng-click="ok()"ng-disabled="model.loading || !model.process.name || readOnly">
+						{{'PROCESS.ACTION.CREATE-CONFIRM' | translate}}
+					</button>
+				</div>
+				<div class="loading pull-right" ng-show="model.loading">
+					<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

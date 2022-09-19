@@ -1,0 +1,101 @@
+<div class="modal modal-wide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h2>{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.TITLE' | translate}}</h2></div>
+            <div class="modal-body">
+
+                <div class="form-group clearfix" ng-show="popup.selectedPropertyMapping.state != 'view'">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-VALUE-TYPE' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="btn-group btn-group-justified">
+                            <div class="btn-group" ng-if="newvariableallowed">
+                                <button type="button" class="btn btn-default" ng-click="setPropertyMappingStaticValue()" ng-model="popup.selectedPropertyMapping.propertyValueType" ng-class="{'active' : popup.selectedPropertyMapping.propertyValueType === 'static'}">{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.NEW-VARIABLE' | translate}}</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="setPropertyMappingFormFieldValue()" ng-model="popup.selectedPropertyMapping.propertyValueType" ng-class="{'active' : popup.selectedPropertyMapping.propertyValueType === 'field'}">{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-TYPE-FIELD' | translate}}</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="setPropertyMappingVariableValue()" ng-model="popup.selectedPropertyMapping.propertyValueType" ng-class="{'active' : popup.selectedPropertyMapping.propertyValueType === 'variable'}">{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-TYPE-PROCESS-VAR' | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group clearfix" ng-show="popup.selectedPropertyMapping.propertyValueType === 'field'">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-TYPE-FIELD' | translate}}:</label>
+                    </div>
+                    <div class="col-xs-8" ng-show="popup.selectedPropertyMapping.state != 'view'">
+                        <div field-select="popup.selectedPropertyMapping.propertyValueFormField" editor-type="step" include-type="true" expand-relative="true" step-id="step.id"
+                             all-steps="allSteps" field-type-filter="['text', 'multi-line-text', 'integer', 'date', 'boolean', 'dropdown', 'radio-buttons', 'typeahead', 'amount']"></div>
+                    </div>
+                    <div class="col-xs-8" ng-show="popup.selectedPropertyMapping.state === 'view'">
+                        <input class="form-control" type="text" id="propertyValueFormField" ng-model="popup.selectedPropertyMapping.propertyValueFormField.name" disabled />
+                    </div>
+                </div>
+
+                <div class="form-group clearfix" ng-show="popup.selectedPropertyMapping.propertyValueType === 'variable'">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-TYPE-PROCESS-VAR' | translate}}:</label>
+                    </div>
+                    <div class="col-xs-8" ng-show="popup.selectedPropertyMapping.state != 'view'">
+                            <div field-select="popup.selectedPropertyMapping.propertyValueVariable" all-steps="allSteps" step-id="step.id" include-type="true"
+                                 select-title="'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.READONLY-TEXT-SELECT-PROCESS-VARIABLE'" variables-type="rest" editor-type="step" expand-relative="true"></div>
+                    </div>
+                    <div class="col-xs-8" ng-show="popup.selectedPropertyMapping.state === 'view'">
+                        <input class="form-control" type="text" id="propertyValueVariable" ng-model="popup.selectedPropertyMapping.propertyValueVariable.name" disabled />
+                    </div>
+                </div>
+
+                <div class="form-group clearfix" ng-show="popup.selectedPropertyMapping.propertyValueType === 'static'">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.NAME' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input type="text"  class="form-control" ng-model="popup.selectedPropertyMapping.propertyValueVariable.id"  value="{{ popup.selectedPropertyMapping.propertyValueVariable.name = popup.selectedPropertyMapping.propertyValueVariable.id}}" />
+                    </div>
+                </div>
+
+                <div class="form-group clearfix">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-TYPE' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <select id="property-type" class="form-control" ng-model="popup.selectedPropertyMapping.propertyType"
+                                ng-options="propertyType for propertyType in propertyTypes" ng-disabled="popup.selectedPropertyMapping.state === 'view'">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group clearfix">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-NAME' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="form-control" type="text" id="property-name"
+                               placeholder="{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-NAME-PLACEHOLDER' | translate}}"
+                               ng-model="popup.selectedPropertyMapping.propertyName" auto-focus
+                               ng-disabled="popup.selectedPropertyMapping.state === 'view'"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-sm btn-default" ng-click="cancelPropertyMapping()" ng-disabled="model.loading">
+                        {{'GENERAL.ACTION.CANCEL' | translate}}
+                    </button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="savePropertyMapping()" ng-disabled="model.loading || readOnly" ng-show="popup.selectedPropertyMapping.state != 'view'">
+                        {{'GENERAL.ACTION.SAVE' | translate}}
+                    </button>
+                </div>
+                <div class="loading pull-right" ng-show="model.loading">
+                    <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

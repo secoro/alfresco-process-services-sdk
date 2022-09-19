@@ -1,0 +1,25 @@
+<div class="detail-group clearfix">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <label>{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAMETERS' | translate}}</label>
+            <div style="padding-top:5px;" class="row row-no-gutter">
+                <div class="col-xs-6">
+                    <div class="kis-listener-grid" ui-grid="gridOptions" ui-grid-auto-resize ui-grid-selection></div>
+                </div>
+
+                <div class="col-xs-6">
+                    <div ng-if="selectedActionParam">
+                        <div class="form-group">
+                            <label for="paramName">{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-NAME' | translate}}</label>
+                            <input id="paramName" name="paramName" class="form-control" value="{{selectedActionParam.name}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="paramValue">{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-VALUE' | translate}}</label>
+                            <input id="paramValue" name="paramValue" class="form-control" value="{{selectedActionParam.value}}" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

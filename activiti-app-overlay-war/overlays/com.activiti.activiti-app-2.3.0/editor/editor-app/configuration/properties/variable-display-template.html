@@ -1,0 +1,4 @@
+<span ng-if="!property.noValue && property.value.valueType === 'static' && property.value.staticValue">{{property.value.staticValue}}</span>
+<span ng-if="!property.noValue && property.value.valueType === 'field' && property.value.formField && property.value.formField.name">{{property.value.formField.name}}</span>
+<span ng-if="!property.noValue && property.value.valueType === 'variable' && property.value.variableField && property.value.variableField.name">{{property.value.variableField.name}}</span>
+<span ng-if="property.noValue" translate>PROPERTY.CUSTOM-VARIABLE.EMPTY</span>

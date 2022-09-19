@@ -1,0 +1,154 @@
+<div class="modal" ng-controller="KisBpmBoxContentPopupCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group clearfix">
+                    <div class="detail-group clearfix first">
+                        <div class="col-xs-12">
+                            <div class="btn-group span">
+                                <button class="selection" data-toggle="dropdown" ng-options="option as (option.title | translate) for option in boxSourceOptions"
+                                        bs-select ng-model="boxSourceOption" activiti-fix-dropdown-bug>
+                                    <i class="icon icon-caret-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+
+                    <div class="detail-group clearfix" ng-show="boxSourceOption.id == 'field'">
+                        <div class="form-group clearfix">
+                            <div class="col-xs-12">
+                                <label>{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-VALUE-TYPE' | translate}}</label>
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="variableType = 'formField'; selectedFormField = {};" ng-model="variableType" ng-class="{'active' : variableType === 'formField'}">{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-TYPE-FIELD' | translate}}</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="variableType = 'variable'; selectedFormField = {};" ng-model="variableType" ng-class="{'active' : variableType === 'variable'}">{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-TYPE-VARIABLE' | translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix" ng-show="variableType == 'formField'">
+                            <div class="col-xs-3">
+                                <label>{{'PROCESS-BUILDER.PUBLISH-STEP.SOURCE.FORM-FIELD' | translate}}:</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <div field-select="selectedFormField.field" all-steps="allSteps" step-id="selectedShape.resourceId" editor-type="bpmn" field-type-filter="['upload']"></div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix" ng-show="variableType == 'variable'">
+                            <div class="col-xs-3">
+                                <label>{{'PROCESS-BUILDER.PUBLISH-STEP.SOURCE.VARIABLE' | translate}}</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <div field-select="selectedFormField.field" all-steps="allSteps" variables-type="rest" step-id="selectedShape.resourceId" editor-type="bpmn" field-type-filter="['document']"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-group clearfix" ng-if="boxSourceOption && isMetaDataAllowed">
+
+                        <div ng-controller="KisBpmContentPopupMetadataMappingController">
+                            <div class="col-xs-12 clearfix">
+                                <label>{{'FORM-BUILDER.COMPONENT.ATTACH-FILE.METADATA-LABEL' | translate}}</label>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-xs-8">
+                                    <div class="kis-listener-grid" ui-grid="metaDataGridOptions" ui-grid-selection></div>
+
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}"
+                                               data-placement="bottom" data-original-title=""
+                                               title="" id="add-request-mapping-button" ng-click="addNewPropertyMapping()">
+                                                <i class="glyphicon glyphicon-plus"></i></a>
+                                            <a class="btn btn-icon btn-lg" rel="tooltip"
+                                               data-title="{{ACTION.REMOVE | translate}}"
+                                               ng-disabled="!metaDataSelectedColumnDefinition"
+                                               data-placement="bottom" data-original-title="" title=""
+                                               ng-click="removePropertyMapping()"><i class="glyphicon glyphicon-minus"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-4">
+                                    <div ng-if="metaDataSelectedColumnDefinition"  ng-form="columnDefEditForm">
+                                        <div class="form-group" ng-class="{'has-error': columnDefEditForm.filePropertyField.$invalid}">
+                                            <label for="filePropertyField">{{'FORM-BUILDER.COMPONENT.ATTACH-FILE.FILE-PROPERTY' | translate}}</label>
+                                            <input type="text" id="filePropertyField" name="filePropertyField" class="form-control" ng-model="metaDataSelectedColumnDefinition.fileProperty" auto-focus
+                                                   placeholder="{{'FORM-BUILDER.COMPONENT.ATTACH-FILE.FILE-PROPERTY' | translate}}" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label translate="FORM-BUILDER.COMPONENT.ATTACH-FILE.PROPERTY-TYPE"></label>
+                                            <select class="form-control" ng-options="name for name in propertyTypes"
+                                                    ng-model="metaDataSelectedColumnDefinition.propertyType"
+                                                    ng-change="propertyTypeChanged()"/>
+                                        </div>
+
+                                        <div class="form-group clearfix">
+                                            <label>{{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-VALUE-TYPE'
+                                                | translate}}</label>
+
+                                            <div class="btn-group btn-group-justified">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default"
+                                                            ng-click="setPropertyMappingFormFieldValue()"
+                                                            ng-model="popup.selectedPropertyMapping.propertyValueType"
+                                                            ng-class="{'active' : metaDataSelectedColumnDefinition.propertyValueType == 'field'}">
+                                                        {{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-TYPE-FIELD'
+                                                        | translate}}
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default"
+                                                            ng-click="setPropertyMappingVariableValue()"
+                                                            ng-model="popup.selectedPropertyMapping.propertyValueType"
+                                                            ng-class="{'active' : metaDataSelectedColumnDefinition.propertyValueType == 'variable'}">
+                                                        {{'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.PROPERTY-TYPE-PROCESS-VAR'
+                                                        | translate}}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group clearfix"
+                                             ng-show="metaDataSelectedColumnDefinition.propertyValueType == 'field'">
+                                            <div field-select="metaDataSelectedColumnDefinition.formField"
+                                                 editor-type="step" include-type="true" expand-relative="true"
+                                                 step-id="stepId"
+                                                 all-steps="allSteps"
+                                                 field-type-filter="['text', 'multi-line-text', 'integer', 'date', 'boolean', 'dropdown', 'radio-buttons', 'typeahead', 'amount']"></div>
+                                        </div>
+
+                                        <div class="form-group clearfix"
+                                             ng-show="metaDataSelectedColumnDefinition.propertyValueType == 'variable'">
+                                            <div field-select="metaDataSelectedColumnDefinition.processVariable"
+                                                 all-steps="allSteps" step-id="stepId" include-type="true"
+                                                 select-title="'PROCESS-BUILDER.PUBLISH-STEP.METADATA-MAPPING.POPUP.READONLY-TEXT-SELECT-PROCESS-VARIABLE'"
+                                                 variables-type="rest" editor-type="step" expand-relative="true"></div>
+                                        </div>
+
+                                    </div>
+                                    <div ng-show="!metaDataSelectedColumnDefinition" class="muted no-property-selected" translate>FORM-BUILDER.COMPONENT.PROPERTY-UNSELECTED</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                    <button ng-click="save()" ng-disabled="readOnly || !isValidForm()" class="btn btn-primary" translate>ACTION.SAVE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

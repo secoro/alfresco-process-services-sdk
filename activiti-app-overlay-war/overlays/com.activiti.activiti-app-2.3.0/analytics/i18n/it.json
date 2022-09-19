@@ -1,0 +1,244 @@
+{
+  "COMMON": {
+    "ACCOUNTS": {
+      "box": "Box",
+      "alfresco-*": "Alfresco ({{name}})",
+      "alfresco-cloud": "Alfresco Content Services in the Cloud",
+      "google-drive": "Google Drive"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services è in modalità di sola lettura in quanto la licenza locale non è valida.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services è in modalità di sola lettura in quanto la licenza locale non è stata trovata.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services è in modalità di sola lettura in quanto le date della licenza locale non sono valide (sono scadute o con una data di inizio non ancora raggiunta).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "La licenza sta per scadere. Alfresco Process Services passerà alla modalità di sola lettura."
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Analisi",
+    "ERROR": {
+      "GENERIC": "Si è verificato un errore...",
+      "UNKNOWN": "Si è verificato un errore durante l'esecuzione dell'operazione richiesta.",
+      "BAD_REQUEST": "Si è verificato un errore durante l'esecuzione dell'operazione richiesta",
+      "NOT_FOUND": "La risorsa a cui si sta tentando di accedere non esiste",
+      "UNAUTHORIZED": "È necessario eseguire l'accesso per effettuare l'operazione richiesta.",
+      "FORBIDDEN": "L'esecuzione dell'operazione richiesta non è consentita",
+      "INTERNAL_SERVER_ERROR": "Si è verificato un errore imprevisto durante l'esecuzione dell'operazione richiesta."
+    },
+    "NAVIGATION": {
+      "REPORTS": "Rapporti",
+      "CONFIGURE": "Configura"
+    },
+    "ACTION": {
+      "LOGOUT": "Disconnetti",
+      "SAVE": "Salva",
+      "CANCEL": "Annulla",
+      "CLOSE": "Chiudi",
+      "ABOUT": "Informazioni su Alfresco Process Services",
+      "HELP-DOCS-LINK": "Aiuto"
+    },
+    "ABOUT": {
+      "TYPE": "Tipo",
+      "LICENSED-TO": "Concesso in licenza a",
+      "EXPIRES": "Scade il",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Tutti i diritti riservati.",
+      "LEGAL": "Informazioni legali e sulla licenza"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "È possibile ottenere qualsiasi tipo di rapporto importante sui processi, per individuare facilmente i colli di bottiglia e migliorare le prestazioni.",
+    "GENERATE-REPORTS": "Aggiungere dei rapporti standard ora.",
+    "NO-REPORT-SELECTED": "Nessun rapporto selezionato. Scegliere un rapporto dall'elenco a sinistra",
+    "NO-DATA-FOUND": "Nessun dato trovato",
+    "CONFIG-REPORTS": "Configura rapporti",
+    "RESET-ALL-REPORTS": "Reimposta tutti i miei rapporti",
+    "FETCHING-PROC-DEFS": "Recupero delle definizioni di processo in corso...",
+    "GENERATING": "Generazione del rapporto in corso...",
+    "SAVE-REPORT": "Salva questo rapporto",
+    "EXPORT-REPORT": "Esporta dati",
+    "SHOW": "Fare clic per visualizzare",
+    "HIDE": "Fare clic per nascondere di nuovo",
+    "FILL-PARAMS": "Impossibile trovare i dati del rapporto. Compilare i parametri per generare il rapporto",
+    "PROCESS-STATUS": "Stato processo",
+    "TASK-STATUS": "Stato compito",
+    "STATUS": {
+      "ACTIVE": "Attivo",
+      "ALL": "Tutti",
+      "COMPLETE": "Completa"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "Nessun compito completato trovato per la definizione di processo attuale",
+      "DATE-RANGE": {
+        "TODAY": "Oggi",
+        "YESTERDAY": "Ieri",
+        "LAST-7-DAYS": "Ultimi 7 giorni",
+        "PREVIOUS-MONTH": "Mese precedente",
+        "CURRENT-YEAR": "Anno corrente",
+        "CUSTOM-RANGE": "Intervallo personalizzato",
+        "APPLY": "Applica",
+        "CANCEL": "Annulla",
+        "FROM": "Da",
+        "TO": "A"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "Per ora",
+        "DAY": "Per giorno",
+        "WEEK": "Per settimana",
+        "MONTH": "Per mese",
+        "YEAR": "Per anno"
+      },
+      "DURATION": {
+        "SECONDS": "Secondi",
+        "MINUTES": "Minuti",
+        "HOURS": "Ore",
+        "DAYS": "Giorni"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "TITLE": "Panoramica attività",
+        "PROCESS-DEFINITION": "Definizione di processo",
+        "DATE-RANGE": "Intervallo date",
+        "DATE-RANGE-INTERVAL": "Aggrega date per",
+        "TASK-COUNT-TITLE": "Numero compiti",
+        "TASK-COUNT-DESCRIPTION": "Questo grafico indica il numero totale di compiti nell'intervallo di date specificato",
+        "TASK-DURATIONS-TITLE": "Durata compiti",
+        "TASK-DURATIONS-DESCRIPTION": "Questo grafico indica la durata media, minima e massima (in ore) dei compiti completati nell'intervallo di date specificato. L'asse x indica il numero di riga del compito nella tabella dettagliata sottostante.",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "Numero di compiti per assegnatario",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "Questo grafico a torta indica il numero di compiti da ciascun assegnatario per la definizione di processo selezionata",
+        "DETAILED-TASK-STATS-TITLE": "Statistiche compiti dettagliate",
+        "DETAILED-TASK-STATS-DESCRIPTION": "Questa tabella indica le statistiche aggregate di tutti i compiti. Fare clic su uno dei compiti per visualizzare informazioni più dettagliate. Tutte le informazioni di tempo sono espresse in ore.",
+        "DETAILED-TASK-STATS-TASK": "Compito",
+        "DETAILED-TASK-STATS-ASSIGNEE": "Assegnatario",
+        "TASK-HISTOGRAM-TITLE": "Numero di compiti divisi per intervallo di date",
+        "TASK-HISTOGRAM-TABLE": "Tabella: dati grafico precedente in formato tabella",
+        "TASK-HISTOGRAM-TABLE-DATE": "Data",
+        "COUNT": "Numero",
+        "SUM": "Somma",
+        "MIN-DURATION": "Durata min.",
+        "MAX-DURATION": "Durata max.",
+        "AVERAGE": "Media",
+        "STDDEV": "Deviazione standard"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "TITLE": "Panoramica istanze processo",
+        "PROCESS-DEFINITION": "Definizione di processo",
+        "DATE-RANGE": "Intervallo date",
+        "SLOW-PROC-INST-NUMBER": "Tra le istanze di processo più lente, quante devono essere visualizzate?",
+        "HISTOGRAM-TITLE": "Numero di istanze di processo",
+        "HISTOGRAM-DESCRIPTION": "Il seguente grafico indica il numero di istanze di processo avviate e completate all'interno dell'intervallo di date specificato",
+        "ACTIVITY-DURATION-TABLE-TITLE": "Dettagli sulla durata dell'attività",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "La seguente tabella indica gli intervalli delle varie attività nel processo, ordinate in base al tempo totale cumulativo impiegato. Tutte le informazioni di tempo sono espresse in ore.",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "Attività",
+        "ACTIVITY-DURATION-CHART-TITLE": "Durata complessiva dei passaggi del processo",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "Questo grafico indica in quali attività è stato impiegato tempo. I numeri rappresentano la somma della durata complessiva di quell'attività, come indicato nella tabella sottostante.",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "Istanze di processo più lente",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "Questa tabella indica le istanze di processo più lente che sono state completate nell'intervallo di date impostato. Fare clic su una voce qualsiasi per visualizzare le variabili di processo relative all'istanza di processo selezionata",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Durata",
+        "SLOWEST-PROCESS-INSTANCES-ID": "ID interno",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Chiave di business",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Ora creazione",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "Ora fine",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variabili",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "Nome variabile",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Valore variabile",
+        "COUNT": "Numero",
+        "SUM": "Somma",
+        "MIN-DURATION": "Durata min.",
+        "MAX-DURATION": "Durata max.",
+        "AVERAGE": "Media",
+        "STDDEV": "Deviazione standard"
+      },
+      "TASK-SLA": {
+        "TITLE": "Contratto di servizio attività",
+        "PROCESS-DEFINITION": "Definizione di processo",
+        "TASK": "Compito",
+        "DATE-RANGE": "Intervallo date",
+        "SLA-DURATION": "Qual è il tempo stabilito entro il quale questo compito deve essere completato per rientrare nel Contratto di servizio?",
+        "SLA-NOT-OK": "Contratto di servizio OK e Non OK",
+        "ASSIGNEE-TABLE": "Assegnatari che non hanno completato il compito nei limiti del Contratto di servizio",
+        "ASSIGNEE": "Assegnatario",
+        "COUNT": "Numero"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "TITLE": "Panoramica definizione processo",
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Numero totale di definizioni di processo: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Numero totale di istanze di processo: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Numero totale di istanze di processo attive: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Numero totale di istanze di processo completate: ",
+        "DETAIL-TABLE": "Dettagli definizione di processo",
+        "DETAIL-TABLE-PROCESS": "Definizione di processo",
+        "DETAIL-TABLE-TOTAL": "Totale",
+        "DETAIL-TABLE-ACTIVE": "Attivo",
+        "DETAIL-TABLE-COMPLETED": "Completato",
+        "PROC-INST-CHART-TITLE": "Panoramica sulle istanze di processo totali",
+        "DURATIONS-CHART-TITLE": "Intervalli medi per ogni definizione di processo",
+        "DURATIONS-CHART-DESCRIPTION": "La durata media (e deviazione standard) delle istanze di processo completate, in ore. Il numero dell'asse x corrisponde alle voci presenti nella tabella riportata sopra."
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "Mappa termica del processo",
+        "TYPE-FILTERING": "Includere tutti i passaggi del processo? (Se si deseleziona questa opzione, verranno eliminati i passaggi intermedi, ad es. eventi iniziali, gateway, ecc.)",
+        "METRIC-TOTAL-COUNT": "Numero di volte in cui un passaggio viene eseguito",
+        "METRIC-TOTAL-TIME": "Tempo totale impiegato per un passaggio del processo",
+        "METRIC-AVG-TIME": "Tempo medio impiegato per un passaggio del processo",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "volte",
+        "METRIC-TOTAL-TIME-TOOLTIP": "ore",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "ore",
+        "GENERATING": "Generazione mappa termica del processo in corso..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "Salva rapporto",
+        "DESCRIPTION": "Le impostazioni dei parametri attuali verranno archiviate e un nuovo rapporto verrà visualizzato nell'elenco dei rapporti. Facendo clic sul rapporto, questo verrà generato utilizzando i valori dei parametri salvati.",
+        "NAME": "Nome"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "Esporta dati",
+        "NAME": "Nome"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "Elimina rapporto",
+        "DESCRIPTION": "Eliminare il rapporto?",
+        "CONFIRM": "Elimina rapporto"
+      }
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "Progettazione di applicazioni",
+      "TITLE-PROCESSES": "Modelli di processo",
+      "TITLE-FORMS": "Modelli di modulo",
+      "TITLE-APPS": "Modelli di applicazione",
+      "TITLE-STENCILS": "Stencil",
+      "TITLE-DECISION-TABLES": "Tabelle decisioni",
+      "TITLE-DATA-MODELS": "Modelli di dati"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Applicazione di amministrazione"
+    },
+    "TASKS": {
+      "TITLE": "Applicazione compiti",
+      "TITLE-TASKS": "Compiti",
+      "TITLE-PROCESSES": "Processi",
+      "TITLE-PROCESSES?MODE=START": "Avvia"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profilo",
+      "TITLE-TENANT-ADMIN": "Gestione delle identità",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenant",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Utenti",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Funzioni",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organizzazione",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profilo",
+      "TITLE-PROFILE": "Profilo"
+    },
+    "ANALYTICS": {
+      "TITLE": "Applicazione di analisi"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "Compiti {{name}}",
+      "TITLE-PROCESSES": "Processi {{name}}",
+      "TITLE-PROCESSES?MODE=START": "Avvio {{name}}"
+    }
+  }
+}

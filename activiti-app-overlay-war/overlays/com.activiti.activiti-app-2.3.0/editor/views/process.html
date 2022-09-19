@@ -1,0 +1,160 @@
+
+<div class="subheader" ng-if="model.process">
+	<div class="fixed-container">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn btn-default" ng-click="openEditor()" ng-if="model.process.latestVersion && !model.process.referenceId" ng-disabled="model.process.permission != 'write' || readOnly">
+				<i class="glyphicon glyphicon-edit icon-and-label"></i> {{'PROCESS.ACTION.OPEN-IN-EDITOR' | translate}}
+			</button>
+			<button type="button" class="btn btn-default" ng-click="useAsNewVersion()" ng-if="!model.process.latestVersion && !model.process.referenceId" ng-disabled="model.process.permission != 'write' || readOnly">
+				{{'PROCESS.ACTION.USE-AS-NEW-VERSION' | translate}}
+			</button>
+		</div>
+		<div class="btn-group pull-right">
+			<button type="button" ng-click="toggleFavorite()" class="btn btn-default" title="{{'PROCESS.ACTION.FAVORITE' | translate}}"
+			    title="{{'PROCESS.ACTION.FAVORITE' | translate}}" ng-disabled="!model.process.latestVersion || model.favoritePending || model.process.referenceId || readOnly">
+				<i class="glyphicon" ng-class="{'glyphicon-star highlight': model.process.favorite, 'glyphicon-star-empty': !model.process.favorite}"></i>
+			</button>
+			<button type="button" ng-click="shareProcess()" class="btn btn-default" title="{{'PROCESS.ACTION.SHARE' | translate}}"
+			    title="{{'PROCESS.ACTION.SHARE' | translate}}" ng-disabled="!model.process.latestVersion || model.process.createdBy != account.id || model.process.referenceId || readOnly">
+				<i class="glyphicon glyphicon-share"></i>
+			</button>
+	        <a href="{{model.bpmn20DownloadUrl}}" class="btn btn-default" title="{{'PROCESS.ACTION.EXPORT_BPMN20' | translate}}"
+	           title="{{'PROCESS.ACTION.EXPORT_BPMN20' | translate}}" ng-if="!model.process.referenceId">
+	            <i class="glyphicon glyphicon-save"></i>
+	        </a>
+		</div>
+		<div class="btn-group pull-right">
+			<button type="button" class="btn btn-default" ng-click="editProcess()" ng-disabled="!model.process.latestVersion || model.process.permission != 'write' || model.process.referenceId || readOnly"
+				title="{{'PROCESS.ACTION.EDIT' | translate}}">
+				<i class="glyphicon glyphicon-pencil"></i>
+			</button>
+            <button type="button" class="btn btn-default" ng-click="duplicateProcess()" ng-disabled="!model.process.latestVersion || model.process.referenceId || readOnly"
+                    title="{{'PROCESS.ACTION.DUPLICATE' | translate}}">
+                <i class="editor-icon editor-icon-copy"></i>
+            </button>
+			<button type="button" class="btn btn-default" ng-click="deleteProcess()" title="{{'PROCESS.ACTION.DELETE' | translate}}"
+				 title="{{'PROCESS.ACTION.DELETE' | translate}}" ng-disabled="!model.process.latestVersion || model.process.permission != 'write' || model.process.referenceId || readOnly">
+				<i class="glyphicon glyphicon-trash"></i>
+			</button>
+		</div>
+		<div class="pull-right">
+			<a ng-click="returnToList()" class="action">&larr; {{'GENERAL.ACTION.RETURN-TO-LIST' | translate}}</a>
+		</div>
+		<h2><span class="version">v{{model.process.version}}</span>{{model.process.name}}</h2>
+		<div class="clearfix">
+			<div class="col-xs-4 details">
+				<span><i class="glyphicon glyphicon-user"></i><span translate="PROCESS.DETAILS.CREATED-BY" translate-values="model.process"></span></span>
+				<span><i class="glyphicon glyphicon-pencil"></i><span translate="PROCESS.DETAILS.LAST-UPDATED-BY" translate-values="model.process"></span>{{model.process.lastUpdated | dateformat:((globalDateFormat || getGlobalDateFormat()) | momentTodatetimeFormat)}}</span>
+			</div>
+			<div class="col-xs-8 details clearfix">
+                <div class="related btn-group">
+                    <button id="toggle-comment" type="button" class="btn btn-subtle" ng-disabled="!model.process.latestVersion" ng-click="toggleComments($event)"
+                        title="{{'PROCESS.ACTION.ADD-COMMENT' | translate}}">
+                        <span ng-if="!model.comments.data.length">
+						   {{'PROCESS.ACTION.ADD-COMMENT' | translate}}
+                        </span>
+                        <span ng-if="model.comments.data.length">
+						     {{'PROCESS.DETAILS.COMMENTS-TITLE' | translate}} <span class="counter">{{model.comments.data.length}}</span>
+                        </span>
+                    </button>
+                    <button id="toggle-history" type="button" class="btn btn-subtle" ng-click="toggleHistory($event)"
+                        title="{{'PROCESS.ACTION.EDIT' | translate}}">
+                        {{'PROCESS.DETAILS.HISTORY-TITLE' | translate}} <span class="counter" ng-show="model.versions.data.length">{{model.versions.data.length}}</span>
+                    </button>
+                </div>
+                <a ng-show="model.stencil" ng-click="goToStencil()" class="pull-right action">{{model.stencil.name}}</a>
+                <p ng-if="model.process.description">
+                    {{model.process.description}}
+                </p>
+                <p ng-if="!model.process.description && model.process.latestVersion && model.process.permission == 'write' && !model.process.referenceId && !readOnly" class="hint">
+                    <a ng-click="editProcess()" class="subtle-select">
+                        {{'PROCESS.DETAILS.NO-DESCRIPTION' | translate}} <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                </p>
+                <span class="detail" ng-if="model.process.comment" title="{{'PROCESS.VERSION-COMMENT' | translate}}"><i class="glyphicon glyphicon-comment"></i>{{model.process.comment}}</span>
+            </div>
+		</div>
+	</div>
+</div>
+<div class="content center-pane" ng-if="model.process" auto-height offset="40" >
+        <div class="center-pane content" ng-if="model.process.modelType && model.process.modelType == 1">
+            <div class="roweditor-canvas container-fluid" ng-controller="KickstartReadOnlyModelController">
+                <div class="steps-wrapper has-line" ng-controller="KickstartReadOnlyModelDesignController">
+                    <div class="line-marker" ng-class="{'expanded': model.processStart.expanded}">
+                        <h4 ng-click="toggleProcessStartExpanded()"><i class="icon" ng-class="{'icon-caret-right': !model.processStart.expanded, 'icon-caret-down': model.processStart.expanded}"></i>
+                            {{'PROCESS-BUILDER.TITLE.PROCESS-START' | translate}}
+                        </h4>
+
+                        <div class="section clearfix" ng-show="model.processStart.expanded">
+                            <div class="col-xs-3">
+                                <label>{{'PROCESS-BUILDER.TITLE.PROCESS-TRIGGER' | translate}}: </label>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group span">
+                                    <label>{{model.processStart.type.title}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section clearfix" ng-show="model.processStart.expanded && model.processStart.type.id == 'form'">
+
+                            <div class="form-group clearfix">
+                                <div class="col-xs-3">
+                                    <label>Start form: </label>
+                                </div>
+                                <div class="col-xs-9">
+                                    <div class="btn-group span">
+                                        <label ng-if="currentKickstartModel.definition.definition.startForm">
+                                            {{currentKickstartModel.definition.definition.startForm.name}}
+                                        </label>
+                                        <label class="empty" ng-if="!currentKickstartModel.definition.definition.startForm">
+                                           {{'PROCESS-BUILDER.FIELD.FORM-SELECT.NO-FORM-SELECTED' | translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix" ng-show="currentKickstartModel.definition.definition.startForm">
+                                <div class="col-xs-9 col-xs-push-3">
+                                    <div class="btn-group pull-right">
+                                        <button class="btn btn-xs" ng-click="showStartForm()">Open form</button>
+                                    </div>
+                                    <div class="detail">
+                                        <span ng-repeat="field in getFieldsForForm(currentKickstartModel.definition.definition.startForm)">
+                                            {{$index != 0 && ', ' + field.name || field.name}}
+                                        </span>
+                                        <span class="empty" ng-if="!getFieldsForForm(currentKickstartModel.definition.definition.startForm).length">
+                                            {{'PROCESS-BUILDER.FIELD.FORM-SELECT.NO-FIELDS' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="model.processStart.expanded && currentKickstartModel.definition.definition.startForm">
+                                <div ng-include="'views/process-builder/form-variable-map.html'" onload="readonly = true"/>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="section clearfix" ng-show="model.processStart.expanded">
+                            <div class="col-xs-3">
+                                <label>{{'PROCESS-BUILDER.TITLE.METADATA' | translate}}: </label>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group span" ng-if="metadata.fields.length > 0">
+                                    <label>{{'PROCESS-BUILDER.FIELD.METADATA.DISPLAY' | translate:metadata.fields}}</label>
+                                </div>
+                                <div class="btn-group span" class="empty" ng-if="metadata.fields.length === 0">
+                                    <label>{{'PROCESS-BUILDER.FIELD.METADATA.EMPTY' | translate}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <div class="step-placeholder-readonly"></div>
+                    <div ng-repeat="step in steps" ng-include="'views/process-builder/step-list-readonly.html'">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    	<div class="model-preview-wrapper" ng-if="!model.process.modelType && model.process.modelType != 1">
+    	   <div id="bpmnModel"></div>
+    	</div>
+</div>

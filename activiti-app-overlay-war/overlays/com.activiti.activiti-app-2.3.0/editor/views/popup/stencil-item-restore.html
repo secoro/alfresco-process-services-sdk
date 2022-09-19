@@ -1,0 +1,38 @@
+
+<div class="modal" ng-controller="RestoreStencilItemCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h2>{{'STENCILS.POPUP.RESTORE-ITEM-TITLE' | translate}}</h2>
+            </div>
+            
+            <div class="modal-body">
+            
+                <ul>
+                    <li ng-repeat="removedStencilItem in model.removedStencilItems"
+                        class="restoreable-stencil-item"
+                        ng-class="{'selected-restoreable-stencil-item': isSelectedStencilItem(removedStencilItem)}"
+                        ng-click="selectStencilItem(removedStencilItem)">
+                        <span class="glyphicon glyphicon-ok" ng-if="isSelectedStencilItem(removedStencilItem)"></span>
+                        <span>{{removedStencilItem.name | translate}}</span>
+                    </li>
+                </ul>
+            
+            </div>
+            
+            <div class="modal-footer">
+            	<div class="pull-right">
+            		<button type="button" class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="model.loading">
+            			{{'GENERAL.ACTION.CANCEL' | translate}}
+            		</button>
+            		<button type="button" class="btn btn-sm btn-default" ng-click="ok()" ng-disabled="model.loading || model.stencilItemsToRestore.length == 0 || readOnly">
+            			{{'STENCILS.POPUP.ACTION-RESTORE' | translate:model.stencilItemsToRestore}}
+            		</button>
+            	</div>
+            	<div class="loading pull-right" ng-show="model.loading">
+            		<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>

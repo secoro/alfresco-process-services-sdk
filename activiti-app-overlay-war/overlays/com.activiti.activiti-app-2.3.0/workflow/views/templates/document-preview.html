@@ -1,0 +1,53 @@
+<div ng-if="!embedded" ng-click="showDetails(content, true)" title="{{content.name | decodeHtml}}">
+  <div class="frame" ng-if="!content.thumbnailUrl">
+    <span class="thumb-wrapper">
+      <div class="nothing-to-see">
+        <span ng-show="content.thumbnailStatus == 'unsupported' || content.thumbnailStatus == 'error'" translate="CONTENT.MESSAGE.NO-PREVIEW-AVAILABLE"></span>
+        <span ng-show="content.contentAvailable && (content.thumbnailStatus == 'processing' || content.thumbnailStatus == 'queued')" translate="CONTENT.MESSAGE.PREVIEW-PENDING"></span>
+        <span ng-show="!content.contentAvailable && content.thumbnailStatus != 'unsupported' && content.thumbnailStatus != 'error'" translate="CONTENT.MESSAGE.CONTENT-PENDING"></span>
+        <br />
+        <span loading="content.thumbnailStatus == 'processing' || content.thumbnailStatus == 'queued'"></span>
+      </div>
+    </span>
+  </div>
+
+  <div class="frame" ng-if="content.thumbnailUrl" ng-switch="(content.source == undefined || contentAccounts[content.source] != undefined)">
+      <span ng-switch-when="true" class="helper"></span><span ng-switch-when="true" class="thumb-wrapper"><img ng-src="{{content.thumbnailUrl}}" ng-if="content.thumbnailUrl" /></span>
+      <span ng-switch-when="false" class="thumb-wrapper">
+        <div class="nothing-to-see"><span translate="CONTENT.MESSAGE.NO-PREVIEW-AVAILABLE"></span></div>
+      </span>
+  </div>
+
+  <i class="icon icon-{{content.simpleType}}" ng-if="content.simpleType"></i>
+  <span ng-bind-html="content.name"></span>
+
+  <div class="actions">
+    <a ng-show="content.contentAvailable && content.officeUrl && editable"
+       ng-click="$event.stopPropagation(); $event.preventDefault(); openOfficeDocument(content);">
+      <i class="icon icon-{{content.simpleType}}"></i></a>
+    <a ng-show="content.contentAvailable && (!content.source || contentAccounts[content.source])" target="_blank" download="{{content.name | decodeHtml}}"
+       href="{{content.rawUrl}}" ng-click="$event.stopPropagation();"> <i
+            class="icon icon-download"></i></a>
+    <a ng-show="!readOnly" ng-click="deleteContent(content); $event.preventDefault(); $event.stopPropagation();"><i
+              class="icon icon-remove"></i></a>
+    <a external-target="_blank" href="{{content.linkUrl}}" ng-click="$event.stopPropagation();" ng-if="content.linkUrl && content.source === 'alfresco-cloud'"><i
+            class="icon icon-content" title="{{'CONTENT.ACTION.OPEN-IN-ALFRESCO-CLOUD' | translate}}"></i></a>
+    <a external-target="_blank" href="{{content.linkUrl}}" ng-click="$event.stopPropagation();" ng-if="content.linkUrl && content.source === 'google-drive'"><i
+            class="icon icon-content" title="{{'CONTENT.ACTION.OPEN-IN-GOOGLE-DRIVE' | translate}}"></i></a>
+      <a external-target="_blank" href="{{content.linkUrl}}" ng-click="$event.stopPropagation();" ng-if="content.linkUrl && content.source === 'box'"><i
+              class="icon icon-content" title="{{'CONTENT.ACTION.OPEN-IN-BOX' | translate}}"></i></a>
+    <a external-target="_blank" href="{{content.linkUrl}}" ng-click="$event.stopPropagation();" ng-if="content.linkUrl && content.source !== 'google-drive' && content.source !== 'alfresco-cloud' && content.source !== 'box'"><i
+            class="icon icon-content" title="{{'CONTENT.ACTION.OPEN-IN-ALFRESCO' | translate}}"></i></a>
+  </div>
+  <div class="subtle" ng-if="model.selectedContent.createdBy">{{'TASK.MESSAGE.CONTENT-UPLOADED-BY' | translate}} <span
+          user-name="content.createdBy"></span> , {{content.created | dateformat}}
+  </div>
+</div>
+
+<div ng-if="embedded">
+  <i class="icon icon-{{content.simpleType}}" ng-if="content.simpleType"></i>
+  <span ng-bind-html="content.name"></span>
+  <div ng-if="content.pdfUrl">
+    <iframe ng-src="{{content.pdfUrl | pdfViewerUrl }}" width="100%" height="600" style="border: none;"/>
+  </div>
+</div>

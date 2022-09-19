@@ -1,0 +1,244 @@
+{
+  "COMMON": {
+    "ACCOUNTS": {
+      "box": "Box",
+      "alfresco-*": "Alfresco ({{name}})",
+      "alfresco-cloud": "Alfresco Content Services in the Cloud",
+      "google-drive": "Google Disk"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services er i skrivebeskyttet modus, fordi den lokale lisensen er ugyldig.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services er i skrivebeskyttet modus, fordi den lokale lisensen ikke ble funnet.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services er i skrivebeskyttet modus, fordi den lokale lisensdatoen ikke er gyldig (enten så har den utgått eller så har den en dato som ikke har funnet sted enda).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Lisensen er i ferd med å utløpe! Alfresco Process Services vil bli skrivebeskyttet."
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Analyser",
+    "ERROR": {
+      "GENERIC": "Det oppstod en feil ...",
+      "UNKNOWN": "Det oppstod en feil under utførelsen av den forespurte operasjonen.",
+      "BAD_REQUEST": "Det oppstod en feil under utførelsen av den forespurte operasjonen",
+      "NOT_FOUND": "Kilden du prøver å få tilgang til eksisterer ikke",
+      "UNAUTHORIZED": "Du må logge på for å utføre den forespurte operasjonen.",
+      "FORBIDDEN": "Du har ikke tillatelse til å utføre den forespurte operasjonen",
+      "INTERNAL_SERVER_ERROR": "Det oppsto en uventet feil under utførelsen av den forespurte operasjonen."
+    },
+    "NAVIGATION": {
+      "REPORTS": "Rapporter",
+      "CONFIGURE": "Konfigurer"
+    },
+    "ACTION": {
+      "LOGOUT": "Logg ut",
+      "SAVE": "Lagre",
+      "CANCEL": "Avbryt",
+      "CLOSE": "Lukk",
+      "ABOUT": "Om Alfresco Process Services",
+      "HELP-DOCS-LINK": "Hjelp"
+    },
+    "ABOUT": {
+      "TYPE": "Type",
+      "LICENSED-TO": "Lisensiert til",
+      "EXPIRES": "Utløper",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Med enerett.",
+      "LEGAL": "Juridisk og lisensiering"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "Få alle mulige viktige rapporter om prosessene dine, for å få hjelp til å identifisere flaskehalser og oppnå bedre resultater.",
+    "GENERATE-REPORTS": "Legg til noen standard rapporter nå.",
+    "NO-REPORT-SELECTED": "Ingen rapporter valgt. Velg en rapport fra listen til venstre",
+    "NO-DATA-FOUND": "Fant ingen data",
+    "CONFIG-REPORTS": "Konfigurer rapporter",
+    "RESET-ALL-REPORTS": "Tilbakestill alle mine rapporter",
+    "FETCHING-PROC-DEFS": "Henter prosessdefinisjoner ...",
+    "GENERATING": "Genererer rapport ...",
+    "SAVE-REPORT": "Lagre denne rapporten",
+    "EXPORT-REPORT": "Eksporter data",
+    "SHOW": "Klikk for å vise",
+    "HIDE": "Klikk for å skjule igjen",
+    "FILL-PARAMS": "Ingen rapportdata funnet. Fyll inn parameterne for å generere rapporten",
+    "PROCESS-STATUS": "Prosesstatus",
+    "TASK-STATUS": "Oppgavestatus",
+    "STATUS": {
+      "ACTIVE": "Aktiv",
+      "ALL": "Alle",
+      "COMPLETE": "Fullfør"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "Ingen fullførte oppgaver funnet for gjeldene prosessdefinisjon",
+      "DATE-RANGE": {
+        "TODAY": "I dag",
+        "YESTERDAY": "I går",
+        "LAST-7-DAYS": "Siste 7 dager",
+        "PREVIOUS-MONTH": "Forrige måned",
+        "CURRENT-YEAR": "Gjeldene år",
+        "CUSTOM-RANGE": "Tilpasset verdiområde",
+        "APPLY": "Bruk",
+        "CANCEL": "Avbryt",
+        "FROM": "Fra",
+        "TO": "Til"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "Etter time",
+        "DAY": "Etter dag",
+        "WEEK": "Etter uke",
+        "MONTH": "Etter måned",
+        "YEAR": "Etter år"
+      },
+      "DURATION": {
+        "SECONDS": "Sekunder",
+        "MINUTES": "Minutter",
+        "HOURS": "Timer",
+        "DAYS": "Dager"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "TITLE": "Oppgaveoversikt",
+        "PROCESS-DEFINITION": "Prosessdefinisjon",
+        "DATE-RANGE": "Datointervall",
+        "DATE-RANGE-INTERVAL": "Samle datoer etter",
+        "TASK-COUNT-TITLE": "Antall oppgaver",
+        "TASK-COUNT-DESCRIPTION": "Dette diagrammet viser totalt antall oppgaver i den angitte datointervallen",
+        "TASK-DURATIONS-TITLE": "Oppgavevarighet",
+        "TASK-DURATIONS-DESCRIPTION": "Denne listen viser gjennomsnittlig, minimum og maksimal varighet (i timer) av den fullførte oppgaven i den angitte datointervallen. X-aksen viser radnummer for oppgaven i den detaljerte tabellen nedenfor.",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "Antall oppgaver, etter tilordnet",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "Dette kakediagrammet viser antall aktiviteter for den valgte prosessdefinisjonen, etter hver tilordnet",
+        "DETAILED-TASK-STATS-TITLE": "Detaljert oppgavestatistikk",
+        "DETAILED-TASK-STATS-DESCRIPTION": "Denne tabellen viser samlet statistikk for alle oppgavene. Klikk på en vilkårlig oppgave for å se mer detaljert informasjon. All tidsinformasjon er uttrykt i timer.",
+        "DETAILED-TASK-STATS-TASK": "Oppgave",
+        "DETAILED-TASK-STATS-ASSIGNEE": "Tilordnet",
+        "TASK-HISTOGRAM-TITLE": "Antall oppgaver fordelt etter datointervall",
+        "TASK-HISTOGRAM-TABLE": "Tabell: tidligere diagramdata i tabellformat",
+        "TASK-HISTOGRAM-TABLE-DATE": "Dato",
+        "COUNT": "Antall",
+        "SUM": "Sum",
+        "MIN-DURATION": "Min. varighet",
+        "MAX-DURATION": "Maks. varighet",
+        "AVERAGE": "Gjennomsnitt",
+        "STDDEV": "Standardavvik"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "TITLE": "Oversikt over prosesstilfeller",
+        "PROCESS-DEFINITION": "Prosessdefinisjon",
+        "DATE-RANGE": "Datointervall",
+        "SLOW-PROC-INST-NUMBER": "Hvor mange av de tregeste prosesstilfellene skal bli vist?",
+        "HISTOGRAM-TITLE": "Antall prosesstilfeller",
+        "HISTOGRAM-DESCRIPTION": "Følgende diagram viser antall prosesstilfeller som er starter og fullført innen den valgte datointervallen",
+        "ACTIVITY-DURATION-TABLE-TITLE": "Aktivitetvarighetsdetaljer",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "Følgende tabell viser, ordnet etter samlet total tid, tidsberegningen på de ulike aktivitetene i prosessen. All tidsinformasjon er uttrykt i timer.",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "Aktivitet",
+        "ACTIVITY-DURATION-CHART-TITLE": "Prosesstrinn, total tid",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "Diagrammet viser i hvilke aktiviteter ble brukt tid. Tallene er summen av all varighet for den spesifikke aktiviteten som vist i tabellen nedenfor.",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "Tregeste prosesstilfelle",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "Tabellen viser det tregeste prosesstilfellet som ble fullført i den konfigurerte datointervallen. Klikk på en oppføring for å se prosessvariabler for det spesifikke prosesstilfellet",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Varighet",
+        "SLOWEST-PROCESS-INSTANCES-ID": "Intern ID",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Forretningsnøkkel",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Opprettelsestid",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "Sluttid",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variabler",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "variabelnavn",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Variabelverdi",
+        "COUNT": "Antall",
+        "SUM": "Sum",
+        "MIN-DURATION": "Min. varighet",
+        "MAX-DURATION": "Maks. varighet",
+        "AVERAGE": "Gjennomsnitt",
+        "STDDEV": "Standardavvik"
+      },
+      "TASK-SLA": {
+        "TITLE": "Nivå til oppgave-serviceavtalen",
+        "PROCESS-DEFINITION": "Prosessdefinisjon",
+        "TASK": "Oppgave",
+        "DATE-RANGE": "Datointervall",
+        "SLA-DURATION": "Innen hvilken tid må denne oppgaven fullføres for å være innenfor SLA?",
+        "SLA-NOT-OK": "Serviceavtale OK kontra Ikke OK",
+        "ASSIGNEE-TABLE": "Tilordnede som ikke fullførte oppgaven innenfor SLA-grensene",
+        "ASSIGNEE": "Tilordnet",
+        "COUNT": "Antall"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "TITLE": "Oversikt over prosessdefinisjon",
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Totalt antall prosessdefinisjoner: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Totalt antall prosesstilfeller: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Totalt antall aktive prosesstilfeller: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Totalt antall fullførte prosesstilfeller: ",
+        "DETAIL-TABLE": "Prosessdefinisjonsdetaljer",
+        "DETAIL-TABLE-PROCESS": "Prosessdefinisjon",
+        "DETAIL-TABLE-TOTAL": "Total",
+        "DETAIL-TABLE-ACTIVE": "Aktiv",
+        "DETAIL-TABLE-COMPLETED": "Fullført",
+        "PROC-INST-CHART-TITLE": "Total prosesstilfelleoversikt",
+        "DURATIONS-CHART-TITLE": "Gjennomsnittlig tidsberegning for hver prosessdefinisjon",
+        "DURATIONS-CHART-DESCRIPTION": "Gjennomsnittlig varighet (og standardavvik) av fullførte prosesstilfeller, i antall timer. X-aksenummeret korresponderer med oppføringen i tabellen ovenfor."
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "Prosess tilgangsfrekvens",
+        "TYPE-FILTERING": "Inkludere alle prosesstrinn (Fjerning av denne medfører fjerning av trinn som starthendelser, gatewayer osv.)?",
+        "METRIC-TOTAL-COUNT": "Antall ganger et trinn har blitt utført",
+        "METRIC-TOTAL-TIME": "Total tid brukt i et prosesstrinn",
+        "METRIC-AVG-TIME": "Gjennomsnittlig tid brukt i et prosesstrinn",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "ganger",
+        "METRIC-TOTAL-TIME-TOOLTIP": "timer",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "timer",
+        "GENERATING": "Genererer prosess-varmekart ..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "Lagre rapport",
+        "DESCRIPTION": "De nåværende parameterinnstillingene vil bli lagret, og en ny rapport vil bli vist i rapportlisten. Når man klikker på den bestemte rapporten, vil rapporten bli generert ved å bruke disse lagrede parameterverdiene.",
+        "NAME": "Navn"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "Eksporter data",
+        "NAME": "Navn"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "Slett rapport",
+        "DESCRIPTION": "Er du sikker på at du vil slette denne rapporten?",
+        "CONFIRM": "Slett rapport"
+      }
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "Appdesigner",
+      "TITLE-PROCESSES": "Prosessmodeller",
+      "TITLE-FORMS": "Skjemamodeller",
+      "TITLE-APPS": "Appmodeller",
+      "TITLE-STENCILS": "Stensiler",
+      "TITLE-DECISION-TABLES": "Beslutningstabeller",
+      "TITLE-DATA-MODELS": "Datamodeller"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Admin app"
+    },
+    "TASKS": {
+      "TITLE": "Oppgaveapp",
+      "TITLE-TASKS": "Oppgaver",
+      "TITLE-PROCESSES": "Prosesser",
+      "TITLE-PROCESSES?MODE=START": "Start"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profil",
+      "TITLE-TENANT-ADMIN": "Identitetsbehandling",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Leietakere",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Brukere",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Kapasiteter",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organisasjon",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profil",
+      "TITLE-PROFILE": "Profil"
+    },
+    "ANALYTICS": {
+      "TITLE": "Analyseapp"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}} oppgaver",
+      "TITLE-PROCESSES": "{{name}} prosesser",
+      "TITLE-PROCESSES?MODE=START": "{{name}} start"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div ng-controller="ReportingProcessDefinitionHeatMapController">
+    <div ng-if="element.totalTimeValues">
+
+        <h2 ng-if="element.title">{{element.title}}</h2>
+        <h2 ng-if="!element.title && element.titleKey">{{element.titleKey | translate}}</h2>
+
+        <div style="margin-bottom:18px;">
+            <select ng-model="element.currentMetric" class="form-control" style="width: 60%" ng-change="metricChanged()">
+                <option value="totalCount">{{'REPORTING.DEFAULT-REPORTS.PROCESS-HEAT-MAP.METRIC-TOTAL-COUNT' | translate}}</option>
+                <option value="totalTime">{{'REPORTING.DEFAULT-REPORTS.PROCESS-HEAT-MAP.METRIC-TOTAL-TIME' | translate}}</option>
+                <option value="avgTime">{{'REPORTING.DEFAULT-REPORTS.PROCESS-HEAT-MAP.METRIC-AVG-TIME' | translate}}</option>
+            </select>
+        </div>
+
+        <div ng-show="element.loading">
+            <span>{{'REPORTING.DEFAULT-REPORTS.PROCESS-HEAT-MAP.GENERATING' | translate}}</span>
+        </div>
+
+        <div style="border: 1px solid lightgray; overflow:auto">
+            <div id="bpmnModel" style="padding: 5px;"></div>
+        </div>
+
+    </div>
+</div>

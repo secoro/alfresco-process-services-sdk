@@ -1,0 +1,6 @@
+<div ng-controller="CustomStepReadOnlyController">
+    <div ng-show="activeStep.id == step.id" class="details">
+        <div tab-control="customStepTabs" active-tab="activeTab"></div>
+        <div class="detail-group clearfix first" ng-include="'views/process-builder/generic-step-template-readonly.html'" />
+    </div>
+</div>

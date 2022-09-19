@@ -1,0 +1,764 @@
+{
+  "COMMON": {
+    "SELECT-FOLDER": "Map selecteren...",
+    "ACCOUNTS": {
+      "ALFRESCO": "Alfresco ({{name}})",
+      "box": "BOX",
+      "google-drive": "Google Drive"
+    },
+    "AUTHORIZE": {
+      "EXTERNAL-REPOSITORY-CONFIGURED": "Er is een {{moduleName}} account voor u geconfigureerd.",
+      "EXTERNAL-REPOSITORY-KEY-EXPIRE-AT": "De key vervalt op::{{expireDateTime  | date: 'dd-MM-yyyy h:mma' }}",
+      "NO-EXTERNAL-REPOSITORY-CONFIGURED": "Er is geen {{moduleName}} account voor u geconfigureerd.",
+      "EXTERNAL-REPOSITORY-REAUTHORIZE-REQUIRED": "Taak kan niet worden voltooid zonder herautorisatie.",
+      "EXTERNAL-REAUTHORIZE-ADVICE": "Herautoriseer Alfresco Process Services met de knop hieronder om verbinding te maken met {{moduleName}}.",
+      "MODULE-DISABLED": "De integratie van {{moduleName}} is momenteel uitgeschakeld.",
+      "TITLE": "Autoriseren"
+    },
+    "AUTHORIZATION_COMPLETED": "Autorisatie voltooid",
+    "NOBODY": "Niemand",
+    "NOBODY-LETTERS": "N",
+    "FILTER": {
+      "NEW-FILTER": "Nieuw filter",
+      "EDIT": "Bewerken",
+      "RESET": "Opnieuw instellen",
+      "DELETE": "Verwijderen",
+      "NEW-FILTER-NAME": "Nieuw filter",
+      "FILTER-ICON-AND-NAME": "Filtersymbool en -naam",
+      "SAVE": "Opslaan",
+      "SAVE-HINT": "Tevreden met het filter?<br/> Kies een pictogram en een naam, en klik vervolgens op Opslaan.",
+      "SEARCH-RESULTS": "Zoekresultaten"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services bevindt zich in de modus Alleen-lezen omdat de lokale licentie ongeldig is.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services bevindt zich in de modus Alleen-lezen omdat geen lokale licentie is gevonden.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services bevindt zich in de modus Alleen-lezen omdat de datums van de lokale licentie niet geldig zijn. (Ze zijn verlopen of de startdatum ervan ligt in de toekomst.)",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Uw licentie is bijna verlopen. Alfresco Process Services zal overgaan op de modus Alleen-lezen."
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Mijn taken",
+    "ERROR": {
+      "GENERIC": "Er is een fout opgetreden...",
+      "UNKNOWN": "Bij het uitvoeren van de aangevraagde bewerking is een fout opgetreden.",
+      "BAD_REQUEST": "Bij het uitvoeren van de aangevraagde bewerking is een fout opgetreden.",
+      "NOT_FOUND": "De resource die u wilt openen bestaat niet.",
+      "UNAUTHORIZED": "U moet zich aanmelden om de aangevraagde bewerking te kunnen uitvoeren.",
+      "FORBIDDEN": "U bent niet gemachtigd om de aangevraagde bewerking uit te voeren.",
+      "INTERNAL_SERVER_ERROR": "Bij het uitvoeren van de aangevraagde bewerking is een onverwachte fout opgetreden.",
+      "UPLOAD-LIMIT-EXCEEDED": "Het bestand dat u wilt uploaden is te groot",
+      "UPLOAD-LIMIT-EXCEEDED-TRIAL-USER": "Het bestand dat u wilt uploaden is te groot. Voer een upgrade naar Onderneming uit als u bestanden wilt uploaden die groter zijn dan {{quota}}!",
+      "QUOTA-EXCEEDED-RUNTIME-PROCESSES": "Als testgebruiker kunt u slechts {{quota}} actieve processen tegelijk uitvoeren.",
+      "QUOTA-EXCEEDED-COMPLETED-PROCESSES": "Als testgebruiker kunt u slechts {{quota}} voltooide processen hebben. Verwijder een voltooid proces, zodat u een nieuw proces kunt starten.",
+      "QUOTA-EXCEEDED-TOTAL-CONTENT-SIZE": "Als testgebruiker kunt u in totaal slechts {{quota}} aan content hebben. Verwijder content of voltooi processen om ruimte vrij te maken voor nieuwe content."
+    },
+    "NAVIGATION": {
+      "TASKS": "Taken",
+      "PROCESSES": "Processen",
+      "START-PROCESS": "Start",
+      "DESIGN": "Ontwerp",
+      "CREATE": "+ Maken",
+      "LOGIN": "Aanmelden",
+      "REPORTS": "Rapporten"
+    },
+    "TITLE": {
+      "ADD-COMMENT": "Opmerking maken",
+      "INVOLVE-PEOPLE": "Persoon selecteren",
+      "RECENT-PEOPLE": "Recente personen",
+      "MATCHING-PEOPLE": "Overeenkomende personen",
+      "SELECT-GROUP": "Groep selecteren",
+      "MATCHING-GROUPS": "Overeenkomende groepen",
+      "FILTER": "Filteren",
+      "SELECT-DATE": "Datum selecteren"
+    },
+    "ACTION": {
+      "ABOUT": "Over Alfresco Process Services",
+      "LOGOUT": "Afmelden",
+      "EDIT-PROFILE": "Profiel bewerken",
+      "ADD-COMMENT": "Opmerking toevoegen",
+      "ADD-CHECKLIST": "Controlelijst toevoegen",
+      "SAVE": "Opslaan",
+      "CANCEL": "Annuleren",
+      "CLOSE": "Sluiten",
+      "CONFIRM": "Bevestigen",
+      "SHOW-MORE": "Meer weergeven",
+      "HELP-DOCS-LINK": "Help"
+    },
+    "MESSAGE": {
+      "SELECT-PEOPLE-HELP": "Gebruik &uparrow; en &downarrow; om te selecteren en druk op Enter om te bevestigen",
+      "SELECT-GROUP-HELP": "Gebruik &uparrow; en &downarrow; om te selecteren en druk op Enter om te bevestigen",
+      "SELECT-GROUP-SEARCH-PLACEHOLDER": "Groep zoeken",
+      "SELECT-GROUP-NO-MATCHING-RESULTS": "Gebruik het bovenstaande zoekvak om groepen te zoeken.",
+      "UPLOAD-CONTENT": "Bestand selecteren of neerzeten",
+      "UPLOAD-CONTENT-NO-DROP": "Bestand selecteren om te uploaden",
+      "DROPZONE": "Bestand neerzetten om te uploaden",
+      "YES": "Ja",
+      "NO": "Nee"
+    },
+    "TIME": {
+      "HOURS": "uren",
+      "MINUTES": "minuten",
+      "SECONDS": "seconden"
+    },
+    "ABOUT": {
+      "TYPE": "Type",
+      "LICENSED-TO": "Gelicentieerd voor",
+      "EXPIRES": "Geldig tot",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Alle rechten voorbehouden.",
+      "LEGAL": "Juridische kennisgevingen en licentie-informatie"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "Aanmelden",
+    "USERNAME": "Gebruikersnaam",
+    "USERNAME-PLACEHOLDER": "Uw gebruikersnaam invoeren",
+    "PASSWORD": "Wachtwoord",
+    "PASSWORD-PLACEHOLDER": "Voer uw wachtwoord in",
+    "ACTION": {
+      "CONFIRM": "Aanmelden"
+    }
+  },
+  "TASK": {
+    "SECTION": {
+      "PEOPLE": "Personen",
+      "GROUPS": "Groepen",
+      "CONTENT": "Content",
+      "COMMENTS": "Opmerkingen",
+      "CHECKLISTS": "Controlelijst",
+      "NOTES": "Opmerkingen"
+    },
+    "FILTER": {
+      "SORT": "Sorteren",
+      "CREATED-DESC": "Nieuwste eerst",
+      "CREATED-ASC": "Oudste eerst",
+      "DUE-DESC": "Verloopt als laatste",
+      "DUE-ASC": "Verloopt als eerste",
+      "TEXT": "Filteren",
+      "TEXT-PLACEHOLDER": "Zoeken op taaknaam",
+      "TEXT-SUMMARY": "Gefilterd op: {{text}}",
+      "PROCESS-DEFINITION": "Procesdefinitie",
+      "PROCESS-DEFINITION-PLACEHOLDER": "Procesdefinitie selecteren...",
+      "STATE": "Status",
+      "STATE-OPEN": "open",
+      "STATE-COMPLETED": "voltooid",
+      "ASSIGNMENT": "Toewijzing",
+      "ASSIGNMENT-INVOLVED": "Taken waarbij ik betrokken ben",
+      "ASSIGNMENT-ASSIGNEE": "Taken waarvoor ik de toegewezen persoon ben",
+      "ASSIGNMENT-CANDIDATE": "Taken waarvoor ik een van de kandidaten ben",
+      "ASSIGNMENT-GROUP": "Taken die zijn toegewezen aan de groep \"{{name}}\"",
+      "RESET": "Filters opnieuw instellen",
+      "SINGLE-TASK": "'{{name || (\"TASK.MESSAGE.NO-NAME\" | translate)}}’ wordt weergegeven",
+      "NO-SINGLE-TASK": "Geen taak met de ID '{{id}}' gevonden",
+      "INVOLVED-FILTER-NAME": "Taken waarbij ik betrokken ben",
+      "ASSIGNEE-FILTER-NAME": "Mijn taken",
+      "COMPLETED-FILTER-NAME": "Voltooide taken",
+      "CANDIDATE-FILTER-NAME": "Taken in wachtrij",
+      "TASK-NAME": "Taaknaam",
+      "SEARCH": "Zoeken",
+      "NEW-SEARCH": "Nieuwe zoekopdracht?",
+      "CREATE-FILTER": "Maak een nieuw filter of kies een filter in de onderstaande lijst",
+      "EDIT-FILTER": "Zoekopdracht bewerken",
+      "FILTER-NAME-PLACEHOLDER": "Naam van aangepast filter",
+      "CREATE-TASK": "Taak maken",
+      "SEARCH-PLACEHOLDER": "Zoeken",
+      "NO-FILTER-RESULTS": "Niets gevonden in \"{{name}}\". U kunt het proberen met een andere lijst. Om een nieuw proces te starten, kunt u:",
+      "NO-SEARCH-RESULTS": "Er zijn geen taken gevonden die overeenkomen met uw zoekcriteria. U kunt het eventueel proberen met andere criteria. Om een nieuw proces te starten, kunt u:"
+    },
+    "ALERT": {
+      "COMMENT-ADDED": "Opmerking is toegevoegd aan \"{{name}}\"",
+      "CHECKLIST-ADDED": "Taak \"{{name}}\" is toegevoegd aan controlelijst",
+      "CHECKLIST-REMOVED": "Taak \"{{name}}\" is verwijderd uit controlelijst",
+      "PERSON-INVOLVED": "{{userName}} is nu betrokken bij \"{{taskName}}\"",
+      "PERSON-INVOLVED-EMAIL-NOT-ALLOWED": "Externe personen kunnen niet betrokken worden via e-mail '{{emailAddress}}'.\"",
+      "PERSON-NO-LONGER-INVOLVED": "{{userName}} is niet meer betrokken bij \"{{taskName}}\"",
+      "GROUP-INVOLVED": "Groep \"{{groupName}}\" is nu betrokken bij taak \"{{taskName}}\"",
+      "GROUP-NO-LONGER-INVOLVED": "Groep \"{{groupName}}\" is niet meer betrokken bij taak \"{{taskName}}\"",
+      "CREATED": "Taak \"{{name}}\" is gemaakt",
+      "COMPLETED": "Taak voltooid",
+      "SAVED": "Taakformulier is opgeslagen",
+      "ASSIGNED": "Taak \"{{taskName}}\" is nu toegewezen aan {{userName}}",
+      "RELATED-CONTENT-ADDED": "\"{{name}}\" is toegevoegd aan de taak",
+      "RELATED-CONTENT-ADDED-LOADING": "\"{{name}}\" is toegevoegd aan de taak. De content is beschikbaar zodra deze uit de externe bron is opgehaald.",
+      "FORM-ATTACHED": "\"{{name}}\" is bijgevoegd",
+      "FORM-REMOVED": "Formulier \"{{name}}\" is verwijderd"
+    },
+    "ACTION": {
+      "BACK-TO-LIST": "Terug naar takenlijst",
+      "COMPLETE-TASK-WITH-FORM": "Formulier voltooien",
+      "COMPLETE": "Voltooid",
+      "CLAIM": "Claimen",
+      "UNCLAIM": "Opnieuw in wachtrij plaatsen",
+      "ASSIGN": "Toewijzen",
+      "REASSIGN": "Opnieuw toewijzen",
+      "CREATE": "+ Taak maken",
+      "CREATE-CONFIRM": "Maken",
+      "INVOLVE": "+ Personen betrekken",
+      "INVOLVE-GROUP": "Groep betrekken",
+      "ADD-COMMENT": "+ Opmerking toevoegen",
+      "ADD-COMMENT-CONFIRM": "Opmerking toevoegen",
+      "ADD-CHECKLIST": "+ Taak toevoegen aan controlelijst",
+      "ADD-CHECKLIST-CONFIRM": "Taak toevoegen aan controlelijst",
+      "ADD-CONTENT": "+ Content toevoegen",
+      "CLEAR-DUEDATE": "Vervaldatum wissen",
+      "DUE-TODAY": "Einddatum vandaag",
+      "CLEAR-DATE": "Datum wissen",
+      "DATE-TODAY": "Datum vandaag",
+      "AUDIT-LOG": "Auditlogboek"
+    },
+    "TITLE": {
+      "ASSIGN": "Toegewezen persoon selecteren",
+      "ASSIGNEE": "Toegewezen persoon",
+      "CONTENT": "Gerelateerde content",
+      "CREATE-NEW": "Nieuwe taak",
+      "NEW-TASK-NAME": "Nieuwe taak",
+      "EDIT-NAME": "Taaknaam bewerken",
+      "FORM": "Formulier",
+      "DETAILS": "Details",
+      "ADD-RELATED-CONTENT": "Gerelateerde content toevoegen",
+      "SELECT-DUEDATE": "Vervaldatum selecteren",
+      "SELECT-DATE": "Datum selecteren",
+      "NO-CONTENT-ITEMS": "Geen content-items",
+      "NO-PEOPLE-INVOLVED": "Geen personen betrokken",
+      "NO-GROUPS-INVOLVED": "Geen groepen betrokken",
+      "NO-COMMENTS": "Geen opmerkingen",
+      "COMMENT-COUNT": "opmerking",
+      "COMMENTS-COUNT": "opmerkingen",
+      "NO-CHECKLISTS": "Geen controlelijst",
+      "CHECKLIST-COUNT": "taak in controlelijst",
+      "CHECKLISTS-COUNT": "taken in controlelijst",
+      "SHOW-DETAILS": "Details weergeven",
+      "SHOW-FORM": "Formulier weergeven",
+      "GROUPS-INVOLVED": "{{groupCount}} groep(en) betrokken"
+    },
+    "FIELD": {
+      "NAME": "Naam",
+      "DESCRIPTION": "Beschrijving",
+      "ASSIGNEE": "Toegewezen persoon",
+      "DUE": "Vervalt",
+      "FORM": "Formulier",
+      "PROCESS-INSTANCE": "Deel van proces",
+      "PARENT-TASK": "Deel van",
+      "ENDED": "Beëindigd",
+      "DURATION": "Duur"
+    },
+    "MESSAGE": {
+      "NO-NAME": "Naamloze taak",
+      "NO-ASSIGNEE": "Aan niemand toegewezen",
+      "NO-DUEDATE": "Geen vervaldatum",
+      "DUE-ON": "Vervalt",
+      "NO-FORM": "Geen formulier",
+      "CREATED-ON": "Gemaakt",
+      "ENDED-ON": "Voltooid",
+      "EXECUTION-FAILED": "Uitvoering mislukt",
+      "COMPLETED-BY": "Voltooid door {{username}}, ",
+      "NO-DESCRIPTION": "Deze taak heeft geen beschrijving.",
+      "NO-RELATED-CONTENT": "Deze taak heeft nog geen gerelateerde content...",
+      "NO-PEOPLE-INVOLVED": "Bij deze taak is nog niemand betrokken...",
+      "NO-COMMENTS": "Deze taak heeft nog geen opmerkingen...",
+      "INVOLVE-PEOPLE-PLACEHOLDER": "+ Persoon toevoegen",
+      "CONTENT-UPLOADED-BY": "Toegevoegd door ",
+      "ASSIGNEE": "Toegewezen aan {{username}}",
+      "NEW-COMMENT-PLACEHOLDER": "Voer een opmerking voor deze taak in.",
+      "NEW-CHECKLIST-PLACEHOLDER": "Taaknaam invoeren",
+      "COMMENT-HEADER": "Toegevoegd door {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+      "NO-FILTER": "Uw taken worden weergeven zonder dat een filter is toegepast.",
+      "FILTERED": "Uw taken worden gefilterd weergegeven.",
+      "NO-TASKS": "Geen overeenkomende taken gevonden...",
+      "DURATION": "Duurde {{duration}}",
+      "CLAIM-TASK-FIRST": "U kunt pas aan deze taak werken nadat u de taak hebt geclaimd. Dit doet u door hierboven te klikken op de knop Claimen.",
+      "NO-TASKS-HELP": "Het lijkt erop dat er geen taken voor u zijn! Om een taak te starten, kunt u:",
+      "NO-SUCH-TASK-HELP": "Kan de taak die u zoekt niet vinden! U hebt nu de volgende mogelijkheden:",
+      "NO-SUCH-TASK-RETURN-TO-LIST": "Terugkeren naar uw takenlijst",
+      "NO-TASKS-CREATE-TASK": "Een taak voor uzelf maken of deze aan iemand anders toewijzen",
+      "NO-TASKS-CREATE-PROCESS": "Een nieuw proces starten en vervolgens de voortgang hiervan volgen",
+      "CANNOT-CLAIM-TASK": "De taak kan niet meer worden geclaimd."
+    },
+    "HELP": {
+      "DESCRIPTION": "Deze taak heeft nog geen details. U kunt dat veranderen door een van deze acties te selecteren:",
+      "COMPLETED-DESCRIPTION": "Deze voltooide taak heeft geen details.",
+      "DESCRIPTION-WITH-CLAIM": "Deze taak heeft nog geen details. U kunt dat veranderen door een van de volgende acties te selecteren. Als u deze taak wilt voltooien, moet u de taak bovendien eerst claimen door hierboven te klikken op de knop Claimen.",
+      "ADD-FORM-DESCRIPTION": "Deze taak heeft nog geen formulier. U kunt formulieren uit de bibliotheek gebruiken om meer informatie over deze taak vast te leggen:",
+      "ADD-FORM": "Nu een formulier toevoegen",
+      "COMPLETED-NOFORM": "Deze voltooide taak heeft geen formulier.",
+      "ADD-PEOPLE": "Betrek iemand anders en begin de samenwerking",
+      "ADD-FIRST-PEOPLE": "Betrek iemand anders en begin de samenwerking",
+      "ADD-FIRST-GROUP": "Groepen mensen uitnodigen en samenwerking starten",
+      "ADD-COMMENT": "Help anderen door een opmerking toe te voegen.",
+      "ADD-FIRST-COMMENT": "Voeg een opmerking voor uzelf of anderen toe",
+      "ADD-CHECKLIST": "Voeg een taak toe aan de controlelijst.",
+      "ADD-FIRST-CHECKLIST": "Maak uw eigen controlelijst met items die nodig zijn voor deze taak. U kunt een item aan iemand toewijzen, het item een vervaldatum geven en een formulier uit de bibliotheek bijvoegen.",
+      "ADD-CONTENT": "Voeg een document toe en deel de kennis",
+      "ADD-FIRST-CONTENT": "Voeg aanvullende, aan de taak gerelateerde bestanden toe"
+    },
+    "DYNAMIC-TABLE": {
+      "ROW-EDIT-HEADER": "Tabelrij bewerken",
+      "ROW-DETAILS-HEADER": "Tabelrijdetails"
+    },
+    "FORM-SELECT": {
+      "TITLE": "Formulier selecteren",
+      "EMPTY": "Geen formulier geselecteerd",
+      "FORMS-ERROR": "Fout bij het laden van de formulieren",
+      "LOADING": "Formulieren laden...",
+      "NO-FORMS": "Geen formulieren gevonden",
+      "ATTACH-FORM": "Formulier bijvoegen",
+      "REMOVE-FORM": "Formulier verwijderen",
+      "CURRENT-FORM": "{{name}} (huidige)",
+      "FORM-LOAD-ERROR": "Fout bij het laden van het formulier"
+    }
+  },
+  "PROCESS": {
+    "ALERT": {
+      "COMMENT-ADDED": "Opmerking is toegevoegd",
+      "STARTED": "Er is een nieuw \"{{processDefinitionName}}\" proces gestart",
+      "START-PROCESS-CONTENT-ADD-FAILED": "Kan {{noOfFiles}} bestand(en) niet toevoegen aan het proces"
+    },
+    "TITLE": {
+      "DIAGRAM": "Procesdiagram"
+    },
+    "FILTER": {
+      "CREATED-DESC": "Nieuwste eerst",
+      "CREATED-ASC": "Oudste eerst",
+      "ENDED-DESC": "Meest recentelijk voltooid",
+      "ENDED-ASC": "Minst recentelijk voltooid",
+      "STATE-SUMMARY": "{{state.title | translate}} processen worden weergegeven",
+      "STATE": "Processtatus",
+      "STATE-RUNNING": "Wordt uitgevoerd",
+      "STATE-COMPLETED": "Voltooid",
+      "STATE-ALL": "Alle",
+      "PROCESS-NAME": "Procesnaam",
+      "PROCESS-DEFINITION": "Procesdefinitie",
+      "SORT": "Sorteren",
+      "TEXT-PLACEHOLDER": "Zoeken op procesnaam",
+      "RUNNING-FILTER-NAME": "Wordt uitgevoerd",
+      "COMPLETED-FILTER-NAME": "Voltooid",
+      "ALL-FILTER-NAME": "Alle",
+      "SINGLE-PROCESS": "'{{name || processDefinitionName}}’ wordt weergegeven",
+      "NO-SINGLE-PROCESS": "Geen proces met de ID '{{id}}' gevonden",
+      "NO-FILTER-RESULTS": "Niets gevonden in \"{{name}}\". U kunt eventueel een andere lijst selecteren. Om een nieuw proces te starten, kunt u:",
+      "NO-SEARCH-RESULTS": "Er zijn geen processen gevonden die overeenkomen met uw zoekcriteria. U kunt eventueel andere criteria selecteren. Om een nieuw proces te starten, kunt u:",
+      "FILTER-NAME-PLACEHOLDER": "Naam van aangepast filter"
+    },
+    "MESSAGE": {
+      "NO-DESCRIPTION": "Deze procesinstantie heeft geen beschrijving.",
+      "NO-FILTER": "Alle procesinstanties worden weergegeven zonder dat een filter is toegepast",
+      "NO-INSTANCES": "Geen overeenkomende procesinstanties gevonden...",
+      "NO-INSTANCES-HELP": "Er worden op dit moment geen processen uitgevoerd. Als processen voltooid zijn, kunt u ze vinden met behulp van het filter voor de proceslijst. Om een nieuw proces te starten, kunt u:",
+      "NO-INSTANCES-HELP-START": "Een nieuw proces starten en de voortgang hiervan volgen",
+      "NO-TASKS": "Er zijn op dit moment geen taken actief...",
+      "NO-COMPLETED-TASKS": "Er zijn nog geen taken voltooid...",
+      "NO-BUSINESS-KEY": "Geen business key ingesteld",
+      "CATEGORY": "Categorie: {{processDefinitionCategory}}",
+      "NEW-COMMENT-PLACEHOLDER": "Voer een opmerking in voor dit proces",
+      "COMMENT-HEADER": "Toegevoegd door {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+      "SELECT-DEFINITION": "Selecteer in de lijst hieronder een proces dat u wilt starten.",
+      "NO-PROCESS-DEFINITIONS": "U kunt geen proces starten omdat er geen procesdefinities beschikbaar zijn",
+      "START-PROCESS": "Proces starten",
+      "STARTED-BY": "Gestart door {{username}}",
+      "NO-PROCESS-DEFINITION-SELECTED-HELP": "Selecteer een procesdefinitie",
+      "NO-SUCH-PROCESS-HELP": "Kan het proces dat u zoekt niet vinden! U hebt nu de volgende mogelijkheden:",
+      "NO-SUCH-PROCESS-RETURN-TO-LIST": "Terugkeren naar uw lijst met processen"
+    },
+    "HELP": {
+      "ADD-FIRST-COMMENT": "Voeg een opmerking voor uzelf of anderen toe"
+    },
+    "ACTION": {
+      "CREATE": "Proces starten",
+      "BACK-TO-LIST": "Terug naar procesinstanties",
+      "SHOW-DIAGRAM": "Diagram weergeven",
+      "CANCEL": "Proces annuleren",
+      "DELETE": "Proces verwijderen",
+      "ADD-COMMENT": "+ Opmerking toevoegen",
+      "ADD-COMMENT-CONFIRM": "Opmerking toevoegen",
+      "AUDIT-LOG": "Auditlogboek",
+      "SEARCH-PLACEHOLDER": "Zoeken",
+      "ZOOMIN": "Inzoomen",
+      "ZOOMOUT": "Uitzoomen"
+    },
+    "FIELD": {
+      "BUSINESS-KEY": "Business key",
+      "CATEGORY": "Categorie",
+      "PROCESS-DEFINITION": "Procesdefinitie",
+      "STARTED": "Gestart",
+      "STARTED-BY": "Gestart door",
+      "ENDED": "Beëindigd",
+      "NAME": "Naam procesinstantie",
+      "NAME-PLACEHOLDER": "Voer een optionele naam in voor het proces dat wordt gestart."
+    },
+    "SECTION": {
+      "ACTIVE-TASKS": "Actieve taken",
+      "START-FORM": "Beginformulier",
+      "COMPLETED-TASKS": "Voltooide taken",
+      "COMPLETED-DECISION-TASKS": "Uitgevoerde beslissingstabellen   ",
+      "COMMENTS": "Opmerkingen",
+      "CONTENT": "Content"
+    },
+    "POPUP": {
+      "CANCEL-TITLE": "Proces annuleren?",
+      "CANCEL-DESCRIPTION": "Weet u zeker dat u het proces {{name}} wilt annuleren?",
+      "DELETE-TITLE": "Proces verwijderen?",
+      "DELETE-DESCRIPTION": "Weet u zeker dat u het proces {{name}} wilt verwijderen? Alle taken, content en opmerkingen bij dit proces worden definitief verwijderd."
+    },
+    "DECISION": {
+      "TABLE": {
+        "HEADER": "Beslissingstabel \"{{name}}\"",
+        "HIT-POLICY": "Resultaatbeleid",
+        "HIT-POLICIES": {
+          "FIRST": "Eerste (single pass)",
+          "ANY": "Willekeurige (single pass)"
+        },
+        "TOOLTIP": {
+          "INPUT-EXCEPTION": "Er is een uitzondering opgetreden bij het testen of de expressie overeenkomt met de invoerwaarde: {{error}}",
+          "INPUT-MATCH": "De invoerwaarde komt overeen met de expressie.",
+          "INPUT-EMPTYEXPRESSION": "Lege expressies worden behandeld als een overeenkomst.",
+          "INPUT-NOMATCH": "De invoerwaarde komt niet overeen met de expressie.",
+          "INPUT-NOTEXECUTED": "De expressie is nooit getest.",
+          "OUTPUT-EXCEPTION": "Er is een uitzondering opgetreden bij het instellen van de waarde met de volgende expressie: \n {{expression}}.\nFoutbericht: {{error}}",
+          "OUTPUT-RESULT": "De waarde is ingesteld met de volgende expressie: \n {{expression}}",
+          "OUTPUT-NOTEXECUTED": "De volgende expressie is nooit uitgevoerd: \n {{expression}}",
+          "OUTPUT-NOEXPRESSION": "Er is geen expressie gedefinieerd voor deze cel"
+        },
+        "INPUT-VARIABLE": "Voorwaarde",
+        "OUTPUT-VARIABLE": "Resultaat",
+        "INPUT-VARIABLES": "Invoerwaarden",
+        "NO-INPUT-VARIABLES": "Er waren geen invoerwaarden bij het uitvoeren van de beslissingstabel",
+        "OUTPUT-VARIABLES": "Berekende waarden",
+        "NO-OUTPUT-VARIABLES": "Er zijn geen berekende waarden geproduceerd op basis van de beslissingstabellen",
+        "METADATA-NAME": "Naam",
+        "METADATA-VALUE": "Waarde",
+        "LOAD-ERROR": "Er is een fout opgetreden bij het ophalen van de beslissingstabel en audittrail voor uitvoering '{{executionId}}' van de activiteit '{{activityId}}'."
+      }
+    }
+  },
+  "INVOLVE-PEOPLE": {
+    "NO-MATCHING-RESULTS": "Gebruik het bovenstaande zoekvak om gebruikers te zoeken of ",
+    "NO-MATCHING-RESULTS-NO-EMAIL": "Gebruik het bovenstaande zoekvak om gebruikers te zoeken",
+    "SEARCH-PLACEHOLDER": "Gebruiker zoeken",
+    "USE-EMAIL": "selecteer een persoon met behulp van een e-mailadres",
+    "ASSIGN-YOURSELF-LEAD": "of",
+    "ASSIGN-YOURSELF": "wijs uzelf toe",
+    "SELECT-YOURSELF-LEAD": "of",
+    "SELECT-YOURSELF": "selecteer uzelf",
+    "EMAIL-PLACEHOLDER": "Voer een e-mailadres in",
+    "EMAIL-HELP": "Druk op Enter of klik op de knop om door te gaan. Deze persoon ontvangt een melding via e-mail of wordt uitgenodigd zich aan te melden.",
+    "BACK-TO-SEARCH": "Terug naar zoekopdracht",
+    "ACTION-SELECT": "Selecteren"
+  },
+  "INTEGRATION": {
+    "GENERIC": {
+      "MESSAGE": {
+        "FILTER": "Filteren",
+        "SEARCHING": "Zoeken",
+        "NO_MATCHING_RESULTS_FOUND": "Geen overeenkomende resultaten gevonden."
+      }
+    },
+    "ALFRESCO": {
+      "MESSAGE": {
+        "SELECT-FOLDER-DESCRIPTION": "Selecteer een map in uw Alfresco account",
+        "SELECT-FOLDER": "Map selecteren",
+        "CHOOSE-NETWORK": "Netwerk selecteren",
+        "NETWORK": "Netwerk",
+        "CHOOSE-SITE": "Site selecteren",
+        "NO-CONTENT": "Geen content in deze map"
+      }
+    },
+    "BOX": {
+      "MESSAGE": {
+        "ACCOUNT_NAME": "BOX",
+        "FILTER": "Filteren",
+        "SEARCHING": "Zoeken",
+        "NO-CONTENT": "Geen overeenkomende resultaten gevonden.",
+        "SELECT-FOLDER-DESCRIPTION": "Selecteer een map in uw BOX account",
+        "SELECT-FILE-DESCRIPTION": "Selecteer een bestand in uw BOX account",
+        "SELECT-FOLDER": "Map selecteren"
+      }
+    },
+    "ALFRESCO-CLOUD": {
+      "TITLE": {
+        "BROWSE-CLOUD": "Zoeken in Alfresco Content Services in the Cloud",
+        "BROWSE-ON-PREM": "Zoeken in {{name}}"
+      },
+      "MESSAGE": {
+        "ON-PREM-BROWSE": "Selecteer een bestand dat u wilt importeren uit {{name}}",
+        "CLOUD-BROWSE": "Selecteer een bestand dat u wilt importeren uit uw Alfresco Content Services in the Cloud account"
+      }
+    },
+    "GOOGLE": {
+      "MESSAGE": {
+        "TITLE": "Google Drive",
+        "FILTER": "Filteren",
+        "SEARCHING": "Zoeken",
+        "NO-CONTENT": "Geen overeenkomende resultaten gevonden",
+        "SELECT-FILE-DESCRIPTION": "Selecteer een bestand in uw Google Drive-account",
+        "SELECT-FOLDER-DESCRIPTION": "Selecteer een map in uw Google Drive-account"
+      }
+    },
+    "ALERT": {
+      "ALFRESCO-CLOUD-NOT-AUTHORIZED": "Toegang tot Alfresco Content Services in the Cloud is verlopen, u moet uw referenties opnieuw invoeren.",
+      "GOOGLE-DRIVE-NOT-AUTHORIZED": "Toegang tot Google Drive is verlopen, u moet uw referenties opnieuw invoeren.",
+      "ALFRESCO-ERROR": "Er is een fout opgetreden bij het maken van verbinding met Alfresco",
+      "BOX-ERROR": "Er is een fout opgetreden bij het maken van verbinding met BOX",
+      "GOOGLE-DRIVE-ERROR": "Er is een fout opgetreden bij het maken van verbinding met Google Drive"
+    }
+  },
+  "CONTENT": {
+    "SIMPLE-TYPE": {
+      "WORD": "Document",
+      "EXCEL": "Spreadsheet",
+      "PDF": "PDF-document",
+      "IMAGE": "Afbeelding",
+      "FOLDER": "Map",
+      "CONTENT": "Content"
+    },
+    "MESSAGE": {
+      "NO-PREVIEW-AVAILABLE": "Geen preview beschikbaar",
+      "PREVIEW-PENDING": "Preview genereren...",
+      "CONTENT-PENDING": "Content ophalen...",
+      "NOT-FOUND": "Kan de content niet vinden",
+      "DELETE-CONFIRMATION": "Weet u zeker dat u {{name}} wilt verwijderen?",
+      "DROP": "Neerzetten of ",
+      "SELECT": "een bestand selecteren",
+      "DRAGOVER": "Bestand neerzetten om te uploaden",
+      "EXTERNAL-ONLY": "Bron van content selecteren",
+      "NO-EXTERNAL-SOURCE": "Geen externe bron beschikbaar"
+    },
+    "TITLE": {
+      "DELETE": "Content verwijderen",
+      "NOT-FOUND": "Bestand niet gevonden"
+    },
+    "ACTION": {
+      "OPEN-IN-GOOGLE-DRIVE": "Openen in Google Drive",
+      "OPEN-IN-ALFRESCO-CLOUD": "Openen in Alfresco Content Services in the Cloud",
+      "OPEN-IN-ALFRESCO": "Openen in Alfresco",
+      "OPEN-IN-BOX": "Openen in Box"
+    }
+  },
+  "FORM": {
+    "ACTION": {
+      "SAVE": "Opslaan"
+    },
+    "DEFAULT-OUTCOME": {
+      "COMPLETE": "Voltooid",
+      "START-PROCESS": "Proces starten"
+    },
+    "MESSAGE": {
+      "SELECT-PERSON": "Geen persoon geselecteerd...",
+      "SELECT-GROUP": "Geen groep geselecteerd...",
+      "EMPTY": "(leeg)"
+    },
+    "FIELD-PREVIEW": {
+      "DISPLAY-REF": "Waarde weergeven",
+      "SELECT-FIELD": "(Geen veld geselecteerd)",
+      "FIELD-VALUE": "Waarde van veld \"{{name}}\" weergeven",
+      "UNKNOWN-TYPE": "Onbekend veldtype {{type}}",
+      "TEXT-VALUE": "Tekst",
+      "MULTI-TEXT-VALUE": "Meerregelige tekst",
+      "NUMBER-VALUE": "123",
+      "DATE-VALUE": "Datum",
+      "DATETIME-VALUE": "Datum en tijd",
+      "DROPDOWN-VALUE": "Selecteren...",
+      "UPLOAD-VALUE": "Content uploaden of importeren...",
+      "RADIOS-OPTION1": "Optie 1"
+    }
+  },
+  "APP-DEFINITION": {
+    "MESSAGE": {
+      "NOT-FOUND": "Geen app-definitie gevonden met de opgegeven ID",
+      "MISSING": "Alfresco Process Services wordt uitgevoerd in de integratiemodus, maar de vereiste app-definitie ontbreekt."
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "App Designer",
+      "TITLE-PROCESSES": "Procesmodellen",
+      "TITLE-FORMS": "Formuliermodellen",
+      "TITLE-APPS": "App-modellen",
+      "TITLE-STENCILS": "Stencils",
+      "TITLE-DECISION-TABLES": "Beslissingstabellen",
+      "TITLE-DATA-MODELS": "Gegevensmodellen"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Beheer App"
+    },
+    "TASKS": {
+      "TITLE": "Task App",
+      "TITLE-TASKS": "Taken",
+      "TITLE-PROCESSES": "Processen",
+      "TITLE-PROCESSES?MODE=START": "Start"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profiel",
+      "TITLE-TENANT-ADMIN": "Identiteitsbeheer",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenants",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Gebruikers",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Functies",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organisatie",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profiel",
+      "TITLE-PROFILE": "Profiel"
+    },
+    "ANALYTICS": {
+      "TITLE": "Analytics App"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}}-taken",
+      "TITLE-PROCESSES": "{{name}}-processen",
+      "TITLE-PROCESSES?MODE=START": "{{name}}-start"
+    },
+    "TITLE": {
+      "ERROR": "Fout"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "U kunt u allerlei belangrijke rapporten over uw processen maken die u helpen bij het vaststellen van knelpunten of prestatieverbeteringen.",
+    "GENERATE-REPORTS": "Voeg nu een aantal standaardrapporten toe.",
+    "NO-REPORT-SELECTED": "Geen rapport geselecteerd. Selecteer een rapport in de lijst aan de linkerkant.",
+    "NO-DATA-FOUND": "Geen gegevens gevonden",
+    "CONFIG-REPORTS": "Rapporten configureren met Analytics App",
+    "FETCHING-PROC-DEFS": "Procesdefinities ophalen...",
+    "GENERATING": "Rapport genereren...",
+    "SAVE-REPORT": "Dit rapport opslaan",
+    "EXPORT-REPORT": "Gegevens exporteren",
+    "SHOW": "Klikken om weer te geven",
+    "HIDE": "Opnieuw klikken om te verbergen",
+    "FILL-PARAMS": "Geen rapportgegevens gevonden. Vul de parameters in om uw rapport te genereren.",
+    "PROCESS-STATUS": "Processtatus",
+    "TASK-STATUS": "Taakstatus",
+    "STATUS": {
+      "ACTIVE": "Actief",
+      "ALL": "Alle",
+      "COMPLETE": "Voltooid"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "Geen voltooide taken gevonden voor huidige procesdefinitie.",
+      "DATE-RANGE": {
+        "TODAY": "Vandaag",
+        "YESTERDAY": "Gisteren",
+        "LAST-7-DAYS": "Laatste 7 dagen",
+        "PREVIOUS-MONTH": "Vorige maand",
+        "CURRENT-YEAR": "Huidig jaar",
+        "CUSTOM-RANGE": "Aangepast bereik",
+        "APPLY": "Toepassen",
+        "CANCEL": "Annuleren",
+        "FROM": "Van",
+        "TO": "Tot"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "Op uur",
+        "DAY": "Op dag",
+        "WEEK": "Op week",
+        "MONTH": "Op maand",
+        "YEAR": "Op jaar"
+      },
+      "DURATION": {
+        "SECONDS": "Seconden",
+        "MINUTES": "Minuten",
+        "HOURS": "Uren",
+        "DAYS": "Dagen"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "PROCESS-DEFINITION": "Procesdefinitie",
+        "DATE-RANGE": "Datumbereik",
+        "DATE-RANGE-INTERVAL": "Datums samenvoegen op basis van",
+        "TASK-COUNT-TITLE": "Aantal taken",
+        "TASK-COUNT-DESCRIPTION": "Dit diagram geeft het totale aantal taken in het gegeven datumbereik weer.",
+        "TASK-DURATIONS-TITLE": "Duur van de taken",
+        "TASK-DURATIONS-DESCRIPTION": "Dit diagram geeft de gemiddelde, minimale en maximale duur (in uren) van de voltooide taken in het gegeven datumbereik weer. In de gedetailleerde tabel hieronder geeft de x-as het regelnummer van de taak weer.",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "Aantal taken per toegewezen persoon",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "Dit cirkeldiagram geeft het aantal taken voor de geselecteerde procesdefinitie weer, op basis van iedere toegewezen persoon.",
+        "DETAILED-TASK-STATS-TITLE": "Gedetailleerde taakstatistieken",
+        "DETAILED-TASK-STATS-DESCRIPTION": "Deze tabel geeft de samengevoegde statistieken van alle taken weer. Klik op een willekeurige taak voor meer gedetailleerde informatie. Alle tijdinformatie wordt aangegeven in uren.",
+        "DETAILED-TASK-STATS-TASK": "Taak",
+        "DETAILED-TASK-STATS-ASSIGNEE": "Toegewezen persoon",
+        "TASK-HISTOGRAM-TITLE": "Aantal taken, onderverdeeld op basis van het datuminterval",
+        "TASK-HISTOGRAM-TABLE": "Tabel: vorige diagramgegevens in tabelformaat",
+        "TASK-HISTOGRAM-TABLE-DATE": "Datum",
+        "COUNT": "Aantal",
+        "SUM": "Som",
+        "MIN-DURATION": "Min. duur",
+        "MAX-DURATION": "Max. duur",
+        "AVERAGE": "Gemiddelde",
+        "STDDEV": "Standaardafwijking"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "PROCESS-DEFINITION": "Procesdefinitie",
+        "DATE-RANGE": "Datumbereik",
+        "SLOW-PROC-INST-NUMBER": "Hoeveel langzaamste procesinstanties moeten worden weergegeven?",
+        "HISTOGRAM-TITLE": "Aantal procesinstanties",
+        "HISTOGRAM-DESCRIPTION": "Het volgende diagram geeft het aantal procesinstanties weer dat is gestart en voltooid binnen het geselecteerde datumbereik.",
+        "ACTIVITY-DURATION-TABLE-TITLE": "Details activiteitsduur",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "De volgende tabel geeft de tijden van de verschillende activiteiten in het proces weer, geordend op de benodigde cumulatieve totale tijd. Alle tijdinformatie wordt aangegeven in uren.",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "Activiteit",
+        "ACTIVITY-DURATION-CHART-TITLE": "Totale tijd van de processtappen",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "Dit diagram geeft weer voor welke activiteiten tijd is besteed. De aantallen zijn de som van de totale duur voor die activiteit, zoals weergegeven in de onderstaande tabel.",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "Langzaamste procesinstanties",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "Deze tabel geeft de langzaamste procesinstanties weer die in het geconfigureerde datumbereik zijn voltooid. Klik op een vermelding om de procesvariabelen voor de desbetreffende procesinstantie weer te geven.",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Duur",
+        "SLOWEST-PROCESS-INSTANCES-ID": "Interne ID",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Business key",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Aanmaaktijd",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "Eindtijd",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variabelen",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "variabelenaam",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Variabelewaarde",
+        "COUNT": "Aantal",
+        "SUM": "Som",
+        "MIN-DURATION": "Min. duur",
+        "MAX-DURATION": "Max. duur",
+        "AVERAGE": "Gemiddelde",
+        "STDDEV": "Standaardafwijking"
+      },
+      "TASK-SLA": {
+        "PROCESS-DEFINITION": "Procesdefinitie",
+        "TASK": "Taak",
+        "DATE-RANGE": "Datumbereik",
+        "SLA-DURATION": "In welke tijd moet deze taak worden voltooid om te voldoen aan de SLA?",
+        "SLA-NOT-OK": "Service Level Agreement OK vs. Niet OK",
+        "ASSIGNEE-TABLE": "Toegewezen personen die de taak niet binnen de grenzen van de SLA hebben voltooid",
+        "ASSIGNEE": "Toegewezen persoon",
+        "COUNT": "Aantal"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Totaal aantal procesdefinities: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Totaal aantal procesinstanties: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Totaal aantal actieve procesinstanties: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Totaal aantal voltooide procesinstanties: ",
+        "DETAIL-TABLE": "Details procesdefinitie",
+        "DETAIL-TABLE-PROCESS": "Procesdefinitie",
+        "DETAIL-TABLE-TOTAL": "Totaal",
+        "DETAIL-TABLE-ACTIVE": "Actief",
+        "DETAIL-TABLE-COMPLETED": "Voltooid",
+        "PROC-INST-CHART-TITLE": "Overzicht van het totaal van de procesinstanties",
+        "DURATIONS-CHART-TITLE": "Gemiddelde tijden voor elke procesdefinitie",
+        "DURATIONS-CHART-DESCRIPTION": "De gemiddelde duur (en standaardafwijking) van voltooide procesinstanties in uren. De waarde op de x-as komt overeen met de vermelding in de bovenstaande tabel."
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "Heatmap voor proces",
+        "TYPE-FILTERING": "Alle processtappen opnemen? (Als u deze optie uitschakelt, worden tussenstappen zoals start events, gateways enz. verwijderd.)",
+        "METRIC-TOTAL-COUNT": "Aantal keren dat een stap is uitgevoerd",
+        "METRIC-TOTAL-TIME": "Totale tijd die in een processtap is besteed",
+        "METRIC-AVG-TIME": "Gemiddelde tijd die in een processtap is besteed",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "keer",
+        "METRIC-TOTAL-TIME-TOOLTIP": "uren",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "uren",
+        "GENERATING": "Heatmap voor proces genereren..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "Rapport opslaan",
+        "DESCRIPTION": "De huidige parameterinstellingen worden opgeslagen en er wordt een nieuw rapport weergegeven in de rapportenlijst. Wanneer op dit specifieke rapport wordt geklikt, wordt het rapport gegenereerd met behulp van deze opgeslagen parameterwaarden.",
+        "NAME": "Naam"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "Gegevens exporteren",
+        "NAME": "Naam"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "Rapport verwijderen",
+        "DESCRIPTION": "Weet u zeker dat u dit rapport wilt verwijderen?",
+        "CONFIRM": "Rapport verwijderen"
+      }
+    }
+  }
+}

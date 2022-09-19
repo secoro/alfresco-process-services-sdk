@@ -1,0 +1,46 @@
+<div class="popover" click-anywhere="$hide()" ignore-class="form-selection" auto-scroll>
+    <div class="arrow"></div>
+    <div class="popover-header">
+        <span class="title">{{'PROCESS-BUILDER.FIELD.FORM-SELECT.POPOVER.TITLE' | translate}}</span>
+
+        <div class="actions">
+            <a ng-click="$hide()">
+                {{'GENERAL.ACTION.CLOSE' | translate}}</a>
+        </div>
+    </div>
+
+    <div class="popover-wrapper">
+        <div class="center">
+            <div class="btn-group">
+                <button class="btn btn-xs" ng-click="createForm()" ng-disabled="readOnly">
+                    {{'PROCESS-BUILDER.FIELD.FORM-SELECT.POPOVER.CREATE-FORM' | translate}}
+                </button>
+                <button class="btn btn-xs" ng-click="clearForm()" ng-disabled="readOnly">
+                    {{'PROCESS-BUILDER.FIELD.FORM-SELECT.POPOVER.CLEAR-FORM' | translate}}
+                </button>
+            </div>
+        </div>
+        <div class="section">
+            <label translate="GENERAL.TITLE.FILTER"></label>
+            <div>
+                <input class="form-control" type="text" placeholder="{{'PROCESS-BUILDER.FIELD.FORM-SELECT.POPOVER.SEARCH-FORM' | translate}}" auto-focus custom-keys
+                       up-pressed="previousForm()" down-pressed="nextForm()" enter-pressed="confirmForm()"
+                       delayed-model="popupModel.filter" delay="200"/>
+
+                <div class="inline-help" translate="GENERAL.MESSAGE.SELECT-PEOPLE-HELP"></div>
+            </div>
+            <label>{{'PROCESS-BUILDER.FIELD.FORM-SELECT.POPOVER.MATCHING-FORMS' | translate}}</label>
+            <div class="people-select">
+                <ul class="simple-list">
+                    <li ng-click="confirmForm(form);" ng-repeat="form in popupModel.formResults"
+                        ng-class="{'active': form.id === popupModel.selectedForm.id}">
+                        {{form.name && form.name || '(Nameless form)'}}
+                    </li>
+                </ul>
+                <div class="nothing-to-see" ng-show="!popupModel.formResults || popupModel.formResults.length == 0">
+                    {{'PROCESS-BUILDER.FIELD.FORM-SELECT.POPOVER.NO-MATCHING-FORMS' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

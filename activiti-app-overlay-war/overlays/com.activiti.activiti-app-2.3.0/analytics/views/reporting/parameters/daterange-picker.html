@@ -1,0 +1,17 @@
+<div ng-controller="ReportingParamDateRangeController">
+    <span ng-if="parameter.name">{{parameter.name}}</span>
+    <span ng-if="!parameter.name && parameter.nameKey">{{( parameter.nameKey) | translate}}</span>
+
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="glyphicon glyphicon-calendar"></i>
+        </span>
+        <input type="daterange"
+               ng-model="parameter.value"
+               ng-if="model.specialRanges"
+               class="form-control"
+               ranges="model.specialRanges"
+               ng-change="dateRangeChanged(parameter)"
+               ng-disabled="model.loading">
+    </div>
+</div>

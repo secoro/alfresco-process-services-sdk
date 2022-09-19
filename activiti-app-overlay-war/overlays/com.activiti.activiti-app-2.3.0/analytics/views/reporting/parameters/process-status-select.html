@@ -1,0 +1,8 @@
+<div>
+    <span class="fetching-processdefinitions">{{(parameter.nameKey) | translate}}</span>
+    <select class="form-control" ng-model="parameter.value" ng-change="statusProcessFilter()" ng-disabled="model.loading">
+        <option>{{'REPORTING.STATUS.ALL' | translate}}</option>
+        <option>{{'REPORTING.STATUS.ACTIVE' | translate}}</option>
+        <option>{{'REPORTING.STATUS.COMPLETE' | translate}}</option>
+    </select>
+</div>

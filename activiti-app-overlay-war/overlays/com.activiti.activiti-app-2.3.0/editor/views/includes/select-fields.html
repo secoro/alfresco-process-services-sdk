@@ -1,0 +1,35 @@
+<div class="detail-group clearfix">
+    <div class="form-group clearfix">
+        <div class="col-xs-12" style="margin-bottom: 10px">
+            <div class="col-xs-3">
+                <label>{{'PROCESS-BUILDER.FIELD.FIELDS-SELECT.SELECTED-FIELDS' | translate}}: </label>
+            </div>
+            <div class="col-xs-9">
+                <div class="clearfix selection narrow" style="min-height: 40px">
+                    <ul class="simple-list" ng-show="stepObject[propertyObject.id].fields.length">
+                        <li ng-repeat="field in stepObject[propertyObject.id].fields">
+                            {{field.name}}
+                            <div class="actions">
+                                <a ng-click="removeField(field)"><i class="icon icon-remove"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="no-results" ng-if="!stepObject[propertyObject.id].fields.length">
+                        {{'PROCESS-BUILDER.FIELD.FIELDS-SELECT.NO-FIELDS' | translate}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+                <label>{{'PROCESS-BUILDER.FIELD.FIELDS-SELECT.FIELDS' | translate}}:</label>
+            </div>
+            <div class="col-xs-9">
+                <div field-select="model.selectedField"></div>
+                <div class="pull-right">
+                    <button class="btn btn-xs" ng-disabled="!model.selectedField" ng-click="addField()">+ {{'PROCESS-BUILDER.FIELD.FIELDS-SELECT.ADD-FIELD' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

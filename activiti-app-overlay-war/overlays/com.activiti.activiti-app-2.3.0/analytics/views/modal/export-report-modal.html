@@ -1,0 +1,21 @@
+
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title">{{'REPORTING.MODAL.EXPORT-REPORT.TITLE' | translate}}</h4>
+            </div>
+            <div class="modal-body" ng-form="exportForm">
+                <div ng-class="{'has-error': exportForm.exportName.$invalid}">
+                    <span>{{'REPORTING.MODAL.EXPORT-REPORT.NAME' | translate}}</span>
+                    <input ng-required="true" name="exportName" type="text" ng-model="model.newExportName" class="form-control" auto-focus>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide()">{{'GENERAL.ACTION.CANCEL' | translate}}</button>
+                <button type="button" class="btn btn-primary" ng-click="exportReport(); $hide()" ng-disabled="!exportForm.$valid || readOnly">{{'GENERAL.ACTION.SAVE' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

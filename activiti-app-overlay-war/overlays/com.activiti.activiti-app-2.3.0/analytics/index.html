@@ -1,0 +1,108 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Process Services Workflow</title>
+    <link rel="icon" type="image/ico" href="../favicon.ico">
+
+    <link rel="stylesheet" href="styles/eb932beb.3thparty.css"/>
+
+    <link rel="stylesheet" href="styles/508a87d7.style.css"/>
+</head>
+<body ng-cloak>
+    <div class="navbar navbar-fixed-top navbar-inverse" ng-show="authenticated" role="navigation" id="main-nav">
+        <div class="fixed-container">
+            <div class="navbar-header">
+                <a ng-click="backToLanding()" class="landing-logo" ng-if="account != null && account != undefined" title="{{'GENERAL.MAIN-TITLE' | translate}}">
+                    <img ng-if="account.tenantPictureId && account.tenantId"
+                         ng-src="{{restRootUrl()}}/app/rest/tenants/{{account.tenantId}}/logo">
+
+                    <img ng-if="!account.tenantPictureId" ng-src="{{appResourceRoot}}../images/ic_exit_to_app_white_24px.png">
+                </a>
+                <ul class="nav navbar-nav" ng-show="authenticationChecked">
+                    <li ng-repeat="item in mainNavigation" ng-show="(authenticated && !item.unauthenticated) || (item.unauthenticated && !authenticated)" ng-class="{'active': item.id == mainPage.id}">
+                        <a ng-click="setMainPage(item)">{{item.title | translate}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="user-menu-con">
+                <div class="dropdown btn-group btn-group-sm">
+                    <button type="button" class="btn btn-default dropdown-toggle user-menu"
+                            data-toggle="dropdown"><span class="user-name">{{account.firstName}} {{account.lastName}}</span>
+                        <span class="glyphicon glyphicon-chevron-down user-drop-down" aria-hidden="true"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="" ng-click="showAboutActiviti()" translate="GENERAL.ACTION.ABOUT"></a></li>
+                        <li><a href="https://docs.alfresco.com/process-services/latest/using/process/" target="_blank" translate="GENERAL.ACTION.HELP-DOCS-LINK"></a></li>
+                        <li ng-show="!systemProperties.logoutDisabled"><a ng-if="authLogoutUrl" ng-href="{{authLogoutUrl}}" translate="GENERAL.ACTION.LOGOUT"></a><a ng-if="!authLogoutUrl" ng-click="logout()" translate="GENERAL.ACTION.LOGOUT"></a></li>
+                    </ul>
+                    <app-links></app-links>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<!--[if lt IE 9]>
+	  <div class="unsupported-browser">
+      <p class="alert error">You are using an unsupported browser. Please upgrade your browser in order to use the editor.</p>
+      </div>
+    <![endif]-->
+
+    <div class="alert-wrapper" ng-cloak>
+        <div class="alert {{alerts.current.type}}" ng-show="alerts.current" ng-click="dismissAlert()">
+            <span>{{alerts.current.message}}</span>
+            <span class="badge" ng-show="alerts.queue.length">{{alerts.queue.length + 1}}</span>
+        </div>
+    </div>
+
+    <div class="wrapper clearfix" ng-view="" ng-cloak ng-style="{height: window.height + 'px'}">
+    </div>
+
+    <!--[if lt IE 9]>
+    <script src="../libs/es5-shim-15.3.4.5/es5-shim.js"></script>
+    <script src="../libs/json3_3.2.6/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- 3rd party libs -->
+    <script src="../libs/jquery-1.11.0/jquery.min.js"></script>
+    <script src="../libs/jquery-ui-1.10.3.custom.min.js"></script>
+
+    <script src="../libs/angular_1.3.13/angular.min.js"></script>
+    <script src="../libs/angular-animate_1.3.13/angular-animate.min.js"></script>
+    <script src="../libs/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="../libs/angular-resource_1.3.13/angular-resource.min.js"></script>
+    <script src="../libs/angular-cookies_1.3.13/angular-cookies.min.js"></script>
+    <script src="../libs/angular-sanitize_1.6.0/angular-sanitize.min.js"></script>
+    <script src="../libs/angular-route_1.3.13/angular-route.min.js"></script>
+    <script src="../libs/angular-translate_2.8.1/angular-translate.min.js"></script>
+    <script src="../libs/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="../libs/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="../libs/angular-strap_2.1.6/angular-strap.min.js"></script>
+    <script src="../libs/angular-strap_2.1.6/angular-strap.tpl.min.js"></script>
+    <script src="../libs/angular-dragdrop_1.0.11/angular-dragdrop.min.js"></script>
+    <script src="../libs/momentjs_2.5.1/momentjs.min.js"></script>
+    <script src="../libs/ng-file-upload/ng-file-upload-shim.min.js" ></script>
+    <script src="../libs/ng-file-upload/ng-file-upload.min.js" ></script>
+
+    <script src="../libs/d3_3.4.8/d3.min.js"></script>
+    <script src="../libs/nvd3_1.1.15-beta/nvd3.min.js"></script>
+    <script src="../libs/angularjs-nvd3-directives_0.0.7/angular-nvd3-directives.min.js"></script>
+
+    <script src="../libs/bootstrap-daterangepicker_1.3.7/daterangepicker.js"></script>
+    <script src="../libs/html2canvas_0.4.1/html2canvas.js"></script>
+
+    <!-- Configuration -->
+    <script src="../scripts/app-cfg.js?v=2"></script>
+
+    <script src="scripts/55f9b6e6.scripts.js"></script>
+
+    <!-- Integration extensions -->
+    <script src="../scripts/resource-loader.js?v=1.4" app="analytics" module="activitiApp"></script>
+
+</body>
+</html>

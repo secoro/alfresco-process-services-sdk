@@ -1,0 +1,764 @@
+{
+  "COMMON": {
+    "SELECT-FOLDER": "フォルダの選択...",
+    "ACCOUNTS": {
+      "ALFRESCO": "Alfresco ({{name}})",
+      "box": "Box",
+      "google-drive": "Google ドライブ"
+    },
+    "AUTHORIZE": {
+      "EXTERNAL-REPOSITORY-CONFIGURED": "あなた用に設定されている {{moduleName}} アカウントが 1 つあります。",
+      "EXTERNAL-REPOSITORY-KEY-EXPIRE-AT": "キーの有効期限: {{expireDateTime  | date: 'yyyy-MM-dd h:mma' }}",
+      "NO-EXTERNAL-REPOSITORY-CONFIGURED": "あなた用に設定されている {{moduleName}} アカウントがありません。",
+      "EXTERNAL-REPOSITORY-REAUTHORIZE-REQUIRED": "再認証を行わないとタスクを完了できません。",
+      "EXTERNAL-REAUTHORIZE-ADVICE": "下のボタンを使って、{{moduleName}} に接続する Alfresco Process Services の再認証を行ってください。",
+      "MODULE-DISABLED": "{{moduleName}} の統合は現在無効化されています。",
+      "TITLE": "承認"
+    },
+    "AUTHORIZATION_COMPLETED": "承認が完了しました",
+    "NOBODY": "担当者なし",
+    "NOBODY-LETTERS": "なし",
+    "FILTER": {
+      "NEW-FILTER": "新しいフィルタ",
+      "EDIT": "編集",
+      "RESET": "リセット",
+      "DELETE": "削除",
+      "NEW-FILTER-NAME": "新しいフィルタ",
+      "FILTER-ICON-AND-NAME": "フィルタのアイコンと名前",
+      "SAVE": "保存",
+      "SAVE-HINT": "フィルタの設定はこれでよろしいですか?<br/>アイコンと名前を選択してから、[保存] をクリックしてください。",
+      "SEARCH-RESULTS": "検索結果"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "ローカルのライセンスが無効なため、Alfresco Process Services は読み取り専用モードで実行されています。",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "ローカルのライセンスが見つからなかったため、Alfresco Process Services は読み取り専用モードで実行されています。",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "ローカルのライセンスの日付が無効である (期限切れか、まだ開始日が来ていない) ため、Alfresco Process Services は読み取り専用モードで実行されています。",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "ライセンスの有効期限が近づいています。有効期限が切れると、Alfresco Process Services は読み取り専用モードになるので注意してください。"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "あなたのタスク",
+    "ERROR": {
+      "GENERIC": "エラーが発生しました...",
+      "UNKNOWN": "指定した処理の実行中にエラーが発生しました。",
+      "BAD_REQUEST": "指定した処理の実行中にエラーが発生しました",
+      "NOT_FOUND": "アクセスしようとしているリソースは存在しません",
+      "UNAUTHORIZED": "指定した処理を実行するにはサインインする必要があります。",
+      "FORBIDDEN": "指定した処理の実行は許可されていません",
+      "INTERNAL_SERVER_ERROR": "指定した処理の実行中にエラーが発生しました。",
+      "UPLOAD-LIMIT-EXCEEDED": "ファイルが大きすぎてアップロードできません",
+      "UPLOAD-LIMIT-EXCEEDED-TRIAL-USER": "ファイルが大きすぎてアップロードできません。{{quota}} より大きいファイルをアップロードする場合は、エンタープライズユーザーにアップグレードしてください。",
+      "QUOTA-EXCEEDED-RUNTIME-PROCESSES": "トライアルユーザーが一度に実行できるアクティブなプロセスは {{quota}} 個のみです。",
+      "QUOTA-EXCEEDED-COMPLETED-PROCESSES": "トライアルユーザーが所有できる完了済みプロセスは {{quota}} 個のみです。完了済みプロセスを 1 つ削除してから、新しいプロセスを開始してください。",
+      "QUOTA-EXCEEDED-TOTAL-CONTENT-SIZE": "トライアルユーザーが保存できるコンテンツは {{quota}} 個までです。コンテンツを削除するか、プロセスを完了して空き容量を増やしてから、新しいコンテンツを保存してください。"
+    },
+    "NAVIGATION": {
+      "TASKS": "タスク",
+      "PROCESSES": "プロセス",
+      "START-PROCESS": "開始",
+      "DESIGN": "作成",
+      "CREATE": "+ 作成",
+      "LOGIN": "サインイン",
+      "REPORTS": "レポート"
+    },
+    "TITLE": {
+      "ADD-COMMENT": "コメントの作成",
+      "INVOLVE-PEOPLE": "ユーザーの選択",
+      "RECENT-PEOPLE": "最近関わった人",
+      "MATCHING-PEOPLE": "条件に一致するユーザー",
+      "SELECT-GROUP": "グループの選択",
+      "MATCHING-GROUPS": "条件に一致するグループ",
+      "FILTER": "フィルタ",
+      "SELECT-DATE": "日付の選択"
+    },
+    "ACTION": {
+      "ABOUT": "Alfresco Process Services について",
+      "LOGOUT": "サインアウト",
+      "EDIT-PROFILE": "プロフィールの編集",
+      "ADD-COMMENT": "コメントの追加",
+      "ADD-CHECKLIST": "チェックリストの追加",
+      "SAVE": "保存",
+      "CANCEL": "キャンセル",
+      "CLOSE": "閉じる",
+      "CONFIRM": "確定",
+      "SHOW-MORE": "続きを表示",
+      "HELP-DOCS-LINK": "ヘルプ"
+    },
+    "MESSAGE": {
+      "SELECT-PEOPLE-HELP": "&uparrow; と &downarrow; を使って選択し、Enter キーを押して選択を確定します",
+      "SELECT-GROUP-HELP": "&uparrow; と &downarrow; を使って選択し、Enter キーを押して選択を確定します",
+      "SELECT-GROUP-SEARCH-PLACEHOLDER": "グループの検索",
+      "SELECT-GROUP-NO-MATCHING-RESULTS": "上の検索ボックスを使ってグループを検索してください。",
+      "UPLOAD-CONTENT": "ファイルを選択またはドロップします",
+      "UPLOAD-CONTENT-NO-DROP": "アップロードするファイルを選択します",
+      "DROPZONE": "アップロードするファイルをドロップします",
+      "YES": "はい",
+      "NO": "いいえ"
+    },
+    "TIME": {
+      "HOURS": "時",
+      "MINUTES": "分",
+      "SECONDS": "秒"
+    },
+    "ABOUT": {
+      "TYPE": "種類",
+      "LICENSED-TO": "ライセンス先",
+      "EXPIRES": "有効期限",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. All rights reserved.",
+      "LEGAL": "法的情報とライセンス"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "サインイン",
+    "USERNAME": "ユーザー名",
+    "USERNAME-PLACEHOLDER": "ユーザー名を入力してください",
+    "PASSWORD": "パスワード",
+    "PASSWORD-PLACEHOLDER": "パスワードを入力してください",
+    "ACTION": {
+      "CONFIRM": "サインイン"
+    }
+  },
+  "TASK": {
+    "SECTION": {
+      "PEOPLE": "ユーザー",
+      "GROUPS": "グループ",
+      "CONTENT": "コンテンツ",
+      "COMMENTS": "コメント",
+      "CHECKLISTS": "チェックリスト",
+      "NOTES": "メモ"
+    },
+    "FILTER": {
+      "SORT": "表示順",
+      "CREATED-DESC": "新しい順",
+      "CREATED-ASC": "古い順",
+      "DUE-DESC": "期限 (遅い順)",
+      "DUE-ASC": "期限 (早い順)",
+      "TEXT": "フィルタ",
+      "TEXT-PLACEHOLDER": "タスク名で検索",
+      "TEXT-SUMMARY": "検索:{{text}}",
+      "PROCESS-DEFINITION": "プロセス定義",
+      "PROCESS-DEFINITION-PLACEHOLDER": "プロセス定義を選択してください ...",
+      "STATE": "状態",
+      "STATE-OPEN": "開く",
+      "STATE-COMPLETED": "完了",
+      "ASSIGNMENT": "割り当て",
+      "ASSIGNMENT-INVOLVED": "自分が関わっているタスク",
+      "ASSIGNMENT-ASSIGNEE": "自分が担当者のタスク",
+      "ASSIGNMENT-CANDIDATE": "自分が候補になっているタスク",
+      "ASSIGNMENT-GROUP": "グループ \"{{name}}\" に割り当てられているタスク",
+      "RESET": "フィルタをリセット",
+      "SINGLE-TASK": "'{{name || (\"TASK.MESSAGE.NO-NAME\" | translate)}}' を表示しています",
+      "NO-SINGLE-TASK": "ID が '{{id}}' のタスクが見つかりません",
+      "INVOLVED-FILTER-NAME": "関わっているタスク",
+      "ASSIGNEE-FILTER-NAME": "あなたのタスク",
+      "COMPLETED-FILTER-NAME": "完了済みタスク",
+      "CANDIDATE-FILTER-NAME": "キューに入っているタスク",
+      "TASK-NAME": "タスク名",
+      "SEARCH": "検索",
+      "NEW-SEARCH": "新しい検索条件",
+      "CREATE-FILTER": "新しいフィルタを作成するか、下から選択してください",
+      "EDIT-FILTER": "検索条件の編集",
+      "FILTER-NAME-PLACEHOLDER": "カスタムフィルタの名前",
+      "CREATE-TASK": "タスクの作成",
+      "SEARCH-PLACEHOLDER": "検索",
+      "NO-FILTER-RESULTS": "\"{{name}}\" では何も見つかりませんでした。別のリストで検索することもできます。まず、次の作業から始めてください。",
+      "NO-SEARCH-RESULTS": "指定した条件に一致するタスクはありません。別の条件で試すこともできます。まず、次の作業から始めてください。"
+    },
+    "ALERT": {
+      "COMMENT-ADDED": "\"{{name}}\" にコメントが追加されました。",
+      "CHECKLIST-ADDED": "チェックリストにタスク \"{{name}}\" が追加されました",
+      "CHECKLIST-REMOVED": "チェックリストからタスク \"{{name}}\" が削除されました",
+      "PERSON-INVOLVED": "{{userName}} は現在 \"{{taskName}}\" に関わっています",
+      "PERSON-INVOLVED-EMAIL-NOT-ALLOWED": "E メール '{{emailAddress}}'.\" で外部ユーザーを関わらせることはできません",
+      "PERSON-NO-LONGER-INVOLVED": "{{userName}} はもう \"{{taskName}}\" に関わっていません",
+      "GROUP-INVOLVED": "グループ \"{{groupName}}\" は現在タスク \"{{taskName}}\" に関わっています",
+      "GROUP-NO-LONGER-INVOLVED": "グループ \"{{groupName}}\" はもうタスク \"{{taskName}}\" に関わっていません",
+      "CREATED": "タスク \"{{name}}\" が作成されました",
+      "COMPLETED": "タスクが完了しました",
+      "SAVED": "タスクフォームが保存されました",
+      "ASSIGNED": "タスク \"{{taskName}}\" は現在 {{userName}} に割り当てられています",
+      "RELATED-CONTENT-ADDED": "\"{{name}}\" はこのタスクに追加されています",
+      "RELATED-CONTENT-ADDED-LOADING": "\"{{name}}\" はこのタスクに追加されています。このコンテンツは、外部ソースから取得され次第使用できます。",
+      "FORM-ATTACHED": "フォーム \"{{name}}\" が添付されました",
+      "FORM-REMOVED": "フォーム \"{{name}}\" が削除されました"
+    },
+    "ACTION": {
+      "BACK-TO-LIST": "タスク一覧に戻る",
+      "COMPLETE-TASK-WITH-FORM": "フォームの完了",
+      "COMPLETE": "完了",
+      "CLAIM": "要求",
+      "UNCLAIM": "キューへの再登録",
+      "ASSIGN": "割り当て",
+      "REASSIGN": "再割り当て",
+      "CREATE": "+ タスクの作成",
+      "CREATE-CONFIRM": "作成",
+      "INVOLVE": "+ 関係者の追加",
+      "INVOLVE-GROUP": "関係者グループの追加",
+      "ADD-COMMENT": "+ コメントの追加",
+      "ADD-COMMENT-CONFIRM": "コメントの追加",
+      "ADD-CHECKLIST": "+ チェックリストにタスクを追加",
+      "ADD-CHECKLIST-CONFIRM": "チェックリストにタスクを追加",
+      "ADD-CONTENT": "+ コンテンツの追加",
+      "CLEAR-DUEDATE": "期限の消去",
+      "DUE-TODAY": "本日期限",
+      "CLEAR-DATE": "日付の消去",
+      "DATE-TODAY": "今日の日付",
+      "AUDIT-LOG": "監査ログ"
+    },
+    "TITLE": {
+      "ASSIGN": "担当者の選択",
+      "ASSIGNEE": "担当者",
+      "CONTENT": "関連コンテンツ",
+      "CREATE-NEW": "新しいタスク",
+      "NEW-TASK-NAME": "新しいタスク",
+      "EDIT-NAME": "タスク名の編集",
+      "FORM": "フォーム",
+      "DETAILS": "詳細",
+      "ADD-RELATED-CONTENT": "関連コンテンツの追加",
+      "SELECT-DUEDATE": "期限の選択",
+      "SELECT-DATE": "日付の選択",
+      "NO-CONTENT-ITEMS": "コンテンツアイテムなし",
+      "NO-PEOPLE-INVOLVED": "関わっている人はいません",
+      "NO-GROUPS-INVOLVED": "関わっているグループはありません",
+      "NO-COMMENTS": "コメントなし",
+      "COMMENT-COUNT": "コメント",
+      "COMMENTS-COUNT": "コメント",
+      "NO-CHECKLISTS": "チェックリストなし",
+      "CHECKLIST-COUNT": "チェックリストに含まれているタスク数",
+      "CHECKLISTS-COUNT": "チェックリストに含まれているタスク数",
+      "SHOW-DETAILS": "詳細を表示",
+      "SHOW-FORM": "フォームの表示",
+      "GROUPS-INVOLVED": "{{groupCount}} 個のグループが関わっています"
+    },
+    "FIELD": {
+      "NAME": "名前",
+      "DESCRIPTION": "説明",
+      "ASSIGNEE": "担当者",
+      "DUE": "期限",
+      "FORM": "フォーム",
+      "PROCESS-INSTANCE": "プロセスの一部",
+      "PARENT-TASK": "親タスク",
+      "ENDED": "終了日",
+      "DURATION": "期間"
+    },
+    "MESSAGE": {
+      "NO-NAME": "タスクに名前がありません",
+      "NO-ASSIGNEE": "誰にも割り当てられていません",
+      "NO-DUEDATE": "期限がありません",
+      "DUE-ON": "期限",
+      "NO-FORM": "フォームがありません",
+      "CREATED-ON": "作成日",
+      "ENDED-ON": "完了日",
+      "EXECUTION-FAILED": "実行できませんでした",
+      "COMPLETED-BY": "完了者: {{username}}, ",
+      "NO-DESCRIPTION": "このタスクには説明がありません",
+      "NO-RELATED-CONTENT": "このタスクにはまだ関連コンテンツがありません...",
+      "NO-PEOPLE-INVOLVED": "このタスクにはまだ誰も関わっていません...",
+      "NO-COMMENTS": "このタスクにはまだコメントがありません...",
+      "INVOLVE-PEOPLE-PLACEHOLDER": "+ 人を追加",
+      "CONTENT-UPLOADED-BY": "追加者 ",
+      "ASSIGNEE": "割り当て先: {{username}}",
+      "NEW-COMMENT-PLACEHOLDER": "このタスクにコメントを追加してください",
+      "NEW-CHECKLIST-PLACEHOLDER": "タスク名を入力してください",
+      "COMMENT-HEADER": "追加者: {{createdBy | username}}、{{created | dateformat:\"fromNow\"}}",
+      "NO-FILTER": "あなたのタスクを表示しています (フィルタ適用なし)",
+      "FILTERED": "あなたのタスクを表示しています (フィルタ適用済み)",
+      "NO-TASKS": "一致するタスクは見つかりませんでした…",
+      "DURATION": "{{duration}} かかりました",
+      "CLAIM-TASK-FIRST": "このタスクを処理するには、まずタスクを要求する必要があります。上の ［要求］ ボタンをクリックしてください。",
+      "NO-TASKS-HELP": "あなたに割り当てられているタスクはないようです。まず、次の作業から始めてください。",
+      "NO-SUCH-TASK-HELP": "お探しのタスクが見つかりません。代わりに次のことを行うことができます:",
+      "NO-SUCH-TASK-RETURN-TO-LIST": "タスク一覧に戻る",
+      "NO-TASKS-CREATE-TASK": "自分用のタスクを作成するか、そのタスクを他の人に割り当てる",
+      "NO-TASKS-CREATE-PROCESS": "新しいプロセスを開始して、進捗を追跡する",
+      "CANNOT-CLAIM-TASK": "このタスクは要求できなくなりました。"
+    },
+    "HELP": {
+      "DESCRIPTION": "このタスクには、まだ詳細情報がありません。次のいずれかの作業を行うと、情報が記録されます。",
+      "COMPLETED-DESCRIPTION": "この完了したタスクには、詳細情報がありません。",
+      "DESCRIPTION-WITH-CLAIM": "このタスクには、まだ詳細情報がありません。次のいずれかの作業を行うと、情報が記録されます。また、このタスクを完了するには、上の [要求] ボタンを押してタスクを要求する必要があります。",
+      "ADD-FORM-DESCRIPTION": "このタスクには、まだフォームがありません。ライブラリのフォームを使って、このタスクの詳細情報を記録することができます:",
+      "ADD-FORM": "フォームを追加してください",
+      "COMPLETED-NOFORM": "この完了したタスクには、フォームがありません。",
+      "ADD-PEOPLE": "関係者を追加して、共同作業を開始します",
+      "ADD-FIRST-PEOPLE": "関係者を追加して、共同作業を開始します",
+      "ADD-FIRST-GROUP": "関係者グループを招待して、共同作業を開始します",
+      "ADD-COMMENT": "他の人へのコメントを追加します",
+      "ADD-FIRST-COMMENT": "自分自身や他の人宛てのコメントを追加します",
+      "ADD-CHECKLIST": "チェックリストにタスクを追加します",
+      "ADD-FIRST-CHECKLIST": "このタスクに必要なアイテムのチェックリストを作成します。アイテムを他の人に割り当てたり、期限を設定したり、ライブラリからフォームを添付したりできます",
+      "ADD-CONTENT": "文書を追加して知識を共有します",
+      "ADD-FIRST-CONTENT": "このタスクに関連するファイルを添付します"
+    },
+    "DYNAMIC-TABLE": {
+      "ROW-EDIT-HEADER": "表の行の編集",
+      "ROW-DETAILS-HEADER": "表の行の詳細"
+    },
+    "FORM-SELECT": {
+      "TITLE": "フォームの選択",
+      "EMPTY": "フォームが選択されていません",
+      "FORMS-ERROR": "フォームの読み込み中にエラーが発生しました",
+      "LOADING": "フォームを読み込んでいます...",
+      "NO-FORMS": "フォームが見つかりません",
+      "ATTACH-FORM": "フォームの添付",
+      "REMOVE-FORM": "フォームの削除",
+      "CURRENT-FORM": "{{name}} (現在)",
+      "FORM-LOAD-ERROR": "フォームの読み込み中にエラーが発生しました"
+    }
+  },
+  "PROCESS": {
+    "ALERT": {
+      "COMMENT-ADDED": "コメントが追加されました",
+      "STARTED": "新しい \"{{processDefinitionName}}\" プロセスが開始されました",
+      "START-PROCESS-CONTENT-ADD-FAILED": "{{noOfFiles}} 個のファイルをプロセスに追加できませんでした"
+    },
+    "TITLE": {
+      "DIAGRAM": "プロセス図"
+    },
+    "FILTER": {
+      "CREATED-DESC": "新しい順",
+      "CREATED-ASC": "古い順",
+      "ENDED-DESC": "完了日 (新しい順)",
+      "ENDED-ASC": "完了日 (古い順)",
+      "STATE-SUMMARY": "{{state.title | translate}} 件のプロセスを表示しています",
+      "STATE": "プロセスの状態",
+      "STATE-RUNNING": "進行中",
+      "STATE-COMPLETED": "完了日",
+      "STATE-ALL": "すべて",
+      "PROCESS-NAME": "プロセス名",
+      "PROCESS-DEFINITION": "プロセス定義",
+      "SORT": "表示順",
+      "TEXT-PLACEHOLDER": "プロセス名で検索します",
+      "RUNNING-FILTER-NAME": "進行中",
+      "COMPLETED-FILTER-NAME": "完了日",
+      "ALL-FILTER-NAME": "すべて",
+      "SINGLE-PROCESS": "'{{name || processDefinitionName}}' を表示しています",
+      "NO-SINGLE-PROCESS": "ID が '{{id}}' のプロセスが見つかりません",
+      "NO-FILTER-RESULTS": "\"{{name}}\" では何も見つかりませんでした。別のリストを選ぶこともできます。まず、次の作業から始めてください。",
+      "NO-SEARCH-RESULTS": "指定した条件に一致するプロセスはありません。別の条件を選ぶこともできます。まず、次の作業から始めてください。",
+      "FILTER-NAME-PLACEHOLDER": "カスタムフィルタの名前"
+    },
+    "MESSAGE": {
+      "NO-DESCRIPTION": "このプロセスインスタンスには説明がありません",
+      "NO-FILTER": "すべてのプロセスインスタンスを表示しています (フィルタ適用なし)",
+      "NO-INSTANCES": "一致するプロセスインスタンスは見つかりませんでした...",
+      "NO-INSTANCES-HELP": "現在進行中のプロセスはありません。完了したプロセスは、プロセスの一覧でフィルタを使って検索できます。まず、次の作業から始めてください。",
+      "NO-INSTANCES-HELP-START": "新しいプロセスを開始して、その進捗を追跡する",
+      "NO-TASKS": "現在アクティブなタスクはありません...",
+      "NO-COMPLETED-TASKS": "完了済みのタスクはまだありません...",
+      "NO-BUSINESS-KEY": "設定されているビジネスキーはありません",
+      "CATEGORY": "カテゴリ:{{processDefinitionCategory}}",
+      "NEW-COMMENT-PLACEHOLDER": "このプロセスに追加するコメントを入力してください",
+      "COMMENT-HEADER": "追加者: {{createdBy | username}}、{{created | dateformat:\"fromNow\"}}",
+      "SELECT-DEFINITION": "下の一覧で、開始するプロセスを選択してください",
+      "NO-PROCESS-DEFINITIONS": "使用可能なプロセス定義がないため、プロセスを開始できません",
+      "START-PROCESS": "プロセスの開始",
+      "STARTED-BY": "開始者: {{username}}",
+      "NO-PROCESS-DEFINITION-SELECTED-HELP": "プロセス定義を選択してください",
+      "NO-SUCH-PROCESS-HELP": "お探しのプロセスが見つかりません。代わりに次のことを行うことができます:",
+      "NO-SUCH-PROCESS-RETURN-TO-LIST": "プロセス一覧に戻る"
+    },
+    "HELP": {
+      "ADD-FIRST-COMMENT": "自分自身や他の人宛てのコメントを追加します"
+    },
+    "ACTION": {
+      "CREATE": "プロセスの開始",
+      "BACK-TO-LIST": "プロセスインスタンスに戻る",
+      "SHOW-DIAGRAM": "図の表示",
+      "CANCEL": "プロセスのキャンセル",
+      "DELETE": "プロセスの削除",
+      "ADD-COMMENT": "+ コメントの追加",
+      "ADD-COMMENT-CONFIRM": "コメントの追加",
+      "AUDIT-LOG": "監査ログ",
+      "SEARCH-PLACEHOLDER": "検索",
+      "ZOOMIN": "ズームイン",
+      "ZOOMOUT": "ズームアウト"
+    },
+    "FIELD": {
+      "BUSINESS-KEY": "ビジネスキー",
+      "CATEGORY": "カテゴリ",
+      "PROCESS-DEFINITION": "プロセス定義",
+      "STARTED": "開始日",
+      "STARTED-BY": "開始者",
+      "ENDED": "終了日",
+      "NAME": "プロセスインスタンスの名前",
+      "NAME-PLACEHOLDER": "開始するプロセスの省略可能な名前を入力してください"
+    },
+    "SECTION": {
+      "ACTIVE-TASKS": "アクティブなタスク",
+      "START-FORM": "開始フォーム",
+      "COMPLETED-TASKS": "完了済みタスク",
+      "COMPLETED-DECISION-TASKS": "実行済み意思決定表   ",
+      "COMMENTS": "コメント",
+      "CONTENT": "コンテンツ"
+    },
+    "POPUP": {
+      "CANCEL-TITLE": "プロセスをキャンセルしますか?",
+      "CANCEL-DESCRIPTION": "プロセス {{name}} をキャンセルしますか?",
+      "DELETE-TITLE": "このプロセスを削除しますか?",
+      "DELETE-DESCRIPTION": "プロセス {{name}} を削除しますか?削除すると、このプロセスに関連するすべてのタスク、コンテンツ、コメントが削除され、元に戻せなくなります。"
+    },
+    "DECISION": {
+      "TABLE": {
+        "HEADER": "意思決定表 \"{{name}}\"",
+        "HIT-POLICY": "決定ルール",
+        "HIT-POLICIES": {
+          "FIRST": "最初 (シングルパス)",
+          "ANY": "すべて (シングルパス)"
+        },
+        "TOOLTIP": {
+          "INPUT-EXCEPTION": "式が入力値と一致するかどうかのテスト中に例外が発生しました:{{error}}",
+          "INPUT-MATCH": "入力値が式と一致しました。",
+          "INPUT-EMPTYEXPRESSION": "空の式は一致として処理されます。",
+          "INPUT-NOMATCH": "入力値が式と一致しませんでした。",
+          "INPUT-NOTEXECUTED": "式はテストされませんでした。",
+          "OUTPUT-EXCEPTION": "次の式を使って値を設定する際に例外が発生しました:\n {{expression}}。\nエラーメッセージ:{{error}}",
+          "OUTPUT-RESULT": "値は次の式を使って設定されました:\n {{expression}}",
+          "OUTPUT-NOTEXECUTED": "次の式は実行されませんでした:\n {{expression}}",
+          "OUTPUT-NOEXPRESSION": "このセルの式は定義されませんでした。"
+        },
+        "INPUT-VARIABLE": "条件",
+        "OUTPUT-VARIABLE": "結果",
+        "INPUT-VARIABLES": "入力値",
+        "NO-INPUT-VARIABLES": "意思決定表の実行時に入力値がありませんでした。",
+        "OUTPUT-VARIABLES": "計算値",
+        "NO-OUTPUT-VARIABLES": "この意思決定表からは計算値が得られませんでした",
+        "METADATA-NAME": "名前",
+        "METADATA-VALUE": "値",
+        "LOAD-ERROR": "意思決定表とアクティビティ '{{activityId}}' の実行 '{{executionId}}' の監査証跡の取得中に問題が発生しました。"
+      }
+    }
+  },
+  "INVOLVE-PEOPLE": {
+    "NO-MATCHING-RESULTS": "上の検索ボックスを使ってユーザーを検索するか、 ",
+    "NO-MATCHING-RESULTS-NO-EMAIL": "上の検索ボックスを使ってユーザーを検索してください",
+    "SEARCH-PLACEHOLDER": "ユーザーの検索",
+    "USE-EMAIL": "Ｅ メールアドレスを使ってユーザーを選択してください",
+    "ASSIGN-YOURSELF-LEAD": "または",
+    "ASSIGN-YOURSELF": "あなた自身を割り当ててください",
+    "SELECT-YOURSELF-LEAD": "または",
+    "SELECT-YOURSELF": "あなた自身を選択してください",
+    "EMAIL-PLACEHOLDER": "Ｅ メールアドレスを入力してください",
+    "EMAIL-HELP": "Enter キーを押すか、ボタンをクリックしてください。このユーザーには Ｅ メールで通知されるか、サインアップの招待が送られます。",
+    "BACK-TO-SEARCH": "検索に戻る",
+    "ACTION-SELECT": "選択"
+  },
+  "INTEGRATION": {
+    "GENERIC": {
+      "MESSAGE": {
+        "FILTER": "フィルタ",
+        "SEARCHING": "検索しています",
+        "NO_MATCHING_RESULTS_FOUND": "一致するアイテムは見つかりませんでした。"
+      }
+    },
+    "ALFRESCO": {
+      "MESSAGE": {
+        "SELECT-FOLDER-DESCRIPTION": "Alfresco アカウントからフォルダを選択してください",
+        "SELECT-FOLDER": "フォルダの選択",
+        "CHOOSE-NETWORK": "ネットワークの選択",
+        "NETWORK": "ネットワーク",
+        "CHOOSE-SITE": "サイトの選択",
+        "NO-CONTENT": "このフォルダにコンテンツはありません"
+      }
+    },
+    "BOX": {
+      "MESSAGE": {
+        "ACCOUNT_NAME": "Box",
+        "FILTER": "フィルタ",
+        "SEARCHING": "検索しています",
+        "NO-CONTENT": "一致するアイテムは見つかりませんでした。",
+        "SELECT-FOLDER-DESCRIPTION": "Box アカウントからフォルダを選択してください",
+        "SELECT-FILE-DESCRIPTION": "Box アカウントからファイルを選択してください",
+        "SELECT-FOLDER": "フォルダの選択"
+      }
+    },
+    "ALFRESCO-CLOUD": {
+      "TITLE": {
+        "BROWSE-CLOUD": "Alfresco Content Services in the Cloud の閲覧",
+        "BROWSE-ON-PREM": "{{name}} の閲覧"
+      },
+      "MESSAGE": {
+        "ON-PREM-BROWSE": "{{name}} からインポートするファイルを選択してください",
+        "CLOUD-BROWSE": "Alfresco Content Services in the Cloud アカウントからインポートするファイルを選択してください"
+      }
+    },
+    "GOOGLE": {
+      "MESSAGE": {
+        "TITLE": "Google ドライブ",
+        "FILTER": "フィルタ",
+        "SEARCHING": "検索しています",
+        "NO-CONTENT": "一致するアイテムは見つかりませんでした",
+        "SELECT-FILE-DESCRIPTION": "Google ドライブアカウントからファイルを選択してください",
+        "SELECT-FOLDER-DESCRIPTION": "Google ドライブアカウントからフォルダを選択してください"
+      }
+    },
+    "ALERT": {
+      "ALFRESCO-CLOUD-NOT-AUTHORIZED": "Alfresco Content Services in the Cloud へのアクセス期限が切れています。資格情報をもう一度入力してください。",
+      "GOOGLE-DRIVE-NOT-AUTHORIZED": "Google ドライブへのアクセス期限が切れています。資格情報をもう一度入力してください。",
+      "ALFRESCO-ERROR": "Alfresco への接続中にエラーが発生しました",
+      "BOX-ERROR": "Box への接続中にエラーが発生しました",
+      "GOOGLE-DRIVE-ERROR": "Google ドライブへの接続中にエラーが発生しました"
+    }
+  },
+  "CONTENT": {
+    "SIMPLE-TYPE": {
+      "WORD": "文書",
+      "EXCEL": "スプレッドシート",
+      "PDF": "PDF 文書",
+      "IMAGE": "画像",
+      "FOLDER": "フォルダ",
+      "CONTENT": "コンテンツ"
+    },
+    "MESSAGE": {
+      "NO-PREVIEW-AVAILABLE": "プレビューを表示できません",
+      "PREVIEW-PENDING": "プレビューを作成しています...",
+      "CONTENT-PENDING": "コンテンツを取得しています...",
+      "NOT-FOUND": "コンテンツが見つかりません",
+      "DELETE-CONFIRMATION": "{{name}} を削除しますか?",
+      "DROP": "ファイルをドロップまたは ",
+      "SELECT": "ファイルを選択してください",
+      "DRAGOVER": "アップロードするファイルをドロップしてください",
+      "EXTERNAL-ONLY": "コンテンツのソースを選択してください",
+      "NO-EXTERNAL-SOURCE": "使用できる外部ソースがありません"
+    },
+    "TITLE": {
+      "DELETE": "コンテンツの削除",
+      "NOT-FOUND": "ファイルが見つかりません"
+    },
+    "ACTION": {
+      "OPEN-IN-GOOGLE-DRIVE": "Google ドライブで開く",
+      "OPEN-IN-ALFRESCO-CLOUD": "Alfresco Content Services in the Cloud で開く",
+      "OPEN-IN-ALFRESCO": "Alfresco で開く",
+      "OPEN-IN-BOX": "Box で開く"
+    }
+  },
+  "FORM": {
+    "ACTION": {
+      "SAVE": "保存"
+    },
+    "DEFAULT-OUTCOME": {
+      "COMPLETE": "完了",
+      "START-PROCESS": "プロセスの開始"
+    },
+    "MESSAGE": {
+      "SELECT-PERSON": "ユーザーが選択されていません...",
+      "SELECT-GROUP": "グループが選択されていません...",
+      "EMPTY": "(空白)"
+    },
+    "FIELD-PREVIEW": {
+      "DISPLAY-REF": "表示値",
+      "SELECT-FIELD": "(フィールドが選択されていません)",
+      "FIELD-VALUE": "フィールド \"{{name}}\" の値を表示します",
+      "UNKNOWN-TYPE": "不明なフィールドの種類 {{type}}",
+      "TEXT-VALUE": "テキスト",
+      "MULTI-TEXT-VALUE": "複数行テキスト",
+      "NUMBER-VALUE": "123",
+      "DATE-VALUE": "日付",
+      "DATETIME-VALUE": "日時",
+      "DROPDOWN-VALUE": "選択 ...",
+      "UPLOAD-VALUE": "コンテンツのアップロード/インポート...",
+      "RADIOS-OPTION1": "オプション 1"
+    }
+  },
+  "APP-DEFINITION": {
+    "MESSAGE": {
+      "NOT-FOUND": "指定した ID のアプリ定義が見つかりません",
+      "MISSING": "Alfresco Process Services は統合モードで実行されていますが、必要なアプリ定義がありません"
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "アプリデザイナー",
+      "TITLE-PROCESSES": "プロセスモデル",
+      "TITLE-FORMS": "フォームモデル",
+      "TITLE-APPS": "アプリモデル",
+      "TITLE-STENCILS": "ステンシル",
+      "TITLE-DECISION-TABLES": "意思決定表",
+      "TITLE-DATA-MODELS": "データモデル"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "管理アプリ"
+    },
+    "TASKS": {
+      "TITLE": "タスクアプリ",
+      "TITLE-TASKS": "タスク",
+      "TITLE-PROCESSES": "プロセス",
+      "TITLE-PROCESSES?MODE=START": "開始"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "プロフィール",
+      "TITLE-TENANT-ADMIN": "ID の管理",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "テナント",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "ユーザー",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "権限",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "組織",
+      "TITLE-TENANT-ADMIN-PROFILE": "プロフィール",
+      "TITLE-PROFILE": "プロフィール"
+    },
+    "ANALYTICS": {
+      "TITLE": "分析アプリ"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}} のタスク",
+      "TITLE-PROCESSES": "{{name}} のプロセス",
+      "TITLE-PROCESSES?MODE=START": "{{name}} の開始"
+    },
+    "TITLE": {
+      "ERROR": "エラー"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "プロセスに関するあらゆる種類の重要なレポートを取得して、ボトルネックの特定やパフォーマンスの改善に使うことができます。",
+    "GENERATE-REPORTS": "ここで標準レポートを追加してください。",
+    "NO-REPORT-SELECTED": "レポートが選択されていません。左側のリストからレポートを選択してください",
+    "NO-DATA-FOUND": "データが見つかりません",
+    "CONFIG-REPORTS": "分析アプリを使ってレポートを設定できます",
+    "FETCHING-PROC-DEFS": "プロセス定義を取得しています...",
+    "GENERATING": "レポートを生成しています...",
+    "SAVE-REPORT": "このレポートを保存します",
+    "EXPORT-REPORT": "データのエクスポート",
+    "SHOW": "表示するにはここクリックします",
+    "HIDE": "非表示にするにはもう一度ここをクリックします",
+    "FILL-PARAMS": "レポートデータはありません。レポートを生成するためのパラメータを入力してください",
+    "PROCESS-STATUS": "プロセスのステータス",
+    "TASK-STATUS": "タスクのステータス",
+    "STATUS": {
+      "ACTIVE": "アクティブ",
+      "ALL": "すべて",
+      "COMPLETE": "完了"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "現在のプロセス定義で完了したタスクはありません",
+      "DATE-RANGE": {
+        "TODAY": "今日",
+        "YESTERDAY": "昨日",
+        "LAST-7-DAYS": "最近 7 日間",
+        "PREVIOUS-MONTH": "前月",
+        "CURRENT-YEAR": "今年",
+        "CUSTOM-RANGE": "期間の指定",
+        "APPLY": "適用",
+        "CANCEL": "キャンセル",
+        "FROM": "開始日",
+        "TO": "終了日"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "1 時間に 1 回",
+        "DAY": "1 日に 1 回",
+        "WEEK": "週 1 回",
+        "MONTH": "月 1 回",
+        "YEAR": "1 年に 1 回"
+      },
+      "DURATION": {
+        "SECONDS": "秒",
+        "MINUTES": "分",
+        "HOURS": "時",
+        "DAYS": "日"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "PROCESS-DEFINITION": "プロセス定義",
+        "DATE-RANGE": "日付範囲",
+        "DATE-RANGE-INTERVAL": "集計単位 (日数)",
+        "TASK-COUNT-TITLE": "タスク数",
+        "TASK-COUNT-DESCRIPTION": "このグラフは、指定した日付範囲内のタスクの合計数を示します。",
+        "TASK-DURATIONS-TITLE": "タスクの期間",
+        "TASK-DURATIONS-DESCRIPTION": "このグラフは、指定した日付範囲内に完了したタスクの期間の平均値、最初値、最大値 (時間数) を示します。x 軸は、下の表のタスクの行番号の値です。",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "担当者別のタスク数",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "この円グラフは、選択したプロセス定義のタスクの数を担当者別に示します。",
+        "DETAILED-TASK-STATS-TITLE": "タスクの集計結果",
+        "DETAILED-TASK-STATS-DESCRIPTION": "この表は、すべてのタスクの集計データです。タスクをクリックすると、その詳細情報が表示されます。時間に関する情報は、すべて時間数で示されます。",
+        "DETAILED-TASK-STATS-TASK": "タスク",
+        "DETAILED-TASK-STATS-ASSIGNEE": "担当者",
+        "TASK-HISTOGRAM-TITLE": "期間別タスク数",
+        "TASK-HISTOGRAM-TABLE": "表: 前のグラフのデータを表形式にしたもの",
+        "TASK-HISTOGRAM-TABLE-DATE": "日付",
+        "COUNT": "数",
+        "SUM": "合計",
+        "MIN-DURATION": "最小期間",
+        "MAX-DURATION": "最大期間",
+        "AVERAGE": "平均",
+        "STDDEV": "標準偏差"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "PROCESS-DEFINITION": "プロセス定義",
+        "DATE-RANGE": "日付範囲",
+        "SLOW-PROC-INST-NUMBER": "最も遅いプロセスインスタンスの表示数",
+        "HISTOGRAM-TITLE": "プロセスインスタンス数",
+        "HISTOGRAM-DESCRIPTION": "次のグラフは、選択した日付範囲内に開始され完了したプロセスインスタンスの数を示します。",
+        "ACTIVITY-DURATION-TABLE-TITLE": "アクティビティ期間の詳細",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "次の表は、プロセスのさまざまなアクティビティのタイミングを、延べ所要時間別に示します。時間に関する情報は、すべて時間数で示されます。",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "アクティビティ",
+        "ACTIVITY-DURATION-CHART-TITLE": "プロセスステップの合計時間",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "このグラフは、アクティビティの所要時間を示します。数値は、下の表の各アクティビティの所要時間を全期間合計したものです。",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "最も遅いプロセスインスタンス",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "この表は、指定した日付範囲内に完了した最も遅いプロセスインスタンスを示します。データをクリックすると、そのプロセスインスタンスのプロセス変数が表示されます。",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "期間",
+        "SLOWEST-PROCESS-INSTANCES-ID": "内部 ID",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "ビジネスキー",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "作成時刻",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "終了時刻",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "変数",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "変数名",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "変数の値",
+        "COUNT": "数",
+        "SUM": "合計",
+        "MIN-DURATION": "最小期間",
+        "MAX-DURATION": "最大期間",
+        "AVERAGE": "平均",
+        "STDDEV": "標準偏差"
+      },
+      "TASK-SLA": {
+        "PROCESS-DEFINITION": "プロセス定義",
+        "TASK": "タスク",
+        "DATE-RANGE": "日付範囲",
+        "SLA-DURATION": "このタスクを SLA の範囲内で完了するために必要な時間",
+        "SLA-NOT-OK": "サービスレベルアグリーメント (SLA) を満たしたタスクと満たさなかったタスク",
+        "ASSIGNEE-TABLE": "SLA の範囲内でタスクを完了しなかった担当者",
+        "ASSIGNEE": "担当者",
+        "COUNT": "数"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "プロセス定義の合計数: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "プロセスインスタンスの合計数: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "アクティブなプロセスインスタンスの合計数: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "完了したプロセスインスタンスの合計数: ",
+        "DETAIL-TABLE": "プロセス定義の詳細",
+        "DETAIL-TABLE-PROCESS": "プロセス定義",
+        "DETAIL-TABLE-TOTAL": "合計",
+        "DETAIL-TABLE-ACTIVE": "アクティブ",
+        "DETAIL-TABLE-COMPLETED": "完了日",
+        "PROC-INST-CHART-TITLE": "プロセスインスタンスの集計",
+        "DURATIONS-CHART-TITLE": "各プロセス定義の平均タイミング",
+        "DURATIONS-CHART-DESCRIPTION": "完了したプロセスインスタンスの平均期間と標準偏差 (時間数)。x 軸の数値は、上の表のデータを表したものです。"
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "プロセスのヒートマップ",
+        "TYPE-FILTERING": "すべてのプロセスステップを含む (このオプションのチェックを外すと、開始イベントやゲートウェイなどのパススルーステップが削除されます)",
+        "METRIC-TOTAL-COUNT": "ステップが実行された回数",
+        "METRIC-TOTAL-TIME": "プロセスステップの合計所要時間",
+        "METRIC-AVG-TIME": "プロセスステップの平均所要時間",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "回",
+        "METRIC-TOTAL-TIME-TOOLTIP": "時",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "時",
+        "GENERATING": "プロセスのヒートマップを作成しています ..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "レポートの保存",
+        "DESCRIPTION": "現在のパラメータ設定が保存され、新しいレポートがレポートリストに表示されます。そのレポートをクリックすると、保存されたパラメータ値を使用してレポートが生成されます。",
+        "NAME": "名前"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "データのエクスポート",
+        "NAME": "名前"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "レポートの削除",
+        "DESCRIPTION": "このレポートを削除しますか?",
+        "CONFIRM": "レポートの削除"
+      }
+    }
+  }
+}

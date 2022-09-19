@@ -1,0 +1,39 @@
+<div ng-if="!formData.outcomes || formData.outcomes.length === 0" class="clearfix form-actions activiti-form-outcomes">
+    <div class="center" ng-if="(hideButtons === undefined || hideButtons == null || hideButtons == false) && (disableForm == undefined || disableForm == null || disableForm == false)">
+        <button class="activiti-btn activiti-btn" ng-if="unClaim"
+                ng-disabled="unClaimButtonDisabled || model.uploadInProgress || readOnly"
+                translate="TASK.ACTION.UNCLAIM"
+                ng-click="onUnclaim()"></button>
+        <button ng-if="model.isTaskForm && currentUserInvolved && formData && formData.fields && formData.fields.length > 0" class="activiti-btn" ng-disabled="model.saveButtonDisabled || model.uploadInProgress || readOnly"
+                ng-click="saveForm()"><span class="glyphicon glyphicon-save"></span>{{'FORM.ACTION.SAVE' | translate}}</button>
+        <button ng-if="model.isTaskForm" id="form_complete_button" class="activiti-btn activiti-btn-primary" ng-disabled="model.completeButtonDisabled || !model.valid || (disableOutcomes != undefined && disableOutcomes != null && disableOutcomes) || model.uploadInProgress || model.formCompleteButtonDisabled || readOnly"
+                ng-click="completeForm('complete')" translate="FORM.DEFAULT-OUTCOME.COMPLETE"></button>
+        <button ng-if="!model.isTaskForm" id="form_complete_button" class="activiti-btn activiti-btn-primary" ng-disabled="model.completeButtonDisabled || !model.valid || (disableOutcomes != undefined && disableOutcomes != null && disableOutcomes) || model.uploadInProgress || model.formCompleteButtonDisabled || readOnly"
+                ng-click="completeForm('complete')" translate="FORM.DEFAULT-OUTCOME.START-PROCESS"></button>
+    </div>
+    <div class="center" ng-if="hideButtons !== undefined && hideButtons">
+     <button ng-if="model.isTaskForm && currentUserInvolved && formData && formData.fields && formData.fields.length > 0" class="activiti-btn" ng-disabled="(model.saveButtonDisabled || model.uploadInProgress || readOnly)"
+                ng-click="saveForm()"><span class="glyphicon glyphicon-save"></span>{{'FORM.ACTION.SAVE' | translate}}</button>
+        <button ng-if="model.isTaskForm" id="form_disable_button" class="activiti-btn activiti-btn-primary" disabled="disabled" translate="FORM.DEFAULT-OUTCOME.COMPLETE"></button>
+        <button ng-if="!model.isTaskForm" id="form_disable_button" class="activiti-btn activiti-btn-primary" disabled="disabled" translate="FORM.DEFAULT-OUTCOME.START-PROCESS"></button>
+    </div>
+</div>
+
+<div ng-if="formData.outcomes && formData.outcomes.length > 0" class="clearfix form-actions activiti-form-outcomes">
+    <div class="center" ng-if="(hideButtons === undefined || hideButtons == null || hideButtons == false) && (disableForm == undefined || disableForm == null || disableForm == false)">
+        <button class="activiti-btn activiti-btn" ng-if="unClaim"
+                ng-disabled="unClaimButtonDisabled || model.uploadInProgress || readOnly"
+                translate="TASK.ACTION.UNCLAIM"
+                ng-click="onUnclaim()"></button>
+        <button ng-if="model.isTaskForm && currentUserInvolved && formData && formData.fields && formData.fields.length > 0" class="activiti-btn" ng-disabled="model.saveButtonDisabled || model.uploadInProgress || readOnly"
+                ng-click="saveForm()"><span class="glyphicon glyphicon-save"></span>{{'FORM.ACTION.SAVE' | translate}}</button>
+        <button id="form_complete_button" class="activiti-btn activiti-btn-primary" ng-disabled="model.completeButtonDisabled || !model.valid || (disableOutcomes != undefined && disableOutcomes != null && disableOutcomes) || model.uploadInProgress || model.formCompleteButtonDisabled || readOnly"
+                ng-repeat="outcome in formData.outcomes" ng-click="completeForm(outcome)">{{outcome.name}}</button>
+    </div>
+    <div class="center" ng-if="hideButtons !== undefined && hideButtons">
+     <button ng-if="currentUserInvolved && formData && formData.fields && formData.fields.length > 0" class="activiti-btn" ng-disabled="(model.saveButtonDisabled || model.uploadInProgress || readOnly)"
+                ng-click="saveForm()"><span class="glyphicon glyphicon-save"></span>{{'FORM.ACTION.SAVE' | translate}}</button>
+        <button ng-if="!formData.selectedOutcome" id="form_disable_button" ng-repeat="outcome in formData.outcomes" class="activiti-btn activiti-btn-primary" disabled="disabled">{{outcome.name}}</button>        
+        <button ng-if="formData.selectedOutcome" id="form_disable_button" class="activiti-btn activiti-btn-primary" disabled="disabled">{{formData.selectedOutcome}}</button>
+    </div>
+</div>

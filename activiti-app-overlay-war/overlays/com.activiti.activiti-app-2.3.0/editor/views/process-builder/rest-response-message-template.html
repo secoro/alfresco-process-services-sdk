@@ -1,0 +1,19 @@
+<div class="detail-group clearfix first">
+    <div class="col-xs-12">
+        <div class="step-editor-inline-grid" ui-grid="responseMessageGridOptions" ui-grid-selection></div>
+        <div class="pull-right">
+            <div class="btn-group">
+                <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom" data-original-title=""
+                   title="" id="add-response-mapping-button" ng-click="addNewResponseMapping()"><i class="glyphicon glyphicon-plus"></i></a>
+                <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}" ng-disabled="!selectedResponseMapping"
+                   data-placement="bottom" data-original-title="" title=""
+                   ng-click="removeResponseMapping()"><i class="glyphicon glyphicon-minus"></i></a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.EDIT | translate}}" ng-disabled="!selectedResponseMapping" data-placement="bottom" data-original-title=""
+                   title="" id="edit-response-mapping-button" ng-click="editResponseMapping()"><i class="glyphicon glyphicon-pencil"></i></a>
+            </div>
+
+        </div>
+    </div>
+</div>

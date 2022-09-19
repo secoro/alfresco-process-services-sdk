@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <h2>{{'REST-ENDPOINT-TEST-MODAL.MODAL-TITLE' | translate}}</h2>
+</div>
+<div class="modal-body" ng-form="requestVarForm">
+    <div ng-show="(testDataFields.requestVariableValues || testDataFields.urlVariableValues || testDataFields.requestHeaderVariableValues) && !requestResult">
+        <div class="panel panel-default" ng-show="testDataFields.urlVariableValues && testDataFields.urlVariableValues.length > 0">
+            <div class="panel-body">
+                <p><i class="glyphicon glyphicon-info-sign"></i>&nbsp;{{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-INPUT-HEADER-URL' | translate}}</p>
+                <div class="row form-group clearfix" ng-repeat="urlVariableValue in testDataFields.urlVariableValues">
+                    <div class="col-md-12">
+                        <label for="{{urlVariableValue.name}}" class="control-label">{{urlVariableValue.name}} <span class="field-type"> - {{urlVariableValue.id}} - {{urlVariableValue.type}}</span></label>
+                        <input type="text" class="form-control" id="{{urlVariableValue.name}}" ng-model="urlVariableValue.value"
+                               placeholder="{{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-INPUT-PLACEHOLDER' | translate}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default" ng-show="testDataFields.requestVariableValues && testDataFields.requestVariableValues.length > 0">
+            <div class="panel-body">
+                <p><i class="glyphicon glyphicon-info-sign"></i>&nbsp;{{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-INPUT-HEADER-REQUEST-MAPPING' | translate}}</p>
+                <div class="row form-group clearfix" ng-repeat="requestVariableValue in testDataFields.requestVariableValues">
+                    <div class="col-md-12">
+                        <label for="{{requestVariableValue.name}}" class="control-label">{{requestVariableValue.name}} <span class="field-type"> - {{requestVariableValue.id}} - {{requestVariableValue.type}}</span></label>
+                        <input type="text" class="form-control" id="{{requestVariableValue.name}}" ng-model="requestVariableValue.value"
+                               placeholder="{{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-INPUT-PLACEHOLDER' | translate}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default" ng-show="testDataFields.requestHeaderVariableValues && testDataFields.requestHeaderVariableValues.length > 0">
+            <div class="panel-body">
+                <p><i class="glyphicon glyphicon-info-sign"></i>&nbsp;{{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-INPUT-HEADER-REQUEST-HEADER' | translate}}</p>
+                <div class="row form-group clearfix" ng-repeat="requestHeaderVariableValue in testDataFields.requestHeaderVariableValues">
+                    <div class="col-md-12">
+                        <label for="{{requestHeaderVariableValue.name}}" class="control-label">{{requestHeaderVariableValue.name}} <span class="field-type"> - {{requestHeaderVariableValue.id}} - {{requestHeaderVariableValue.type}}</span></label>
+                        <input type="text" class="form-control" id="{{requestHeaderVariableValue.name}}" ng-model="requestHeaderVariableValue.value"
+                               placeholder="{{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-INPUT-PLACEHOLDER' | translate}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="(!testDataFields.requestVariableValues && !testDataFields.urlVariableValues && !testDataFields.requestHeaderVariableValues) && !requestResult">
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <p>{{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-INPUT-HEADER-NOT-NEEDED' | translate}}</p>
+            </div>
+        </div>
+    </div>
+    <div ng-show="requestResult">
+        <div class="row clearfix" ng-if="formattedResult">
+            <div class="col-md-12">
+                <p>{{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-RESULT-HEADER' | translate}}</p>
+                <textarea class="form-control rest-response" rows="10" ng-class="{'success': isRequestSuccessful(), 'fail': !isRequestSuccessful()}"
+                          ng-model="formattedResult"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="pull-right" ng-show="!requestResult">
+        <button type="button" class="btn btn-sm btn-default" ng-click="cancel()">
+            {{'GENERAL.ACTION.CANCEL' | translate}}
+        </button>
+        <button type="button" class="btn btn-sm btn-default" ng-click="ok()">
+            {{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-TEST' | translate}}
+        </button>
+    </div>
+    <div class="pull-right" ng-show="requestResult">
+        <button type="button" class="btn btn-sm btn-default" ng-click="back()">
+            {{'REST-ENDPOINT-TEST-MODAL.TEST-DATA-BACK' | translate}}
+        </button>
+        <button type="button" class="btn btn-sm btn-default" ng-click="cancel()">
+            {{'ACTION.OK' | translate}}
+        </button>
+    </div>
+    <div class="loading pull-right" ng-show="loading">
+        <div class="l1"></div>
+        <div class="l2"></div>
+        <div class="l2"></div>
+    </div>
+</div>

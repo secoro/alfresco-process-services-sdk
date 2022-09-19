@@ -1,0 +1,481 @@
+<div class="main-list" id="main-list">
+    <div ng-if="hasTenantManagementCapability()" class="list-subheader clearfix" style="margin-top: 0px">
+    	<div>
+            <select ng-options="tenant.id as tenant.name for tenant in model.tenants"
+                    class="form-control pull-left"
+                    style="width: 50%;margin: 10px 0 0 10px;"
+                    ng-model="model.selectedTenantId"
+                    ng-change="selectTenant(model.selectedTenantId)">
+            </select>
+        </div>
+        <div class="btn-group pull-right">
+            <button class="btn" translate="IDM.TENANT-MGMT.CREATE" ng-click="showCreateTenantPopup()" ng-disabled="readOnly || !multiTenantMode">&nbsp;</button>
+        </div>
+    </div>
+    						
+    <div ng-if="!hasTenantManagementCapability()" class="list-subheader clearfix" style="height: 56px;margin-top: 0px">&nbsp;</div>
+    
+	<div class="list-wrapper" auto-height>
+
+		<ul ng-if="model.selectedTenant" class="full-list" ng-if="!model.loading">
+			<li role="presentation" ng-class="{active : model.currentTab == 'logo'}" ng-click="model.currentTab = 'logo'">
+				<div class="title" translate="IDM.TENANT-MGMT.LOGO-TITLE"></div>
+			</li>
+			<li role="presentation" ng-class="{active : model.currentTab == 'events'}" ng-click="model.currentTab = 'events'">
+				<div class="title" translate="IDM.TENANT-MGMT.EVENT-TITLE"></div>
+			</li>
+			<li role="presentation" ng-class="{active : model.currentTab == 'alfrescoRepos'}" ng-click="model.currentTab = 'alfrescoRepos'">
+				<div class="title" translate="IDM.TENANT-MGMT.ALFRESCO-REPO-TITLE"></div>
+			</li>
+			<li role="presentation" ng-class="{active : model.currentTab == 'endpoints'}" ng-click="model.currentTab = 'endpoints'">
+				<div class="title" translate="IDM.TENANT-MGMT.ENDPOINT-TITLE"></div>
+			</li>
+			<li role="presentation" ng-class="{active : model.currentTab == 'datasources'}" ng-click="model.currentTab = 'datasources'">
+				<div class="title" translate="IDM.TENANT-MGMT.DATA-SOURCE-TITLE"></div>
+			</li>
+			<li role="presentation" ng-class="{active : model.currentTab == 'documentTemplates'}" ng-click="model.currentTab = 'documentTemplates'">
+				<div class="title" translate="IDM.TENANT-MGMT.DOCUMENT-TEMPLATES-TITLE"></div>
+			</li>
+			<li role="presentation" ng-class="{active : model.currentTab == 'emailTemplates'}" ng-click="model.currentTab = 'emailTemplates'">
+				<div class="title" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATES-TITLE"></div>
+			</li>
+			<li role="presentation" ng-class="{active : model.currentTab == 'tenantConfig'}" ng-click="model.currentTab = 'tenantConfig'">
+				<div class="title" translate="IDM.TENANT-MGMT.TENANT-CONFIG-TITLE"></div>
+			</li>
+		</ul>
+
+		<div class="nothing-to-see" ng-if="model.tenants.length == 0">
+			<span translate="IDM.TENANT-MGMT.NO-TENANTS"></span>
+		</div>
+
+	</div>
+</div>
+
+<div class="main-content-wrapper">
+
+    <div class="main-content" ng-show="!model.loadingTenant">
+
+        <div class="header" ng-if="model.selectedTenant">
+
+            <div class="pull-right">
+                <button class="btn btn-clean" ng-click="showEditTenantModal()" ng-disabled="readOnly">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn btn-clean" ng-if="!model.lockTenant" ng-click="showDeleteTenantModal()" ng-disabled="readOnly">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+
+            <h2>{{model.selectedTenant.name}}</h2>
+
+            <div class="detail">
+
+                <span class="label" ng-if="model.selectedTenant.domain">{{'IDM.TENANT-MGMT.DOMAIN' | translate}}: </span>
+                <span ng-if="model.selectedTenant.domain">{{model.selectedTenant.domain}} </span>
+
+                <span class="label">{{'IDM.TENANT-MGMT.ACTIVE' | translate}}: </span>
+                <span ng-if="model.selectedTenant.active" class="glyphicon glyphicon-ok" style="color:green;"></span>
+                <span ng-if="!model.selectedTenant.active" class="glyphicon glyphicon-remove" style="color:red;"></span>
+
+            </div>
+
+        </div>
+
+        <div class="content" ng-show="model.selectedTenant" auto-height="model.selectedTenant" offset="6">
+
+            <div style="padding:0 10px;">
+                <span loading="model.loadingTenant"></span>
+
+                <div ng-show="!model.loadingTenant" style="margin-top: 20px; min-height: 0;">
+
+
+                    <div ng-if="model.currentTab == 'logo'" class="section">
+                        <span>{{ 'IDM.TENANT-MGMT.LOGO' | translate}}</span>
+
+                        <div ng-click="showUploadTenantLogoModal()" class="tenant-logo-preview">
+                            <div class="navbar">
+                                <div class="fixed-container" style="min-width: 100%;">
+                                    <div class="navbar-header">
+                                        <a class="landing-logo">
+                                            <img ng-if="model.selectedTenant.logoId != null && model.selectedTenant.logoId != undefined"
+                                                 ng-src="{{restRootUrl()}}/app/rest/tenants/{{model.selectedTenant.id}}/logo?{{model.selectedTenant.lastUpdate}}">
+                                            <img ng-if="model.selectedTenant.logoId == null || model.selectedTenant.logoId == undefined"
+                                                 ng-src="{{appResourceRoot}}../images/ic_exit_to_app_white_24px.png">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="model.currentTab == 'events'" class="section">
+
+                        <span loading="model.loadingTenantEvents"></span>
+
+                        <div ng-controller="IdmTenantEventController">
+                            <div ng-include="'views/includes/idm-tenant-events.html'" ></div>
+                        </div>
+
+                    </div>
+
+                    <div class="section" ng-if="alfrescoRepositories && model.currentTab == 'alfrescoRepos'" class="section" style="min-height: 0;">
+
+                        <!--div class="nothing-to-see subtle" ng-show="alfrescoRepositories.size == 0" translate="IDM.TENANT-MGMT.ALFRESCO-REPO-NONE"></div-->
+
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <h4 style="margin-top: 0px;">{{ 'IDM.TENANT-MGMT.ALFRESCO-REPO-TITLE' | translate}}</h4>
+                                <span>{{ 'IDM.TENANT-MGMT.ALFRESCO-REPO-SUB-TITLE' | translate}}</span>
+                            </div>
+
+                            <div class="col-xs-10">
+                                <div class="dynamicTable" ui-grid="gridOptionsAlfrescoRepositories" ui-grid-selection ui-grid-auto-resize ui-grid-cellnav
+                                     style="height: 182px"></div>
+                                <div class="pull-right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom"
+                                           data-original-title="" title=""
+                                           ng-disabled="readOnly"
+                                           ng-click="showAddNewAlfrescoRepository()"><i class="glyphicon glyphicon-plus"></i></a>
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}"
+                                           ng-disabled="!selectedAlfrescoRepository || readOnly"
+                                           data-placement="bottom" data-original-title="" title=""
+                                           ng-click="removeAlfrescoRepository()"><i class="glyphicon glyphicon-minus"></i></a>
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}"
+                                           ng-disabled="!selectedAlfrescoRepository"
+                                           data-placement="bottom" data-original-title="" title=""
+                                           ng-click="showEditAlfrescoRepository()"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section" ng-if="model.selectedTenant && model.currentTab == 'endpoints'" style="min-height: 0;" ng-controller="EndpointConfiguratorController">
+
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <h4 style="margin-top: 0px;">{{ 'IDM.TENANT-MGMT.ENDPOINT-TITLE' | translate}}</h4>
+                                <span>{{ 'IDM.TENANT-MGMT.ENDPOINT-SUB-TITLE' | translate}}</span>
+                            </div>
+
+                            <div class="col-xs-10">
+                                <div class="dynamicTable" ui-grid="gridOptionsEndpoint" ui-grid-selection ui-grid-auto-resize ui-grid-cellnav
+                                     style="height: 182px"></div>
+                                <div class="pull-right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom"
+                                           data-original-title="" title=""
+                                           ng-disabled="readOnly"
+                                           ng-click="showAddNewEndpointConfiguration()"><i class="glyphicon glyphicon-plus"></i></a>
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}"
+                                           ng-disabled="!selectedEndpointConfiguration || readOnly"
+                                           data-placement="bottom" data-original-title="" title=""
+                                           ng-click="removeEndpointConfiguration()"><i class="glyphicon glyphicon-minus"></i></a>
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}"
+                                           ng-disabled="!selectedEndpointConfiguration"
+                                           data-placement="bottom" data-original-title="" title=""
+                                           ng-click="showEditEndpointConfiguration()"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12"><br/></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <h4 style="margin-top: 0px;">{{ 'IDM.TENANT-MGMT.BASIC-AUTH-TITLE' | translate}}</h4>
+                                <span>{{ 'IDM.TENANT-MGMT.BASIC-AUTH-SUB-TITLE' | translate}}</span>
+                            </div>
+
+                            <div class="col-xs-10">
+                                <div class="dynamicTable" ui-grid="gridOptionsBasicAuth" ui-grid-selection ui-grid-auto-resize ui-grid-cellnav
+                                     style="height: 182px"></div>
+                                <div class="pull-right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom"
+                                           data-original-title="" title=""
+                                           ng-disabled="readOnly"
+                                           ng-click="showAddNewBasicAuthConfiguration()"><i class="glyphicon glyphicon-plus"></i></a>
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}"
+                                           ng-disabled="!selectedBasicAuthConfiguration || readOnly"
+                                           data-placement="bottom" data-original-title="" title=""
+                                           ng-click="removeBasicAuthConfiguration()"><i class="glyphicon glyphicon-minus"></i></a>
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}"
+                                           ng-disabled="!selectedBasicAuthConfiguration"
+                                           data-placement="bottom" data-original-title="" title=""
+                                           ng-click="showEditBasicAuthConfiguration()"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section" ng-if="model.selectedTenant && model.currentTab == 'datasources'" style="min-height: 0;" ng-controller="IdmDataSourceController">
+
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <h4 style="margin-top: 0px;">{{ 'IDM.TENANT-MGMT.DATA-SOURCE-TITLE' | translate}}</h4>
+                                <span>{{ 'IDM.TENANT-MGMT.DATA-SOURCE-SUB-TITLE' | translate}}</span>
+                            </div>
+
+                            <div class="col-xs-10">
+                                <div class="dynamicTable" ui-grid="gridOptionsDataSource" ui-grid-selection ui-grid-auto-resize ui-grid-cellnav
+                                     style="height: 182px"></div>
+                                <div class="pull-right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom"
+                                           data-original-title="" title=""
+                                           ng-disabled="readOnly"
+                                           ng-click="showAddNewDataSource(); hideChecker()"><i class="glyphicon glyphicon-plus"></i></a>
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}"
+                                           ng-disabled="!selectedDataSource || readOnly"
+                                           data-placement="bottom" data-original-title="" title=""
+                                           ng-click="removeDataSource()"><i class="glyphicon glyphicon-minus"></i></a>
+                                        <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}"
+                                           ng-disabled="!selectedDataSource"
+                                           data-placement="bottom" data-original-title="" title=""
+                                           ng-click="showEditDataSource(); hideChecker()"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="model.currentTab == 'documentTemplates'" ng-controller="IdmDocumentTemplateController">
+
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default" ng-click="showUploadTemplateModal()" ng-disabled="readOnly">
+                                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD' | translate}}
+                            </button>
+                        </div>
+
+                        <div class="input-group user-search-field">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </span>
+                            <input type="text" ng-model="documentTemplateModel.nameFilter" class="form-control" ng-change="refreshDelayed()">
+                        </div>
+
+                        <span loading="documentTemplateModel.loadingDocumentTemplates"></span>
+
+                        <div ng-if="!documentTemplateModel.loadingDocumentTemplates" class="section" style="padding-top:10px;">
+
+                            <span ng-if="documentTemplateModel.templates.data && documentTemplateModel.templates.data.length > 0" >
+                                {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.MATCHING-TEMPLATES' | translate:documentTemplateModel.templates}}
+                                <a ng-click="showPreviousTemplates()" ng-show="documentTemplateModel.page > 0">&laquo; {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.SHOW-PREVIOUS' | translate}} {{documentTemplateModel.pageSize}}</a>
+                                <span ng-show="documentTemplateModel.page > 0 && documentTemplateModel.moreTemplates">|</span>
+                                <a ng-click="showNextTemplates()" ng-show="documentTemplateModel.moreTemplates">{{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.SHOW-NEXT' | translate}} {{documentTemplateModel.pageSize}} &raquo;</a>
+                            </span>
+
+                            <div class="sort pull-right" ng-if="documentTemplateModel.templates && documentTemplateModel.templates.data && documentTemplateModel.templates.data.length > 0">
+                                <div class="dropdown btn-group btn-group-sm">
+                                    <a class="dropdown-toggle" trigger="click" placement="bottom-right" ng-model="documentTemplateModel.sort" ng-change="sortChanged()"
+                                       ng-options="sort.id as (sort.title | translate) for sort in documentTemplateModel.possibleSorts" bs-select></a>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <table width="100%" class="users" ng-if="documentTemplateModel.templates.data && documentTemplateModel.templates.data.length > 0">
+                                <tr>
+                                    <th width="40%">{{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.NAME' | translate}}</th>
+                                    <th width="30%">{{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD-DATE' | translate}}</th>
+                                    <th width="30%"></th>
+                                </tr>
+                                <tr ng-repeat="template in documentTemplateModel.templates.data">
+                                    <td style="font-weight: bolder" ng-bind-html="template.name"></td>
+                                    <td>{{template.created | dateformat}}</td>
+                                    <td align="center">
+                                        <div style="margin-bottom: 4px;">
+                                            <a href="" ng-click="showUploadNewDocumentTemplateVersion(template)">
+                                                <span class="glyphicon glyphicon-upload"></span><span> {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD-NEW-VERSION' | translate}}</span>
+                                            </a>
+                                        </div>
+                                        <div style="margin-bottom: 4px;">
+                                            <a href="{{template.downloadUrl}}">
+                                                <span class="glyphicon glyphicon-save"></span><span> {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.DOWNLOAD' | translate}}</span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="" ng-click="showDeleteTemplateModal(template)">
+                                                <span class="glyphicon glyphicon-remove"></span><span> {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.DELETE' | translate}}</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div ng-if="!documentTemplateModel.templates.data || documentTemplateModel.templates.data.length == 0" class="actions">
+                                <span>{{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.NO-FOUND' | translate}}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                    
+                    <!-- Email templates start -->
+
+					<div ng-if="model.currentTab == 'emailTemplates'"
+						ng-controller="IdmEmailTemplateController">
+
+				<ul class="nav nav-tabs" style="margin-top:10px;font-size:16px;">
+                    <li role="presentation" ng-class="{active : emailTemplateModel.activeTab == 'system'}" ng-click="emailTemplateModel.activeTab = 'system'">
+                        <a href="" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATE.SYSTEM-TEMPLATES"></a>
+                    </li>
+                    <li role="presentation" ng-class="{active : emailTemplateModel.activeTab == 'custom'}" ng-click="emailTemplateModel.activeTab = 'custom'">
+                        <a href="" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATE.CUSTOM-TEMPLATES"></a>
+                    </li>
+                </ul>
+                
+						<table style="margin-top:20px;" ng-if="emailTemplateModel.activeTab == 'system'" width="100%" class="users">
+							<tbody>
+								<tr>
+									<th width="90%" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATE.NAME"></th>
+									<th width="10%%"></th>
+								</tr>
+								<tr ng-repeat="template in emailTemplateModel.systemTemplates.data">
+									<td>{{template.name}}</td>
+									<td align="center" ng-click="showEditTemplate(template)"><i
+										class="glyphicon glyphicon-edit"></i></td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<div ng-if="emailTemplateModel.activeTab == 'custom'">
+						<div>
+						<div class="pull-right">
+                            <button type="button" class="btn btn-default" ng-click="showCreateTemplate()" ng-disabled="readOnly">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'IDM.TENANT-MGMT.EMAIL-TEMPLATE.CREATE' | translate}}
+                            </button>
+                        </div>
+
+                        <div class="input-group user-search-field">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </span>
+                            <input type="text" ng-model="emailTemplateModel.nameFilter" class="form-control" ng-change="refreshDelayed()">
+                        </div>
+                        </div>
+
+						<span ng-if="emailTemplateModel.templates.data && emailTemplateModel.templates.data.length > 0">
+							{{'IDM.TENANT-MGMT.EMAIL-TEMPLATE.MATCHING-TEMPLATES' | translate:emailTemplateModel.templates}} <a
+							ng-click="showPreviousTemplates()"
+							ng-show="emailTemplateModel.page > 0">&laquo;
+								{{'IDM.TENANT-MGMT.EMAIL-TEMPLATE.SHOW-PREVIOUS' |
+								translate}} {{emailTemplateModel.pageSize}}</a> <span
+							ng-show="emailTemplateModel.page > 0 && emailTemplateModel.moreTemplates">|</span>
+							<a ng-click="showNextTemplates()"
+							ng-show="emailTemplateModel.moreTemplates">{{'IDM.TENANT-MGMT.EMAIL-TEMPLATE.SHOW-NEXT'
+								| translate}} {{emailTemplateModel.pageSize}} &raquo;</a>
+						</span>
+
+						<div class="sort pull-right"
+							ng-if="emailTemplateModel.templates && emailTemplateModel.templates.data && emailTemplateModel.templates.data.length > 0">
+							<div class="dropdown btn-group btn-group-sm">
+								<a class="dropdown-toggle" trigger="click"
+									placement="bottom-right" ng-model="emailTemplateModel.sort"
+									ng-change="sortChanged()"
+									ng-options="sort.id as (sort.title | translate) for sort in emailTemplateModel.possibleSorts"
+									bs-select></a>
+								</div>
+							</div>
+
+						<span loading="emailTemplateModel.loadingEmailTemplates"></span>
+						
+						<table width="100%" class="users" ng-if="!emailTemplateModel.loadingEmailTemplates && (emailTemplateModel.templates.data && emailTemplateModel.templates.data.length > 0)">
+							<tbody>
+								<tr>
+									<th width="50%" translate="IDM.TENANT-MGMT.EMAIL-TEMPLATE.NAME"></th>
+									<th width="30%">{{'IDM.TENANT-MGMT.EMAIL-TEMPLATE.CREATED-DATE' | translate}}</th>
+									<th width="10%%"></th>
+									<th width="10%%"></th>
+								</tr>
+								<tr ng-repeat="template in emailTemplateModel.templates.data">
+									<td>{{template.name}}</td>
+									<td>{{template.created | dateformat}}</td>
+									<td align="center" ng-click="showEditTemplate(template)"><i
+										class="glyphicon glyphicon-edit"></i></td>
+									<td align="center">
+                                        <span ng-if="!readOnly" ng-click="showDeleteTemplate(template)"><i class="glyphicon glyphicon-trash"></i></span>
+                                    </td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<div ng-if="!emailTemplateModel.loadingEmailTemplates && (!emailTemplateModel.templates.data || emailTemplateModel.templates.data.length == 0)" class="actions">
+                                <span>{{'IDM.TENANT-MGMT.EMAIL-TEMPLATE.NO-FOUND' | translate}}</span>
+                            </div>
+					</div>
+					</div>
+
+					<!-- Email templates end -->
+
+                    <div ng-if="model.currentTab == 'tenantConfig'" ng-controller="IdmTenantConfigController" style="min-height: 0;">
+
+                        <form>
+                        <div class="form-group clearfix">
+                            <div class="col-xs-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="model.boxMetaDataSupport" ng-true-value="'true'" ng-false-value="'false'" ng-change="updateBoxMetaDataSupport()" ng-disabled="readOnly"> {{'IDM.TENANT-MGMT.POPUP.BOX-METADATA-SUPPORT' | translate}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group clearfix">
+                            <div class="col-xs-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="model.decisionTableValidation" ng-true-value="'true'" ng-false-value="'false'" ng-change="updateDecisionTableValidation()" ng-disabled="readOnly"> {{'IDM.TENANT-MGMT.POPUP.DECISION-TABLE-VALIDATE-EXPRESSIONS' | translate}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <div class="col-xs-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="model.involvedUsersCanEditForms" ng-true-value="'true'" ng-false-value="'false'" ng-change="updateInvolvedUsersCanEditForms()" ng-disabled="readOnly"> {{'IDM.TENANT-MGMT.POPUP.INVOLVED-USERS-CAN-EDIT-FORMS' | translate}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <div class="col-xs-4">
+                                 <label class="control-label">
+                                        {{'IDM.TENANT-MGMT.POPUP.PASSWORD-MIN-LENGTH' | translate}}
+                                 </label>
+                            </div>
+                            <div class="col-xs-8">
+                                <input type="text" ng-model="model.passwordMinLength" maxlength="3" ng-change="updatePasswordMinLength()" ng-disabled="readOnly">
+                            </div>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <div class="col-xs-4">
+                                <label class="control-label">
+                                    {{'IDM.TENANT-MGMT.POPUP.GLOBAL-DATE-FORMAT' | translate}}
+                                </label>
+                            </div>
+                            <div class="col-xs-8">
+                                <input type="text" ng-model="model.globalDateFormat" ng-change="updateGlobalDateFormat()" ng-disabled="readOnly">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="nothing-to-see" ng-if="model.tenants.length > 0 && !model.selectedTenant && !model.loading">
+            <span>{{'IDM.TENANT-MGMT.NO-SELECTION' | translate}}</span>
+        </div>
+
+    </div>
+</div>

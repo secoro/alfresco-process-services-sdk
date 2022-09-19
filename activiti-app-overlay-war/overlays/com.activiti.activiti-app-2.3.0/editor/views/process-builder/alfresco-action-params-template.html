@@ -1,0 +1,39 @@
+<div class="detail-group clearfix">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <label>{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAMETERS' | translate}}</label>
+            <div style="padding-top:5px;" class="row row-no-gutter">
+                <div class="col-xs-6">
+                    <div class="kis-listener-grid" ui-grid="gridOptions" ui-grid-auto-resize ui-grid-selection></div>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <a class="btn btn-icon btn-lg" id="add-request-header-button" ng-click="addNewActionParam()">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </a>
+                            <a class="btn btn-icon btn-lg" ng-disabled="!selectedActionParam" ng-click="removeActionParam()">
+                                <i class="glyphicon glyphicon-minus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <div ng-if="selectedActionParam" ng-form="actionParamsForm">
+                        <div class="form-group"
+                             ng-class="{'has-error': actionParamsForm.paramName.$invalid}">
+                            <label for="paramName">{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-NAME' | translate}}</label>
+                            <input type="text" id="paramName" name="paramName" class="form-control"
+                                   ng-model="selectedActionParam.name" ng-required="true" placeholder="{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-NAME' | translate}}" ng-change="saveActionParams()">
+                        </div>
+                        <div class="form-group"
+                             ng-class="{'has-error': actionParamsForm.paramValue.$invalid}">
+                            <label for="paramValue">{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-VALUE' | translate}}</label>
+                            <input type="text" id="paramValue" name="paramValue" ng-required="true"
+                                   class="form-control" ng-model="selectedActionParam.value" placeholder="{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-VALUE' | translate}}" ng-change="saveActionParams()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,175 @@
+
+<div class="subheader editor-toolbar" id="editor-header">
+    <div class="fixed-container">
+        <div class="btn-group">
+            <div class="btn-toolbar pull-left" ng-controller="AppDefinitionToolbarController" ng-cloak>
+                <button id="{{item.id}}"
+                        title="{{item.title | translate}}"
+                        ng-repeat="item in items"
+                        ng-switch on="item.type"
+                        class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
+                        ng-disabled="item.type == 'separator' || item.enabled == false || (readOnly && item.disableOnReadonly)"
+                        ng-click="toolbarButtonClicked($index)">
+                    <i ng-switch-when="button" ng-class="item.cssClass" class="toolbar-button" data-toggle="tooltip" title="{{item.title | translate}}"></i>
+                    <div ng-switch-when="separator" ng-class="item.cssClass"></div>
+                </button>
+              </div>
+            </div>
+            <div class="btn-group pull-right" ng-show="!secondaryItems.length">
+                <div class="btn-toolbar pull-right" ng-controller="AppDefinitionToolbarController">
+                <button title="{{item.title | translate}}" ng-repeat="item in secondaryItems" ng-switch on="item.type" class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
+                    ng-disabled="item.type == 'separator' || (item.disableOnReadonly && readOnly)" ng-click="toolbarSecondaryButtonClicked($index)" id="{{item.id}}">
+                    <i ng-switch-when="button" ng-class="item.cssClass" class="toolbar-button" data-toggle="tooltip" title="{{item.title | translate}}"></i>
+                    <div ng-switch-when="separator" ng-class="item.cssClass"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid content" ng-if="currentAppDefinition" auto-height offset="40">
+    <h2 translate="APP.DETAILS.TITLE" translate-values="currentAppDefinition"></h2>
+    <div class="content-canvas-wrapper">
+        <div class="content-canvas">
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="preview-wrapper active">
+                        <h3>{{'APP.TITLE.PREVIEW' | translate}}</h3>
+                        <div class="app preview {{currentAppDefinition.definition.theme}}">
+                            <div class="app-content">
+                                <h3>
+                                    {{currentAppDefinition.name | limitTo:35}}
+                                    <span ng-if="currentAppDefinition.name.length > 35">...</span>
+                                </h3>
+                                <p>
+                                    {{currentAppDefinition.description | limitTo:80}}
+                                    <span ng-if="currentAppDefinition.description.length > 80">...</span>
+                                </p>
+                            </div>
+                            <div class="backdrop">
+                                <i ng-show="!currentAppDefinition.definition.icon" class="icon icon-choice"></i>
+                                <i ng-show="currentAppDefinition.definition.icon" class="glyphicon {{currentAppDefinition.definition.icon}}"></i>
+                            </div>
+                            <div class="logo">
+                                <i ng-show="!currentAppDefinition.definition.icon" class="icon icon-choice"></i>
+                                <i ng-show="currentAppDefinition.definition.icon" class="glyphicon {{currentAppDefinition.definition.icon}}"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <label>{{'APP.ICON' | translate}}</label>
+                        <div id="toggle-icon-select" class="selection" ng-click="changeIcon($event)">
+                            <i class="glyphicon {{currentAppDefinition.definition.icon}}"></i> {{'APP.ACTION.SELECT-ICON' | translate}} <i class="icon icon-caret-down"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8" style="margin-top:10px">
+                    <div class="form-group">
+                        <label>{{'APP.THEME' | translate}}</label>
+                        <div id="toggle-theme-select" class="selection" ng-click="changeTheme($event)">
+                            <span class="app app-swatch {{currentAppDefinition.definition.theme}}"></span> {{'APP.ACTION.SELECT-THEME' | translate}} <i class="icon icon-caret-down"></i>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="hasPublishAppCapability()" class="col-xs-8" style="margin-top:10px">
+                    <label>{{'APP.TITLE.PUBLISH-IDENTITIES-HEADER' | translate}}</label>
+                </div>
+                <div ng-if="hasPublishAppCapability()" class="col-xs-8" style="margin-top:10px">
+                    <a style="font-size: 15px;"
+                          select-people-popover
+                          close-on-select="true"
+                          exclude-user-ids="model.currentlySharedUserIds"
+                          on-people-selected="addPublishUser(user)"
+                          email-mode-disabled="true"
+                          placement="bottom-left">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span>{{'SHARE-INFO.ACTION.ADD' | translate}}</span>
+                    </a>
+    
+                    <a style="padding-left: 10px; font-size: 15px;"
+                          select-group-popover
+                          close-on-select="true"
+                          on-group-selected="addPublishGroup(group)"
+                          exclude-group-ids="model.currentlySharedGroupIds"
+                          placement="bottom-left">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span>{{'SHARE-INFO.ACTION.ADD-GROUP' | translate}}</span>
+                    </a>
+    
+                    <div class="publish-identity-info">
+    
+                        <div class="no-results" style="height: 40px;" ng-show="!currentAppDefinition.definition.publishIdentityInfo || currentAppDefinition.definition.publishIdentityInfo.length == 0">
+                            <span>{{'APP.TITLE.NO-PUBLISH-IDENTITIES' | translate}}</span>
+                        </div>
+    
+                        <div class="publish-identity-list" ng-if="currentAppDefinition.definition.publishIdentityInfo && currentAppDefinition.definition.publishIdentityInfo.length > 0">
+    
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th style="width:70%">{{'APP.TITLE.PUBLISH-TO-DASHBOARD' | translate}}</th>
+                                    <th style="width:15%" class="text-center">{{'PROCESS.POPUP.ACTIONS' | translate}}</th>
+                                </tr>
+                                </thead>
+                            </table>
+    
+                            <div class="publish-identity-list-table-wrapper">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr class="sharing-entry" ng-repeat="info in currentAppDefinition.definition.publishIdentityInfo">
+                                            <td style="width:70%">
+                                                <i class="glyphicon glyphicon-user" ng-if="info.person"></i>
+                                                <span user-name="info.person" ng-if="info.person"></span>
+    
+                                                <i class="glyphicon glyphicon-list-alt" ng-if="info.group"></i>
+                                                <span ng-if="info.group">{{info.group.name}}</span>
+                                            </td>
+                                            <td style="width:15%" class="text-center">
+                                                <i class="glyphicon glyphicon-remove" ng-click="removePublishIdentity(info)"></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>{{'APP.DETAILS.MODELS-TITLE' | translate}}
+
+                    </h3>
+                    <div class="btn-group">
+                        <button id="toggle-included-models" class="btn btn-default" ng-click="editIncludedModels($event)" class="stencil-info-edit-properties" ng-disabled="readOnly">
+                            {{'APP.ACTION.EDIT-MODELS' | translate}}
+                        </button>
+                    </div>
+                    <div class="no-results" ng-show="!currentAppDefinition.definition.models.length">
+                        {{'APP.DETAILS.NO-MODELS-SELECTED' | translate}}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 item-wrapper">
+                    <div class="item fadein" ng-repeat="model in currentAppDefinition.definition.models">
+                        <div class="item-box" ng-style="{'background-image': 'url(\'' + config.contextRoot + '/app/rest/models/' + model.id + '/thumbnail\')'}">
+                            <div class="actions">
+                                <span class="badge">v{{model.version}}</span>
+                            </div>
+                            <div class="details">
+                                <h3 class="truncate" title="{{model.name}}">
+                                    {{model.name}}
+                                </h3>
+                                <p>{{model.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

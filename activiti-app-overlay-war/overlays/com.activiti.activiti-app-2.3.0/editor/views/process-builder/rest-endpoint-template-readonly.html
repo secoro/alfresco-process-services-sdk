@@ -1,0 +1,14 @@
+<div class="detail-group clearfix first">
+    <label translate="FORM-BUILDER.COMPONENT.BASE-ENDPOINT"></label>
+    <select id="rest-endpoint-value" class="form-control"
+            ng-options="endpointLabel(endpoint.name, endpoint.protocol, endpoint.host, endpoint.port, endpoint.path) for endpoint in endpointConfigurations track by endpoint.id"
+            ng-model="step.endpoint" disabled>
+        <option value="">{{'FORM-BUILDER.COMPONENT.NO-ENDPOINT-SELECTED' | translate}}</option>
+    </select>
+</div>
+
+<div class="detail-group clearfix first">
+    <label translate="FORM-BUILDER.COMPONENT.REST-URL"></label>
+    <input type="text" class="form-control" ng-model="step.restUrl" id="rest-url-value" ng-trim="false"
+           store-cursor-position="insertRestUrlField.position" disabled>
+</div>

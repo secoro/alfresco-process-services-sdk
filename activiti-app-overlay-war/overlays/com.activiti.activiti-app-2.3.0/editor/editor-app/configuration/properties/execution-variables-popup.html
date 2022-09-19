@@ -1,0 +1,71 @@
+<div class="modal" ng-controller="ActivitiExecutionVariablesPopupCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content" ng-form="globalForm">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h2>
+            </div>
+            <div class="modal-body">
+
+                <div class="row row-no-gutter">
+                    <div class="col-xs-6">
+                        <div ng-if="translationsRetrieved" class="kis-listener-grid" ui-grid="gridOptions" ui-grid-selection></div>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom" data-original-title="" title="" ng-click="addNewVariable()"><i class="glyphicon glyphicon-plus"></i></a>
+                                <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}" data-placement="bottom" data-original-title="" title="" ng-click="removeVariable()"><i class="glyphicon glyphicon-minus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div ng-if="selectedVariable" ng-form="variableForm">
+                            <div class="form-group" ng-class="{'has-error': variableForm.variableName.$invalid}">
+                                <label for="variableName">{{'PROPERTY.EXECUTION.VARIABLES.VARIABLENAME.LABEL' | translate}}</label>
+                                <span class="marker">*</span>
+                                <input type="text" id="variableName" name="variableName" class="form-control" variable-identifier ng-model="selectedVariable.variableName" placeholder="{{'PROPERTY.EXECUTION.VARIABLES.VARIABLENAME.PLACEHOLDER' | translate}}" required/>
+                            </div>
+            				<div class="form-group">
+            			   		<label for="variableType">{{'PROPERTY.EXECUTION.VARIABLES.VARIABLETYPE.LABEL' | translate}}</label>
+                                <select id="variableType" class="form-control" ng-model="selectedVariable.variableType"
+                                        ng-options="variableType for variableType in variableTypes">
+                                </select>
+            				</div>
+            				<div class="form-group">
+                                <label for="mapVariable">{{'PROPERTY.EXECUTION.VARIABLES.MAPVARIABLE.LABEL' | translate}}</label>
+                                <input type="checkbox" id="mapVariable" name="mapVariable" class="form-control" ng-model="selectedVariable.mapVariable" />
+                            </div>
+                            <div class="form-group" ng-show="selectedVariable.mapVariable">
+                                <label for="mappedDataModel">{{'PROPERTY.EXECUTION.VARIABLES.MAPPEDDATAMODEL.LABEL' | translate}}</label>
+                                <select id="mappedDataModel" class="form-control" ng-model="selectedVariable.mappedDataModel"
+                                        ng-options="dataModel.id as dataModel.name for dataModel in dataModels" ng-change="selectDataModel()">
+                                </select>
+                            </div>
+                            <div class="form-group" ng-show="selectedVariable.mapVariable && selectedVariable.mappedDataModel">
+                                <label for="mappedEntity">{{'PROPERTY.EXECUTION.VARIABLES.MAPPEDENTITY.LABEL' | translate}}</label>
+                                <select id="mappedEntity" class="form-control" ng-model="selectedVariable.mappedEntity"
+                                        ng-options="entity.name as entity.name for entity in dataModelEntities" ng-change="selectEntity()">
+                                </select>
+                            </div>
+                            <div class="form-group" ng-show="selectedVariable.mapVariable && selectedVariable.mappedEntity">
+                                <label for="mappedColumn">{{'PROPERTY.EXECUTION.VARIABLES.MAPPEDCOLUMN.LABEL' | translate}}</label>
+                                <select id="mappedColumn" class="form-control" ng-model="selectedVariable.mappedColumn"
+                                        ng-options="attribute.name as attribute.name for attribute in dataModelAttributes">
+                                </select>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': variableForm.mappedVariableName.$invalid}" ng-show="selectedVariable.mapVariable && selectedVariable.mappedColumn">
+                                <label for="mappedVariableName">{{'PROPERTY.EXECUTION.VARIABLES.MAPPEDVARIABLENAME.LABEL' | translate}}</label>
+                                <input type="text" id="mappedVariableName" name="mappedVariableName" class="form-control" ng-model="selectedVariable.mappedVariableName" placeholder="{{'PROPERTY.EXECUTION.VARIABLES.VARIABLENAME.PLACEHOLDER' | translate}}" />
+                            </div>
+                        </div>
+                        <div ng-if="!selectedVariable" class="muted no-property-selected" translate>PROPERTY.EXECUTION.VARIABLES.UNSELECTED</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" ng-disabled="readOnly" class="btn btn-primary" ng-disabled="globalForm.$invalid" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

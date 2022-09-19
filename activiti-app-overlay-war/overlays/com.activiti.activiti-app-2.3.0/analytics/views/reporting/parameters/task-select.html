@@ -1,0 +1,14 @@
+<div ng-controller="ReportingParamTaskSelectController" ng-init="setParameter(parameter)">
+
+    <span ng-if="parameter.name">{{parameter.name}}</span>
+    <span ng-if="!parameter.name && parameter.nameKey">{{(parameter.nameKey) | translate}}</span>
+
+    <select ng-show="parameter.taskNames && parameter.taskNames.length > 0" class="form-control input-group"
+            ng-model="parameter.value"
+            ng-change="parameterValueUpdated()"
+            ng-disabled="model.loading">
+        <option ng-selected="taskName === parameter.value" ng-repeat="taskName in parameter.taskNames" value="{{taskName}}">{{taskName}}</option>
+    </select>
+
+    <div ng-show="!parameter.taskNames || parameter.taskNames.length == 0">{{'REPORTING.PARAMETER-WIDGETS.NO-TASKS' | translate}}</div>
+</div>

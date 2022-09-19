@@ -1,0 +1,162 @@
+<div class="modal" style="display:block" ng-controller="ActivitiProcessvariableMappingsReusableTablePopupCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content" ng-form="globalForm">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h2>
+            </div>
+            <div class="modal-body">
+                <div ng-show="loadingTable">
+                    <p class="loading">{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.LOADING' | translate}}</p>
+                </div>
+                <div ng-show="!loadingTable">
+                    <div>
+                        <div>
+
+                                <!--Grid Section Start-->
+                                <div class="row row-no-gutter">
+                                    <div class="col-xs-6">
+                                        <div class="kis-listener-grid" ui-grid="gridOptions" ui-grid-selection ui-grid-auto-resize></div>
+                                        <div class="pull-right">
+                                            <div class="btn-group">
+                                                <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{'ACTION.ADD' | translate}}" data-placement="bottom" data-original-title="" title="" ng-click="addField()"><i class="glyphicon glyphicon-plus"></i></a>
+                                                <a ng-disabled="disableRemove()" class="btn btn-icon btn-lg" rel="tooltip" data-title="{{'ACTION.REMOVE' | translate}}" data-placement="bottom" data-original-title="" title="" ng-click="removeField()"><i class="glyphicon glyphicon-minus"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Grid Section End-->
+
+                                    <div class="col-xs-6">
+                                        <div ng-show="currentVariableMapping">
+
+                                            <!--Type of mapping Start-->
+                                            <div>
+                                                <div class="form-group clearfix">
+                                                    <label>{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.PROPERTY-TYPE-MAPPING' | translate}}</label>
+                                                    <div class="btn-group btn-group-justified">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-default" ng-click="setTypeOfMapping('inputMap')" ng-model="currentVariableMapping.typeOfMapping"
+                                                                    ng-class="{'active' : currentVariableMapping.typeOfMapping === 'inputMap'}">{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.INPUT-MAPPING' | translate}}</button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-default" ng-click="setTypeOfMapping('outputMap')" ng-model="currentVariableMapping.typeOfMapping"
+                                                                    ng-class="{'active' : currentVariableMapping.typeOfMapping === 'outputMap'}">{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.OUTPUT-MAPPING' | translate}}</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Type of mapping End-->
+
+                                            <!--Input process Variable Start-->
+                                            <div ng-show="currentVariableMapping.typeOfMapping ==='inputMap'">
+
+                                                <div class="form-group clearfix">
+                                                    <label>{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.PROPERTY-VALUE-TYPE' | translate}}</label>
+                                                    <div class="btn-group btn-group-justified">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-default" ng-click="setInputVariableType('formField')" ng-model="currentVariableMapping.inVariableType"
+                                                                    ng-class="{'active' : (!currentVariableMapping.inVariableType || currentVariableMapping.inVariableType == 'formField')}">{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.PROPERTY-FORM-FIELD' | translate}}</button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-default" ng-click="setInputVariableType('restResponse')" ng-model="currentVariableMapping.inVariableType"
+                                                                    ng-class="{'active' : currentVariableMapping.inVariableType == 'restResponse'}">{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.PROPERTY-TYPE-VARIABLE' | translate}}</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <label>{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.INPROCESSVARIABLE' | translate}}:</label>
+
+                                                <div class="form-group clearfix" ng-show="currentVariableMapping.inVariableType == 'formField'">
+                                                    <div id="inputVariableField" field-select="currentVariableMapping.inProcessVariable"
+                                                         editor-type="bpmn" all-steps="allSteps" step-id="selectedShape.resourceId"
+                                                         include-type="true" expand-relative="true" field-type-filter="mappingFieldTypes" ng-required="!currentVariableMapping.outProcessVariable"></div>
+                                                </div>
+
+                                                <div class="form-group clearfix" ng-show="currentVariableMapping.inVariableType == 'restResponse'">
+                                                    <div id="inputVariableRest"  field-select="currentVariableMapping.inProcessVariable" include-type="true"
+                                                         variables-type="rest" editor-type="bpmn" expand-relative="true"
+                                                         select-title="'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.INPROCESSVARIABLE.PLACEHOLDER'"
+                                                         all-steps="allSteps" step-id="selectedShape.resourceId" ng-required="!currentVariableMapping.outProcessVariable"></div>
+                                                </div>
+
+                                            </div>
+                                            <!--Input process Variable End-->
+
+
+                                            <!--Table Input Expression Variable Start-->
+                                            <div class="form-group" ng-show="currentVariableMapping.typeOfMapping ==='inputMap'">
+                                                <label>{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.TABLEVARIABLE' | translate}}</label>
+                                                <div id="inputExpressionVariable" field-select="currentVariableMapping.tableVariable"
+                                                     fields="inputExpression"
+                                                     select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-RESPONSE-VARIABLE'"
+                                                     include-type="true" expand-relative="true"  required></div>
+                                            </div>
+                                            <!--Table Input Expression Variable End-->
+
+                                            <!--Table Output Expression Variable Start-->
+                                            <div class="form-group" ng-show="currentVariableMapping.typeOfMapping ==='outputMap'">
+                                                <label>{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.TABLEVARIABLE' | translate}}</label>
+                                                <div id="outputExpressionVariable" field-select="currentVariableMapping.tableVariable"
+                                                     fields="outputExpression"
+                                                     select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-RESPONSE-VARIABLE'"
+                                                     include-type="true" expand-relative="true"  required></div>
+                                            </div>
+                                            <!--Table Output Expression Variable Start-->
+
+
+                                            <!--Output process Variable Start-->
+                                            <div ng-show="currentVariableMapping.typeOfMapping ==='outputMap'" class="form-group clearfix">
+                                                <label>{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.PROPERTY-VALUE-TYPE' | translate}}</label>
+                                                <div class="btn-group btn-group-justified">
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-default" ng-click="setOutputVariableType('staticValue')" ng-model="outVariableType"
+                                                                ng-class="{'active' : currentVariableMapping.outVariableType == 'staticValue'}">{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.PROPERTY-NEWVARIABLE' | translate}}
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-default" ng-click="setOutputVariableType('formField')" ng-model="outVariableType"
+                                                                ng-class="{'active' : (!currentVariableMapping.outVariableType || currentVariableMapping.outVariableType == 'formField')}">{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.PROPERTY-FORM-FIELD' | translate}}</button>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-default" ng-click="setOutputVariableType('restResponse')" ng-model="outVariableType"
+                                                                ng-class="{'active' : currentVariableMapping.outVariableType == 'restResponse'}">{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.POPUP.PROPERTY-TYPE-VARIABLE' | translate}}</button>
+                                                    </div>
+                                                </div>
+
+                                                <label>{{'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.OUTPROCESSVARIABLE' | translate}}</label>
+                                                <div class="form-group" ng-show="currentVariableMapping.outVariableType == 'formField'">
+                                                    <div id="outputVariableField" field-select="currentVariableMapping.outProcessVariable"
+                                                         editor-type="bpmn" all-steps="allSteps" step-id="selectedShape.resourceId"
+                                                         include-type="true" expand-relative="true" field-type-filter="mappingFieldTypes"  ng-required="!currentVariableMapping.inProcessVariable"></div>
+                                                </div>
+
+                                                <div class="form-group clearfix" ng-show="currentVariableMapping.outVariableType == 'restResponse'">
+                                                    <div id="outputVariableRest" field-select="currentVariableMapping.outProcessVariable" include-type="true"
+                                                         variables-type="rest" editor-type="bpmn" expand-relative="true"
+                                                         select-title="'PROCESS-BUILDER.VARIABLE-MAPPING-REUSABLE-TABLE-MESSAGE.INPROCESSVARIABLE.PLACEHOLDER'"
+                                                         all-steps="allSteps" step-id="selectedShape.resourceId"  ng-required="!currentVariableMapping.inProcessVariable"></div>
+                                                </div>
+
+                                                <div class="form-group" ng-show="currentVariableMapping.outVariableType === 'staticValue'">
+                                                    <div>
+                                                        <input type="text" id="outputValueField" class="form-control" ng-model="currentVariableMapping.outProcessVariable.id;"  ng-required="!currentVariableMapping.inProcessVariable"/>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!--Output process Variable End-->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="backToReferenceSelector()" class="btn btn-primary" translate>GENERAL.ACTION.SELECT-DECISION-TABLE</button>
+                <button ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" class="btn btn-primary" ng-disabled="globalForm.$invalid" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

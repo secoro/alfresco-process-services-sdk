@@ -1,0 +1,79 @@
+<div class="modal" ng-controller="ActivitiFieldsToVariablesPopupCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content" ng-form="globalForm">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h2>
+            </div>
+            <div class="modal-body">
+
+                <div class="row row-no-gutter">
+                    <div class="col-xs-6">
+                        <div ng-if="translationsRetrieved" class="kis-listener-grid" ui-grid="gridOptions" ui-grid-selection></div>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom" data-original-title="" title="" ng-click="addNewMapping()"><i class="glyphicon glyphicon-plus"></i></a>
+                                <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}" data-placement="bottom" data-original-title="" title="" ng-click="removeMapping()"><i class="glyphicon glyphicon-minus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div ng-if="selectedMapping" ng-form="variableForm">
+                            
+            				<div class="form-group">
+                                <label for="mappedDataModel">{{'PROPERTY.FIELDS.TO.VARIABLES.MAPPEDDATAMODEL.LABEL' | translate}}</label>
+                                <select id="mappedDataModel" class="form-control" ng-model="selectedMapping.mappedDataModel"
+                                        ng-options="dataModel.id as dataModel.name for dataModel in dataModels" ng-change="selectDataModel(true)">
+                                </select>
+                            </div>
+                           
+                            <div class="form-group" ng-show="selectedMapping.mappedDataModel">
+                                <label for="mappedEntity">{{'PROPERTY.FIELDS.TO.VARIABLES.MAPPEDENTITY.LABEL' | translate}}</label>
+                                <select id="mappedEntity" class="form-control" ng-model="selectedMapping.mappedEntity"
+                                        ng-options="entity.name as entity.name for entity in dataModelEntities" ng-change="selectEntity()">
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" ng-show="selectedMapping.mappedEntity">
+                                <label>{{'PROPERTY.FIELDS.TO.VARIABLES.FORMFIELD.LABEL' | translate}}</label>
+                                <div class="btn-group span" activiti-fix-dropdown-bug>
+                                    <button class="selection" data-toggle="dropdown">
+                                        <span ng-if="selectedMapping.formField">{{selectedMapping.formField.name}}</span>
+                                        <span ng-if="!selectedMapping.formField">{{'PROPERTY.FIELDS.TO.VARIABLES.SELECT-FIELD' | translate}}</span>
+                                        <i class="icon icon-caret-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu large-width">
+                                        <li ng-repeat="field in availableFormFields">
+                                            <a ng-click="selectFormField(field)">{{field.name}} <span class="field-type"> - {{field.type}}</span></a>
+                                        </li>
+                                        <li ng-if="!availableFormFields || availableFormFields.length == 0">
+                                            <a>{{'PROPERTY.FIELDS.TO.VARIABLES.NO-FIELDS-AVAILABLE' | translate}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" ng-show="selectedMapping.mappedEntity">
+                                <label for="mappedColumn">{{'PROPERTY.FIELDS.TO.VARIABLES.MAPPEDCOLUMN.LABEL' | translate}}</label>
+                                <select id="mappedColumn" class="form-control" ng-model="selectedMapping.mappedColumn"
+                                        ng-options="attribute.name as attribute.name for attribute in dataModelAttributes">
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" ng-class="{'has-error': variableForm.mappedVariableName.$invalid}" ng-show="selectedMapping.mappedColumn">
+                                <label for="mappedVariableName">{{'PROPERTY.FIELDS.TO.VARIABLES.MAPPEDVARIABLENAME.LABEL' | translate}}</label>
+                                <input type="text" id="mappedVariableName" name="mappedVariableName" class="form-control" ng-model="selectedMapping.mappedVariableName" placeholder="{{'PROPERTY.FIELDS.TO.VARIABLES.MAPPEDVARIABLENAME.PLACEHOLDER' | translate}}" />
+                            </div>
+                        </div>
+                        <div ng-if="!selectedMapping" class="muted no-property-selected" translate>PROPERTY.FIELDS.TO.VARIABLES.UNSELECTED</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" class="btn btn-primary" ng-disabled="globalForm.$invalid" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

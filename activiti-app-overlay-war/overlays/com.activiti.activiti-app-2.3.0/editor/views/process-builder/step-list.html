@@ -1,0 +1,28 @@
+<div class="clearfix" ng-class="{'step' : !step.meta.type.isContainer, 'step-group' : step.meta.type.isContainer, 'active' : step.id == activeStep.id, 'moving': step.meta.moving, 'validation-error': step.meta.hasValidationError}">
+    <div class="actions">
+        <button class="btn btn-clean" ng-if="!readOnly" ng-click="toggleMoveStep(step, stepContainer)" data-toggle="tooltip" title="{{'STEP.MOVE.TOOLTIP' | translate}}">
+            <i class="icon icon-move"></i>
+        </button>
+        <button class="btn btn-clean" ng-if="!readOnly" ng-click="removeStep(step, stepContainer)" data-toggle="tooltip" title="{{'STEP.REMOVE.TOOLTIP' | translate}}">
+            <i class="icon icon-remove"></i>
+        </button>
+    </div>
+    <a ng-if="step.meta && step.meta.hasValidationError" ng-click="showValidationErrors(step)">
+        <img src="editor-app/images/bpmn-error.png"/>
+    </a>
+    <h4 ng-click="toggleActiveStep(step)">
+        <i class="icon"
+           ng-class="step.id == activeStep.id ? 'icon-caret-down' : 'icon-caret-right' "></i>
+        {{step.name}}
+    </h4>
+
+    <div class="subtitle" ng-click="toggleActiveStep(step)" style="cursor: pointer;">
+        <div class="step-type">
+            <stencil-step-item-icon stencil-item="step.meta.type"></stencil-step-item-icon>
+        </div>
+        <span ng-bind-html="step.meta.summary"></span>
+    </div>
+    <div ng-include="(step.id == activeStep.id || step.meta.type.alwaysExpanded) ? step.meta.type.template : null"></div>
+</div>
+<div class="step-placeholder" ng-show="!readOnly && (step.type !== 'goto-step' && step.type !== 'end-process-step')" ng-click="insertStepBelow($event, step, stepContainer)" ng-class="{'no-move no-click': isMoveDisabled(step, stepContainer, moveState)}"></div>
+<div class="step-placeholder-readonly" ng-show="readOnly"></div>

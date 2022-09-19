@@ -1,0 +1,204 @@
+{
+  "COMMON": {
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Process Services è in modalità di sola lettura in quanto la licenza locale non è valida.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Process Services è in modalità di sola lettura in quanto non è stata individuata alcuna licenza.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "L'applicazione è in modalità di sola lettura in quanto le date della licenza non sono valide (sono scadute o con una data di inizio futura).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "La licenza sta per scadere. Process Services passerà alla modalità di sola lettura.",
+      "APP-LICENSE-UPLOAD-DISALLOWED": "Per consentire il caricamento della licenza, impostare <code>license.allow-upload=true</code> in activiti-app.properties",
+      "APP-LICENSE-NO-UPLOAD-CAPABILITY": "Nota: è necessaria la funzione 'Carica licenza' per caricare la licenza"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Process Services",
+    "ERROR": {
+      "GENERIC": "Si è verificato un errore...",
+      "UNKNOWN": "Si è verificato un errore durante l'esecuzione dell'operazione richiesta.",
+      "BAD_REQUEST": "Si è verificato un errore durante l'esecuzione dell'operazione richiesta",
+      "NOT_FOUND": "La risorsa a cui si sta tentando di accedere non esiste",
+      "UNAUTHORIZED": "È necessario eseguire l'accesso per effettuare l'operazione richiesta.",
+      "FORBIDDEN": "L'esecuzione dell'operazione richiesta non è consentita",
+      "INTERNAL_SERVER_ERROR": "Si è verificato un errore imprevisto durante l'esecuzione dell'operazione richiesta.",
+      "QUOTA-EXCEEDED-RUNTIME-APPS": "In qualità di utente in prova, è possibile disporre solamente di {{quota}} applicazioni dispiegate contemporaneamente.",
+      "QUOTA-EXCEEDED-LICENSE-APPS": "La licenza consente solamente il dispiegamento di {{quota}} applicazioni contemporaneamente."
+    },
+    "ACTION": {
+      "LOGOUT": "Disconnetti",
+      "HELP": "Introduzione",
+      "EDIT-PROFILE": "Modifica profilo",
+      "SAVE": "Salva",
+      "CANCEL": "Annulla",
+      "CLOSE": "Chiudi",
+      "DEPLOY": "Dispiega",
+      "ABOUT": "Informazioni su Process Services",
+      "HELP-DOCS-LINK": "Aiuto",
+      "UPLOAD-LICENSE": "Carica licenza"
+    },
+    "ABOUT": {
+      "TYPE": "Tipo",
+      "LICENSED-TO": "Concesso in licenza a",
+      "EXPIRES": "Scade il",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Tutti i diritti riservati.",
+      "LEGAL": "Informazioni legali e sulla licenza"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "Accedi",
+    "USERNAME": "Nome utente",
+    "USERNAME-PLACEHOLDER": "Immettere il nome utente",
+    "PASSWORD": "Password",
+    "PASSWORD-PLACEHOLDER": "Immettere la password",
+    "NO-ACCOUNT": "Non si dispone ancora di un account?",
+    "FORGOT-PASSWORD": "Password dimenticata?",
+    "INVALID-CREDENTIALS": "Credenziali non valide",
+    "WELCOME": "Benvenuti in Alfresco Process Services",
+    "TAG1": "<strong>Simple:</strong> pronto all'uso, nessuna configurazione richiesta, ottimizza la produttività degli utenti",
+    "TAG2": "<strong>Smart:</strong> facile da configurare, fornisce un framework strutturato per qualsiasi esigenza relativa ai processi di business",
+    "TAG3": "<strong>Open:</strong> open source, con standard aperti che garantiscono una semplice integrazione a prova di futuro",
+    "PRIVACY": "Informativa sulla privacy",
+    "ALL-RIGHTS": "Tutti i diritti riservati",
+    "LOGIN-FORM": "Modulo di accesso",
+    "SKIP-TO-CONTENT": "Passa a contenuto",
+    "BACK-TO-TOP": "Torna all'inizio",
+    "SSO": "Login SSO",
+    "ACTION": {
+      "CONFIRM": "Accedi"
+    }
+  },
+  "ACCOUNT": {
+    "ACTIVATE": {
+      "TITLE": "Attiva account",
+      "ACTIVATING-MESSAGE": "Si prega {{userFullName}} di rimanere in attesa. Attivazione dell'account in corso...",
+      "SUCCESS-MESSAGE": "L'account è stato attivato. Eseguire l'accesso qui sotto per iniziare a progettare ed eseguire i processi",
+      "FAILURE-MESSAGE": "Impossibile attivare l'account. È possibile che sia già stato attivato, o che il link di attivazione sia scaduto."
+    },
+    "SIGNUP": {
+      "TITLE": "Iscriviti a un account",
+      "SIGNUP-TRIAL": "Creare una password per la versione di prova di Process Services",
+      "EMAIL": "Indirizzo e-mail",
+      "FIRSTNAME": "Nome",
+      "LASTNAME": "Cognome",
+      "PASSWORD": "Password",
+      "PASSWORD-PLACEHOLDER": "Immettere una password",
+      "PASSWORD-REPEAT": "Conferma password",
+      "PASSWORDS-NOT-EQUAL": "Le password non corrispondono",
+      "PASSWORDS-MIN-LENGTH": "La password è troppo breve; deve contenere almeno {{minLength}} caratteri",
+      "NEW-PASSWORD-STRENGTH": "Complessità password:",
+      "EMAIL-PLACEHOLDER": "Immettere l'e-mail",
+      "FIRSTNAME-PLACEHOLDER": "Immettere il nome",
+      "LASTNAME-PLACEHOLDER": "Immettere il cognome",
+      "COMPANY": "Azienda (opzionale)",
+      "COMPANY-PLACEHOLDER": "Immettere il nome azienda",
+      "LICENSETERMS": "Accetto le condizioni per l'utilizzo del servizio e l'Informativa sulla privacy di Alfresco",
+      "CONFIRM": "Iscrizione",
+      "SUCCESS-MESSAGE": "Grazie per l'iscrizione al servizio. A breve si riceverà un'e-mail per attivare l'account. Una volta attivato l'account, sarà possibile iniziare a progettare e a eseguire i processi",
+      "SECURITY-SECTION": "Controllo di sicurezza",
+      "PERSONAL-SECTION": "Informazioni personali",
+      "ACCOUNT-SECTION": "Account",
+      "ERROR": {
+        "ALREADY-REGISTERED": "È già presente un utente registrato con l'indirizzo e-mail fornito.",
+        "DISABLED": "L'iscrizione non è al momento possibile."
+      }
+    },
+    "RESET-PASSWORD-REQUEST": {
+      "MESSAGE": "Password dimenticata? Immettere il proprio indirizzo e-mail qui sotto per ricevere un'e-mail e reimpostare la password.",
+      "TITLE": "Reimposta password",
+      "EMAIL": "Indirizzo e-mail",
+      "EMAIL-PLACEHOLDER": "Immettere l'indirizzo e-mail",
+      "SECURITY-SECTION": "Controllo di sicurezza",
+      "CONFIRM": "Richiedi reimpostazione password",
+      "SUCCESS-MESSAGE": "A breve si riceverà un'e-mail con un link per reimpostare la password.",
+      "ERROR": {
+        "UNEXISTING-USER": "L'indirizzo e-mail fornito non esiste."
+      }
+    },
+    "RESET-PASSWORD": {
+      "TITLE": "Reimposta password",
+      "PASSWORD": "Password",
+      "PASSWORD-CONFIRM": "Conferma password",
+      "PASSWORD-PLACEHOLDER": "Immettere una nuova password",
+      "PASSWORD-CONFIRM-PLACEHOLDER": "Confermare la nuova password",
+      "CONFIRM": "Cambia password",
+      "LOADING": "Reimpostazione password in corso...",
+      "SUCCESS-MESSAGE": "La password è stata modificata.",
+      "LOGIN": "Accedi ora",
+      "FAILURE-MESSAGE": "Impossibile reimpostare la password. Il link non è valido o è scaduto."
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "Progettazione di applicazioni",
+      "DESCRIPTION": "Creazione di modelli di processo, moduli, tabelle decisioni, definizioni di applicazione, modelli di dati, definizioni di stencil e condivisione con gli altri.",
+      "TITLE-PROCESSES": "Modelli di processo",
+      "TITLE-FORMS": "Modelli di modulo",
+      "TITLE-APPS": "Modelli di applicazione",
+      "TITLE-STENCILS": "Stencil",
+      "TITLE-DECISION-TABLES": "Tabelle decisioni",
+      "TITLE-DATA-MODELS": "Modelli di dati"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Amministratore",
+      "DESCRIPTION": "Gestisci tutti i cluster e nodi server di Process Services."
+    },
+    "TASKS": {
+      "TITLE": "Applicazione compiti",
+      "DESCRIPTION": "Da qui è possibile accedere all'elenco completo dei compiti personali e lavorare sui compiti personali assegnati da qualsiasi applicazione di processo. Inoltre, si possono avviare nuovi processi e compiti.",
+      "TITLE-TASKS": "Compiti",
+      "TITLE-PROCESSES": "Processi",
+      "TITLE-PROCESSES?MODE=START": "Avvia"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profilo",
+      "DESCRIPTION": "Da qui è possibile gestire il proprio profilo: cambiare immagine, nome e altre impostazioni.",
+      "DESCRIPTION-TENANT-ADMIN": "Inoltre, è possibile gestire gli utenti e i gruppi presenti nell'organizzazione.",
+      "TITLE-TENANT-ADMIN": "Gestione delle identità",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenant",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Utenti",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Funzioni",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organizzazione",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profilo",
+      "TITLE-PROFILE": "Profilo"
+    },
+    "ANALYTICS": {
+      "TITLE": "Applicazione di analisi",
+      "DESCRIPTION": "Da qui è possibile generare diversi rapporti con le informazioni sulle statistiche relative alle prestazioni e alla produttività dei processi."
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "Compiti {{name}}",
+      "TITLE-PROCESSES": "Processi {{name}}",
+      "TITLE-PROCESSES?MODE=START": "Avvio {{name}}"
+    },
+    "POPUP": {
+      "ADD-APP-TITLE": "Aggiungi applicazione a pagina di destinazione",
+      "ADD-APP-SUMMARY": "Aggiungere un'applicazione alla pagina di destinazione",
+      "GETTING-STARTED-TITLE": "Introduzione a Process Services BPMS"
+    },
+    "ACTION": {
+      "DELETE": "Rimuovi applicazione",
+      "ADD": "Aggiungi nuova applicazione",
+      "UPLOAD-LICENSE": "Carica licenza"
+    },
+    "MESSAGE": {
+      "DELETED": "L'applicazione è stata rimossa correttamente",
+      "NO-CUSTOM-APPS": "Benvenuto in Alfresco Process Services, il modo più intelligente di gestire i processi di business! Da qui è possibile svolgere numerose operazioni, tra cui:",
+      "NO-CUSTOM-APPS-EDITOR-HINT": "Progettare i processi di business e condividerli",
+      "NO-CUSTOM-APPS-TASKS-HINT": "Lavorare sui compiti o avviare un processo",
+      "NO-CUSTOM-APPS-PROFILE-HINT": "Aggiornare il proprio profilo con le foto e i dettagli più recenti",
+      "NO-CUSTOM-APPS-GETTING-STARTED-HINT": "Leggere la Guida introduttiva"
+    }
+  },
+  "LICENSE": {
+    "STATUS": {
+      "INVALID": "Licenza non valida",
+      "WARNING": "Avviso sulla licenza"
+    },
+    "UPLOAD": {
+      "UPLOAD-LICENSE-TITLE": "Carica licenza",
+      "UPLOAD-LICENSE-DESCRIPTION": "Selezionare una licenza nel computer e rilasciarla nell'area qui sotto.",
+      "CANCEL-UPLOAD": "Annulla caricamento",
+      "LICENSE-DROPZONE": "Rilasciare qui il file della licenza",
+      "NO-DROP": "L'operazione di rilascio non è supportata dal browser in uso",
+      "ERROR": "Errore"
+    }
+  }
+}

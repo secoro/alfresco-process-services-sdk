@@ -1,0 +1,244 @@
+{
+  "COMMON": {
+    "ACCOUNTS": {
+      "box": "Box",
+      "alfresco-*": "Alfresco ({{name}})",
+      "alfresco-cloud": "Alfresco in the Cloud",
+      "google-drive": "Google Drive"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services 为只读模式，因为本地许可证无效。",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services 为只读模式，因为没有找到本地许可证。",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services 为只读模式，因为本地许可证的日期无效（过期或起始日期还未到）。",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "您的许可证即将过期！Alfresco Process Services 将变为只读模式。"
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "分析",
+    "ERROR": {
+      "GENERIC": "出现错误...",
+      "UNKNOWN": "执行请求的操作时出现错误。",
+      "BAD_REQUEST": "执行请求的操作时出现错误",
+      "NOT_FOUND": "您尝试访问的资源不存在",
+      "UNAUTHORIZED": "您需要登录才能执行请求的操作。",
+      "FORBIDDEN": "您不可以执行请求的操作",
+      "INTERNAL_SERVER_ERROR": "执行请求的操作时出现意外错误。"
+    },
+    "NAVIGATION": {
+      "REPORTS": "报告",
+      "CONFIGURE": "配置"
+    },
+    "ACTION": {
+      "LOGOUT": "退出",
+      "SAVE": "保存",
+      "CANCEL": "取消",
+      "CLOSE": "关闭",
+      "ABOUT": "关于 Alfresco Process Services",
+      "HELP-DOCS-LINK": "帮助"
+    },
+    "ABOUT": {
+      "TYPE": "类型",
+      "LICENSED-TO": "授权给",
+      "EXPIRES": "过期",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. 保留所有权利。",
+      "LEGAL": "法律和许可"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "获取有关流程的各种重要报告，帮助确定瓶颈和性能改进。",
+    "GENERATE-REPORTS": "立即添加一些标准报告。",
+    "NO-REPORT-SELECTED": "无选中的报告。从左侧的列表中选择报告",
+    "NO-DATA-FOUND": "找不到数据",
+    "CONFIG-REPORTS": "配置报告",
+    "RESET-ALL-REPORTS": "重置所有报告",
+    "FETCHING-PROC-DEFS": "提取流程定义...",
+    "GENERATING": "正在生成报告...",
+    "SAVE-REPORT": "保存这个报告",
+    "EXPORT-REPORT": "导出数据",
+    "SHOW": "单击以显示",
+    "HIDE": "单击以重新隐藏",
+    "FILL-PARAMS": "找不到报告数据。填充参数以生成报告",
+    "PROCESS-STATUS": "流程状态",
+    "TASK-STATUS": "任务状态",
+    "STATUS": {
+      "ACTIVE": "活动",
+      "ALL": "全部",
+      "COMPLETE": "完成"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "找不到当前流程定义的已完成任务",
+      "DATE-RANGE": {
+        "TODAY": "今天",
+        "YESTERDAY": "昨天",
+        "LAST-7-DAYS": "过去 7 天",
+        "PREVIOUS-MONTH": "上一月",
+        "CURRENT-YEAR": "当前年度",
+        "CUSTOM-RANGE": "自定义范围",
+        "APPLY": "应用",
+        "CANCEL": "取消",
+        "FROM": "从",
+        "TO": "至"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "按小时",
+        "DAY": "按天",
+        "WEEK": "按周",
+        "MONTH": "按月",
+        "YEAR": "按年"
+      },
+      "DURATION": {
+        "SECONDS": "秒",
+        "MINUTES": "分",
+        "HOURS": "小时",
+        "DAYS": "天"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "TITLE": "任务概述",
+        "PROCESS-DEFINITION": "流程定义",
+        "DATE-RANGE": "日期范围",
+        "DATE-RANGE-INTERVAL": "日期合计方式",
+        "TASK-COUNT-TITLE": "任务计数",
+        "TASK-COUNT-DESCRIPTION": "这个表显示给定日期范围内任务的总数",
+        "TASK-DURATIONS-TITLE": "任务持续时间",
+        "TASK-DURATIONS-DESCRIPTION": "这个表显示给定日期范围内已完成任务的平均、最小和最大持续时间（单位为小时）。x 轴显示任务在下面详细的表中的行号。",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "被指派者完成任务的数量",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "这个饼状图显示所选流程定义的任务数量（按每个被指派者）",
+        "DETAILED-TASK-STATS-TITLE": "详细的任务统计数据",
+        "DETAILED-TASK-STATS-DESCRIPTION": "这个表显示所有任务的累计统计数据单击任何任务已查看详细信息所有时间信息以小时为单位表示。",
+        "DETAILED-TASK-STATS-TASK": "任务",
+        "DETAILED-TASK-STATS-ASSIGNEE": "被指派者",
+        "TASK-HISTOGRAM-TITLE": "任务书除以日期间隔",
+        "TASK-HISTOGRAM-TABLE": "表：以表格格式显示的上一图表数据",
+        "TASK-HISTOGRAM-TABLE-DATE": "日期",
+        "COUNT": "计数",
+        "SUM": "总和",
+        "MIN-DURATION": "最短持续时间",
+        "MAX-DURATION": "最长持续时间",
+        "AVERAGE": "平均",
+        "STDDEV": "标准偏差"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "TITLE": "流程实例概述",
+        "PROCESS-DEFINITION": "流程定义",
+        "DATE-RANGE": "日期范围",
+        "SLOW-PROC-INST-NUMBER": "应显示多少个最慢的流程实例？",
+        "HISTOGRAM-TITLE": "流程实例数量",
+        "HISTOGRAM-DESCRIPTION": "下表显示在所选日期范围内开始和完成的流程实例数量",
+        "ACTIVITY-DURATION-TABLE-TITLE": "活动持续时间详细信息",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "下表显示流程中各种活动的计时，按花费的累积总时间排序。所有时间信息以小时为单位表示。",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "活动",
+        "ACTIVITY-DURATION-CHART-TITLE": "流程步骤总时间",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "这个表显示时间花费在哪些活动上。数量时该活动的所有持续时间总和，如下表所示。",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "最慢流程实例",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "这个表显示所配置日期范围中完成的最慢流程实例。单击任意条目以查看特定流程实例的流程变量",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "持续时间",
+        "SLOWEST-PROCESS-INSTANCES-ID": "内部 ID",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "商业 Key",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "创建时间",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "结束时间",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "变量",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "变量名称",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "变量值",
+        "COUNT": "计数",
+        "SUM": "总和",
+        "MIN-DURATION": "最短持续时间",
+        "MAX-DURATION": "最长持续时间",
+        "AVERAGE": "平均",
+        "STDDEV": "标准偏差"
+      },
+      "TASK-SLA": {
+        "TITLE": "任务服务级别协议",
+        "PROCESS-DEFINITION": "流程定义",
+        "TASK": "任务",
+        "DATE-RANGE": "日期范围",
+        "SLA-DURATION": "SLA 中规定的这个任务完成时间是什么？",
+        "SLA-NOT-OK": "服务器级别协议有没有问题",
+        "ASSIGNEE-TABLE": "没有在 SLA 界限内完成任务的被指派者",
+        "ASSIGNEE": "被指派者",
+        "COUNT": "计数"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "TITLE": "流程定义概述",
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "流程定义的总数： ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "流程实例的总数： ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "活动状态的流程实例的总数： ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "完成的流程实例的总数： ",
+        "DETAIL-TABLE": "流程定义详细信息",
+        "DETAIL-TABLE-PROCESS": "流程定义",
+        "DETAIL-TABLE-TOTAL": "总数",
+        "DETAIL-TABLE-ACTIVE": "活动",
+        "DETAIL-TABLE-COMPLETED": "已完成",
+        "PROC-INST-CHART-TITLE": "总流程实例概览",
+        "DURATIONS-CHART-TITLE": "每个流程定义的平均时间",
+        "DURATIONS-CHART-DESCRIPTION": "已完成流程实例的平均持续时间（和标准偏差），单位为小时。x 轴数字对应上表中的条目。"
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "流程热图",
+        "TYPE-FILTERING": "包括所有流程步骤（取消选中这个选项将删除直通步骤，例如开始事件、网关等）？",
+        "METRIC-TOTAL-COUNT": "执行一个步骤的次数",
+        "METRIC-TOTAL-TIME": "完成一个流程步骤花费的总时间",
+        "METRIC-AVG-TIME": "完成一个流程步骤花费的平均时间",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "时间",
+        "METRIC-TOTAL-TIME-TOOLTIP": "小时",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "小时",
+        "GENERATING": "生成流程热图..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "保存报告",
+        "DESCRIPTION": "当前参数设置将被存储，新报告将在报告列表中显示。单击特定报告后，将使用这些保存的参数值生成报告。",
+        "NAME": "名称"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "导出数据",
+        "NAME": "名称"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "删除报告",
+        "DESCRIPTION": "是否确定要删除这个报告？",
+        "CONFIRM": "删除报告"
+      }
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "App Designer",
+      "TITLE-PROCESSES": "流程模型",
+      "TITLE-FORMS": "表单模型",
+      "TITLE-APPS": "App 模型",
+      "TITLE-STENCILS": "模板",
+      "TITLE-DECISION-TABLES": "决策表",
+      "TITLE-DATA-MODELS": "数据模型"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Admin App"
+    },
+    "TASKS": {
+      "TITLE": "任务 App",
+      "TITLE-TASKS": "任务",
+      "TITLE-PROCESSES": "流程",
+      "TITLE-PROCESSES?MODE=START": "启动"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "配置文件",
+      "TITLE-TENANT-ADMIN": "身份管理",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "租户",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "用户",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "功能",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "组织",
+      "TITLE-TENANT-ADMIN-PROFILE": "配置文件",
+      "TITLE-PROFILE": "配置文件"
+    },
+    "ANALYTICS": {
+      "TITLE": "报表与分析 App"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}} 任务",
+      "TITLE-PROCESSES": "{{name}} 流程",
+      "TITLE-PROCESSES?MODE=START": "{{name}} 开始"
+    }
+  }
+}

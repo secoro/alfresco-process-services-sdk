@@ -1,0 +1,230 @@
+<div class="modal" ng-controller="DecisionTableRuleExpressionEditorCtlr">
+    <div class="modal-dialog modal-medium">
+        <form name="ruleExpressionForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 translate="DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.TITLE" translate-value-name="{{model.currentRuleExpression.columnDisplayName}}"></h2>
+                </div>
+                <div class="modal-body">
+
+                    <div class="well" ng-if="invalidExpressionMessage">
+                        <small translate="DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.ERROR"></small>
+                    </div>
+
+                    <!-- OPERATOR -->
+                    <div class="clearfix form-group" ng-if="popup.inputExpression && availableOperatorsByType[model.currentRuleExpression.columnType].length">
+                        <div class="col-xs-3">
+                            <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.OPERATOR-LABEL' | translate}}</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <select ng-options="operator.id as (operator.label | translate) for operator in availableOperatorsByType[model.currentRuleExpression.columnType]" ng-model="popup.selectedOperator" class="form-control" >
+                            </select>
+                        </div>
+                    </div>
+                    <div ng-if="!popup.inputExpression || (popup.inputExpression && (popup.selectedOperator.length) > 0 && (popup.selectedOperator | limitTo: 2) != '__')">
+
+                        <!-- VARIABLE TYPE -->
+                        <div class="clearfix form-group">
+                            <div class="col-xs-3">
+                                <label>Variable type:</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="popup.value.type = 'value'" ng-class="{'active' : popup.value.type === 'value'}">{{('DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-' + (popup.columnType==='double' ? 'number' : popup.columnType | uppercase)) | translate}}</button>
+                                    </div>
+                                    <div ng-repeat="valueType in additionalValueTypes[popup.columnType]" class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="popup.value.type = valueType" ng-class="{'active' : popup.value.type === valueType}">{{('DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-' + (valueType | uppercase)) | translate}}</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <div>
+                                            <button type="button" class="btn btn-default" ng-click="popup.value.type = 'formfield'" ng-class="{'active' : popup.value.type === 'formfield'}">{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-FORMFIELD' | translate}}</button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="popup.value.type = 'variable'" ng-class="{'active' : popup.value.type === 'variable'}">{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-VARIABLE' | translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="popup.value.type === 'formfield'" class="clearfix form-group" ng-class="{'has-error': ruleExpressionForm.formfield.$invalid}">
+                            <div class="col-xs-3">
+                                <label>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-FORMFIELD' | translate}}:</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="hidden" name="formfield" ng-model="popup.formfield.reference" ng-required="true"/>
+                                <div field-select="popup.formfield.reference" editor-type="step" include-type="true" expand-relative="true" step-id="stepId"
+                                     all-steps="allSteps" field-type-filter="formFieldsByType[popup.columnType]"></div>
+                            </div>
+                        </div>
+
+                        <div ng-if="popup.value.type === 'variable'" class="clearfix form-group" ng-class="{'has-error': ruleExpressionForm.variable.$invalid}">
+                            <div class="col-xs-3">
+                                <label>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-VARIABLE' | translate}}:</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <div id="tableVariable" field-select="popup.variable.reference"
+                                     editor-type="bpmn" all-steps="allSteps" step-id="selectedShape.resourceId"
+                                     fields="tableVariables" select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-RESPONSE-VARIABLE'"
+                                     include-type="true" expand-relative="true"  required></div>
+                            </div>
+                        </div>
+
+                        <!-- VALUE -->
+                        <div ng-if="popup.value.type === 'value'" class="clearfix">
+
+                            <!-- DATE -->
+                            <div class="clearfix form-group" ng-if="popup.columnType == 'date'" ng-class="{'has-error': ruleExpressionForm.date.$invalid}">
+
+                                <div class="col-xs-3">
+                                    <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.DATE-LABEL' | translate}}</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    <input id="date" name="date" type="text" class="form-control" placeholder="{{'FORM-BUILDER.VISIBILITY.RIGHT_VALUE_DATE.DATE-FORMAT-MESSAGE' | translate:{'dateFormat':(globalDateFormat || getGlobalDateFormat())} }}" ng-model="popup.date.static"
+                                           bs-datepicker template="{{appResourceRoot}}views/templates/visibility-date-picker-template.html"
+                                           data-date-format="{{(globalDateFormat || getGlobalDateFormat()) | momentToAngularFormat}}" data-date-type="iso" trigger="focus" autoclose="true" ng-required="true">
+                                </div>
+                            </div>
+
+
+                            <!-- NUMBER -->
+                            <div class="clearfix form-group" ng-if="popup.columnType == 'number'" ng-class="{'has-error': ruleExpressionForm.number.$invalid}">
+                                <div class="col-xs-3">
+                                    <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.NUMBER-LABEL' | translate}}</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    <input name="number" type="number" class="form-control"
+                                           placeholder="{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.NUMBER-FORMAT-MESSAGE' | translate}}"
+                                           ng-model="popup.number.static"
+                                           ng-required="true">
+                                </div>
+                            </div>
+
+                            <!-- DOUBLE -->
+                            <div class="clearfix form-group" ng-if="popup.columnType == 'double'" ng-class="{'has-error': ruleExpressionForm.number.$invalid}">
+                                <div class="col-xs-3">
+                                    <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.NUMBER-LABEL' | translate}}</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    <input name="number" type="number" class="form-control"
+                                           placeholder="{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.NUMBER-FORMAT-MESSAGE' | translate}}"
+                                           ng-model="popup.number.static"
+                                           ng-required="true">
+                                </div>
+                            </div>
+
+                            <!-- BOOLEAN -->
+                            <div class="clearfix form-group" ng-if="popup.columnType == 'boolean' && popup.boolean.type== 'fixed'"
+                                 ng-class="{'has-error': ruleExpressionForm.boolean.$invalid}">
+                                <div class="col-xs-3">
+                                    <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.BOOLEAN-LABEL' | translate}}</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    <input type="hidden" name="boolean" ng-model="popup.boolean.static" ng-required="true"/>
+                                    <div class="btn-group span" activiti-fix-dropdown-bug>
+                                        <button class="selection form-control" data-toggle="dropdown" ng-click=" fixPosition($event)">
+                                            {{popup.boolean.static || ('DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.SELECT-VALUE' | translate)}}
+                                            <span class="field-type" ng-show="selectedField.name"> - {{popup.boolean.static}}</span>
+                                            <i class="icon icon-caret-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" >
+                                            <li ng-repeat="operator in availableBooleanValues">
+                                                <a ng-click="popup.boolean.static = operator.id;">{{operator.id}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- STRING -->
+                            <div class="clearfix form-group" ng-if="popup.columnType == 'string' && popup.string.type== 'fixed'" ng-class="{'has-error': ruleExpressionForm.string.$invalid}">
+                                <div class="col-xs-3">
+                                    <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.STRING-LABEL' | translate}}</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    <input name="string" type="text" class="form-control" ng-model="popup.string.static" ng-required="true">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- EXECUTION DATE -->
+                        <div class="clearfix form-group" ng-if="popup.columnType == 'date' && popup.value.type == 'date_execution'">
+                            <div class="col-xs-3">
+                                <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.DATE_EXECUTION-LABEL' | translate}}</label>
+                            </div>
+                            <div class="col-xs-9">
+                                {{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.DATE_EXECUTION-TEXT' | translate}}
+                            </div>
+                        </div>
+
+                        <!-- DATE CALCULATIONS -->
+                        <div class="clearfix form-group" ng-if="popup.columnType == 'date' && popup.value.type">
+                            <div class="col-xs-3">
+                                <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.DATE_CALCULATION-LABEL' | translate}}</label>
+                            </div>
+                            <div class="col-xs-2 inline-form">
+                                {{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.METHOD-LABEL' | translate}}
+                                <select ng-options="operator.key as (operator.label | translate) for operator in availableDateCalculations" ng-model="popup.date.calculation.method.key" class="form-control" />
+                            </div>
+                            <div class="col-xs-2" ng-show="popup.date.calculation.method.key">
+                                {{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.YEARS-LABEL' | translate}}
+                                <input type="number" min="0" class="form-control" ng-model="popup.date.calculation.years">
+                            </div>
+                            <div class="col-xs-2" ng-show="popup.date.calculation.method.key">
+                                {{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.MONTHS-LABEL' | translate}}
+                                <input type="number" min="0" class="form-control" ng-model="popup.date.calculation.months">
+                            </div>
+                            <div class="col-xs-2" ng-show="popup.date.calculation.method.key">
+                                {{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.DAYS-LABEL' | translate}}
+                                <input type="number" min="0" class="form-control" ng-model="popup.date.calculation.days">
+                            </div>
+                        </div>
+
+                        <!-- NUMBER CALCULATIONS -->
+                        <div class="clearfix form-group" ng-if="popup.columnType == 'number' && popup.value.type">
+                            <div class="col-xs-3">
+                                <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.NUMBER_CALCULATION-LABEL' | translate}}</label>
+                            </div>
+                            <div class="col-xs-2 inline-form">
+                                {{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.METHOD-LABEL' | translate}}
+                                <select ng-options="operator.key as (operator.label | translate) for operator in availableNumberCalculations" ng-model="popup.number.calculation.method.key" class="form-control" />
+                            </div>
+                            <div class="col-xs-2" ng-show="popup.number.calculation.method.key">
+                                {{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.NUMBER_CALCULATION-PARAM1-LABEL' | translate}}
+                                <input type="number" class="form-control" ng-model="popup.number.calculation.param1">
+                            </div>
+                        </div>
+                        <!-- Double CALCULATIONS -->
+                        <div class="clearfix form-group" ng-if="popup.columnType == 'double' && popup.value.type">
+                            <div class="col-xs-3">
+                                <label>{{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.NUMBER_CALCULATION-LABEL' | translate}}</label>
+                            </div>
+                            <div class="col-xs-2 inline-form">
+                                {{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.METHOD-LABEL' | translate}}
+                                <select ng-options="operator.key as (operator.label | translate) for operator in availableNumberCalculations" ng-model="popup.number.calculation.method.key" class="form-control" />
+                            </div>
+                            <div class="col-xs-2" ng-show="popup.number.calculation.method.key">
+                                {{'DECISION-TABLE-EDITOR.POPUP.RULE-EDITOR.NUMBER_CALCULATION-PARAM1-LABEL' | translate}}
+                                <input type="number" class="form-control" ng-model="popup.number.calculation.param1">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-sm btn-default" ng-click="cancel()">
+                            {{'GENERAL.ACTION.CANCEL' | translate}}
+                        </button>
+                        <button type="button" class="btn btn-sm btn-default" ng-click="save()" ng-disabled="!ruleExpressionForm.$valid || readOnly">
+                            {{'GENERAL.ACTION.OK' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

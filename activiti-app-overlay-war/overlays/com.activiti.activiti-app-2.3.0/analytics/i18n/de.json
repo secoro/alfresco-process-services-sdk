@@ -1,0 +1,244 @@
+{
+  "COMMON": {
+    "ACCOUNTS": {
+      "box": "Box",
+      "alfresco-*": "Alfresco ({{name}})",
+      "alfresco-cloud": "Alfresco Content Services in the Cloud",
+      "google-drive": "Google Drive"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services befindet sich im schreibgeschützten Modus, weil die lokale Lizenz ungültig ist.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services befindet sich im schreibgeschützten Modus, weil keine lokale Lizenz gefunden wurde.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services befindet sich im schreibgeschützten Modus, weil die Datumsangaben der lokalen Lizenz ungültig sind (entweder bereits abgelaufen oder Startdatum liegt in der Zukunft).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Ihre Lizenz läuft bald ab! Alfresco Process Services kann dann nur noch im schreibgeschützten Modus geöffnet werden."
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Analytik",
+    "ERROR": {
+      "GENERIC": "Es ist ein Fehler aufgetreten...",
+      "UNKNOWN": "Beim Ausführen des angeforderten Vorgangs ist ein Fehler aufgetreten.",
+      "BAD_REQUEST": "Beim Ausführen des angeforderten Vorgangs ist ein Fehler aufgetreten",
+      "NOT_FOUND": "Die Ressource, auf die Sie zugreifen möchten, existiert nicht.",
+      "UNAUTHORIZED": "Sie müssen sich anmelden, um den angeforderten Vorgang auszuführen.",
+      "FORBIDDEN": "Sie verfügen nicht über die Berechtigung, den angeforderten Vorgang auszuführen.",
+      "INTERNAL_SERVER_ERROR": "Beim Ausführen des angeforderten Vorgangs ist ein Fehler aufgetreten."
+    },
+    "NAVIGATION": {
+      "REPORTS": "Berichte",
+      "CONFIGURE": "Konfigurieren"
+    },
+    "ACTION": {
+      "LOGOUT": "Abmelden",
+      "SAVE": "Speichern",
+      "CANCEL": "Abbrechen",
+      "CLOSE": "Schließen",
+      "ABOUT": "Über Alfresco Process Services",
+      "HELP-DOCS-LINK": "Hilfe"
+    },
+    "ABOUT": {
+      "TYPE": "Typ",
+      "LICENSED-TO": "Lizenziert für",
+      "EXPIRES": "Gültig bis",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Alle Rechte vorbehalten.",
+      "LEGAL": "Rechtliche Hinweise und Lizenzinformationen"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "Sie erhalten alle Arten von wichtigen Berichten über Ihre Prozesse, die Ihnen bei der Identifizierung von Engpässen oder Leistungsverbesserungen helfen.",
+    "GENERATE-REPORTS": "Fügen Sie nun einige Standardberichte hinzu.",
+    "NO-REPORT-SELECTED": "Kein Bericht ausgewählt. Wählen Sie einen Bericht aus der Liste links aus.",
+    "NO-DATA-FOUND": "Keine Daten gefunden",
+    "CONFIG-REPORTS": "Berichte konfigurieren",
+    "RESET-ALL-REPORTS": "Alle meine Berichte zurücksetzen",
+    "FETCHING-PROC-DEFS": "Prozessdefinitionen werden abgerufen...",
+    "GENERATING": "Bericht wird erstellt...",
+    "SAVE-REPORT": "Diesen Bericht speichern",
+    "EXPORT-REPORT": "Daten exportieren",
+    "SHOW": "Zum Anzeigen klicken",
+    "HIDE": "Zum Ausblenden erneut klicken",
+    "FILL-PARAMS": "Keine Berichtsdaten gefunden. Füllen Sie die Parameter aus, um Ihren Bericht zu erstellen.",
+    "PROCESS-STATUS": "Prozessstatus",
+    "TASK-STATUS": "Aufgabenstatus",
+    "STATUS": {
+      "ACTIVE": "Aktiv",
+      "ALL": "Alle",
+      "COMPLETE": "Abschließen"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "Für die aktuelle Prozessdefinition wurden keine abgeschlossenen Aufgaben gefunden.",
+      "DATE-RANGE": {
+        "TODAY": "heute",
+        "YESTERDAY": "Gestern",
+        "LAST-7-DAYS": "Letzten 7 Tage",
+        "PREVIOUS-MONTH": "Letzter Monat",
+        "CURRENT-YEAR": "Aktuelles Jahr",
+        "CUSTOM-RANGE": "Benutzerdefinierter Bereich",
+        "APPLY": "Anwenden",
+        "CANCEL": "Abbrechen",
+        "FROM": "Von",
+        "TO": "Bis"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "Nach Stunde",
+        "DAY": "Nach Tag",
+        "WEEK": "Nach Woche",
+        "MONTH": "Nach Monat",
+        "YEAR": "Nach Jahr"
+      },
+      "DURATION": {
+        "SECONDS": "Sekunden",
+        "MINUTES": "Minuten",
+        "HOURS": "Stunden",
+        "DAYS": "Tage"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "TITLE": "Überblick über Aufgaben",
+        "PROCESS-DEFINITION": "Prozessdefinition",
+        "DATE-RANGE": "Datumsbereich",
+        "DATE-RANGE-INTERVAL": "Daten zusammenführen nach",
+        "TASK-COUNT-TITLE": "Anzahl an Aufgaben",
+        "TASK-COUNT-DESCRIPTION": "Dieses Diagramm zeigt die Gesamtanzahl aller Aufgaben im gegebenen Datumsbereich an.",
+        "TASK-DURATIONS-TITLE": "Dauer der Aufgaben",
+        "TASK-DURATIONS-DESCRIPTION": "Dieses Diagramm zeigt die durchschnittliche, minimale und maximale Dauer (in Stunden) der abgeschlossenen Aufgaben im gegebenen Datumsbereich an. In der detaillierten Tabelle unten zeigt die X-Achse die Zeilennummer der Aufgabe an.",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "Anzahl der Aufgaben nach zugewiesenem Benutzer",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "Dieses Kreisdiagramm zeigt für jeden zugewiesenen Benutzer die Anzahl der Aufgaben für die ausgewählte Prozessdefinition.",
+        "DETAILED-TASK-STATS-TITLE": "Detaillierte Aufgabenstatistik",
+        "DETAILED-TASK-STATS-DESCRIPTION": "Diese Tabelle zeigt die zusammengeführte Statistik aller Aufgaben. Klicken Sie auf eine beliebige Aufgabe, um detailliertere Informationen anzuzeigen. Sämtliche Zeitinformationen werden in Stunden angegeben.",
+        "DETAILED-TASK-STATS-TASK": "Aufgabe",
+        "DETAILED-TASK-STATS-ASSIGNEE": "Zugewiesener Benutzer",
+        "TASK-HISTOGRAM-TITLE": "Anzahl der Aufgaben, unterteilt nach Datumsintervall",
+        "TASK-HISTOGRAM-TABLE": "Tabelle: Vorherige Diagrammdaten im Tabellenformat",
+        "TASK-HISTOGRAM-TABLE-DATE": "Datum",
+        "COUNT": "Anzahl",
+        "SUM": "Summe",
+        "MIN-DURATION": "Min. Dauer",
+        "MAX-DURATION": "Max. Dauer",
+        "AVERAGE": "Durchschnitt",
+        "STDDEV": "Standardabweichung"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "TITLE": "Überblick über Prozessinstanzen",
+        "PROCESS-DEFINITION": "Prozessdefinition",
+        "DATE-RANGE": "Datumsbereich",
+        "SLOW-PROC-INST-NUMBER": "Wie viele der langsamsten Prozessinstanzen sollen angezeigt werden?",
+        "HISTOGRAM-TITLE": "Anzahl der Prozessinstanzen",
+        "HISTOGRAM-DESCRIPTION": "Das folgende Diagramm zeigt die Anzahl der Prozessinstanzen, die innerhalb des ausgewählten Datumsbereichs gestartet und abgeschlossen werden.",
+        "ACTIVITY-DURATION-TABLE-TITLE": "Details zur Aktivitätsdauer",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "Die folgende Tabelle zeigt, geordnet nach benötigter kumulativer Gesamtzeit, die Zeiten der verschiedenen Aktivitäten in dem Prozess. Sämtliche Zeitinformationen werden in Stunden angegeben.",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "Aktivität",
+        "ACTIVITY-DURATION-CHART-TITLE": "Gesamtzeit der Prozessschritte",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "Dieses Diagramm zeigt, für welche Aktivitäten Zeit aufgewendet wurde. Die Zahlen sind die Summe der Gesamtdauer für diese Aktivität, wie in der Tabelle unten gezeigt.",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "Langsamste Prozessinstanzen",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "Diese Tabelle zeigt die langsamsten Prozessinstanzen, die im konfigurierten Datumsbereich abgeschlossen wurden. Klicken Sie auf einen beliebigen Eintrag, um die Prozessvariablen für diese spezifische Prozessinstanz anzuzeigen.",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Dauer",
+        "SLOWEST-PROCESS-INSTANCES-ID": "Interne ID",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Geschäftsschlüssel",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Erstellungszeit",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "Endzeit",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variablen",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "Variablenname",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Variablenwert",
+        "COUNT": "Anzahl",
+        "SUM": "Summe",
+        "MIN-DURATION": "Min. Dauer",
+        "MAX-DURATION": "Max. Dauer",
+        "AVERAGE": "Durchschnitt",
+        "STDDEV": "Standardabweichung"
+      },
+      "TASK-SLA": {
+        "TITLE": "Service-Level-Vereinbarung für Aufgabe",
+        "PROCESS-DEFINITION": "Prozessdefinition",
+        "TASK": "Aufgabe",
+        "DATE-RANGE": "Datumsbereich",
+        "SLA-DURATION": "In welcher Zeit muss diese Aufgabe abgeschlossen werden, um der SLA zu entsprechen?",
+        "SLA-NOT-OK": "Service-Level-Vereinbarung OK vs. Nicht OK",
+        "ASSIGNEE-TABLE": "Zugewiesene Benutzer, die die Aufgabe nicht innerhalb der SLA-Grenzen abgeschlossen haben",
+        "ASSIGNEE": "Zugewiesener Benutzer",
+        "COUNT": "Anzahl"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "TITLE": "Überblick über Prozessdefinition",
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Gesamtzahl der Prozessdefinitionen: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Gesamtzahl der Prozessinstanzen: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Gesamtzahl der aktiven Prozessinstanzen: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Gesamtzahl der abgeschlossenen Prozessinstanzen: ",
+        "DETAIL-TABLE": "Details zur Prozessdefinition",
+        "DETAIL-TABLE-PROCESS": "Prozessdefinition",
+        "DETAIL-TABLE-TOTAL": "Summe",
+        "DETAIL-TABLE-ACTIVE": "Aktiv",
+        "DETAIL-TABLE-COMPLETED": "Abgeschlossen",
+        "PROC-INST-CHART-TITLE": "Überblick über die Summe der Prozessinstanzen",
+        "DURATIONS-CHART-TITLE": "Durchschnittliche Zeiten für jede Prozessdefinition",
+        "DURATIONS-CHART-DESCRIPTION": "Die Durchschnittsdauer (und Standardabweichung) abgeschlossener Prozessinstanzen in Stunden. Die Zahl auf der X-Achse entspricht dem Eintrag in der oben stehenden Tabelle."
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "Heatmap verarbeiten",
+        "TYPE-FILTERING": "Alle Prozessschritte einschließen? (Wenn Sie diese Option deaktivieren, werden Zwischenschritte wie Startereignisse, Gateways usw. entfernt.)",
+        "METRIC-TOTAL-COUNT": "Anzahl der Ausführungen eines Schrittes",
+        "METRIC-TOTAL-TIME": "In einem Prozessschritt verbrachte Zeitdauer",
+        "METRIC-AVG-TIME": "Durchschnittliche Zeitdauer eines Prozessschrittes",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "Mal",
+        "METRIC-TOTAL-TIME-TOOLTIP": "Stunden",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "Stunden",
+        "GENERATING": "Heatmap für Prozess wird erstellt..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "Bericht speichern",
+        "DESCRIPTION": "Die aktuellen Parametereinstellungen werden gespeichert und ein neuer Bericht wird in der Berichtsliste angezeigt. Wenn dieser bestimmte Bericht angeklickt wird, wird der Bericht mithilfe dieser gespeicherten Parameterwerte erstellt.",
+        "NAME": "Name"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "Daten exportieren",
+        "NAME": "Name"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "Bericht löschen",
+        "DESCRIPTION": "Möchten Sie diesen Bericht wirklich löschen?",
+        "CONFIRM": "Bericht löschen"
+      }
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "App Designer",
+      "TITLE-PROCESSES": "Prozessmodelle",
+      "TITLE-FORMS": "Formularmodelle",
+      "TITLE-APPS": "Anwendungsmodell",
+      "TITLE-STENCILS": "Vorlagen",
+      "TITLE-DECISION-TABLES": "Entscheidungstabellen",
+      "TITLE-DATA-MODELS": "Datenmodelle"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Administratoranwendung"
+    },
+    "TASKS": {
+      "TITLE": "Aufgabenanwendung",
+      "TITLE-TASKS": "Aufgaben",
+      "TITLE-PROCESSES": "Prozesse",
+      "TITLE-PROCESSES?MODE=START": "Start"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profil",
+      "TITLE-TENANT-ADMIN": "Identitätsverwaltung",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Mandanten",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Benutzer",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Funktionen",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organisation",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profil",
+      "TITLE-PROFILE": "Profil"
+    },
+    "ANALYTICS": {
+      "TITLE": "Analytik-Anwendung"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}}-Aufgaben",
+      "TITLE-PROCESSES": "{{name}}-Prozesse",
+      "TITLE-PROCESSES?MODE=START": "{{name}}-Start"
+    }
+  }
+}

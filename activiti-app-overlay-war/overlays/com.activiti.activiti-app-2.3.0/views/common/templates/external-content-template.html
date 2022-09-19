@@ -1,0 +1,60 @@
+<!--[if IE 9]>
+<div class="dropzoneIE9 selectionIE9" ng-if="!folderSelect">
+
+    <div loading="model.uploading"></div>
+    <div class="error" ng-if="errorMessage">
+        {{errorMessage}}
+    </div>
+
+    <div class="clearfix">
+        <div class="actions" ng-class="{'no-upload': linkOnly}" ng-if="(contentAccounts.rawList | filter: contentAccountsByServiceId).length>0">
+            <div class="account" ng-repeat="account in contentAccounts.rawList | filter: contentAccountsByServiceId | orderBy: 'serviceName'" title="{{account.name}}">
+                <div class="{{account.serviceId}}" title="{{account.serviceName}}" ng-class="{'alfresco' : account.name}" ng-click="selectAccountContent($event, account)">
+                </div>
+            </div>
+        </div>
+        <div class="select-file" ng-if="!browseButtonIsVisible() && (contentAccounts.rawList | filter: contentAccountsByServiceId).length==0">{{'CONTENT.MESSAGE.NO-EXTERNAL-SOURCE' | translate}}</div>
+        <div ng-if="browseButtonIsVisible()" class="select-file">
+            <button class="btn" ngf-select="" ngf-change="onFileSelect($files, true)">{{'CONTENT.MESSAGE.SELECT' | translate}}</button>
+        </div>
+    </div>
+</div>
+<![endif]-->
+<!--[if gt IE 9]> <!-- -->
+<div class="dropzone selection" ngf-drop ngf-change="onFileSelect($files, false)"
+     ngf-drop-available="dropSupported=browseButtonIsVisible()"
+     ngf-drag-over-class="dragover" ng-class="{'uploading': model.uploading}" ng-if="!folderSelect">
+
+    <div loading="model.uploading"></div>
+    <div class="error" ng-if="errorMessage">
+        {{errorMessage}}
+    </div>
+
+    <input type="file" ngf-select="" ngf-multiple="allowMultiple" ngf-change="onFileSelect($files)" ng-disabled="model.uploading || readOnly" ng-if="browseButtonIsVisible()">
+
+    <div class="clearfix">
+        <div class="message" ng-if="browseButtonIsVisible()">
+             {{'CONTENT.MESSAGE.DRAGOVER' | translate}}
+        </div>
+        <div class="actions" ng-class="{'no-upload': !browseButtonIsVisible()}" ng-if="(contentAccounts.rawList | filter: contentAccountsByServiceId).length>0 && !readOnly">
+            <div class="account" ng-repeat="account in contentAccounts.rawList | filter:contentAccountsByServiceId | orderBy: 'serviceName'" title="{{account.name}}">
+                <div class="{{account.serviceId}}" title="{{account.serviceName}}" ng-class="{'alfresco' : account.name}" ng-click="selectAccountContent($event, account)">
+                </div>
+            </div>
+        </div>
+
+        <div class="select-file" ng-if="browseButtonIsVisible() && !readOnly">{{'CONTENT.MESSAGE.DROP' | translate}}
+           <button class="btn btn-primary">{{'CONTENT.MESSAGE.SELECT' | translate}}</button>
+        </div>
+
+        <div class="select-file" ng-if="!browseButtonIsVisible() && (contentAccounts.rawList | filter: contentAccountsByServiceId).length>0">{{'CONTENT.MESSAGE.EXTERNAL-ONLY' | translate}}</div>
+        <div class="select-file" ng-if="!browseButtonIsVisible() && (contentAccounts.rawList | filter: contentAccountsByServiceId).length==0">{{'CONTENT.MESSAGE.NO-EXTERNAL-SOURCE' | translate}}</div>
+    </div>
+</div>
+
+<div ng-if="folderSelect">
+    <button class="btn" ng-click="selectFolder($event)">
+        {{'COMMON.SELECT-FOLDER' | translate}}
+    </button>
+</div>
+<!-- <![endif]-->

@@ -1,0 +1,114 @@
+{ "startForm" : { "id" : 1007 },
+  "steps" : [ { "assignment" : { "assigneeField" : { "col" : 0,
+                "fieldType" : "FormFieldRepresentation",
+                "id" : "assignee",
+                "name" : "Assignee",
+                "overrideId" : false,
+                "readOnly" : false,
+                "required" : false,
+                "row" : 0,
+                "sizeX" : 0,
+                "sizeY" : 0,
+                "type" : "people"
+              },
+            "initiatorCanCompleteTask" : true,
+            "type" : "user"
+          },
+        "description" : "${taskdescription}",
+        "dueAction" : "none",
+        "formDefinition" : { "id" : 1008 },
+        "id" : "human-step-1426098741282-640",
+        "name" : "Review and Approve",
+        "overdueSteps" : [  ],
+        "taskDueDateField" : { "id" : "duedate",
+            "name" : "Due date"
+          },
+        "taskDueDateOption" : "field",
+        "type" : "human-step"
+      },
+      { "choices" : [ { "condition" : { "fieldType" : "outcome",
+                  "operator" : "==",
+                  "outcomeFormId" : "1008",
+                  "outcomeFormName" : "Review",
+                  "outcomeName" : "Approve"
+                },
+              "name" : "Approved",
+              "steps" : [ { "assignment" : { "initiatorCanCompleteTask" : true,
+                        "type" : "initiator"
+                      },
+                    "description" : "${taskdescription}",
+                    "dueAction" : "none",
+                    "formDefinition" : { "id" : 1009 },
+                    "id" : "human-step-1426098987148-121",
+                    "name" : "Approved",
+                    "overdueSteps" : [  ],
+                    "taskDueDateOption" : "none",
+                    "type" : "human-step"
+                  } ]
+            },
+            { "condition" : { "fieldType" : "outcome",
+                  "operator" : "==",
+                  "outcomeFormId" : "1008",
+                  "outcomeFormName" : "Review",
+                  "outcomeName" : "Reject"
+                },
+              "name" : "Rejected",
+              "steps" : [ { "assignment" : { "initiatorCanCompleteTask" : true,
+                        "type" : "initiator"
+                      },
+                    "description" : "${taskdescription}",
+                    "dueAction" : "none",
+                    "formDefinition" : { "id" : 1010 },
+                    "id" : "human-step-1426099157561-333",
+                    "name" : "Rejected",
+                    "overdueSteps" : [  ],
+                    "taskDueDateOption" : "none",
+                    "type" : "human-step"
+                  } ]
+            }
+          ],
+        "id" : "choice-step-1426098951964-62",
+        "name" : "Choice step",
+        "type" : "choice-step"
+      },
+      { "choices" : [ { "condition" : { "fieldType" : "outcome",
+                  "operator" : "==",
+                  "outcomeFormId" : "1008",
+                  "outcomeFormName" : "Review",
+                  "outcomeName" : "Approve"
+                },
+              "name" : "Approved",
+              "steps" : [  ]
+            },
+            { "condition" : { "fieldType" : "outcome",
+                  "operator" : "==",
+                  "outcomeFormId" : "1010",
+                  "outcomeFormName" : "Rejected",
+                  "outcomeName" : "Send for Approval Again"
+                },
+              "name" : "Retry Approval",
+              "steps" : [ { "gotoStep" : { "id" : "human-step-1426098741282-640",
+                        "name" : "Review and Approve",
+                        "stepType" : "human-step"
+                      },
+                    "id" : "goto-step-1426100576117-291",
+                    "name" : "Goto Review and Approve",
+                    "type" : "goto-step"
+                  } ]
+            },
+            { "condition" : { "fieldType" : "outcome",
+                  "operator" : "==",
+                  "outcomeFormId" : "1010",
+                  "outcomeFormName" : "Rejected",
+                  "outcomeName" : "Stop Approval Request"
+                },
+              "name" : "Rejected",
+              "steps" : [  ]
+            }
+          ],
+        "id" : "choice-step-1426099534907-944",
+        "name" : "Choice step",
+        "type" : "choice-step"
+      }
+    ]
+}

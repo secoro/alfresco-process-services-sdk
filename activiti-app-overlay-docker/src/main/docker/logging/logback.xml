@@ -6,7 +6,7 @@
     </encoder>
   </appender>
   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-  <file>/usr/local/tomcat/logs/activiti-app.log</file>
+  <file>/Users/seanderoo/Downloads/apache-tomcat-9.0.65/logs/activiti-app.log</file>
   <append>true</append>
     <encoder>
       <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>

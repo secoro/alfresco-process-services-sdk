@@ -1,0 +1,44 @@
+<div class="modal" ng-controller="EditKickstartMetadataCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+            <div class="modal-header"><h2>{{'PROCESS.POPUP.EDIT-METADATA-TITLE' | translate}}</h2></div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div ui-grid="gridOptions" ui-grid-selection ui-grid-edit></div>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <a class="btn btn-icon btn-lg" ng-click="addNewField()">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
+                                <a class="btn btn-icon btn-lg" ng-disabled="!metadata.selectedField" ng-click="removeField()">
+                                    <i class="glyphicon glyphicon-minus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div ng-if="metadata.selectedField">
+                            <div class="form-group">
+                                <label>{{'FORM-BUILDER.METADATA.KEY' | translate}}</label>
+                                <input data-ng-model="metadata.selectedField.key" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>{{'FORM-BUILDER.METADATA.VALUE' | translate}}</label>
+                                <input data-ng-model="metadata.selectedField.value" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-default" ng-click="cancel()" translate>GENERAL.ACTION.CANCEL</button>
+                    <button class="btn btn-primary" ng-click="save()" ng-disabled="readOnly" translate>ACTION.SAVE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

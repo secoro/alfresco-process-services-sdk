@@ -1,0 +1,42 @@
+<div class="popover" click-anywhere="$hide()" ignore-class="selection" auto-scroll>
+    <div class="arrow"></div>
+    <div class="popover-header">
+        <span class="title">{{'SUBPROCESS.POPOVER.SELECT-TITLE' | translate}}</span>
+
+        <div class="actions">
+            <a ng-click="$hide()">
+                {{'GENERAL.ACTION.CLOSE' | translate}}</a>
+        </div>
+    </div>
+
+    <div class="popover-wrapper">
+        <div class="center">
+            <div class="btn-group">
+                <button class="btn btn-xs" ng-click="createSubProcess()" ng-disabled="readOnly">{{'SUBPROCESS.POPOVER.CREATE' | translate}}</button>
+                <button class="btn btn-xs" ng-click="clearSubProcess()" ng-disabled="readOnly">{{'SUBPROCESS.POPOVER.CLEAR' | translate}}</button>
+            </div>
+        </div>
+        <div class="section">
+            <label translate="GENERAL.TITLE.FILTER"></label>
+            <div>
+                <input class="form-control" type="text" placeholder="{{'SUBPROCESS.POPOVER.SEARCH-PLACEHOLDER' | translate}}" auto-focus custom-keys
+                       up-pressed="previousSubProcess()" down-pressed="nextSubProcess()" enter-pressed="confirmSubProcess()"
+                       delayed-model="popupModel.filter" delay="200"/>
+
+                <div class="inline-help" translate="GENERAL.MESSAGE.SELECT-PEOPLE-HELP"></div>
+            </div>
+            <label>{{'SUBPROCESS.POPOVER.MATCHING' | translate}}</label>
+            <div class="people-select">
+                <ul class="simple-list">
+                    <li ng-click="confirmSubProcess(subProcess);" ng-repeat="subProcess in popupModel.subProcessResults"
+                        ng-class="{'active': subProcess.id === popupModel.selectedSubProcess.id}">
+                        {{subProcess.name}}
+                    </li>
+                </ul>
+                <div class="nothing-to-see" ng-show="!popupModel.subProcessResults || popupModel.subProcessResults.length == 0">
+                    {{'SUBPROCESS.POPOVER.NONE-MATCHING' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

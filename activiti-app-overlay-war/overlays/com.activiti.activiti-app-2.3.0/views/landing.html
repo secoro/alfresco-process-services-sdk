@@ -1,0 +1,117 @@
+<div id={{app.id}} class="app-wrapper" ng-repeat="app in model.apps">
+    <div class="app {{app.theme}}">
+        <a href="{{app.fixedUrl}}">
+            <div class="app-content">
+                <h3>
+                    {{app.titleKey && (app.titleKey | translate) || (app.name | limitTo:35)}}
+                    <span ng-if="!app.titleKey && app.name.length > 35">...</span>
+                </h3>
+
+                <p class="description" title="">
+                    {{app.descriptionKey && (app.descriptionKey | translate) || (app.description | limitTo:80)}}
+                    <span ng-if="!app.descriptionKey && app.description.length > 80">...</span>
+                </p>
+            </div>
+            <div class="backdrop">
+                <i class="{{app.icon}}"></i>
+            </div>
+            <div class="logo">
+                <i class="{{app.icon}}"></i>
+            </div>
+            <div class="actions" ng-if="app.deletable" ng-click="$event.preventDefault();" bs-dropdown="appActions" placement="bottom-right">
+                <i class="icon icon-caret-down"></i>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="app-wrapper" ng-if="!readOnly">
+    <div class="app create-app">
+        <a ng-click="addAppDefinition()">
+            <div class="fixed" translate="APP.ACTION.ADD"></div>
+            <div class="app-content">
+                <h3>
+                    +
+                </h3>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="app-wrapper" ng-if="allowLicenseUpload && (readOnly || licenseWarning) && (hasCapability('tenant-manager') || hasCapability('tenant-admin'))">
+    <div class="app theme-error">
+        <a >
+            <div class="app-content">
+                <h3 ng-if="!licenseWarning">
+                    {{('LICENSE.STATUS.INVALID' | translate | limitTo:35)}}
+                    <span ng-if="('LICENSE.STATUS.INVALID' | translate).length > 35">...</span>
+                </h3>
+                <h3 ng-if="licenseWarning">
+                    {{('LICENSE.STATUS.WARNING' | translate | limitTo:35)}}
+                    <span ng-if="('LICENSE.STATUS.WARNING' | translate).length > 35">...</span>
+                </h3>
+
+                <p>
+                    <span ng-if="!licenseWarning" title="{{('COMMON.WARNING.APP-LICENSE-ISSUE-' + (licenseStatus | uppercase)) | translate}}">
+                        {{(('COMMON.WARNING.APP-LICENSE-ISSUE-' + (licenseStatus | uppercase)) | translate | limitTo:150)}}
+                        <span ng-if="(('COMMON.WARNING.APP-LICENSE-ISSUE-' + (licenseStatus | uppercase)) | translate).length > 150">...</span>
+                    </span>
+                    <span ng-if="licenseWarning" title="{{('COMMON.WARNING.APP-LICENSE-WARNING-' + (licenseWarning | uppercase)) | translate}}">
+                        {{(('COMMON.WARNING.APP-LICENSE-WARNING-' + (licenseWarning | uppercase)) | translate | limitTo:150)}}
+                        <span ng-if="(('COMMON.WARNING.APP-LICENSE-WARNING-' + (licenseWarning | uppercase)) | translate).length > 150">...</span>
+                    </span>
+                    <span ng-if="!hasCapability('upload-license')" translate="COMMON.WARNING.APP-LICENSE-NO-UPLOAD-CAPABILITY"></span>
+                </p>
+
+            </div>
+            <div class="backdrop">
+                <i class="{{app.icon}}"></i>
+            </div>
+            <div class="logo">
+                <i class="{{app.icon}}"></i>
+            </div>
+            <div ng-if="hasCapability('upload-license')" class="buttons">
+                <button class="activiti-btn activiti-btn-danger" translate="APP.ACTION.UPLOAD-LICENSE" ng-click="showUploadLicenseModal()"></button>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="no-custom-apps" ng-if="!model.customApps && model.customAppsFetched && !readOnly">
+    <div class="help-container fixed" >
+        <div>
+            <div class="help-dude-hooray"></div>
+        </div>
+        <div>
+            <div class="help-text">
+                <div class="description">
+                    {{'APP.MESSAGE.NO-CUSTOM-APPS' | translate}}
+                </div>
+                <a href="{{urls['editor']}}">
+                    <div class="help-entry">
+                        <span class="icon icon-choice"></span>
+                        <span translate="APP.MESSAGE.NO-CUSTOM-APPS-EDITOR-HINT"></span>
+                    </div>
+                </a>
+                <a href="{{urls['workflow']}}">
+                    <div class="help-entry" ng-click="createApp()">
+                        <span class="icon icon-clock"></span>
+                        <span translate="APP.MESSAGE.NO-CUSTOM-APPS-TASKS-HINT"></span>
+                    </div>
+                </a>
+                <a href="{{urls['identity']}}">
+                    <div class="help-entry" ng-click="createApp()">
+                        <span class="icon icon-user"></span>
+                        <span translate="APP.MESSAGE.NO-CUSTOM-APPS-PROFILE-HINT"></span>
+                    </div>
+                </a>
+                <a href="https://docs.alfresco.com/process-services/latest/using/process/" target="_blank">
+                    <div class="help-entry">
+                        <span class="glyphicon glyphicon-question-sign"></span>
+                        <span translate="APP.MESSAGE.NO-CUSTOM-APPS-GETTING-STARTED-HINT"></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

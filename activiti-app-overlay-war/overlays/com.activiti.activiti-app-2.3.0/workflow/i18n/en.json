@@ -1,0 +1,765 @@
+{
+    "COMMON" : {
+        "SELECT-FOLDER": "Select folder...",
+        "ACCOUNTS": {
+            "ALFRESCO": "Alfresco ({{name}})",
+            "box": "Box",
+            "google-drive": "Google drive"
+        },
+        "AUTHORIZE": {
+            "EXTERNAL-REPOSITORY-CONFIGURED": "There is a {{moduleName}} account configured for you.",
+            "EXTERNAL-REPOSITORY-KEY-EXPIRE-AT": "The key will expire on:{{expireDateTime  | date: 'MM/dd/yyyy h:mma' }}",
+            "NO-EXTERNAL-REPOSITORY-CONFIGURED": "There is no {{moduleName}} account configured for you.",
+            "EXTERNAL-REPOSITORY-REAUTHORIZE-REQUIRED": "Task can't be completed without reauthorization.",
+            "EXTERNAL-REAUTHORIZE-ADVICE": "Reauthorize Alfresco Process Services to connect to {{moduleName}} using the button below.",
+            "MODULE-DISABLED": "The {{moduleName}} integration is currently disabled.",
+            "TITLE": "Authorize"
+        },
+        "AUTHORIZATION_COMPLETED": "Authorization completed",
+        "NOBODY": "Nobody",
+        "NOBODY-LETTERS": "NB",
+        "FILTER": {
+        	"NEW-FILTER": "New Filter",
+        	"EDIT": "Edit",
+        	"RESET": "Reset",
+        	"DELETE": "Delete",
+            "NEW-FILTER-NAME":   "New Filter",
+            "FILTER-ICON-AND-NAME": "Filter icon & name",
+            "SAVE": "Save",
+            "SAVE-HINT": "Happy with your filter?<br/> Choose an icon and a name then click save.",
+            "SEARCH-RESULTS": "Search results"
+        },
+        "WARNING": {
+	    "APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services is in read-only mode as the local license is invalid.",
+	    "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services is in read-only mode since no local license could be found.",
+	    "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services is in read-only mode since the dates of the local license's aren't valid (either expired or has a start date in the future).",
+	    "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Your license is about to expire! Alfresco Process Services will become read-only."
+        }
+    },
+    "GENERAL": {
+	"MAIN-TITLE": "My Tasks",
+        "ERROR": {
+            "GENERIC": "An error occurred...",
+            "UNKNOWN": "An error occurred while performing the requested operation.",
+            "BAD_REQUEST": "An error occurred while performing the requested operation",
+            "NOT_FOUND": "The resource you are trying to access does not exist",
+            "UNAUTHORIZED": "You should sign in in order to perform the requested operation.",
+            "FORBIDDEN": "You are not allowed to perform the requested operation",
+            "INTERNAL_SERVER_ERROR": "An unexpected error occurred while performing the requested operation.",
+            "UPLOAD-LIMIT-EXCEEDED": "The file you are trying to upload is too large",
+            "UPLOAD-LIMIT-EXCEEDED-TRIAL-USER": "The file you are trying to upload is too large. Upgrade to enterprise to upload files larger than {{quota}}!",
+            "QUOTA-EXCEEDED-RUNTIME-PROCESSES": "As a trial user, you can only have {{quota}} active processes running at the same time.",
+            "QUOTA-EXCEEDED-COMPLETED-PROCESSES": "As a trial user, you can only have {{quota}} completed processes. Delete a completed process in order to start a new one.",
+            "QUOTA-EXCEEDED-TOTAL-CONTENT-SIZE": "As a trial user, you can only store a total of {{quota}} of content. Delete content or complete processes to free up space for new content."
+        },
+        "NAVIGATION": {
+            "TASKS": "Tasks",
+            "PROCESSES": "Processes",
+            "START-PROCESS": "Start",
+            "DESIGN": "Design",
+            "CREATE": "+ Create",
+            "LOGIN": "Sign in",
+            "REPORTS": "Reports"
+        },
+        "TITLE": {
+            "ADD-COMMENT": "Create comment",
+            "INVOLVE-PEOPLE": "Select person",
+            "RECENT-PEOPLE": "Recent people",
+            "MATCHING-PEOPLE": "Matching people",
+            "SELECT-GROUP": "Select group",
+            "MATCHING-GROUPS": "Matching groups",
+            "FILTER": "Filter",
+            "SELECT-DATE": "Select a date"
+        },
+        "ACTION": {
+	    "ABOUT": "About Alfresco Process Services",
+            "LOGOUT": "Sign out",
+            "EDIT-PROFILE": "Edit profile",
+            "ADD-COMMENT": "Add comment",
+            "ADD-CHECKLIST": "Add checklist",
+            "SAVE": "Save",
+            "CANCEL": "Cancel",
+            "CLOSE": "Close",
+            "CONFIRM": "Confirm",
+            "SHOW-MORE": "Show more",
+            "HELP-DOCS-LINK": "Help"
+        },
+        "MESSAGE": {
+            "SELECT-PEOPLE-HELP": "Use &uparrow; and &downarrow; to select and press Enter to confirm",
+            "SELECT-GROUP-HELP": "Use &uparrow; and &downarrow; to select and press Enter to confirm",
+            "SELECT-GROUP-SEARCH-PLACEHOLDER": "Search group",
+            "SELECT-GROUP-NO-MATCHING-RESULTS": "Use the search box above to find groups.",
+            "UPLOAD-CONTENT": "Select or drop a file",
+            "UPLOAD-CONTENT-NO-DROP": "Select a file to upload",
+            "DROPZONE": "Drop the file to upload",
+            "YES": "Yes",
+            "NO": "No"
+        },
+        "TIME": {
+            "HOURS": "hours",
+            "MINUTES": "minutes",
+            "SECONDS": "seconds"
+        },
+        "ABOUT": {
+            "TYPE": "Type",
+            "LICENSED-TO": "Licensed To",
+            "EXPIRES": "Expires",
+            "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. All rights reserved.",
+            "LEGAL": "Legal and License"
+        }
+    },
+    "LOGIN": {
+        "TITLE": "Sign in",
+        "USERNAME": "Username",
+        "USERNAME-PLACEHOLDER": "Enter your username",
+        "PASSWORD": "Password",
+        "PASSWORD-PLACEHOLDER": "Enter your password",
+        "ACTION": {
+            "CONFIRM": "Sign in"
+        }
+    },
+    "TASK": {
+        "SECTION": {
+            "PEOPLE": "People",
+            "GROUPS": "Groups",
+            "CONTENT": "Content",
+            "COMMENTS": "Comments",
+            "CHECKLISTS": "Checklist",
+            "NOTES": "Notes"
+        },
+        "FILTER": {
+        	"SORT": "Sort",
+            "CREATED-DESC": "Newest first",
+            "CREATED-ASC": "Oldest first",
+            "DUE-DESC": "Due last",
+            "DUE-ASC": "Due first",
+            "TEXT": "Filter",
+            "TEXT-PLACEHOLDER": "Search by task name",
+            "TEXT-SUMMARY": "Filtered by: {{text}}",
+            "PROCESS-DEFINITION": "Process Definition",
+            "PROCESS-DEFINITION-PLACEHOLDER": "Select process definition ...",
+            "STATE": "State",
+            "STATE-OPEN": "open",
+            "STATE-COMPLETED": "completed",
+            "ASSIGNMENT": "Assignment",
+            "ASSIGNMENT-INVOLVED": "Tasks where I am involved",
+            "ASSIGNMENT-ASSIGNEE": "Tasks where I am the assignee",
+            "ASSIGNMENT-CANDIDATE": "Tasks where I am one of the candidates",
+            "ASSIGNMENT-GROUP": "Tasks assigned to the group \"{{name}}\"",
+            "RESET": "Reset filters",
+            "SINGLE-TASK": "Showing '{{name || (\"TASK.MESSAGE.NO-NAME\" | translate)}}'",
+            "NO-SINGLE-TASK": "No task with id '{{id}}' found",
+            "INVOLVED-FILTER-NAME": "Involved Tasks",
+            "ASSIGNEE-FILTER-NAME": "My Tasks",
+            "COMPLETED-FILTER-NAME": "Completed Tasks",
+            "CANDIDATE-FILTER-NAME": "Queued Tasks",
+            "TASK-NAME": "Task Name",
+            "SEARCH": "Search",
+            "NEW-SEARCH": "New Search?",
+            "CREATE-FILTER": "Create new filter or choose from below",
+            "EDIT-FILTER": "Edit search",
+            "FILTER-NAME-PLACEHOLDER": "Name of custom filter",
+            "CREATE-TASK": "Create task",
+            "SEARCH-PLACEHOLDER": "Search",
+            "NO-FILTER-RESULTS": "Nothing found in \"{{name}}\", you could try another list. To get going with something new you can:",
+            "NO-SEARCH-RESULTS": "No tasks match your search, you could try other criteria. To get going with something new you can:"
+        },
+        "ALERT": {
+            "COMMENT-ADDED": "Comment was added to \"{{name}}\"",
+            "CHECKLIST-ADDED": "Task \"{{name}}\" was added to checklist",
+            "CHECKLIST-REMOVED": "Task \"{{name}}\" was removed from checklist",
+            "PERSON-INVOLVED": "{{userName}} is now involved in \"{{taskName}}\"",
+            "PERSON-INVOLVED-EMAIL-NOT-ALLOWED": "Cannot involve the external persons by email '{{emailAddress}}'.\"",
+            "PERSON-NO-LONGER-INVOLVED": "{{userName}} is no longer involved in \"{{taskName}}\"",
+            "GROUP-INVOLVED": "Group \"{{groupName}}\" is now involved in task \"{{taskName}}\"",
+            "GROUP-NO-LONGER-INVOLVED": "Group \"{{groupName}}\" is no longer involved in task \"{{taskName}}\"",
+            "CREATED": "Task \"{{name}}\" was created",
+            "COMPLETED": "Task completed",
+            "SAVED": "Task form is saved",
+            "ASSIGNED": "Task \"{{taskName}}\" is now assigned to {{userName}}",
+            "RELATED-CONTENT-ADDED": "\"{{name}}\" has been added to the task",
+            "RELATED-CONTENT-ADDED-LOADING": "\"{{name}}\" has been added to the task. The content will be available once retrieved from the external source.",
+            "FORM-ATTACHED": "Attached form \"{{name}}\"",
+            "FORM-REMOVED": "Removed form \"{{name}}\""
+        },
+        "ACTION": {
+            "BACK-TO-LIST": "Back to task list",
+            "COMPLETE-TASK-WITH-FORM": "Complete form",
+            "COMPLETE": "Complete",
+            "CLAIM": "Claim",
+            "UNCLAIM": "Requeue",
+            "ASSIGN": "Assign",
+            "REASSIGN": "Reassign",
+            "CREATE": "+ Create Task",
+            "CREATE-CONFIRM": "Create",
+            "INVOLVE": "+ Involve people",
+            "INVOLVE-GROUP": "Involve group",
+            "ADD-COMMENT": "+ Add comment",
+            "ADD-COMMENT-CONFIRM": "Add comment",
+            "ADD-CHECKLIST": "+ Add task to checklist",
+            "ADD-CHECKLIST-CONFIRM": "Add task to checklist",
+            "ADD-CONTENT": "+ Add content",
+            "CLEAR-DUEDATE": "Clear due date",
+            "DUE-TODAY": "Due today",
+            "CLEAR-DATE": "Clear date",
+            "DATE-TODAY": "Date today",
+            "AUDIT-LOG": "Audit Log"
+        },
+        "TITLE": {
+            "ASSIGN": "Select assignee",
+            "ASSIGNEE": "Assignee",
+            "CONTENT": "Related content",
+            "CREATE-NEW": "New Task",
+            "NEW-TASK-NAME" : "New Task",
+            "EDIT-NAME": "Edit task name",
+            "FORM": "Form",
+            "DETAILS": "Details",
+            "ADD-RELATED-CONTENT": "Add related content",
+            "SELECT-DUEDATE": "Select due date",
+            "SELECT-DATE": "Select date",
+            "NO-CONTENT-ITEMS": "No content items",
+            "NO-PEOPLE-INVOLVED": "No people involved",
+            "NO-GROUPS-INVOLVED": "No groups involved",
+            "NO-COMMENTS": "No comments",
+            "COMMENT-COUNT": "comment",
+            "COMMENTS-COUNT": "comments",
+            "NO-CHECKLISTS": "No checklist",
+            "CHECKLIST-COUNT": "task in checklist",
+            "CHECKLISTS-COUNT": "tasks in checklist",
+            "SHOW-DETAILS": "Show details",
+            "SHOW-FORM": "Show form",
+            "GROUPS-INVOLVED": "{{groupCount}} group(s) involved"
+        },
+        "FIELD": {
+            "NAME": "Name",
+            "DESCRIPTION": "Description",
+            "ASSIGNEE": "Assignee",
+            "DUE": "Due",
+            "FORM": "Form",
+            "PROCESS-INSTANCE": "Part of process",
+            "PARENT-TASK": "Part of",
+            "ENDED": "Ended",
+            "DURATION": "Duration"
+        },
+        "MESSAGE": {
+            "NO-NAME": "Nameless task",
+            "NO-ASSIGNEE": "Assigned to nobody",
+            "NO-DUEDATE": "No due date",
+            "DUE-ON": "Due",
+            "NO-FORM": "No form",
+            "CREATED-ON": "Created",
+            "ENDED-ON": "Completed",
+            "EXECUTION-FAILED": "Execution failed",
+            "COMPLETED-BY": "Completed by {{username}}, ",
+            "NO-DESCRIPTION": "This task has no description",
+            "NO-RELATED-CONTENT": "This task has no related content yet...",
+            "NO-PEOPLE-INVOLVED": "This task has no people involved yet...",
+            "NO-COMMENTS": "This task has no comments yet...",
+            "INVOLVE-PEOPLE-PLACEHOLDER": "+ Add person",
+            "CONTENT-UPLOADED-BY": "Added by ",
+            "ASSIGNEE": "Assigned to {{username}}",
+            "NEW-COMMENT-PLACEHOLDER": "Enter a comment to add to this task",
+            "NEW-CHECKLIST-PLACEHOLDER": "Enter task name",
+            "COMMENT-HEADER": "Added by {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+            "NO-FILTER": "Showing your tasks, no filter applied",
+            "FILTERED": "Showing your tasks, filtered",
+            "NO-TASKS": "No matching tasks found...",
+            "DURATION": "Took {{duration}}",
+            "CLAIM-TASK-FIRST": "To work on this task, you need to claim it first. You can do that by pressing the Claim button above.",
+            "NO-TASKS-HELP": "Well, it looks like there are no tasks for you! To get something started, you can:",
+            "NO-SUCH-TASK-HELP": "The task you are looking for cannot be found! If you want to, you can instead:",
+            "NO-SUCH-TASK-RETURN-TO-LIST": "Return to your list of tasks",
+            "NO-TASKS-CREATE-TASK": "Create a task for yourself or assign it to someone else",
+            "NO-TASKS-CREATE-PROCESS": "Start a new process and then track its progress",
+            "CANNOT-CLAIM-TASK":"The task can no longer be claimed."
+
+        },
+        "HELP" : {
+            "DESCRIPTION": "This task has no details yet. You can change that by choosing one of these actions:",
+            "COMPLETED-DESCRIPTION": "This completed task has no details.",
+            "DESCRIPTION-WITH-CLAIM": "This task has no details yet. You can change that by choosing one of the following actions. In addition, to complete this task you need to claim it first by pressing the Claim button above.",
+            "ADD-FORM-DESCRIPTION": "This task has no form yet. You can use forms from the library to capture more information for this task:",
+            "ADD-FORM": "Add a form now",
+            "COMPLETED-NOFORM": "This completed task has no form.",
+            "ADD-PEOPLE": "Involve someone else and start collaborating",
+            "ADD-FIRST-PEOPLE": "Involve someone else and start collaborating",
+            "ADD-FIRST-GROUP": "Invite groups of people and start collaborating",
+            "ADD-COMMENT": "Enlighten others by adding a comment",
+            "ADD-FIRST-COMMENT": "Add a comment for yourself or others involved",
+            "ADD-CHECKLIST": "Add a task to checklist",
+            "ADD-FIRST-CHECKLIST": "Create your own checklist of items needed for this task. You can assign an item to someone else, give it a due date and attach a form from the library",
+            "ADD-CONTENT": "Add a document and share the knowledge",
+            "ADD-FIRST-CONTENT": "Attach additional files related to this task"
+        },
+        "DYNAMIC-TABLE" : {
+            "ROW-EDIT-HEADER": "Edit table row",
+            "ROW-DETAILS-HEADER": "Table row details"
+        },
+        "FORM-SELECT" : {
+        "TITLE": "Select form",
+        "EMPTY": "No form selected",
+        "FORMS-ERROR": "Error loading forms",
+        "LOADING": "Loading forms ...",
+        "NO-FORMS": "No forms found",
+        "ATTACH-FORM": "Attach form",
+        "REMOVE-FORM": "Remove form",
+        "CURRENT-FORM": "{{name}} (current)",
+        "FORM-LOAD-ERROR": "Error loading form"
+        }
+    },
+    "PROCESS": {
+        "ALERT": {
+            "COMMENT-ADDED": "Comment was added",
+            "STARTED": "A new  \"{{processDefinitionName}}\" process was started",
+            "START-PROCESS-CONTENT-ADD-FAILED": "Failed to add {{noOfFiles}} file(s) to the process"
+        },
+        "TITLE": {
+            "DIAGRAM": "Process diagram"
+        },
+        "FILTER": {
+            "CREATED-DESC": "Newest first",
+            "CREATED-ASC": "Oldest first",
+            "ENDED-DESC": "Completed most recently",
+            "ENDED-ASC": "Completed least recently",
+            "STATE-SUMMARY": "Showing {{state.title | translate}} processes",
+            "STATE": "Process State",
+            "STATE-RUNNING": "Running",
+            "STATE-COMPLETED": "Completed",
+            "STATE-ALL": "All",
+            "PROCESS-NAME": "Process Name",
+            "PROCESS-DEFINITION": "Process Definition",
+            "SORT": "Sort",
+            "TEXT-PLACEHOLDER": "Search by process name",
+            "RUNNING-FILTER-NAME": "Running",
+            "COMPLETED-FILTER-NAME": "Completed",
+            "ALL-FILTER-NAME": "All",
+            "SINGLE-PROCESS": "Showing '{{name || processDefinitionName}}'",
+            "NO-SINGLE-PROCESS": "No process with ID '{{id}}' found",
+            "NO-FILTER-RESULTS": "Nothing found in \"{{name}}\", you could choose another list. To get going with something new you can:",
+            "NO-SEARCH-RESULTS": "No processes match your search, you could try choosing other criteria. To get going with something new you can:",
+            "FILTER-NAME-PLACEHOLDER": "Name of custom filter"
+        },
+        "MESSAGE": {
+            "NO-DESCRIPTION": "This process instance has no description",
+            "NO-FILTER": "Showing all process instances, not filtered",
+            "NO-INSTANCES": "No matching process instances found...",
+            "NO-INSTANCES-HELP": "There are no processes running now. When processes have completed, you can find them using the filter for the process list. To get going with something new you can:",
+            "NO-INSTANCES-HELP-START": "Start a new process and track its progress",
+            "NO-TASKS": "No tasks are currently active ...",
+            "NO-COMPLETED-TASKS": "No tasks have been completed yet...",
+            "NO-BUSINESS-KEY": "No business key set",
+            "CATEGORY": "Category: {{processDefinitionCategory}}",
+            "NEW-COMMENT-PLACEHOLDER": "Enter a comment to add it to this process",
+            "COMMENT-HEADER": "Added by {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+            "SELECT-DEFINITION": "Select a process to start from the list below",
+            "NO-PROCESS-DEFINITIONS": "You cannot start a process as there are no process definitions available",
+            "START-PROCESS": "Start Process",
+            "STARTED-BY": "Started by {{username}}",
+            "NO-PROCESS-DEFINITION-SELECTED-HELP": "Select a process definition",
+            "NO-SUCH-PROCESS-HELP": "The process you are looking for cannot be found! If you want to, you can instead:",
+            "NO-SUCH-PROCESS-RETURN-TO-LIST": "Return to your list of processes"
+        },
+        "HELP" : {
+            "ADD-FIRST-COMMENT": "Add a comment for yourself or others involved"
+        },
+        "ACTION" : {
+            "CREATE": "Start process",
+            "BACK-TO-LIST": "Back to process instances",
+            "SHOW-DIAGRAM": "Show diagram",
+            "CANCEL": "Cancel process",
+            "DELETE": "Delete process",
+            "ADD-COMMENT": "+ Add comment",
+            "ADD-COMMENT-CONFIRM": "Add comment",
+            "AUDIT-LOG": "Audit Log",
+            "SEARCH-PLACEHOLDER": "Search",
+            "ZOOMIN" : "Zoom in",
+            "ZOOMOUT" : "Zoom out"
+        },
+        "FIELD": {
+            "BUSINESS-KEY": "Business key",
+            "CATEGORY": "Category",
+            "PROCESS-DEFINITION": "Process definition",
+            "STARTED": "Started",
+            "STARTED-BY": "Started by",
+            "ENDED": "Ended",
+            "NAME": "Process instance name",
+            "NAME-PLACEHOLDER" : "Enter an optional name for the process being started"
+        },
+        "SECTION": {
+            "ACTIVE-TASKS": "Active tasks",
+            "START-FORM": "Start form",
+            "COMPLETED-TASKS": "Completed tasks",
+            "COMPLETED-DECISION-TASKS": "Executed decision tables   ",
+            "COMMENTS": "Comments",
+            "CONTENT" : "Content"
+        },
+        "POPUP": {
+            "CANCEL-TITLE": "Cancel the process?",
+            "CANCEL-DESCRIPTION": "Are you sure you want to cancel process {{name}}?",
+            "DELETE-TITLE": "Delete the process?",
+            "DELETE-DESCRIPTION": "Are you sure you want to delete process {{name}}? All tasks, content and comments related to this process will be deleted permanently."
+        },
+        "DECISION": {
+            "TABLE": {
+                "HEADER": "Decision table \"{{name}}\"",
+                "HIT-POLICY": "Hit policy",
+                "HIT-POLICIES": {
+                    "FIRST": "First (Single pass)",
+                    "ANY": "Any (Single pass)"
+                },
+                "TOOLTIP" : {
+                    "INPUT-EXCEPTION": "An exception occurred when testing if the expression matched the input value: {{error}}",
+                    "INPUT-MATCH": "The input value matched the expression.",
+                    "INPUT-EMPTYEXPRESSION": "Empty expressions are treated as a match.",
+                    "INPUT-NOMATCH": "The input value did not match the expression.",
+                    "INPUT-NOTEXECUTED": "The expression was never tested.",
+                    "OUTPUT-EXCEPTION": "An exception occurred when setting value using expression: \n {{expression}}.\nError message: {{error}}",
+                    "OUTPUT-RESULT": "The value was set using the following expression: \n {{expression}}",
+                    "OUTPUT-NOTEXECUTED": "The following expression was never executed: \n {{expression}}",
+                    "OUTPUT-NOEXPRESSION": "There was no expression defined for this cell"
+                },
+                "INPUT-VARIABLE": "Condition",
+                "OUTPUT-VARIABLE": "Outcome",
+                "INPUT-VARIABLES": "Input values",
+                "NO-INPUT-VARIABLES": "There were no input values when the decision table was executed",
+                "OUTPUT-VARIABLES": "Calculated values",
+                "NO-OUTPUT-VARIABLES": "No calculated values were produced from the decision tables",
+                "METADATA-NAME": "Name",
+                "METADATA-VALUE": "Value",
+                "LOAD-ERROR": "Something went wrong fetching the decision table and audit trail for execution '{{executionId}}' of activity '{{activityId}}'."
+            }
+        }
+    },
+    "INVOLVE-PEOPLE": {
+        "NO-MATCHING-RESULTS": "Use the search box above to find users or ",
+        "NO-MATCHING-RESULTS-NO-EMAIL": "Use the search box above to find users",
+        "SEARCH-PLACEHOLDER": "Search user",
+        "USE-EMAIL": "select someone using an email address",
+        "ASSIGN-YOURSELF-LEAD": "or",
+        "ASSIGN-YOURSELF": "assign yourself",
+        "SELECT-YOURSELF-LEAD": "or",
+        "SELECT-YOURSELF": "select yourself",
+        "EMAIL-PLACEHOLDER": "Enter an email address",
+        "EMAIL-HELP": "Press Enter or click the button to continue. This person will be notified by email or invited to sign up",
+        "BACK-TO-SEARCH": "Back to search",
+        "ACTION-SELECT": "Select"
+    },
+    "INTEGRATION": {
+        "GENERIC": {
+            "MESSAGE": {
+                "FILTER": "Filter",
+                "SEARCHING": "Searching",
+                "NO_MATCHING_RESULTS_FOUND": "No matching results found."
+            }
+        },
+        "ALFRESCO": {
+            "MESSAGE": {
+                "SELECT-FOLDER-DESCRIPTION": "Select a folder from your Alfresco account",
+                "SELECT-FOLDER": "Select folder",
+                "CHOOSE-NETWORK": "Choose network",
+                "NETWORK": "Network",
+                "CHOOSE-SITE": "Choose site",
+                "NO-CONTENT": "No content in this folder"
+            }
+        },
+        "BOX": {
+            "MESSAGE": {
+                "ACCOUNT_NAME": "Box",
+                "FILTER": "Filter",
+                "SEARCHING": "Searching",
+                "NO-CONTENT": "No matching results found.",
+                "SELECT-FOLDER-DESCRIPTION": "Select a folder from your Box account",
+                "SELECT-FILE-DESCRIPTION": "Select a file from your Box account",
+                "SELECT-FOLDER": "Select folder"
+            }
+        },
+        "ALFRESCO-CLOUD": {
+            "TITLE": {
+                "BROWSE-CLOUD": "Browse Alfresco Cloud",
+                "BROWSE-ON-PREM": "Browse {{name}}"
+            },
+            "MESSAGE": {
+                "ON-PREM-BROWSE": "Select a file to import from {{name}}",
+                "CLOUD-BROWSE": "Select a file to import from your Alfresco Cloud Account"
+            }
+        },
+        "GOOGLE": {
+            "MESSAGE": {
+                "TITLE": "Google Drive",
+                "FILTER": "Filter",
+                "SEARCHING": "Searching",
+                "NO-CONTENT": "No matching results found",
+                "SELECT-FILE-DESCRIPTION":"Select a file from your Google Drive account",
+                "SELECT-FOLDER-DESCRIPTION": "Select a folder from your Google Drive account"
+            }
+        },
+        "ALERT": {
+            "ALFRESCO-CLOUD-NOT-AUTHORIZED": "Access to Alfresco Cloud has expired, you need to enter your credentials again.",
+            "GOOGLE-DRIVE-NOT-AUTHORIZED": "Access to Google Drive has expired, you need to enter your credentials again.",
+            "ALFRESCO-ERROR": "An error occurred when connecting to Alfresco",
+            "BOX-ERROR": "An error occurred when connecting to Box",
+            "GOOGLE-DRIVE-ERROR": "An error occurred when connecting to Google Drive"
+        }
+    },
+    "CONTENT": {
+        "SIMPLE-TYPE": {
+            "WORD": "Document",
+            "EXCEL": "Spreadsheet",
+            "PDF": "PDF Document",
+            "IMAGE": "Image",
+            "FOLDER": "Folder",
+            "CONTENT": "Content"
+        },
+        "MESSAGE": {
+            "NO-PREVIEW-AVAILABLE": "No preview available",
+            "PREVIEW-PENDING": "Creating preview...",
+            "CONTENT-PENDING": "Getting content...",
+            "NOT-FOUND": "The content cannot be found",
+            "DELETE-CONFIRMATION": "Are you sure you want to delete {{name}}?",
+            "DROP": "Drop or ",
+            "SELECT": "Select a file",
+            "DRAGOVER": "Drop file to upload",
+            "EXTERNAL-ONLY": "Select source of content",
+            "NO-EXTERNAL-SOURCE": "No external source available"
+        },
+        "TITLE": {
+            "DELETE": "Delete content",
+            "NOT-FOUND": "File Not Found"
+        },
+        "ACTION":  {
+            "OPEN-IN-GOOGLE-DRIVE": "Open in Google Drive",
+            "OPEN-IN-ALFRESCO-CLOUD": "Open in Alfresco Cloud",
+            "OPEN-IN-ALFRESCO": "Open in Alfresco",
+            "OPEN-IN-BOX": "Open in Box"
+        }
+    },
+    "FORM" : {
+        "ACTION": {
+            "SAVE": "Save"
+        },
+        "DEFAULT-OUTCOME": {
+            "COMPLETE": "Complete",
+            "START-PROCESS": "Start process"
+        },
+        "MESSAGE" : {
+            "SELECT-PERSON": "No person selected...",
+            "SELECT-GROUP": "No group selected...",
+            "EMPTY": "(empty)"
+        },
+        "FIELD-PREVIEW" : {
+        "DISPLAY-REF": "Display value",
+        "SELECT-FIELD": "(No field selected)",
+        "FIELD-VALUE": "Show value of field \"{{name}}\"",
+        "UNKNOWN-TYPE": "Unknown field type {{type}}",
+        "TEXT-VALUE": "Text",
+        "MULTI-TEXT-VALUE": "Multi-line text",
+        "NUMBER-VALUE": "123",
+        "DATE-VALUE": "Date",
+        "DATETIME-VALUE": "Date and time",
+        "DROPDOWN-VALUE": "Select ...",
+        "UPLOAD-VALUE": "Upload or import content...",
+        "RADIOS-OPTION1": "Option 1"
+        }
+    },
+    "APP-DEFINITION" : {
+        "MESSAGE" : {
+            "NOT-FOUND": "No app definition found with the given ID",
+	    "MISSING": "Alfresco Process Services is running in integration mode, but the required app definition is missing"
+        }
+    },
+    "APP": {
+        "KICKSTART": {
+            "TITLE": "App Designer",
+            "TITLE-PROCESSES": "Process models",
+            "TITLE-FORMS": "Form models",
+            "TITLE-APPS": "App models",
+            "TITLE-STENCILS": "Stencils",
+            "TITLE-DECISION-TABLES": "Decision Tables",
+            "TITLE-DATA-MODELS": "Data Models"
+        },
+        "ADMINISTRATOR": {
+            "TITLE": "Admin App"
+        },
+        "TASKS": {
+            "TITLE": "Task App",
+            "TITLE-TASKS": "Tasks",
+            "TITLE-PROCESSES": "Processes",
+            "TITLE-PROCESSES?MODE=START": "Start"
+        },
+        "IDENTITY-MANAGEMENT": {
+            "TITLE": "Profile",
+            "TITLE-TENANT-ADMIN": "Identity management",
+            "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenants",
+            "TITLE-TENANT-ADMIN-USER-MGMT": "Users",
+            "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Capabilities",
+            "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organization",
+            "TITLE-TENANT-ADMIN-PROFILE": "Profile",
+            "TITLE-PROFILE": "Profile"
+        },
+        "ANALYTICS": {
+            "TITLE": "Analytics App"
+        },
+        "CUSTOM-APP" : {
+            "TITLE-TASKS": "{{name}} tasks",
+            "TITLE-PROCESSES": "{{name}} processes",
+            "TITLE-PROCESSES?MODE=START": "{{name}} start"
+        },
+        "TITLE": {
+            "ERROR": "Error"
+        }
+    },
+    "REPORTING": {
+        "NO-REPORTS": "You can get all kinds of important reports about your processes, helping identify bottlenecks or performance improvements.",
+        "GENERATE-REPORTS" : "Add some standard reports now.",
+        "NO-REPORT-SELECTED": "No report selected. Choose a report from the list on the left",
+        "NO-DATA-FOUND": "No data found",
+        "CONFIG-REPORTS": "Configure reports with Analytics app",
+        "FETCHING-PROC-DEFS": "Fetching process definitions...",
+        "GENERATING": "Generating report...",
+        "SAVE-REPORT": "Save this report",
+        "EXPORT-REPORT": "Export Data",
+        "SHOW": "Click to show",
+        "HIDE": "Click to hide again",
+        "FILL-PARAMS": "No report data found. Fill in the parameters to generate your report",
+        "PROCESS-STATUS": "Process Status",
+        "TASK-STATUS" : "Task Status",
+        "STATUS" : {
+            "ACTIVE" : "Active",
+            "ALL": "All",
+            "COMPLETE" : "Complete"
+        },
+        "PARAMETER-WIDGETS": {
+            "NO-TASKS": "No completed tasks found for current process definition",
+            "DATE-RANGE" : {
+                "TODAY": "Today",
+                "YESTERDAY": "Yesterday",
+                "LAST-7-DAYS": "Last 7 days",
+                "PREVIOUS-MONTH": "Previous month",
+                "CURRENT-YEAR": "Current year",
+                "CUSTOM-RANGE": "Custom range",
+                "APPLY": "Apply",
+                "CANCEL": "Cancel",
+                "FROM": "From",
+                "TO": "To"
+            },
+            "DATE-INTERVAL-OPTIONS" : {
+                "HOUR": "By hour",
+                "DAY": "By day",
+                "WEEK": "By week",
+                "MONTH": "By month",
+                "YEAR": "By year"
+            },
+            "DURATION": {
+                "SECONDS": "Seconds",
+                "MINUTES": "Minutes",
+                "HOURS": "Hours",
+                "DAYS": "Days"
+            }
+        },
+        "DEFAULT-REPORTS": {
+            "TASK-OVERVIEW": {
+                "PROCESS-DEFINITION": "Process definition",
+                "DATE-RANGE": "Date range",
+                "DATE-RANGE-INTERVAL": "Aggregate dates by",
+                "TASK-COUNT-TITLE": "Task counts",
+                "TASK-COUNT-DESCRIPTION": "This chart shows the total number of tasks in the given date range",
+                "TASK-DURATIONS-TITLE": "Task durations",
+                "TASK-DURATIONS-DESCRIPTION": "This chart shows the average, minimum and maximum duration (in hours) of the completed tasks in the given date range. The x-axis shows the row number of the task in the detailed table below.",
+                "TASK-COUNT-BY-ASSIGNEE-TITLE": "Number of tasks by assignee",
+                "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "This pie chart shows the number of tasks for the chosen process definition, by each assignee",
+                "DETAILED-TASK-STATS-TITLE": "Detailed task statistics",
+                "DETAILED-TASK-STATS-DESCRIPTION": "This table shows the aggregated statistics of all the tasks. Click on any task to see more detailed information. All time information is expressed in hours.",
+                "DETAILED-TASK-STATS-TASK": "Task",
+                "DETAILED-TASK-STATS-ASSIGNEE": "Assignee",
+                "TASK-HISTOGRAM-TITLE": "Number of tasks divided by date interval",
+                "TASK-HISTOGRAM-TABLE": "Table: previous chart data in table format",
+                "TASK-HISTOGRAM-TABLE-DATE": "Date",
+                "COUNT": "Count",
+                "SUM": "Sum",
+                "MIN-DURATION": "Min. duration",
+                "MAX-DURATION": "Max. duration",
+                "AVERAGE": "Average",
+                "STDDEV": "Standard deviation"
+            },
+            "PROCESS-INSTANCES-OVERVIEW": {
+                "PROCESS-DEFINITION": "Process definition",
+                "DATE-RANGE": "Date range",
+                "SLOW-PROC-INST-NUMBER": "How many of the slowest process instances should be displayed?",
+                "HISTOGRAM-TITLE": "Process instance counts",
+                "HISTOGRAM-DESCRIPTION": "The following chart shows the number of process instances that are started and completed within the selected date range",
+                "ACTIVITY-DURATION-TABLE-TITLE":  "Activity duration details",
+                "ACTIVITY-DURATION-TABLE-DESCRIPTION":  "The following table shows, ordered by cumulative total time taken, the timings of the various activities in the process. All time information is expressed in hours.",
+                "ACTIVITY-DURATION-TABLE-ACTIVITY": "Activity",
+                "ACTIVITY-DURATION-CHART-TITLE": "Process steps total time",
+                "ACTIVITY-DURATION-CHART-DESCRIPTION": "This chart shows in which activities time was spent. The numbers are the sum of all duration for that activity, as shown in the table below.",
+                "SLOWEST-PROCESS-INSTANCES-TITLE": "Slowest process instances",
+                "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "This table shows the slowest process instances that were completed in the configured date range. Click on any of the entries to see the process variables for that specific process instance",
+                "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Duration",
+                "SLOWEST-PROCESS-INSTANCES-ID": "Internal id",
+                "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Business key",
+                "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Create time",
+                "SLOWEST-PROCESS-INSTANCES-END-TIME": "End time",
+                "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variables",
+                "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "variable name",
+                "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Variable value",
+                "COUNT": "Count",
+                "SUM": "Sum",
+                "MIN-DURATION": "Min. duration",
+                "MAX-DURATION": "Max. duration",
+                "AVERAGE": "Average",
+                "STDDEV": "Standard deviation"
+            },
+            "TASK-SLA": {
+                "PROCESS-DEFINITION": "Process definition",
+                "TASK": "Task",
+                "DATE-RANGE": "Date range",
+                "SLA-DURATION": "What is the time this task needs to be completed in to be within the SLA?",
+                "SLA-NOT-OK": "Service Level Agreement OK vs Not OK",
+                "ASSIGNEE-TABLE": "Assignees that did not completed task within SLA boundaries",
+                "ASSIGNEE": "Assignee",
+                "COUNT": "Count"
+            },
+            "PROCESS-DEFINITION-OVERVIEW": {
+                "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Total number of process definitions: ",
+                "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Total number of process instances: ",
+                "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Total number of active process instances: ",
+                "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Total number of completed process instances: ",
+                "DETAIL-TABLE": "Process Definition details",
+                "DETAIL-TABLE-PROCESS": "Process definition",
+                "DETAIL-TABLE-TOTAL": "Total",
+                "DETAIL-TABLE-ACTIVE": "Active",
+                "DETAIL-TABLE-COMPLETED": "Completed",
+                "PROC-INST-CHART-TITLE": "Total process instances overview",
+                "DURATIONS-CHART-TITLE": "Average timings for each process definition",
+                "DURATIONS-CHART-DESCRIPTION": "The average duration (and standard deviation) of completed process instances, in hours. The x-axis number corresponds with the entry in the table above."
+            },
+            "PROCESS-HEAT-MAP" : {
+                "TITLE" : "Process heat map",
+                "TYPE-FILTERING": "Include all process steps (Unchecking this, will remove pass through steps like start events, gateways, etc.)?",
+                "METRIC-TOTAL-COUNT": "Number of times a step is executed",
+                "METRIC-TOTAL-TIME": "Total time spent in a process step",
+                "METRIC-AVG-TIME": "Average time spent in a process step",
+                "METRIC-TOTAL-COUNT-TOOLTIP": "times",
+                "METRIC-TOTAL-TIME-TOOLTIP": "hours",
+                "METRIC-AVERAGE-TIME-TOOLTIP": "hours",
+                "GENERATING": "Generating process heat map ..."
+            }
+        },
+        "MODAL": {
+            "SAVE-REPORT" : {
+                "TITLE" : "Save report",
+                "DESCRIPTION": "The current parameter settings will be stored, and a new report will be shown in the reports list. When that particular report is clicked, the report will be generated using these saved parameter values.",
+                "NAME": "Name"
+            },
+            "EXPORT-REPORT" : {
+                "TITLE" : "Export Data",
+                "NAME": "Name"
+            },
+            "DELETE-REPORT" : {
+                "TITLE" : "Delete report",
+                "DESCRIPTION": "Are you sure you want to delete this report?",
+                "CONFIRM": "Delete report"
+            }
+        }
+    }
+}

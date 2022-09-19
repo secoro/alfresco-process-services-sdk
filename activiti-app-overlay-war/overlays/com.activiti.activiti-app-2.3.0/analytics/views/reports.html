@@ -1,0 +1,213 @@
+
+<div class="main-list" id="main-list" style="width:300px;">
+    <div class="list-wrapper" auto-height>
+        <ul class="full-list" ng-if="!model.loadingList">
+            <li ng-repeat="report in model.reports" ng-class="{ 'active' : report.id == model.currentReport.id}"
+                ng-click="showReport(report.id)">
+                <div class="title" href="">{{report.name}}</div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="main-content-wrapper">
+
+    <div class="main-content">
+
+        <div ng-if="model.reports.length > 0 && !model.currentReport && !model.loading" style="padding: 15px">
+            <div class="create-inline">
+                <span>{{'REPORTING.NO-REPORT-SELECTED' | translate}}</span>
+            </div>
+            <!--
+            <div>
+                <a href="" ng-click="importCustomReport()">
+                    <i class="glyphicon glyphicon-plus-sign"></i>
+                    Import a custom report
+                </a>
+            </div>
+            -->
+        </div>
+
+        <div class="header" ng-if="model.currentReport">
+
+            <div class="pull-right">
+                <!--
+                <button class="btn btn-default report-action" ng-click="importCustomReport()">
+                    <i class="glyphicon glyphicon-plus-sign"></i>
+                </button>
+                -->
+                <button class="btn btn-clean report-action"
+                        ng-if="model.canRemove"
+                        ng-click="showDeleteReportModal()"
+                        ng-disabled="readOnly">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </button>
+            </div>
+
+            <span class="report-title"
+                  ng-click="editTitle()"
+                  ng-if="!model.currentReport.editingName">
+                {{model.currentReport.name}}
+            </span>
+            <input class="report-title-input"
+                   ng-model="model.currentReport.name"
+                   ng-if="model.currentReport.editingName"
+                   type="text"
+                   ng-blur="reportTitleChanged()"
+                   custom-keys enter-pressed="reportTitleChanged()"
+                   auto-focus>
+
+        </div>
+
+        <!-- Shown when no reports were found: suggest to generate some default ones -->
+        <div ng-if="model.reports.length == 0" class="content" auto-height offset="6">
+            <div class="help-container">
+                    <div>
+                        <div class="help-dude-report"></div>
+                    </div>
+                    <div>
+                        <div class="help-text" ng-if="model.isEmbeddedMode">
+                            <div class="description" translate="REPORTING.NO-REPORTS"></div>
+                            <div class="help-entry" ng-click="goToAnalyticsApp()">
+                                <span class="glyphicon glyphicon-new-window"></span>
+                                <span>{{'REPORTING.CONFIG-REPORTS' | translate}}</span>
+                            </div>
+                        </div>
+
+                        <div class="help-text" ng-if="!model.isEmbeddedMode">
+                            <div class="description" translate="REPORTING.NO-REPORTS"></div>
+
+                            <div class="help-entry" ng-if="account.type == 'enterprise'" ng-click="generateDefaultReports()">
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                <span>{{'REPORTING.GENERATE-REPORTS' | translate}}</span>
+                            </div>
+                            <div class="help-entry" ng-if="account.type == 'enterprise'" ng-click="goToConfigurationTab()">
+                                <span class="glyphicon glyphicon-cog"></span>
+                                <span>{{'REPORTING.CONFIG-REPORTS' | translate}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+        <div class="content" ng-if="model.currentReport" auto-height offset="6">
+
+            <div id="report">
+
+                <div ng-class="{'section' : showParameters()}"
+                     ng-if="showParameters()">
+                    <div ng-repeat="parameter in model.currentReport.definition.parameters">
+
+                        <div ng-switch="parameter.type" class="report-parameter">
+
+                            <div ng-switch-when="processDefinition">
+                                <div ng-include="templates.processDefinition"></div>
+                            </div>
+
+                            <div ng-switch-when="task">
+                                <div ng-include="templates.task"></div>
+                            </div>
+
+                            <div ng-switch-when="dateRange">
+                                <div ng-include="templates.dateRange"></div>
+                            </div>
+
+                            <div ng-switch-when="dateInterval">
+                                <div ng-include="templates.dateInterval"></div>
+                            </div>
+
+                            <div ng-switch-when="duration">
+                                <div ng-include="templates.duration"></div>
+                            </div>
+
+                            <div ng-switch-when="integer">
+                                <div ng-include="templates.integer"></div>
+                            </div>
+
+                            <div ng-switch-when="boolean">
+                                <div ng-include="templates.boolean"></div>
+                            </div>
+
+                            <div ng-switch-when="status">
+                                <div ng-include="templates.status"></div>
+                            </div>
+
+                            <div ng-switch-default>
+                                Programmatic error: unsupported parameter type '{{parameter.type}}'
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="clearfix" style="margin: 10px 0 0 0">
+                    <button class="btn btn-default pull-right"
+                            ng-show="model.currentReportData"
+                            ng-disabled="model.loading || readOnly"
+                            ng-click="showSaveReportModal()">
+                        {{'REPORTING.SAVE-REPORT' | translate}}
+                    </button>
+                    <button class="btn btn-default pull-right"
+                            ng-show="model.currentReportData"
+                            ng-disabled="model.loading || readOnly"
+                            ng-click="showExportReportModal()">
+                        {{'REPORTING.EXPORT-REPORT' | translate}}
+                    </button>
+                </div>
+
+                <span loading="model.loading"></span>
+
+                <!-- Rendered report -->
+
+                <div ng-show="model.currentReportData && !model.loading"
+                     ng-repeat="element in model.currentReportData.elements"
+                     class="section">
+
+                    <div ng-switch="element.type" ng-controller="ChartWidgetController">
+
+                        <div ng-switch-when="pieChart">
+                            <div ng-include="templates.pieChart"></div>
+                        </div>
+
+                        <div ng-switch-when="barChart">
+                            <div ng-include="templates.barChart"></div>
+                        </div>
+
+                        <div ng-switch-when="multiBarChart">
+                            <div ng-include="templates.multiBarChart"></div>
+                        </div>
+
+                        <div ng-switch-when="table">
+                            <div ng-include="templates.table"></div>
+                        </div>
+
+                        <div ng-switch-when="masterDetailTable">
+                            <div ng-include="templates.masterDetailTable"></div>
+                        </div>
+
+                        <div ng-switch-when="processDefinitionHeatMap">
+                            <div ng-include="templates.processDefinitionHeatMap"></div>
+                        </div>
+
+                        <div ng-switch-default>
+                            Programmatic error: unsupported type '{{element.type}}'
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div ng-if="!model.loading && !model.currentReportData" class="section">
+                <div class="create-inline-no-border">
+                    <span>{{'REPORTING.FILL-PARAMS' | translate}}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

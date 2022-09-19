@@ -1,0 +1,55 @@
+
+<div class="modal" ng-controller="IdmUserBulkUpdatePopupController">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header-wrapper">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="$hide()">&times;</button>
+                    <h2 class="modal-title">{{'IDM.USER-MGMT.POPUP.BULK-UPDATE-TENANT-TITLE' | translate}}</h2>
+                </div>
+            </div>
+
+            <div class="modal-body">
+
+                <form role="form" style="margin-bottom: 20px;">
+                    <select ng-options="tenant.id as tenant.name for tenant in model.tenants"
+                            class="form-control"
+                            data-with="100%"
+                            ng-model="model.updateUsers.tenantId">
+                    </select>
+                </form>
+
+                <div>
+                    <p class="bg-danger" style="padding:10px;">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        {{'IDM.USER-MGMT.POPUP.BULK-UPDATE-TENANT-WARNING' | translate}}
+                    </p>
+                </div>
+
+                <div class="well">
+                    <p>{{'IDM.USER-MGMT.POPUP.BULK-UPDATE-STATUS-USERS' | translate: getSelectedUsers()}}</p>
+                    <ul class="user-list">
+                        <li ng-repeat="user in getSelectedUsers()">
+                            <i class="glyphicon glyphicon-user"></i> {{user.fullname}} <span>({{user.type}} - {{user.email}})</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="modal-footer-wrapper">
+                <div class="modal-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-sm btn-default" ng-click="$hide()" ng-disabled="model.loading">
+                            {{'IDM.USER-MGMT.POPUP.BULK-UPDATE-CANCEL' | translate}}
+                        </button>
+                        <button type="button" class="btn btn-sm btn-default" ng-click="updateUsers();$hide()" ng-disabled="model.loading || readOnly">
+                            {{'IDM.USER-MGMT.POPUP.BULK-UPDATE-TENANT-CONFIRM' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

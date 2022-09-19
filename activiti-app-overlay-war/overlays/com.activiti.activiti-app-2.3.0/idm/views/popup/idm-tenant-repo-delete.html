@@ -1,0 +1,26 @@
+
+<div class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>{{'IDM.TENANT-MGMT.POPUP.ALFRESCO-REPO-DELETE' | translate}}</h2>
+			</div>
+			<div class="modal-body">
+				<p>{{'IDM.TENANT-MGMT.POPUP.ALFRESCO-REPO-DELETE-MESSAGE' | translate:popup.repo}}</p>
+			</div>
+			<div class="modal-footer">
+				<div class="pull-right">
+					<button type="button" class="btn btn-sm btn-default" ng-click="$hide();" ng-disabled="popup.loading">
+						{{'IDM.GENERAL.ACTION.CANCEL' | translate}}
+					</button>
+					<button type="button" class="btn btn-sm btn-danger" ng-click="ok(); $hide();" ng-disabled="popup.loading || readOnly">
+						<span>{{'IDM.TENANT-MGMT.POPUP.ALFRESCO-REPO-DELETE-CONFIRM' | translate}}</span>
+					</button>
+				</div>
+				<div class="loading pull-right" ng-show="popup.loading">
+					<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

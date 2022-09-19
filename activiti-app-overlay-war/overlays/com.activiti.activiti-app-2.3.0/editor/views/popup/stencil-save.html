@@ -1,0 +1,34 @@
+
+<div class="modal" ng-controller="SaveStencilCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h2>{{'STENCILS.POPUP.SAVE-STENCIL-TITLE' | translate}}</h2>
+            </div>
+            
+            <div class="modal-body">
+            
+                <p>
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    {{'STENCILS.POPUP.SAVE-STENCIL-HELP' | translate}}
+                </p>
+            
+                <div class="form-group">
+                    <textarea class="form-control" ng-model="currentStencil.comment" auto-focus></textarea>
+                </div>
+            
+            </div>
+            
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="model.loading" translate>GENERAL.ACTION.CANCEL</button>
+                    <button class="btn btn-primary" ng-click="saveAndClose()" ng-disabled="status.loading || readOnly" translate>ACTION.SAVE-AND-CLOSE</button>
+                    <button class="btn btn-primary" ng-click="save()" ng-disabled="status.loading || readOnly" translate>ACTION.SAVE</button>
+                </div>
+            	<div class="loading pull-right" ng-show="model.loading">
+            		<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>

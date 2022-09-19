@@ -1,0 +1,80 @@
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header-wrapper">
+            	<div class="modal-header">
+            		<div class="pull-right">
+                        <a class="action" ng-click="cancelUploadNew()">&times; {{'IDM.GENERAL.ACTION.CANCEL' | translate}}</a>
+                    </div>
+            		<h2 ng-if="!documentTemplateModel.selectedDocumentTemplate">{{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD' | translate}}</h2>
+                    <h2 ng-if="documentTemplateModel.selectedDocumentTemplate">{{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD-NEW-VERSION' | translate}}</h2>
+            	</div>
+            </div>
+            <div class="modal-body">
+
+                <p>
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD-DESCRIPTION' | translate}}
+                </p>
+                <!--[if IE 9]>
+
+                <div class="upload-document-template">
+
+                    <input type="file" ngf-select="" ngf-change="onNewUploadSelected($files, true)" style="font-size: smaller; padding-top:6px;" ng-disabled="readOnly">
+                    <div class="upload-document-template-dropbox"
+                         ngf-drop="onNewUploadSelected($files, true)"
+                         ngf-drag-over-class="dragover"
+                         ng-show="dropSupported && readOnly">
+                        {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD-DROPZONE' | translate}}
+                    </div>
+                    <div ngf-drop-available="dropSupported=true"
+                         ng-show="!dropSupported">{{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.NO-DROP' | translate}}</div>
+                    <div class="progress" ng-show="model.loading" style="margin: 10px 0 10px 0">
+                        <div class="progress-bar progress-bar-striped active" ng-style="{width: model.uploadProgress + '%'}">{{model.uploadProgress}} %</div>
+                    </div>
+                    <button class="btn btn-danger btn-sm"
+                            ng-click="upload.abort()"
+                            ng-disabled="!status.loading"
+                            style="margin-bottom: 20px">
+                        {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD-CANCEL' | translate}}
+                    </button>
+
+                </div>
+                <![endif]-->
+                <!--[if gt IE 9]> <!-- -->
+                <div class="upload-document-template">
+
+                    <input type="file" ngf-select="" ngf-change="onNewUploadSelected($files)" style="font-size: smaller; padding-top:6px;" ng-disabled="readOnly">
+                    <div class="upload-document-template-dropbox"
+                         ngf-drop ngf-change="onNewUploadSelected($files)"
+                         ngf-drag-over-class="dragover"
+                         ng-show="dropSupported && readOnly">
+                        {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD-DROPZONE' | translate}}
+                    </div>
+                    <div ngf-drop-available="dropSupported=true"
+                         ng-show="!dropSupported">{{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.NO-DROP' | translate}}</div>
+                    <div class="progress" ng-show="model.loading" style="margin: 10px 0 10px 0">
+                        <div class="progress-bar progress-bar-striped active" ng-style="{width: model.uploadProgress + '%'}">{{model.uploadProgress}} %</div>
+                    </div>
+                    <button class="btn btn-danger btn-sm"
+                            ng-click="upload.abort()"
+                            ng-disabled="!status.loading"
+                            style="margin-bottom: 20px">
+                        {{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD-CANCEL' | translate}}
+                    </button>
+                </div>
+
+                <!-- <![endif]-->
+            </div>
+
+            <div class="modal-footer-wrapper">
+                <div class="modal-footer">
+                    <loading></loading>
+                    <div class="pull-right" style="color:red" ng-if="documentTemplateModel.error">
+                        <span>{{'IDM.TENANT-MGMT.DOCUMENT-TEMPLATE.UPLOAD-ERROR' | translate}} <span ng-if="documentTemplateModel.errorMessage"> : </span>{{documentTemplateModel.errorMessage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

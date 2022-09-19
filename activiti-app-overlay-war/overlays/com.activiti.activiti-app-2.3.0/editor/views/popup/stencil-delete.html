@@ -1,0 +1,40 @@
+
+<div class="modal" ng-controller="StencilDeleteCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h2>{{'STENCILS.POPUP.DELETE-STENCIL-TITLE' | translate}}</h2>
+            </div>
+            
+            <div class="modal-body">
+            
+                <div ng-if="deleteModel.stencilCount > 0">
+                    <p  style="font-size: 14px;">
+                        <i class="glyphicon glyphicon-warning-sign"></i>
+                        <span>{{'STENCILS.POPUP.DELETE-STENCIL-ERROR-STILL-MODELS' | translate}}</span>
+                    </p>
+                </div>
+            
+                <div ng-if="deleteModel.stencilCount == 0" style="font-size: 14px;">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    <span>{{'STENCILS.POPUP.DELETE-STENCIL-YOU-SURE' | translate}}</span>
+                </div>
+            
+            </div>
+            
+            <div class="modal-footer">
+            	<div class="pull-right">
+            		<button type="button" class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="model.loading">
+            			{{'GENERAL.ACTION.CANCEL' | translate}}
+            		</button>
+            		<button ng-if="deleteModel.stencilCount == 0" type="button" class="btn btn-sm btn-default" ng-click="ok()" ng-disabled="model.loading || readOnly">
+            			{{'GENERAL.ACTION.OK' | translate:model.stencilItemsToRestore}}
+            		</button>
+            	</div>
+            	<div class="loading pull-right" ng-show="model.loading">
+            		<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>

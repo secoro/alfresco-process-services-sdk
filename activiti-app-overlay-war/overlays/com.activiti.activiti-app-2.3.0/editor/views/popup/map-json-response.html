@@ -1,0 +1,49 @@
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content" ng-form="editVariableForm">
+            <div class="modal-header"><h2>{{'PROCESS-BUILDER.REST-CALL-STEP.RESPONSE-MESSAGE.POPUP.TITLE' | translate}}</h2></div>
+            <div class="modal-body">
+                <div class="form-group clearfix">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.REST-CALL-STEP.RESPONSE-MESSAGE.POPUP.PROPERTY-NAME' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="form-control" type="text" id="json-property-name" placeholder="Enter a response json property name" ng-model="selectedResponseMapping.jsonPropertyName" auto-focus ng-disabled="selectedResponseMapping.state === 'view'"/>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.REST-CALL-STEP.RESPONSE-MESSAGE.POPUP.VARIABLE-TYPE' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <select id="json-property-value-type" class="form-control" ng-model="selectedResponseMapping.processVariableType"
+                                ng-options="jsonType for jsonType in jsonTypes" ng-disabled="selectedResponseMapping.state === 'view'">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.REST-CALL-STEP.RESPONSE-MESSAGE.POPUP.VARIABLE-NAME' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8" ng-class="{'has-error': editVariableForm.processVariableName.$invalid}">
+                        <input class="form-control" type="text" name="processVariableName" id="process-variable-name" placeholder="Enter a process variable name" required variable-identifier ng-model="selectedResponseMapping.processVariableName" ng-disabled="selectedResponseMapping.state === 'view'"/>
+                    </div>
+                </div>
+            </div>
+                    
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-sm btn-default" ng-click="cancelResponseMapping()" ng-disabled="model.loading">
+                        {{'GENERAL.ACTION.CANCEL' | translate}}
+                    </button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="okResponseMapping()" ng-disabled="model.loading || editVariableForm.$invalid || readOnly">
+                        {{'GENERAL.ACTION.SAVE' | translate}}
+                    </button>
+                </div>
+                <div class="loading pull-right" ng-show="model.loading">
+                    <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

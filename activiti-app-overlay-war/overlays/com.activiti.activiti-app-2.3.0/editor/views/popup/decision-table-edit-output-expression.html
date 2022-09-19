@@ -1,0 +1,109 @@
+<div class="modal" ng-controller="DecisionTableConclusionEditorCtlr">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="outputExpressionForm">
+                <div class="modal-header"><h2>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.OUTPUT-TITLE' | translate}}</h2>
+                    <p>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.OUTPUT-DESCRIPTION' | translate}}</p>
+                </div>
+                <div class="modal-body">
+                    <div class="clearfix form-group">
+                        <div class="col-xs-4">
+                            <label>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-LABEL' | translate}}</label>
+                        </div>
+                        <div class="col-xs-8">
+                            <input class="form-control" placeholder="{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-PLACEHOLDER' | translate}}" type="text" ng-model="popup.selectedExpressionLabel" />
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-xs-4">
+                            <label>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-TYPE-LABEL' | translate}}</label>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="btn-group btn-group-justified">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-click="popup.selectedExpressionNewVariable = false" ng-model="popup.selectedExpressionNewVariable" ng-class="{'active' : popup.selectedExpressionNewVariable == false}">{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.OUTPUT-EXISTING-VARIABLE' | translate}}</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-click="popup.selectedExpressionNewVariable = true" ng-model="popup.selectedExpressionNewVariable" ng-class="{'active' : popup.selectedExpressionNewVariable == true}">{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.OUTPUT-NEW-VARIABLE' | translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="popup.selectedExpressionNewVariable == false" class="clearfix form-group">
+                        <div class="col-xs-4">
+                            <label>Variable type:</label>
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="btn-group btn-group-justified">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-click="popup.selectedExpressionVariableType = 'formfield'; popup.selectedExpressionVariable = undefined;" ng-model="popup.selectedExpressionVariableType" ng-class="{'active' : (!popup.selectedExpressionVariableType || popup.selectedExpressionVariableType === 'formfield')}">{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-FORMFIELD' | translate}}</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-click="popup.selectedExpressionVariableType = 'variable'; popup.selectedExpressionVariable = undefined;" ng-model="popup.selectedExpressionVariableType" ng-class="{'active' : popup.selectedExpressionVariableType === 'variable'}">{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-VARIABLE' | translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="popup.selectedExpressionNewVariable == false && (!popup.selectedExpressionVariableType || popup.selectedExpressionVariableType === 'formfield')"
+                         class="clearfix form-group" ng-class="{'has-error': outputExpressionForm.formfield.$invalid}">
+                        <div class="col-xs-4">
+                            <label>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-FORMFIELD' | translate}}:</label>
+                        </div>
+                        <div class="col-xs-8">
+                            <input type="hidden" name="formfield" ng-model="popup.selectedExpressionVariable" ng-required="true"/>
+                            <div field-select="popup.selectedExpressionVariable" editor-type="step" include-type="true" expand-relative="true" step-id="stepId"
+                                 all-steps="allSteps" field-type-filter="['text', 'integer', 'date', 'boolean', 'dropdown', 'radio-buttons', 'typeahead', 'amount', 'multi-line-text']"></div>
+                        </div>
+                    </div>
+
+                    <div ng-if="popup.selectedExpressionNewVariable == false && popup.selectedExpressionVariableType === 'variable'"
+                         class="clearfix form-group" ng-class="{'has-error': outputExpressionForm.variable.$invalid}">
+                        <div class="col-xs-4">
+                            <label>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.EXPRESSION-VARIABLE-TYPE-VARIABLE' | translate}}:</label>
+                        </div>
+                        <div class="col-xs-8">
+                            <input type="hidden" name="variable" ng-model="popup.selectedExpressionVariable" ng-required="true"/>
+                            <div field-select="popup.selectedExpressionVariable" all-steps="allSteps" step-id="stepId" include-type="true"
+                                 select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-RESPONSE-VARIABLE'" variables-type="rest" expand-relative="true"></div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix form-group" ng-if="popup.selectedExpressionNewVariable === true">
+                        <div class="col-xs-4">
+                            <label>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.OUTPUT-NEW-VARIABLE-ID' | translate}}</label>
+                        </div>
+                        <div class="col-xs-8">
+                            <input class="form-control" placeholder="{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.OUTPUT-ENTER-NEW-VARIABLE-ID' | translate}}" type="text" ng-model="popup.selectedExpressionNewVariableId" variable-identifier/>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group" ng-if="popup.selectedExpressionNewVariable === true"
+                         ng-class="{'has-error': outputExpressionForm.newVariable.$invalid}">
+                        <div class="col-xs-4">
+                            <label>{{'DECISION-TABLE-EDITOR.POPUP.EXPRESSION-EDITOR.OUTPUT-NEW-VARIABLE-TYPE' | translate}}</label>
+                        </div>
+                        <div class="col-xs-8">
+                            <select class="form-control" ng-options="type for type in availableVariableTypes"
+                                    ng-model="popup.selectedExpressionNewVariableType" name="newVariable" ng-required="true"  />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-sm btn-default" ng-click="cancel()">
+                            {{'GENERAL.ACTION.CANCEL' | translate}}
+                        </button>
+                        <button type="button" class="btn btn-sm btn-default" ng-click="save()" ng-disabled="!outputExpressionForm.$valid || readOnly">
+                            {{'GENERAL.ACTION.SAVE' | translate}}
+                        </button>
+                    </div>
+                    <div class="loading pull-right" ng-show="model.loading">
+                        <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

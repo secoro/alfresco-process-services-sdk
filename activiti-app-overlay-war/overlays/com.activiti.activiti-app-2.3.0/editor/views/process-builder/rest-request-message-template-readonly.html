@@ -1,0 +1,20 @@
+<div class="detail-group clearfix first">
+    <div class="col-xs-12">
+        <div class="step-editor-inline-grid" ui-grid="requestMessageGridOptions" ui-grid-selection></div>
+        <div class="pull-right">
+            <div class="btn-group">
+                <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.VIEW | translate}}" ng-disabled="!selectedRequestMapping" data-placement="bottom" data-original-title=""
+                   title="" id="edit-request-mapping-button" ng-click="showRequestMapping()"><i class="glyphicon glyphicon-search"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="border-top: solid 1px #000;" class="form-group" ng-controller="RestCallStepHeadersController">
+<label translate="FORM-BUILDER.COMPONENT.REQUEST-HEADERS-LABEL"></label>
+	<div class="row row-no-gutter">
+		<div class="col-xs-12">
+			<div class="kis-listener-grid" ui-grid="gridOptions"
+				ui-grid-auto-resize ui-grid-selection></div>
+		</div>
+	</div>
+</div>

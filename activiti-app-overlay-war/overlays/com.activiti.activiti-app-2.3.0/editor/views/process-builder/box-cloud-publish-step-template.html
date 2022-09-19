@@ -1,0 +1,7 @@
+<div ng-controller="BoxCloudPublishStepController">
+    <div ng-if="activeStep.id == step.id" class="details">
+        <div tab-control="stepTabs" active-tab="activeTab"></div>
+        <div class="detail-group clearfix first" ng-include="'views/process-builder/generic-step-template.html'">
+        </div>
+    </div>
+</div>

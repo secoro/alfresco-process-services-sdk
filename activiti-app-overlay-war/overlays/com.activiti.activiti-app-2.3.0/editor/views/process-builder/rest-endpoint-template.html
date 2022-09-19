@@ -1,0 +1,64 @@
+<div class="panel panel-default" style="margin-bottom: 0px;">
+    <div class="clearfix first panel-body center" style="padding: 5px;" ng-if="getFullEndpointURL()">
+        <label>{{getFullEndpointURL()}}</label>
+        <button ng-click="executeEndpointTest()" type="button" class="btn btn-default btn-xs" ng-if="showEndpointTest()">{{'PROCESS-BUILDER.REST-CALL-STEP.TEST_BUTTON_LABEL' | translate}}</button>
+    </div>
+    <div class="clearfix first panel-body center" style="padding: 5px;" ng-if="!getFullEndpointURL()">
+        <label>{{'FORM-BUILDER.COMPONENT.NO-ENDPOINT-URL' | translate}}</label>
+    </div>
+</div>
+<div class="detail-group clearfix">
+    <div class="clearfix first">
+        <label translate="PROCESS-BUILDER.REST-CALL-STEP.LABELS.HTTP-METHOD"></label>
+        <select id="rest-http-method" class="form-control"
+                ng-options="httpMethod for httpMethod in httpMethods"
+                ng-model="step.httpMethod">
+        </select>
+    </div>
+    <div class="clearfix">
+        <label translate="FORM-BUILDER.COMPONENT.BASE-ENDPOINT"></label>
+        <select id="rest-endpoint-value" class="form-control"
+                ng-options="endpointLabel(endpoint.name, endpoint.protocol, endpoint.host, endpoint.port, endpoint.path) for endpoint in endpointConfigurations track by endpoint.id"
+                ng-model="step.endpoint">
+            <option value="">{{'FORM-BUILDER.COMPONENT.NO-ENDPOINT-SELECTED' | translate}}</option>
+        </select>
+    </div>
+
+    <div class="clearfix">
+        <label translate="FORM-BUILDER.COMPONENT.REST-URL"></label>
+        <div class="subtle" translate="FORM-BUILDER.MESSAGE.REST-URL-HELP" style="padding: 5px 0 5px 1px;"></div>
+        <input type="text" class="form-control" ng-model="step.restUrl" id="rest-url-value" ng-trim="false"
+               store-cursor-position="insertRestUrlField.position">
+    </div>
+</div>
+<div class="detail-group clearfix">
+    <div class="btn-group btn-group-justified">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" ng-click="setUrlFieldType('formField')" ng-model="model.urlFieldType"
+                    ng-class="{'active' : model.urlFieldType === 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+            </button>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" ng-click="setUrlFieldType('restResponse')" ng-model="model.urlFieldType"
+                    ng-class="{'active' : model.urlFieldType === 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+            </button>
+        </div>
+    </div>
+
+    <div ng-show="model.urlFieldType === 'formField'">
+        <div>
+            <div class="subtle" translate="FORM-BUILDER.MESSAGE.REST-HELP" style="padding: 5px 0 5px 1px;"></div>
+            <div field-select="insertRestUrlField.field" include-type="true" expand-relative="true"
+                 field-type-filter="restEndpointFieldTypes"
+                 select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD'"
+                 step-id="step.id" all-steps="allSteps" editor-type="step"></div>
+        </div>
+    </div>
+    <div ng-show="model.urlFieldType === 'restResponse'">
+        <div>
+            <div class="subtle" translate="FORM-BUILDER.MESSAGE.RESPONSE-VARIABLE-HELP" style="padding: 5px 0 5px 1px;"></div>
+            <div field-select="insertRestUrlField.field" include-type="true" variables-type="rest" editor-type="step" step-id="step.id" all-steps="allSteps"
+                 expand-relative="true" select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-RESPONSE-VARIABLE'"></div>
+        </div>
+    </div>
+</div>

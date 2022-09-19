@@ -1,0 +1,29 @@
+
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title">{{'REPORTING.MODAL.SAVE-REPORT.TITLE' | translate}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="well">
+                    {{'REPORTING.MODAL.SAVE-REPORT.DESCRIPTION' | translate}}
+                </div>
+
+                <div>
+                    <span>{{'REPORTING.MODAL.SAVE-REPORT.NAME' | translate}}</span>
+                    <input type="text" ng-model="model.newReportName" class="form-control" auto-focus>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide()">{{'GENERAL.ACTION.CANCEL' | translate}}</button>
+                <button type="button" class="btn btn-primary" ng-click="saveReport(); $hide()" ng-disabled="readOnly">{{'GENERAL.ACTION.SAVE' | translate}}</button>
+            </div>
+
+        </div>
+    </div>
+</div>

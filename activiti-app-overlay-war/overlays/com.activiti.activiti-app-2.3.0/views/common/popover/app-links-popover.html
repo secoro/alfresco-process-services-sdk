@@ -1,0 +1,12 @@
+<div class="popover app-links-popover" >
+    <div class="app-link-wrapper" ng-click="goToLink(app.fixedUrl)" ng-repeat-start="app in apps">
+        <a href="{{app.fixedUrl}}">
+            <div class="app-link-icon {{app.theme}}">
+                <i class="{{app.icon}} " style=""></i>
+            </div>
+            <div class="app-link-name">{{app.titleKey && (app.titleKey | translate) || app.name}}</div>
+        </a>
+    </div>
+    <div class="clearfix" ng-if="$index % 4 == 3"></div>
+    <div class="hidden" ng-repeat-end=""></div>
+</div>

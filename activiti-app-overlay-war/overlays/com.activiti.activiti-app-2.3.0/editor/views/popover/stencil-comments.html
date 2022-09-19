@@ -1,0 +1,31 @@
+<div class="popover" ng-controller="StencilSetAddCommentPopupCrtl" click-anywhere="$hide()" ignore="toggle-comment">
+    <div class="arrow"></div>
+    <div class="popover-header">
+        <span class="title">{{title && (title | translate) || ('GENERAL.TITLE.COMMENTS' | translate)}}</span>
+
+        <div class="actions">
+            <a ng-click="$hide()">
+                {{'GENERAL.ACTION.CLOSE' | translate}}</a>
+        </div>
+    </div>
+
+    <div class="popover-wrapper">
+    	<div class="clearfix">
+	        <div class="form-group">
+	            <textarea rows="2" class="form-control" auto-focus placeholder="{{'GENERAL.MESSAGE.ADD-COMMENT-PLACEHOLDER' | translate}}" ng-model="popup.message" ng-disabled="!model.stencil.latestVersion"></textarea>
+	        </div>
+	        <div class="btn-group pull-right">
+	        	<button type="button" class="btn btn-xs btn-default" ng-click="ok()" ng-disabled="(!model.stencil.latestVersion) || popup.loading || !popup.message || popup.message.length > 4000 || readOnly">
+           			{{'PROCESS.ACTION.ADD-COMMENT-CONFIRM' | translate}}
+           		</button>
+			</div>
+		</div>
+        <div class="comments">
+			<div class="comment" ng-repeat="comment in model.comments.data">
+				<div class="date" title="{{comment.date | dateformat:'LLLL'}}">{{comment.date | dateformat}}</div>
+				<div class="author">{{comment.userFullname}}</div>
+				<p>{{comment.message}}</p>
+			</div>
+		</div>
+    </div>
+</div>

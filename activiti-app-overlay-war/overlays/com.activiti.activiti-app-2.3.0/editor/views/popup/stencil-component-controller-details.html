@@ -1,0 +1,17 @@
+
+<div class="modal" ng-controller="StencilComponentControllerCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+			    <h3>{{'STENCILS.POPUP.DETAILS-CONTROLLER-TITLE' | translate}}</h3>
+			</div>
+			<div class="modal-body">
+			    <div ui-ace="{mode: 'javascript'}" ng-model="model.activeStencilItem.componentControllerCode" style="height: 400px;" readonly></div>
+			</div>
+			<div class="modal-footer">
+			    <button ng-click="close()" class="btn btn-sm btn-default" translate>GENERAL.ACTION.CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>

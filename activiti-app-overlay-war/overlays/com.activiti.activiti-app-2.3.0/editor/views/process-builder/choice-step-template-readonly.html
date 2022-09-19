@@ -1,0 +1,33 @@
+<div ng-if="stencilSet" ng-controller="ChoiceStepReadOnlyController" class="details">
+    <div tab-control="choiceTabs" active-tab="activeTab" ng-show="step.id == activeStep.id"></div>
+    <div class="detail-group clearfix first" ng-show="activeTab == 'details'" ng-include="'views/process-builder/generic-step-template-readonly.html'"></div>
+    <div class="detail-group first" ng-show="activeTab == 'choices'">
+        <div class="row details">
+            <div class="col-xs-1">
+                <button class="btn btn-clean" ng-click="previousChoice()" ng-if="step.meta.stepIndex > 0"><i class="icon icon-caret-left"></i></button>
+            </div>
+            <div class="col-xs-4">
+                <div class="line-marker" ng-if="activeChoices[0]" ng-click="showChoiceDetails(activeChoices[0], $event)">
+                    <h4>{{activeChoices[0].name}} <span>({{step.meta.stepIndex + 1}}/{{step.choices.length}})</span></h4>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="step-placeholder-readonly"></div>
+            </div>
+            <div class="col-xs-4">
+                <div class="line-marker" ng-if="activeChoices[1]" ng-click="showChoiceDetails(activeChoices[1], $event)">
+                    <h4>{{activeChoices[1].name}} <span>({{step.meta.stepIndex + 2}}/{{step.choices.length}})</span></h4>
+                </div>
+            </div>
+            <div class="col-xs-1" style="text-align: right">
+                <button class="btn btn-clean" ng-click="nextChoice()" ng-if="step.choices.length > step.meta.stepIndex + 2"><i class="icon icon-caret-right"></i></button>
+            </div>
+        </div>
+
+        <div class="col-xs-6 has-line" ng-repeat="stepContainer in activeChoices">
+            <div class="step-placeholder-readonly"></div>
+            <div ng-if="stepContainer.steps" ng-repeat="step in stepContainer.steps" ng-init="stepContainer = stepContainer" ng-include="'views/process-builder/step-list-readonly.html'">
+            </div>
+        </div>
+    </div>
+</div>

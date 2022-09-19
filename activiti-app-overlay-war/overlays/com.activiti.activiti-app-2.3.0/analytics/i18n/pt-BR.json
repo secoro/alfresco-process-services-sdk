@@ -1,0 +1,244 @@
+{
+  "COMMON": {
+    "ACCOUNTS": {
+      "box": "Box",
+      "alfresco-*": "Alfresco ({{name}})",
+      "alfresco-cloud": "Alfresco Content Services in the Cloud",
+      "google-drive": "Google Drive"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "O Alfresco Process Services está em modo somente leitura porque a licença local é inválida.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "O Alfresco Process Services está em modo somente leitura porque não foi possível encontrar a licença local.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "O Alfresco Process Services está em modo somente leitura porque as datas da licença local não são válidas (expiradas ou com data de início no futuro).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Sua licença está prestes a expirar. O Alfresco Process Services entrará em modo somente leitura."
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Análise",
+    "ERROR": {
+      "GENERIC": "Ocorreu um erro...",
+      "UNKNOWN": "Ocorreu um erro ao realizar a operação solicitada.",
+      "BAD_REQUEST": "Ocorreu um erro ao realizar a operação solicitada",
+      "NOT_FOUND": "O recurso que você está tentando acessar não existe",
+      "UNAUTHORIZED": "Você deve entrar para realizar a operação solicitada.",
+      "FORBIDDEN": "Você não tem permissão para realizar a operação solicitada",
+      "INTERNAL_SERVER_ERROR": "Ocorreu um erro inesperado ao realizar a operação solicitada."
+    },
+    "NAVIGATION": {
+      "REPORTS": "Relatórios",
+      "CONFIGURE": "Configurar"
+    },
+    "ACTION": {
+      "LOGOUT": "Sair",
+      "SAVE": "Salvar",
+      "CANCEL": "Cancelar",
+      "CLOSE": "Fechar",
+      "ABOUT": "Sobre o Alfresco Process Services",
+      "HELP-DOCS-LINK": "Ajuda"
+    },
+    "ABOUT": {
+      "TYPE": "Tipo",
+      "LICENSED-TO": "Licenciado para",
+      "EXPIRES": "Expira",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Todos os direitos reservados.",
+      "LEGAL": "Jurídico e licença"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "Obtenha todos os tipos de relatórios importantes sobre seus processos para ajudar a identificar obstruções e melhorias de desempenho.",
+    "GENERATE-REPORTS": "Adicione alguns relatórios padrão agora.",
+    "NO-REPORT-SELECTED": "Nenhum relatório selecionado. Escolha um formulário na lista à esquerda",
+    "NO-DATA-FOUND": "Nenhum dado encontrado",
+    "CONFIG-REPORTS": "Configurar relatórios",
+    "RESET-ALL-REPORTS": "Redefinir todos os meus relatórios",
+    "FETCHING-PROC-DEFS": "Obtendo definições de processo..",
+    "GENERATING": "Gerando relatório...",
+    "SAVE-REPORT": "Salvar este relatório",
+    "EXPORT-REPORT": "Exportar dados",
+    "SHOW": "Clique para mostrar",
+    "HIDE": "Clique para ocultar novamente",
+    "FILL-PARAMS": "Não foram encontrados dados de relatório. Preencha os parâmetros para gerar seu relatório",
+    "PROCESS-STATUS": "Status do processo",
+    "TASK-STATUS": "Status da tarefa",
+    "STATUS": {
+      "ACTIVE": "Ativo",
+      "ALL": "Todos",
+      "COMPLETE": "Concluído"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "Nenhuma tarefa concluída encontrada para a definição de processo atual",
+      "DATE-RANGE": {
+        "TODAY": "Hoje",
+        "YESTERDAY": "Ontem",
+        "LAST-7-DAYS": "Últimos 7 dias",
+        "PREVIOUS-MONTH": "Mês anterior",
+        "CURRENT-YEAR": "Ano atual",
+        "CUSTOM-RANGE": "Personalizar intervalo",
+        "APPLY": "Aplicar",
+        "CANCEL": "Cancelar",
+        "FROM": "De",
+        "TO": "a"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "Por hora",
+        "DAY": "Por dia",
+        "WEEK": "Por semana",
+        "MONTH": "Por mês",
+        "YEAR": "Por ano"
+      },
+      "DURATION": {
+        "SECONDS": "Segundos",
+        "MINUTES": "Minutos",
+        "HOURS": "Horas",
+        "DAYS": "Dias"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "TITLE": "Visão geral da tarefa",
+        "PROCESS-DEFINITION": "Definição de processo",
+        "DATE-RANGE": "Intervalo de datas",
+        "DATE-RANGE-INTERVAL": "Agregar datas por",
+        "TASK-COUNT-TITLE": "Contagens de tarefa",
+        "TASK-COUNT-DESCRIPTION": "Este gráfico mostra o total de tarefas no intervalo de datas fornecido",
+        "TASK-DURATIONS-TITLE": "Durações de tarefa",
+        "TASK-DURATIONS-DESCRIPTION": "Este gráfico mostra a duração média, mínima e máxima (em horas) das tarefas concluídas no intervalo de datas fornecido. O eixo X mostra o número de linhas da tarefa na tabela detalhada abaixo.",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "Número de tarefas por destinatário",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "Este gráfico de pizza mostra o número de tarefas para a definição de processo escolhida, por cada destinatário",
+        "DETAILED-TASK-STATS-TITLE": "Estatísticas detalhadas de tarefas",
+        "DETAILED-TASK-STATS-DESCRIPTION": "Esta tabela mostra as estatísticas agregadas de todas as tarefas. Clique em qualquer tarefa para ver informações mais detalhadas. Todas as informações de tempo são expressas em horas.",
+        "DETAILED-TASK-STATS-TASK": "Tarefa",
+        "DETAILED-TASK-STATS-ASSIGNEE": "Destinatário",
+        "TASK-HISTOGRAM-TITLE": "Número de tarefas dividido por intervalo de datas",
+        "TASK-HISTOGRAM-TABLE": "Tabela: dados do gráfico anterior em formato de tabela",
+        "TASK-HISTOGRAM-TABLE-DATE": "Data",
+        "COUNT": "Contagem",
+        "SUM": "Soma",
+        "MIN-DURATION": "mín. Duração",
+        "MAX-DURATION": "Máx. Duração",
+        "AVERAGE": "média",
+        "STDDEV": "Desvio padrão"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "TITLE": "Visão geral das instâncias do processo",
+        "PROCESS-DEFINITION": "Definição de processo",
+        "DATE-RANGE": "Intervalo de datas",
+        "SLOW-PROC-INST-NUMBER": "Quantas instâncias de processo devem ser exibidas?",
+        "HISTOGRAM-TITLE": "Contagens de instâncias de processo",
+        "HISTOGRAM-DESCRIPTION": "O gráfico a seguir mostra o número de instâncias de processo que foram iniciadas e concluídas dentro do intervalo de datas selecionado",
+        "ACTIVITY-DURATION-TABLE-TITLE": "Detalhes de duração da atividade",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "A tabela a seguir mostra, ordenados por tempo total cumulativo, os intervalos das diversas atividades no processo. Todas as informações de tempo são expressas em horas.",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "Atividade",
+        "ACTIVITY-DURATION-CHART-TITLE": "Tempo total das etapas do processo",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "Este gráfico mostra em quais atividade foi gasto o tempo. Os números são a soma da duração dessa atividade, conforme mostrado na tabela abaixo.",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "Instâncias de processo mais lentas",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "Esta tabela mostra as instâncias de processo mais lentas que foram concluídas no intervalo de datas configurado. Clique em qualquer das entradas para ver as variáveis de processo dessa instância de processo específica",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Duração",
+        "SLOWEST-PROCESS-INSTANCES-ID": "ID interna",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Chave de negócios",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Hora da criação",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "Hora de término",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variáveis",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "nome da variável",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Valor da variável",
+        "COUNT": "Contagem",
+        "SUM": "Soma",
+        "MIN-DURATION": "Mín. duração",
+        "MAX-DURATION": "Máx. duração",
+        "AVERAGE": "Média",
+        "STDDEV": "Desvio padrão"
+      },
+      "TASK-SLA": {
+        "TITLE": "Contrato de nível de serviço da tarefa",
+        "PROCESS-DEFINITION": "Definição de processo",
+        "TASK": "Tarefa",
+        "DATE-RANGE": "Intervalo de datas",
+        "SLA-DURATION": "Até que horas esta tarefa precisa ser concluída para ficar dentro do SLA?",
+        "SLA-NOT-OK": "Contrato de nível de serviço OK versus Não OK",
+        "ASSIGNEE-TABLE": "Os destinatários não concluíram a tarefa dentro dos limites do SLA",
+        "ASSIGNEE": "Destinatário",
+        "COUNT": "Contagem"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "TITLE": "Visão geral da definição do processo",
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Total de definições de processo: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Total de instâncias de processo: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Total de instâncias de processo ativas: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Total de instâncias de processo concluídas: ",
+        "DETAIL-TABLE": "Detalhes de definição de processo",
+        "DETAIL-TABLE-PROCESS": "Definição de processo",
+        "DETAIL-TABLE-TOTAL": "Total",
+        "DETAIL-TABLE-ACTIVE": "Ativo",
+        "DETAIL-TABLE-COMPLETED": "Concluído",
+        "PROC-INST-CHART-TITLE": "Visão geral do total de instâncias de processo",
+        "DURATIONS-CHART-TITLE": "Intervalos médios para cada definição de processo",
+        "DURATIONS-CHART-DESCRIPTION": "A duração média (e o desvio padrão) de instâncias de processo concluídas, em horas. O número do eixo X corresponde à entrada na tabela acima."
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "Mapa de calor do processo",
+        "TYPE-FILTERING": "Incluir todas as etapas do processo? (Se você desmarcar esta opção, etapas de teste como iniciar eventos, gateways, etc. serão removidas.)",
+        "METRIC-TOTAL-COUNT": "Número de vezes que uma etapa é executada",
+        "METRIC-TOTAL-TIME": "Tempo total gasto em uma etapa do processo",
+        "METRIC-AVG-TIME": "Tempo médio gasto em uma etapa do processo",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "vezes",
+        "METRIC-TOTAL-TIME-TOOLTIP": "horas",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "horas",
+        "GENERATING": "Gerando mapa de calor do processo..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "Salvar relatório",
+        "DESCRIPTION": "As configurações de parâmetro atuais serão armazenadas e um novo relatório será mostrado na lista de relatórios. Quando você clicar nesse relatório específico, ele será gerado com o uso desses valores de parâmetro salvos.",
+        "NAME": "Nome"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "Exportar dados",
+        "NAME": "Nome"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "Excluir relatório",
+        "DESCRIPTION": "Tem certeza de que deseja excluir este relatório?",
+        "CONFIRM": "Excluir relatório"
+      }
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "Aplicativo Designer",
+      "TITLE-PROCESSES": "Modelos de processo",
+      "TITLE-FORMS": "Modelos de formulário",
+      "TITLE-APPS": "Modelos de aplicativo",
+      "TITLE-STENCILS": "Estênceis",
+      "TITLE-DECISION-TABLES": "Tabelas de decisão",
+      "TITLE-DATA-MODELS": "Modelos de dados"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Aplicativo de administração"
+    },
+    "TASKS": {
+      "TITLE": "Aplicativo de tarefas",
+      "TITLE-TASKS": "Tarefas",
+      "TITLE-PROCESSES": "Processos",
+      "TITLE-PROCESSES?MODE=START": "Iniciar"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Perfil",
+      "TITLE-TENANT-ADMIN": "Gerenciamento de identidades",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenants",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Usuários",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Recursos",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organização",
+      "TITLE-TENANT-ADMIN-PROFILE": "Perfil",
+      "TITLE-PROFILE": "Perfil"
+    },
+    "ANALYTICS": {
+      "TITLE": "Aplicativo de análise"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "Tarefas {{name}}",
+      "TITLE-PROCESSES": "Processos {{name}}",
+      "TITLE-PROCESSES?MODE=START": "Início {{name}}"
+    }
+  }
+}

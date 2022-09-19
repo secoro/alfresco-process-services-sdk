@@ -1,0 +1,48 @@
+<div ng-if="stencilSet" ng-controller="ChoiceStepController" class="details">
+    <div tab-control="choiceTabs" active-tab="activeTab" ng-show="step.id == activeStep.id"></div>
+    <div class="detail-group clearfix first" ng-show="activeTab == 'details'" ng-include="'views/process-builder/generic-step-template.html'"></div>
+    <div class="detail-group first" ng-show="activeTab == 'choices'">
+        <div class="row details">
+            <div class="col-xs-1">
+                <button class="btn btn-clean" ng-click="previousChoice()" ng-if="step.meta.stepIndex > 0"><i class="icon icon-caret-left"></i></button>
+            </div>
+            <div class="col-xs-4">
+                <div class="line-marker choice" ng-if="activeChoices[0]" ng-click="editChoice(activeChoices[0], $event)">
+                    <h4>{{activeChoices[0].name}} <span>({{step.meta.stepIndex + 1}}/{{step.choices.length}})</span></h4>
+
+                    <div class="actions" ng-if="step.choices.length > 2">
+                        <button class="btn btn-clean" ng-click="removeChoice(activeChoices[0], $event)" data-toggle="tooltip" title="{{'PROCESS-BUILDER.CHOICE-STEP.CHOICE.REMOVE.TOOLTIP' | translate}}">
+                            <i class="icon icon-remove"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div ng-if="!readOnly" class="step-placeholder no-move" ng-click="addChoice()"></div>
+            </div>
+            <div class="col-xs-4">
+                <div class="line-marker choice" ng-click="editChoice(activeChoices[1], $event)">
+                    <h4>{{activeChoices[1].name}} <span>({{step.meta.stepIndex + 2}}/{{step.choices.length}})</span></h4>
+
+                    <div class="actions" ng-if="step.choices.length > 2">
+                        <button class="btn btn-clean" ng-click="removeChoice(activeChoices[1], $event)" data-toggle="tooltip" title="{{'PROCESS-BUILDER.CHOICE-STEP.CHOICE.REMOVE.TOOLTIP' | translate}}">
+                            <i class="icon icon-remove"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-1" style="text-align: right">
+                <button class="btn btn-clean" ng-click="nextChoice()" ng-if="step.choices.length > step.meta.stepIndex + 2"><i class="icon icon-caret-right"></i></button>
+            </div>
+        </div>
+
+        <div class="col-xs-6 has-line" ng-repeat="stepContainer in activeChoices">
+            <div ng-if="readOnly" class="step-placeholder-readonly"></div>
+            <div ng-if="!readOnly" class="step-placeholder" ng-click="insertStepBelow($event, undefined, stepContainer)" ng-class="{'no-move no-click': isMoveDisabled(step, stepContainer, moveState)}"></div>
+            <div ng-if="stepContainer.steps" ng-repeat="step in stepContainer.steps" ng-init="stepContainer = stepContainer" ng-include="'views/process-builder/step-list.html'">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+    <div class="help-container" auto-height ng-cloak>
+        <div>
+            <div class="help-dude-pointing"></div>
+        </div>
+        <div>
+            <div ng-if="!model.filter.taskId" class="help-text wide">
+                <div ng-if="!model.filter.modified" class="description" translate="TASK.FILTER.NO-FILTER-RESULTS" translate-values="{name: model.filter.selected.name}">
+                </div>
+                <div ng-if="model.filter.modified" class="description" translate="TASK.FILTER.NO-SEARCH-RESULTS">
+                </div>
+                <button ng-disabled="readOnly" style="border: none;background: transparent;" class="help-entry toggle-create-task" ng-click="createTask()">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    <span translate="TASK.MESSAGE.NO-TASKS-CREATE-TASK"></span>
+                </button>
+                <button ng-disabled="readOnly" class="help-entry" style="border: none;background: transparent;" ng-click="startProcess()">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    <span translate="TASK.MESSAGE.NO-TASKS-CREATE-PROCESS"></span>
+                </button>
+            </div>
+            <div ng-if="model.filter.taskId" class="help-text wide">
+                <div class="description">
+                    {{'TASK.MESSAGE.NO-SUCH-TASK-HELP' | translate}}
+                </div>
+                <div class="help-entry" ng-click="reloadTaskList(); $event.stopPropagation();">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    <span translate="TASK.MESSAGE.NO-SUCH-TASK-RETURN-TO-LIST"></span>
+                </div>
+            </div>
+        </div>
+    </div>

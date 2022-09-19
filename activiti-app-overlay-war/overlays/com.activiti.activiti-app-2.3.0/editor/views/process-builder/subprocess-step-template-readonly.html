@@ -1,0 +1,7 @@
+<div ng-controller="SubProcessStepReadOnlyController">
+    <div ng-if="activeStep.id == step.id" class="details">
+        <div tab-control="subProcessStepTabs" active-tab="activeTab"></div>
+        <div class="detail-group clearfix first" ng-include="'views/process-builder/generic-step-template-readonly.html'">
+        </div>
+    </div>
+</div>

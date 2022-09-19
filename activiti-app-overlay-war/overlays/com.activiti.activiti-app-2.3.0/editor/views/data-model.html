@@ -1,0 +1,178 @@
+<div class="subheader" ng-if="model.dataModel">
+    <div class="fixed-container">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default" ng-click="useAsNewVersion()" ng-if="!model.dataModel.latestVersion" ng-disabled="model.dataModel.permission != 'write' || readOnly">
+                {{'DATA-MODEL.ACTION.USE-AS-NEW-VERSION' | translate}}
+            </button>
+            <a href="{{model.dataModelDownloadUrl}}" class="btn btn-default" title="{{'DATA-MODEL.ACTION.EXPORT' | translate}}">
+                <i class="glyphicon glyphicon-save"></i>
+            </a>
+            <button type="button" class="btn btn-default" ng-click="openEditor()" ng-if="model.dataModel.latestVersion" ng-disabled="readOnly || model.dataModel.permission != 'write'">
+                <i class="glyphicon glyphicon-edit icon-and-label"></i> {{'DATA-MODEL.ACTION.OPEN-IN-EDITOR' | translate}}
+            </button>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" ng-click="toggleFavorite()" class="btn btn-default" title="{{'DATA-MODEL.ACTION.FAVORITE' | translate}}"
+                title="{{'DATA-MODEL.ACTION.FAVORITE' | translate}}" ng-disabled="!model.dataModel.latestVersion || model.favoritePending || readOnly" >
+                <i class="glyphicon" ng-class="{'glyphicon-star highlight': model.dataModel.favorite, 'glyphicon-star-empty': !model.dataModel.favorite}"></i>
+            </button>
+            <button type="button" ng-click="shareDataModel()" class="btn btn-default" title="{{'DATA-MODEL.ACTION.SHARE' | translate}}"
+                title="{{'DATA-MODEL.ACTION.SHARE' | translate}}" ng-disabled="!model.dataModel.latestVersion || model.dataModel.createdBy != account.id || readOnly">
+                <i class="glyphicon glyphicon-share"></i>
+            </button>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default" ng-click="editDataModel()" ng-disabled="!model.dataModel.latestVersion || model.dataModel.permission != 'write' || readOnly"
+                title="{{'DATA-MODEL.ACTION.EDIT' | translate}}">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="deleteDataModel()" title="{{'DATA-MODEL.ACTION.DELETE' | translate}}"
+                 title="{{'DATA-MODEL.ACTION.DELETE' | translate}}" ng-disabled="!model.dataModel.latestVersion || model.dataModel.permission != 'write' || readOnly">
+                <i class="glyphicon glyphicon-trash"></i>
+            </button>
+        </div>      
+        <div class="pull-right">
+            <a ng-click="returnToList()" class="action">&larr; {{'GENERAL.ACTION.RETURN-TO-LIST' | translate}}</a>
+        </div>
+        <h2><span class="version">v{{model.dataModel.version}}</span>{{model.dataModel.name}}</h2>
+        <div class="clearfix">
+            <div class="col-xs-4 details">
+                <span><i class="glyphicon glyphicon-user"></i><span translate="DATA-MODEL.DETAILS.CREATED-BY" translate-values="model.dataModel"></span></span> 
+                <span><i class="glyphicon glyphicon-pencil"></i><span translate="DATA-MODEL.DETAILS.LAST-UPDATED-BY" translate-values="model.dataModel"></span>{{model.dataModel.lastUpdated | dateformat:((globalDateFormat || getGlobalDateFormat()) | momentTodatetimeFormat)}}</span>
+            </div>
+            <div class="col-xs-8 details clearfix">
+                <div class="related btn-group">
+
+                    <button id="toggle-comment" type="button" class="btn btn-subtle" ng-disabled="!model.dataModel.latestVersion" ng-click="toggleComments($event)"
+                            title="{{'DATA-MODEL.ACTION.ADD-COMMENT' | translate}}">
+                        <span ng-if="!model.comments.data.length">
+                            {{'DATA-MODEL.ACTION.ADD-COMMENT' | translate}}
+                        </span>
+                        <span ng-if="model.comments.data.length">
+                             {{'DATA-MODEL.DETAILS.COMMENTS-TITLE' | translate}} <span class="counter">{{model.comments.data.length}}</span>
+                        </span>
+                    </button>
+                    <button id="toggle-history" type="button" class="btn btn-subtle" ng-click="toggleHistory($event)"
+                        title="{{'DATA-MODEL.ACTION.EDIT' | translate}}">
+                        {{'DATA-MODEL.DETAILS.HISTORY-TITLE' | translate}} <span class="counter" ng-show="model.versions.data.length">{{model.versions.data.length}}</span>
+                    </button>
+                </div>
+                <p ng-if="model.dataModel.description">
+                    {{model.dataModel.description}}
+                </p>
+                <p ng-if="!readOnly && !model.dataModel.description && model.dataModel.permission == 'write' && model.dataModel.latestVersion" class="hint">
+                    <a ng-click="editDataModel()" class="subtle-select">
+                        {{'DATA-MODEL.DETAILS.NO-DESCRIPTION' | translate}} <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                </p>
+                <span class="detail" ng-if="model.dataModel.comment" title="{{'DATA-MODEL.VERSION-COMMENT' | translate}}"><i class="glyphicon glyphicon-comment"></i>{{model.dataModel.comment}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid content" auto-height="model.selectedEntity" offset="40">
+    <br/>
+    <div class="form-group clearfix">
+        <div class="col-xs-3">
+            <div class="row row-no-gutter" ng-show="!model.dataModelDefinition.dataSourceType || model.dataModelDefinition.dataSourceType === 'database'">
+                <div class="col-xs-9">
+                    <div class="form-group">
+                        <label for="dataSourceSelect">{{'DATA-MODEL-EDITOR.FIELD.DATA-SOURCE' | translate}}</label>
+                        <select id="dataSourceSelect" class="form-control" ng-model="model.dataModelDefinition.dataSourceId" disabled>
+                            <option ng-repeat="dataSource in model.dataSources" value="{{dataSource.id}}" ng-selected="dataSource.id === model.dataModelDefinition.dataSourceId">{{dataSource.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label>{{'DATA-MODEL-EDITOR.LABEL.ENTITIES' | translate}}</label>
+            </div>
+            <div class="row row-no-gutter">
+                <div class="col-xs-9">
+                    <div id="dataModelGrid" class="kis-listener-grid" ui-grid="entityGridOptions" ui-grid-selection></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-9" ng-show="model.selectedEntity">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="nameField">{{'DATA-MODEL-EDITOR.FIELD.ENTITY-NAME' | translate}}</label>
+                        <input type="text" id="nameField" class="form-control" ng-model="model.selectedEntity.name" disabled/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="descriptionField">{{'DATA-MODEL-EDITOR.FIELD.ENTITY-DESCRIPTION' | translate}}</label>
+                        <textarea class="form-control" id="descriptionField" rows="3" ng-model="model.selectedEntity.description" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="!model.dataModelDefinition.dataSourceType || model.dataModelDefinition.dataSourceType === 'database'">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="tableNameField">{{'DATA-MODEL-EDITOR.FIELD.TABLE-NAME' | translate}}</label>
+                        <input type="text" id="tableNameField" class="form-control" ng-model="model.selectedEntity.tableName" disabled/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <hr/>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <label>{{'DATA-MODEL-EDITOR.LABEL.ATTRIBUTES' | translate}}</label>
+                    <div id="dataModelAttributesGrid" class="kis-listener-grid" ui-grid="attributeGridOptions" ui-grid-selection ui-grid-auto-resize></div>
+                </div>
+                <div class="col-xs-6" ng-show="model.selectedAttribute">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="attributeNameField">{{'DATA-MODEL-EDITOR.FIELD.ATTRIBUTE-NAME' | translate}}</label>
+                            <input type="text" id="attributeNameField" class="form-control" ng-model="model.selectedAttribute.name" disabled/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="attributeDescriptionField">{{'DATA-MODEL-EDITOR.FIELD.ATTRIBUTE-DESCRIPTION' | translate}}</label>
+                            <textarea class="form-control" id="attributeDescriptionField" rows="3" ng-model="model.selectedAttribute.description" disabled></textarea>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="!model.dataModelDefinition.dataSourceType || model.dataModelDefinition.dataSourceType === 'database'">
+                        <div class="form-group">
+                            <label for="mappedNameField">{{'DATA-MODEL-EDITOR.FIELD.COLUMN-NAME' | translate}}</label>
+                            <input type="text" id="mappedNameField" class="form-control" ng-model="model.selectedAttribute.mappedName" disabled/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="attributeTypeField">{{'DATA-MODEL-EDITOR.FIELD.ATTRIBUTE-TYPE' | translate}}</label>
+                            <input id="attributeTypeField" class="form-control" ng-model="model.selectedAttribute.type" disabled/>
+                        </div>
+                    </div>
+                    
+                    <div class="row" ng-show="!model.dataModelDefinition.dataSourceType || model.dataModelDefinition.dataSourceType === 'database'">
+                        <label style="color: #636363; font-size: 14px; margin-bottom: 10px">
+                            <input id="primaryKeyCheckbox" type="checkbox" ng-model="model.selectedAttribute.primaryKey" disabled>
+                            &nbsp;{{'DATA-MODEL-EDITOR.FIELD.PRIMARY-KEY' | translate}}
+                        </label>
+                    </div>
+                    <div class="row" ng-show="(!model.dataModelDefinition.dataSourceType || model.dataModelDefinition.dataSourceType === 'database') && model.selectedAttribute.primaryKey">
+                        <label style="color: #636363; font-size: 14px; margin-bottom: 10px">
+                            <input id="generatedCheckbox" type="checkbox" ng-model="model.selectedAttribute.generatedValue" disabled>
+                            &nbsp;{{'DATA-MODEL-EDITOR.FIELD.GENERATED-VALUE' | translate}}
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label style="color: #636363; font-size: 14px;">
+                            <input id="requiredCheckbox" type="checkbox" ng-model="model.selectedAttribute.required" disabled>
+                            &nbsp;{{'DATA-MODEL-EDITOR.FIELD.REQUIRED' | translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

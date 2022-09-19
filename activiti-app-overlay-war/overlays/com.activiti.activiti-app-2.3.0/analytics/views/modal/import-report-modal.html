@@ -1,0 +1,38 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller="ReportImportController">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title">Import a custom report definition</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" ng-if="model.error" style="margin-bottom: 0">
+                    <span>Import error<span ng-if="model.errorMessage"> : </span>{{model.errorMessage}}</span>
+                </div>
+                <input type="file" accept="application/json" ngf-select="" ngf-change="onFileSelect($files)" style="font-size: smaller; padding-top:6px;" >
+                <div class="import-report-dropbox"
+                     ngf-drop ngf-change="onFileSelect($files)"
+                     ngf-drag-over-class="dragover"
+                     ng-show="dropSupported">
+                    Drop a .json definition file here
+                </div>
+                <div ngf-drop-available="dropSupported=true"
+                     ng-show="!dropSupported">Drag and drop not supported</div>
+                <div class="progress" ng-show="model.loading" style="margin: 10px 0 10px 0">
+                    <div class="progress-bar progress-bar-striped active" ng-style="{width: model.uploadProgress + '%'}">{{model.uploadProgress}} %</div>
+                </div>
+                <button class="btn btn-danger"
+                        ng-click="upload.abort()"
+                        ng-disabled="!status.loading"
+                        style="margin-bottom: 20px">
+                    Cancel upload
+                </button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide()">{{'GENERAL.ACTION.CANCEL' | translate}}</button>
+            </div>
+
+        </div>
+    </div>
+</div>

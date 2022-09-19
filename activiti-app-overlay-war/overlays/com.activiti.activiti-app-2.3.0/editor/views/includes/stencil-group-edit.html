@@ -1,0 +1,26 @@
+<div ng-controller="StencilGroupEditCtrl">
+
+    <div ng-show="model.activeGroup">
+        <div class="clearfix">
+            <div class="pull-right">
+                <button type="button" class="btn btn-default btn-lg" ng-click="moveGroup('down')" ng-disabled="!canMoveGroup('down') || readOnly">
+                    <span class="glyphicon glyphicon-arrow-down stencil-info-item-arrow-icon"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-lg" ng-click="moveGroup('up')" ng-disabled="!canMoveGroup('up') || readOnly">
+                    <span class="glyphicon glyphicon-arrow-up stencil-info-item-arrow-icon" ></span>
+                </button>
+                <button type="button" class="btn btn-default btn-lg" ng-click="deleteGroup()" ng-disabled="readOnly">
+                    <span class="glyphicon glyphicon-remove stencil-info-item-icon" ></span>
+                </button>
+            </div>
+            <h2>{{'STENCILS.GROUP.TITLE' | translate}} {{model.activeGroup.name | translate}}</h2>
+        </div>
+
+        <div class="form-group">
+            <label for="stencilGroupName">{{'STENCILS.ITEM.NAME' | translate}}</label>
+            <input id="stencilGroupName" type="text" class="form-control"
+                   ng-model="model.activeGroup.name" ng-change="groupNameChanged()" auto-focus>
+        </div>
+    </div>
+
+</div>

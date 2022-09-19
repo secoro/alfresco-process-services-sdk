@@ -1,0 +1,62 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title" ng-if="editDataSource.id == null || editDataSource.id == undefined">
+                    {{'IDM.TENANT-MGMT.DATA-SOURCE.CREATE-DATA-SOURCE-TITLE' | translate}}
+                </h4>
+                <h4 class="modal-title" ng-if="editDataSource.id != null && editDataSource.id != undefined">
+                    {{'IDM.TENANT-MGMT.DATA-SOURCE.EDIT-DATA-SOURCE-TITLE' | translate}}
+                </h4>
+            </div>
+
+            <div class="modal-body" ng-form="dataSourceForm">
+
+                <div class="form-group" ng-class="{'has-error': dataSourceForm.nameField.$invalid}">
+                    <label for="nameField">{{'IDM.TENANT-MGMT.DATA-SOURCE.NAME' | translate}}</label>
+                    <input type="text" id="nameField" name="nameField" class="form-control" autofocus ng-model="editDataSource.name" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error': dataSourceForm.jdbcUrlField.$invalid}">
+                    <label for="jdbcUrlField">{{'IDM.TENANT-MGMT.DATA-SOURCE.JDBC-URL' | translate}}</label>
+                    <input type="text" id="jdbcUrlField" name="jdbcUrlField" class="form-control" ng-model="editDataSource.config.jdbcUrl" required>
+
+                </div>
+                <div class="form-group" ng-class="{'has-error': dataSourceForm.driverField.$invalid}">
+                    <label for="driverField">{{'IDM.TENANT-MGMT.DATA-SOURCE.DRIVER-CLASS' | translate}}</label>
+                    <input type="text" id="driverField" name="driverField" class="form-control" ng-model="editDataSource.config.driverClass" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error': endpointForm.usernameField.$invalid}">
+                    <label for="usernameField">{{'IDM.TENANT-MGMT.DATA-SOURCE.USERNAME' | translate}}</label>
+                    <input type="text" id="usernameField" name="usernameField" class="form-control" ng-model="editDataSource.config.username" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error': endpointForm.passwordField.$invalid}">
+                    <label for="passwordField">{{'IDM.TENANT-MGMT.DATA-SOURCE.PASSWORD' | translate}}</label>
+                    <input type="password" ng-if="editDataSource.id == null || editDataSource.id == undefined" id="passwordField" name="passwordField"
+                           class="form-control" ng-model="editDataSource.config.password" required>
+                    <input type="password" ng-if="editDataSource.id != null && editDataSource.id != undefined" id="passwordField" name="passwordField"
+                           class="form-control" ng-model="editDataSource.config.password" placeholder="••••••••••">
+                </div>
+                <div class="form-group">
+                    <button ng-click="checkDataSource(editDataSource)" type="button" ng-disabled="dataSourceForm.$invalid || readonly"
+                            class="btn btn-default btn-xs" >{{'IDM.TENANT-MGMT.DATA-SOURCE.TEST-DATA-SOURCE' | translate}}
+                    </button>
+                    <span loading="loading"></span>
+                </div>
+                <div class="form-group" ng-show="!hideCheckResult">
+                    <div style="color: {{checkResultMessageColor}}">{{checkResultMessage}}</div>
+                    <div style="color: {{checkResultMessageColor}}">{{errorMessage}}</div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide(); hideChecker()">{{'IDM.GENERAL.ACTION.CANCEL' | translate}}</button>
+                <button type="button" class="btn btn-primary" ng-disabled="dataSourceForm.$invalid || readOnly"
+                        ng-click="createOrUpdateDataSource(editDataSource); $hide(); hideChecker()">{{'IDM.GENERAL.ACTION.SAVE' | translate}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

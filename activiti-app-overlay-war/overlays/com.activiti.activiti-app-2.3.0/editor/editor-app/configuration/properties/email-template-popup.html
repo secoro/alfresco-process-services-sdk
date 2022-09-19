@@ -1,0 +1,73 @@
+<div class="modal" ng-controller="KisBpmEmailTemplatePopupCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2 translate>BPMN-EDITOR.PROPERTY.EMAIL-TEMPLATE.TITLE</h2>
+            </div>
+            <div class="modal-body">
+            <div class="detail-group clearfix">
+    <div class="form-group clearfix">
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+                <label translate="PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.EMAIL"></label>
+            </div>
+            <div class="col-xs-9">
+                <div class="btn-group span">
+                    <button class="selection" ng-options="option as (option.title | translate) for option in sourceOptions"
+                            bs-select ng-model="sourceOption" activiti-fix-dropdown-bug>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group clearfix" ng-if="sourceOption.id == 'template'">
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+                <label>{{'PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.TEMPLATE' | translate}}</label>
+            </div>
+            <div class="col-xs-9">
+                <div class="people-select">
+                    <button class="selection" select-email-template-popover="emailTemplateObject.template" popover-title="PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.POPUP.TITLE" placement="bottom"
+                            on-template-selected="setTemplate(template)">
+                        <span ng-if="!emailTemplateObject.template" translate="PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.SELECT-TEMPLATE"></span>
+                        <span ng-if="emailTemplateObject.template"><i class="glyphicon glyphicon-file"></i>{{emailTemplateObject.template.name}}</span>
+                        <i class="icon icon-caret-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group clearfix" ng-if="sourceOption.id == 'custom'">
+    	<div class="col-xs-12">
+            <div class="col-xs-3">
+                <label translate="PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.CUSTOM-EMAIL-SUBJECT"></label>
+            </div>
+            <div class="col-xs-9">
+                <div class="form-group">
+    			        <input placeholder="{{'PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.CUSTOM-EMAIL-SUBJECT-PLACEHOLDER' | translate}}" type="text" ng-model="emailTemplateObject.templateSubject" class="form-control">
+    			    </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+                <label translate="PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.CUSTOM-EMAIL-CONTENT"></label>
+            </div>
+            <div class="col-xs-9">
+                <div class="form-group">
+    			        <textarea placeholder="{{'PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.CUSTOM-EMAIL-CONTENT-PLACEHOLDER' | translate}}" type="text" ng-model="emailTemplateObject.templateText" class="form-control" rows="2"></textarea>
+    			    </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="close()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" ng-disabled="(emailTemplateObject.type === 'custom' && (!emailTemplateObject.templateSubject || !emailTemplateObject.templateText)) || (emailTemplateObject.type === 'template' && !emailTemplateObject.template.id)" class="btn btn-primary" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>

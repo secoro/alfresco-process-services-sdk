@@ -1,0 +1,8 @@
+<div ng-controller="ReportingParamBooleanController" style="margin-top: 16px">
+
+    <input type="checkbox" ng-model="parameter.value" ng-change="reportingParamBooleanChanged(parameter)" >
+
+    <span ng-if="parameter.name" ng-click="parameter.value = !parameter.value;reportingParamBooleanChanged(parameter);" style="cursor:pointer">{{parameter.name}}</span>
+    <span ng-if="!parameter.name && parameter.nameKey" ng-click="parameter.value = !parameter.value;reportingParamBooleanChanged(parameter)" style="cursor:pointer">{{(parameter.nameKey) | translate}}</span>
+
+</div>

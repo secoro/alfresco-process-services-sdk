@@ -1,0 +1,185 @@
+<div class="subheader editor-toolbar" id="editor-header">
+    <div class="fixed-container">
+        <div class="btn-group">
+            <div class="btn-toolbar pull-left" ng-controller="DataModelToolbarController" ng-cloak>
+                <button id="{{item.id}}"
+                        title="{{item.title | translate}}"
+                        ng-repeat="item in items"
+                        ng-switch on="item.type"
+                        class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
+                        ng-disabled="item.type == 'separator' || item.enabled == false || (readOnly && item.disableOnReadonly)"
+                        ng-click="toolbarButtonClicked($index)">
+                    <i ng-switch-when="button" ng-class="item.cssClass" class="toolbar-button" data-toggle="tooltip" title="{{item.title | translate}}"></i>
+                    <div ng-switch-when="separator" ng-class="item.cssClass"></div>
+                </button>
+              </div>
+            </div>
+            <div class="btn-group pull-right" ng-show="!secondaryItems.length">
+                <div class="btn-toolbar pull-right" ng-controller="DataModelToolbarController">
+                <button title="{{item.title | translate}}" ng-repeat="item in secondaryItems" ng-switch on="item.type" class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
+                    ng-disabled="item.type == 'separator' || (readOnly && item.disableOnReadonly)" ng-click="toolbarSecondaryButtonClicked($index)" id="{{item.id}}">
+                    <i ng-switch-when="button" ng-class="item.cssClass" class="toolbar-button" data-toggle="tooltip" title="{{item.title | translate}}"></i>
+                    <div ng-switch-when="separator" ng-class="item.cssClass"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid content" auto-height offset="40">
+    <br/>
+    <div class="form-group clearfix">
+        <div class="col-xs-3">
+            <div class="row row-no-gutter" style="margin-bottom:20px">
+                <button type="button" class="btn btn-inverse"
+                    ng-click="setDataSourceType('database')"
+                    ng-model="currentDataModel.dataSourceType"
+                    ng-class="{'active' : isDatabaseSource()}">{{'DATA-MODEL-EDITOR.LABEL.DATASOURCE-TYPE-DATABASE' | translate}}</button>
+                <!-- Use Alfresco Repository as source -->
+                <button type="button" class="btn btn-inverse"
+                        ng-click="setDataSourceType('alfresco')"
+                        ng-model="currentDataModel.dataSourceType"
+                        ng-class="{'active' : currentDataModel.dataSourceType === 'alfresco'}">{{'DATA-MODEL-EDITOR.LABEL.DATASOURCE-TYPE-ALFRESCO' | translate}}</button>
+                <button type="button" class="btn btn-inverse"
+                    ng-click="setDataSourceType('custom')"
+                    ng-model="currentDataModel.dataSourceType"
+                    ng-class="{'active' : isDataSourceType('custom')}">{{'DATA-MODEL-EDITOR.LABEL.DATASOURCE-TYPE-CUSTOM' | translate}}</button>
+            </div>
+            <div class="row row-no-gutter" ng-show="isDatabaseSource()">
+                <div class="form-group">
+                    <label for="dataSourceSelect">{{'DATA-MODEL-EDITOR.FIELD.DATA-SOURCE' | translate}}</label>
+                    <select id="dataSourceSelect" class="form-control" ng-model="currentDataModel.dataSourceId">
+                        <option ng-repeat="dataSource in model.dataSources" value="{{dataSource.id}}" ng-selected="dataSource.id === currentDataModel.dataSourceId">{{dataSource.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <!-- If Alfresco Data Model then show list of configured Repositories -->
+            <div class="row row-no-gutter" ng-show="currentDataModel.dataSourceType && currentDataModel.dataSourceType === 'alfresco'">
+                <div class="form-group">
+                    <label for="repoSourceSelect">{{'DATA-MODEL-EDITOR.FIELD.REPO-SOURCE' | translate}}</label>
+                    <select id="repoSourceSelect" class="form-control" ng-model="currentDataModel.dataSourceId">
+                        <option ng-repeat="repo in model.alfrescoRepositories" value="{{repo.id}}" ng-selected="repo.id === currentDataModel.dataSourceId">{{repo.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" ng-if="isValid()">
+                <label>{{'DATA-MODEL-EDITOR.LABEL.ENTITIES' | translate}}</label>
+            </div>
+            <div class="row" ng-if="!isValid()" class="has-error">
+                <label style="color:#a94442">{{'DATA-MODEL-EDITOR.LABEL.ENTITIES' | translate}}</label>
+                <a class="formbuilder-validation-error-icon ng-scope" ng-click="showValidationErrors()"><img src="editor-app/images/bpmn-error.png"></a>
+            </div>
+            <div class="row row-no-gutter">
+                <div id="dataModelGrid" class="kis-listener-grid" ui-grid="entityGridOptions" ui-grid-selection></div>
+            </div>
+            <div class="row">
+                <button class="btn btn-default" ng-click="importTables()" ng-if="isDatabaseSource()" ng-disabled="readOnly || !hasDataSource()">{{'DATA-MODEL-EDITOR.BUTTON.IMPORT-ENTITIES' | translate}}</button>
+                <button class="btn btn-default" ngf-select="" ngf-accept="'.xml'" ngf-change="importAlfrescoModel($files)" ng-if="isDataSourceType('alfresco')" ng-disabled="readOnly">{{'COMMON.OPERATION.IMPORT' | translate}}</button>
+                <button class="btn btn-default" ng-click="addEntity()" ng-disabled="readOnly">{{'DATA-MODEL-EDITOR.BUTTON.ADD-ENTITY' | translate}}</button>
+                <button class="btn btn-default" ng-click="removeEntity()" ng-disabled="!model.selectedEntity || readOnly">{{'DATA-MODEL-EDITOR.BUTTON.REMOVE-ENTITY' | translate}}</button>
+            </div>
+        </div>
+        <div class="col-xs-9" ng-show="model.selectedEntity">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="nameField">{{'DATA-MODEL-EDITOR.FIELD.ENTITY-NAME' | translate}}</label>
+                        <input type="text" id="nameField" class="form-control" ng-model="model.selectedEntity.name" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="descriptionField">{{'DATA-MODEL-EDITOR.FIELD.ENTITY-DESCRIPTION' | translate}}</label>
+                        <textarea class="form-control" id="descriptionField" rows="3" ng-model="model.selectedEntity.description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="isDatabaseSource()">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="tableNameField">{{'DATA-MODEL-EDITOR.FIELD.TABLE-NAME' | translate}}</label>
+                        <input type="text" id="tableNameField" class="form-control" ng-model="model.selectedEntity.tableName" />
+                    </div>
+                </div>
+            </div>
+            <!-- Store the node type in the table name field for the moment -->
+            <div class="row" ng-show="currentDataModel.dataSourceType && currentDataModel.dataSourceType === 'alfresco'">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="nodeTypeField">{{'DATA-MODEL-EDITOR.FIELD.NODE_TYPE' | translate}}</label>
+                        <input type="text" id="nodeTypeField" class="form-control" ng-model="model.selectedEntity.tableName" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <hr/>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <label>{{'DATA-MODEL-EDITOR.LABEL.ATTRIBUTES' | translate}}</label>
+                    <div id="dataModelAttributesGrid" class="kis-listener-grid" ui-grid="attributeGridOptions" ui-grid-selection ui-grid-auto-resize></div>
+                    <button class="btn btn-default" ng-click="importAttributes()" ng-if="isDatabaseSource()" ng-disabled="readOnly || !hasDataSource() || !hasDatabaseTable()">{{'DATA-MODEL-EDITOR.BUTTON.IMPORT-ATTRIBUTES' | translate}}</button>
+                    <button class="btn btn-default" ng-click="addAttribute()" ng-disabled="readOnly">{{'DATA-MODEL-EDITOR.BUTTON.ADD-ATTRIBUTE' | translate}}</button>
+                    <button class="btn btn-default" ng-click="removeAttribute()" ng-disabled="!model.selectedAttribute || readOnly">{{'DATA-MODEL-EDITOR.BUTTON.REMOVE-ATTRIBUTE' | translate}}</button>
+                </div>
+                <div class="col-xs-6" ng-show="model.selectedAttribute">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="attributeNameField">{{'DATA-MODEL-EDITOR.FIELD.ATTRIBUTE-NAME' | translate}}</label>
+                            <input type="text" id="attributeNameField" class="form-control" ng-model="model.selectedAttribute.name" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="attributeDescriptionField">{{'DATA-MODEL-EDITOR.FIELD.ATTRIBUTE-DESCRIPTION' | translate}}</label>
+                            <textarea class="form-control" id="attributeDescriptionField" rows="3" ng-model="model.selectedAttribute.description"></textarea>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="isDatabaseSource()">
+                        <div class="form-group">
+                            <label for="mappedNameField">{{'DATA-MODEL-EDITOR.FIELD.COLUMN-NAME' | translate}}</label>
+                            <input type="text" id="mappedNameField" class="form-control" ng-model="model.selectedAttribute.mappedName" />
+                        </div>
+                    </div>
+                    <div class="row" ng-show="currentDataModel.dataSourceType && currentDataModel.dataSourceType === 'alfresco'">
+                        <div class="form-group">
+                            <label for="mappedPropField">{{'DATA-MODEL-EDITOR.FIELD.PROPERTY-NAME' | translate}}</label>
+                            <input type="text" id="mappedPropField" class="form-control" ng-model="model.selectedAttribute.mappedName" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="attributeTypeField">{{'DATA-MODEL-EDITOR.FIELD.ATTRIBUTE-TYPE' | translate}}</label>
+                            <select id="attributeTypeField" class="form-control" ng-model="model.selectedAttribute.type" style="display:inline-block; width:100%;margin-bottom: 10px;">
+                                  <option>string</option>
+                                  <option>number</option>
+                                  <option>double</option>
+                                  <option>date</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="isDatabaseSource()">
+                        <label style="color: #636363; font-size: 14px; margin-bottom: 10px">
+                            <input id="primaryKeyCheckbox" type="checkbox" ng-model="model.selectedAttribute.primaryKey">
+                            &nbsp;{{'DATA-MODEL-EDITOR.FIELD.PRIMARY-KEY' | translate}}
+                        </label>
+                    </div>
+                    <div class="row" ng-show="isDatabaseSource() && model.selectedAttribute.primaryKey">
+                        <label style="color: #636363; font-size: 14px; margin-bottom: 10px">
+                            <input id="generatedCheckbox" type="checkbox" ng-model="model.selectedAttribute.generatedValue">
+                            &nbsp;{{'DATA-MODEL-EDITOR.FIELD.GENERATED-VALUE' | translate}}
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label style="color: #636363; font-size: 14px;">
+                            <input id="requiredCheckbox" type="checkbox" ng-model="model.selectedAttribute.required">
+                            &nbsp;{{'DATA-MODEL-EDITOR.FIELD.REQUIRED' | translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

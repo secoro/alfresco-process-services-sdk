@@ -1,0 +1,525 @@
+<div class="modal" ng-controller="KisBpmConditionExpressionPopupCtrl">
+<div class="modal-dialog modal-wide">
+<div class="modal-content">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+    <h2 translate>PROPERTY.SEQUENCEFLOW.CONDITION.TITLE</h2>
+</div>
+<div class="modal-body">
+
+    <div class="detail-group clearfix">
+        <div class="form-group clearfix">
+            <div class="col-xs-12">
+                <label class="col-xs-3">{{'PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.TITLE' | translate}}</label>
+                <div class="col-xs-9">
+                    <div class="btn-group btn-group-justified">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="model.condition.type = 'none'" ng-model="model.condition.type" ng-class="{'active' : model.condition.type === 'none'}">{{'PROPERTY.SEQUENCEFLOW.CONDITION.NO-CONDITION-DISPLAY' | translate}}</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="model.condition.type = 'variables'" ng-model="model.condition.type" ng-class="{'active' : model.condition.type === 'variables'}">{{'PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.SIMPLE' | translate}}</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="model.condition.type = 'advanced'" ng-model="model.condition.type" ng-class="{'active' : model.condition.type === 'advanced'}">{{'PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.ADVANCED' | translate}}</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="model.condition.type = 'static'" ng-model="model.condition.type" ng-class="{'active' : model.condition.type === 'static'}">{{'PROPERTY.SEQUENCEFLOW.CONDITION.TYPE.EXPRESSION' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group clearfix" ng-show="isSimpleCondition()">
+            <div class="col-xs-12">
+                <div class="col-xs-3">
+                    <label>{{'FORM-BUILDER.VISIBILITY.LEFT-FORM-FIELD' | translate}}</label>
+                </div>
+                <div class="col-xs-9">
+                    <div class="btn-group btn-group-justified">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="changeLeftOperandType('formField')" ng-model="model.condition.leftFieldType" ng-class="{'active' : model.condition.leftFieldType === 'formField' || !model.condition.leftFieldType }">{{'PROCESS-BUILDER.CHOICE-STEP.EDIT.FORM-FIELD' | translate}}</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="changeLeftOperandType('outcome')" ng-model="model.condition.leftFieldType" ng-class="{'active' : model.condition.leftFieldType === 'outcome'}">{{'PROCESS-BUILDER.CHOICE-STEP.EDIT.FORM-OUTCOME' | translate}}</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" ng-click="changeLeftOperandType('restResponse')" ng-model="model.condition.leftFieldType" ng-class="{'active' : model.condition.leftFieldType === 'restResponse'}">{{'PROCESS-BUILDER.CHOICE-STEP.EDIT.REST-RESPONSE-VARIABLE' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <hr/>
+            </div>
+
+            <div class="col-xs-12">
+                 <!--Left Side operand-->
+                <div class="col-xs-4" ng-if="isFormFieldCondition()">
+                    <div class="btn-group span" activiti-fix-dropdown-bug ng-click="refreshAvailableFormFields()">
+                        <button class="selection" data-toggle="dropdown">
+                            <span ng-if="model.condition.leftFormFieldId">{{model.condition.leftFormFieldId}}</span>
+                            <span ng-if="!model.condition.leftFormFieldId">{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.SELECT-FIELD' | translate}}</span>
+                            <i class="icon icon-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu large-width">
+                            <li ng-repeat="field in availableFormFields">
+                                <a ng-click="selectConditionField(model.condition, field)">{{field.name}} <span class="field-type"> - {{field.type}}</span></a>
+                            </li>
+                            <li ng-if="!availableFormFields || availableFormFields.length == 0">
+                                <a>{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.NO-FIELDS-AVAILABLE' | translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xs-4" ng-if="isFormOutcomeCondition()">
+                    <div class="btn-group span" activiti-fix-dropdown-bug ng-click="refreshAvailableForms()">
+                        <button class="selection" data-toggle="dropdown">
+                            <span ng-if="model.condition.outcomeFormName">{{model.condition.outcomeFormName}}</span>
+                            <span ng-if="!model.condition.outcomeFormName">{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.SELECT-FORM' | translate}}</span>
+                            <i class="icon icon-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu large-width">
+                            <li ng-repeat="form in availableForms">
+                                <a ng-click="selectChoiceForm(form)">{{form.name}}</a>
+                            </li>
+                            <li ng-if="!availableForms || availableForms.length == 0">
+                                <a>{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.NO-FORMS-AVAILABLE' | translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xs-4" ng-if="isRestResponseCondition()">
+                    <div class="btn-group span" activiti-fix-dropdown-bug ng-click="refreshAvailableResponseVariables()">
+                        <button class="selection" data-toggle="dropdown">
+                            <span ng-if="model.condition.leftRestResponseId">{{model.condition.leftRestResponseId}}</span>
+                            <span ng-if="!model.condition.leftRestResponseId">{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.SELECT-REST-RESPONSE-VARIABLE' | translate}}</span>
+                            <i class="icon icon-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu large-width">
+                            <li ng-repeat="variable in availableRestResponseVariables">
+                                <a ng-click="selectResponseVariable(model.condition, variable)">{{variable.processVariableName}} <span class="field-type"> - {{variable.processVariableType}}</span></a>
+                            </li>
+                            <li ng-if="!availableRestResponseVariables || availableRestResponseVariables.length == 0">
+                                <a>{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.NO-REST-RESPONSE-VARIABLE-AVAILABLE' | translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--condition operator-->
+                <div class="col-xs-4">
+                    <div class="btn-group span" activiti-fix-dropdown-bug>
+                        <button class="selection" data-toggle="dropdown" ng-disabled="!isLeftSideSelected()">
+                            {{getOperatorLabel(model)}}<i class="icon icon-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!--Form outcome operator options-->
+                            <li ng-if="model.condition.leftFieldType === 'outcome'"><a ng-click="model.condition.operator = '=='">{{'FORM-BUILDER.VISIBILITY.OPERATORS.EQUALS' | translate}}</a></li>
+                            <li ng-if="model.condition.leftFieldType === 'outcome'"><a ng-click="model.condition.operator = '!='">{{'FORM-BUILDER.VISIBILITY.OPERATORS.NOTEQUALS' | translate}}</a></li>
+                            <!--operator options for rest variables and form fields-->
+                            <li ng-if="model.condition.leftFieldType !== 'outcome'" ng-repeat="operator in getOperatorsForSelectedFieldType()"><a ng-click="model.condition.operator = operator.value">{{operator.description}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--Right side operand-->
+                <div class="col-xs-4" ng-if="isFormOutcomeCondition()">
+                    <div class="btn-group span" activiti-fix-dropdown-bug ng-click="refreshAvailableOutcomes(model.condition.rightOutcomeFormId)">
+                        <button class="selection" data-toggle="dropdown" ng-disabled="!isLeftSideSelected() || !isOperatorSelected()">
+                            <span ng-if="model.condition.rightOutcomeName">{{model.condition.rightOutcomeName}}</span>
+                            <span ng-if="!model.condition.rightOutcomeName">{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.SELECT-OUTCOME' | translate}}</span>
+                            <i class="icon icon-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu large-width">
+                            <li ng-repeat="outcome in availableFormOutcomes">
+                                <a ng-click="selectConditionOutcome(model.condition, outcome)">{{outcome.name}}</a>
+                            </li>
+                            <li ng-if="!availableFormOutcomes || availableFormOutcomes.length == 0">
+                                <a>{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.NO-OUTCOMES-AVAILABLE' | translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-4" ng-if="(isFormFieldCondition() || isRestResponseCondition()) && allowRightHandSide()">
+                    <div class="form-group">
+                    <div ng-switch="getTypeForFieldOrVariable(model.condition.leftFormFieldId, model.condition.leftRestResponseId)">
+                        <div ng-switch-when="text">
+                            <input type="text" id="rightValueField" class="form-control" ng-model="model.condition.rightValue"/>
+                        </div>
+                        <div ng-switch-when="integer">
+                            <input type="number" id="rightValueField" class="form-control" ng-model="model.condition.rightValue"/>
+                        </div>
+                        <div ng-switch-when="amount">
+                            <input type="number" step="0.01" id="rightValueField" class="form-control" ng-model="model.condition.rightValue"/>
+                        </div>
+                        <div ng-switch-when="double">
+                            <input type="number" step="0.01" id="rightValueField" class="form-control" ng-model="model.condition.rightValue"/>
+                        </div>
+                        <div ng-switch-when="boolean">
+                            <select id="rightValueField" class="form-control" ng-model="model.condition.rightValue"
+                                    ng-options="option.value as option.description for option in model.rightValueOptions.boolean">
+                            </select>
+                        </div>
+                        <div ng-switch-when="date">
+                            <input id="rightValueField" name="rightValueField" type="text" class="form-control" placeholder="{{'FORM-BUILDER.VISIBILITY.RIGHT_VALUE_DATE.DATE-FORMAT-MESSAGE' | translate:{'dateFormat':(globalDateFormat || getGlobalDateFormat())} }}" ng-model="model.condition.rightValue"
+                                   bs-datepicker template="{{appResourceRoot}}views/templates/visibility-date-picker-template.html"
+                                   data-date-format="{{(globalDateFormat || getGlobalDateFormat()) | momentToAngularFormat}}" data-date-type="iso" trigger="focus" autoclose="true">
+                        </div>
+                        <div ng-switch-when="datetime">
+                            <input id="rightValueField" name="rightValueField" type="text" class="form-control" placeholder="{{'FORM-BUILDER.VISIBILITY.RIGHT_VALUE_DATETIME.DATETIME-FORMAT-MESSAGE' | translate:{'dateFormat':(globalDateFormat || getGlobalDateFormat())} }}" ng-model="model.condition.rightValue"
+                                   text-date-input datetimepicker
+                                   date-format="{{(globalDateFormat || getGlobalDateFormat()) | momentTodatetimeFormat}} hh:mm A" trigger="focus" autoclose="true">
+                        </div>
+
+                        <div ng-switch-when="dropdown">
+                            <select id="rightValueField" class="form-control" ng-if="getDropDownOptions(model.condition.leftFormFieldId, model.condition.leftRestResponseId).length>0"
+                                    ng-options="option.value as option.description for option in getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId)"
+                                    ng-model="model.condition.rightValue">
+                            </select>
+                            <input ng-if="getDropDownOptions(model.condition.leftFormFieldId, model.condition.leftRestResponseId).length==0" type="text" id="rightValueField" class="form-control" ng-model="model.condition.rightValue"/>
+                        </div>
+
+                        <div ng-switch-when="radio-buttons">
+                            <select id="rightValueField" class="form-control" ng-if="getDropDownOptions(model.condition.leftFormFieldId, model.condition.leftRestResponseId).length>0"
+                                    ng-options="option.value as option.description for option in getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId)"
+                                    ng-model="model.condition.rightValue">
+                            </select>
+                            <input ng-if="getDropDownOptions(model.condition.leftFormFieldId, model.condition.leftRestResponseId).length==0" type="text" id="rightValueField" class="form-control" ng-model="model.condition.rightValue"/>
+
+                        </div>
+
+                        <div ng-switch-when="typeahead">
+                            <select id="rightValueField" class="form-control" ng-if="getDropDownOptions(model.condition.leftFormFieldId, model.condition.leftRestResponseId).length>0"
+                                    ng-options="option.value as option.description for option in getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId)"
+                                    ng-model="model.condition.rightValue">
+                            </select>
+                            <input ng-if="getDropDownOptions(model.condition.leftFormFieldId, model.condition.leftRestResponseId).length==0" type="text" id="rightValueField" class="form-control" ng-model="model.condition.rightValue"/>
+
+                        </div>
+
+                        <div ng-switch-default>
+                            <input type="text" id="rightValueField" class="form-control" ng-model="model.condition.rightValue"/>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group clearfix" ng-show="model.condition.type === 'static'">
+            <div class="col-xs-12">
+                <label class="col-xs-3">{{'PROPERTY.SEQUENCEFLOW.CONDITION.STATIC' | translate}}</label>
+                <div class="col-xs-9">
+                    <textarea class="form-control" ng-model="model.condition.staticValue" style="width:100%; height:100%; max-width: 100%; max-height: 100%; min-height: 50px"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group clearfix" ng-show="model.condition.type == 'advanced'">
+
+            <div class="col-xs-12">
+                <hr/>
+            </div>
+
+            <div ng-controller="FlowConditionBuilderController">
+                <div class="col-xs-6">
+                    <div class="kis-listener-grid" ui-grid="flowConditionGridOptions" ng-show="flowConditionGridOptions" ui-grid-selection ui-grid-auto-resize></div>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.MOVE.UP | translate}}" ng-disabled="!model.selectedFlowCondition"
+                               data-placement="bottom" data-original-title="" title=""
+                               ng-click="moveConditionUp()"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.MOVE.DOWN | translate}}"
+                               ng-disabled="!model.selectedFlowCondition"
+                               data-placement="bottom" data-original-title="" title=""
+                               ng-click="moveConditionDown()"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.ADD | translate}}" data-placement="bottom" data-original-title=""
+                               title=""
+                               ng-click="addNewCondition()"><i class="glyphicon glyphicon-plus"></i></a>
+                            <a class="btn btn-icon btn-lg" rel="tooltip" data-title="{{ACTION.REMOVE | translate}}" ng-disabled="!model.selectedFlowCondition"
+                               data-placement="bottom" data-original-title="" title=""
+                               ng-click="removeCondition()"><i class="glyphicon glyphicon-minus"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <div ng-if="model.selectedFlowCondition">
+                        <div>
+                            <label>{{'FORM-BUILDER.VISIBILITY.LEFT-FORM-FIELD' | translate}}</label>
+                            <div class="form-group btn-group btn-group-justified">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-click="setLeftFieldType('formField')" ng-model="expression.fieldType"
+                                            ng-class="{'active' : model.selectedFlowCondition.leftFieldType == 'formField'}">{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.FORM-FIELD' | translate}}
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-click="setLeftFieldType('outcome')" ng-model="expression.fieldType"
+                                            ng-class="{'active' : model.selectedFlowCondition.leftFieldType == 'outcome'}">{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.FORM-OUTCOME' | translate}}
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" ng-click="setLeftFieldType('restResponse')" ng-model="expression.fieldType"
+                                            ng-class="{'active' : model.selectedFlowCondition.leftFieldType == 'restResponse'}">{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.REST-RESPONSE' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group" ng-if="model.selectedFlowCondition.leftFieldType === 'formField'">
+                            <div class="btn-group span" activiti-fix-dropdown-bug>
+                                <button class="selection" data-toggle="dropdown">
+                                    <span ng-if="model.selectedFlowCondition.leftFormFieldId">{{model.selectedFlowCondition.leftFormFieldId}}</span>
+                                    <span ng-if="!model.selectedFlowCondition.leftFormFieldId">{{'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD' | translate}}</span>
+                                    <i class="icon icon-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu large-width">
+                                    <li ng-repeat="field in availableFormFields">
+                                        <a ng-click="selectLeftFormField(model.selectedFlowCondition, field)">{{field.name}} <span class="field-type"> - {{field.type}}</span></a>
+                                    </li>
+                                    <li ng-if="!availableFormFields || availableFormFields.length == 0">
+                                        <a>{{'PROPERTY.SEQUENCEFLOW.CONDITION.FIELD.NO-FIELD-AVAILABLE' | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-if="model.selectedFlowCondition.leftFieldType === 'restResponse'">
+                            <div class="btn-group span" activiti-fix-dropdown-bug ng-click="refreshAvailableResponseVariables()">
+                                <button class="selection" data-toggle="dropdown">
+                                    <span ng-if="model.selectedFlowCondition.leftRestResponseId">{{model.selectedFlowCondition.leftRestResponseId}}</span>
+                                    <span ng-if="!model.selectedFlowCondition.leftRestResponseId">{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.SELECT-REST-RESPONSE' | translate}}</span>
+                                    <i class="icon icon-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu large-width">
+                                    <li ng-repeat="variable in availableRestResponseVariables">
+                                        <a ng-click="selectLeftResponseVariable(model.selectedFlowCondition, variable)">{{variable.processVariableName}} <span class="field-type"> - {{variable.processVariableType}}</span></a>
+                                    </li>
+                                    <li ng-if="!availableRestResponseVariables || availableRestResponseVariables.length == 0">
+                                        <a>{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.NO-REST-RESPONSE-AVAILABLE' | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-if="model.selectedFlowCondition.leftFieldType === 'outcome'">
+                            <div class="btn-group span" activiti-fix-dropdown-bug ng-click="refreshAvailableForms()">
+                                <button class="selection" data-toggle="dropdown">
+                                    <span ng-if="model.selectedFlowCondition.outcomeFormName">{{model.selectedFlowCondition.outcomeFormName}}</span>
+                                    <span ng-if="!model.selectedFlowCondition.outcomeFormName">{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.SELECT-FORM' | translate}}</span>
+                                    <i class="icon icon-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu large-width">
+                                    <li ng-repeat="form in availableForms">
+                                        <a ng-click="selectLeftForm(model.selectedFlowCondition, form)">{{form.name}}</a>
+                                    </li>
+                                    <li ng-if="!availableForms || availableForms.length == 0">
+                                        <a>{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.NO-FORMS-AVAILABLE' | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="operatorField">{{'FORM-BUILDER.VISIBILITY.OPERATOR' | translate}}</label>
+                            <select id="operatorField" class="form-control"
+                                    ng-options="operator.value as operator.description for operator in getConditionsForFieldId(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId)"
+                                    ng-model="model.selectedFlowCondition.operator">
+                            </select>
+                        </div>
+
+                        <div class="form-group btn-group btn-group-justified" ng-if="isShowRightHandSide()">
+                            <div class="btn-group" ng-if="model.selectedFlowCondition.leftFieldType != 'outcome'">
+                                <button type="button" class="btn btn-default" ng-click="setRightFieldType('staticValue')" ng-model="model.selectedFlowCondition.rightFieldType"
+                                        ng-class="{'active' : model.selectedFlowCondition.rightFieldType == 'staticValue'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-VALUE' | translate}}
+                                </button>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="setRightFieldType('outcome')" ng-model="model.rightFieldType"
+                                        ng-class="{'active' : model.selectedFlowCondition.rightFieldType == 'outcome'}">{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.FORM-OUTCOME' | translate}}
+                                </button>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="setRightFieldType('formField')" ng-model="model.rightFieldType"
+                                        ng-class="{'active' : model.selectedFlowCondition.rightFieldType == 'formField'}">{{'FORM-BUILDER.VISIBILITY.RIGHT-FORM-FIELD' | translate}}
+                                </button>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="setRightFieldType('restResponse')" ng-model="model.rightFieldType"
+                                        ng-class="{'active' : model.selectedFlowCondition.rightFieldType == 'restResponse'}">{{'FORM-BUILDER.VISIBILITY.RESPONSE-VARIABLE' | translate}}
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group" ng-show="model.selectedFlowCondition.rightFieldType === 'formField' && isShowRightHandSide()">
+                            <div class="btn-group span" activiti-fix-dropdown-bug>
+                                <button class="selection" data-toggle="dropdown">
+                                    <span ng-if="model.selectedFlowCondition.rightFormFieldId">{{model.selectedFlowCondition.rightFormFieldId}}</span>
+                                    <span ng-if="!model.selectedFlowCondition.rightFormFieldId">{{'FORM-BUILDER.MESSAGE.READONLY-TEXT-INSERT-FIELD' | translate}}</span>
+                                    <i class="icon icon-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu large-width">
+                                    <li ng-repeat="field in availableFormFields">
+                                        <a ng-click="selectRightFormField(model.selectedFlowCondition, field)">{{field.name}} <span class="field-type"> - {{field.type}}</span></a>
+                                    </li>
+                                    <li ng-if="!availableFormFields || availableFormFields.length == 0">
+                                        <a>{{'PROPERTY.SEQUENCEFLOW.CONDITION.FIELD.NO-FIELD-AVAILABLE' | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-show="model.selectedFlowCondition.rightFieldType === 'restResponse' && isShowRightHandSide()" style="margin-top: 10px;">
+                            <div class="btn-group span" activiti-fix-dropdown-bug ng-click="refreshAvailableResponseVariables()">
+                                <button class="selection" data-toggle="dropdown">
+                                    <span ng-if="model.selectedFlowCondition.rightRestResponseId">{{model.selectedFlowCondition.rightRestResponseId}}</span>
+                                    <span ng-if="!model.selectedFlowCondition.rightRestResponseId">{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.SELECT-REST-RESPONSE-VARIABLE' | translate}}</span>
+                                    <i class="icon icon-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu large-width">
+                                    <li ng-repeat="variable in availableRestResponseVariables">
+                                        <a ng-click="selectRightResponseVariable(model.selectedFlowCondition, variable)">{{variable.processVariableName}}</a>
+                                    </li>
+                                    <li ng-if="!availableRestResponseVariables || availableRestResponseVariables.length == 0">
+                                        <a>{{'PROCESS-BUILDER.CHOICE-STEP.CONDITION.NO-REST-RESPONSE-VARIABLE-AVAILABLE' | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 10px;" ng-if="isShowRightHandSide()">
+
+                            <div class="btn-group span" activiti-fix-dropdown-bug ng-click="refreshAvailableForms()" ng-show="model.selectedFlowCondition.rightFieldType === 'outcome' && model.selectedFlowCondition.leftFieldType != 'outcome'">
+                                <button class="selection" data-toggle="dropdown">
+                                    <span ng-if="model.selectedFlowCondition.rightOutcomeFormName">{{model.selectedFlowCondition.rightOutcomeFormName}}</span>
+                                    <span ng-if="!model.selectedFlowCondition.rightOutcomeFormName">{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.SELECT-FORM' | translate}}</span>
+                                    <i class="icon icon-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu large-width">
+                                    <li ng-repeat="form in availableForms">
+                                        <a ng-click="selectRightForm(model.selectedFlowCondition, form)">{{form.name}}</a>
+                                    </li>
+                                    <li ng-if="!availableForms || availableForms.length == 0">
+                                        <a>{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.NO-FORMS-AVAILABLE' | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group span" activiti-fix-dropdown-bug style="margin-top: 10px;" ng-show="model.selectedFlowCondition.rightFieldType === 'outcome'">
+                                <button class="selection" data-toggle="dropdown"
+                                        ng-hide="model.selectedFlowCondition.leftFieldType !=='outcome'"
+                                        ng-disabled="!model.selectedFlowCondition.rightOutcomeFormName
+                                        || (model.selectedFlowCondition.outcomeFormId != model.selectedFlowCondition.rightOutcomeFormId)"
+                                        ng-click="refreshAvailableOutcomes(model.selectedFlowCondition.rightOutcomeFormId)">
+                                    <span ng-if="model.selectedFlowCondition.rightOutcomeName">{{model.selectedFlowCondition.rightOutcomeName}}</span>
+                                    <span ng-if="!model.selectedFlowCondition.rightOutcomeName">{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.SELECT-OUTCOME' | translate}}</span>
+                                    <i class="icon icon-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu large-width">
+                                    <li ng-repeat="outcome in availableFormOutcomes">
+                                        <a ng-click="selectFormOutcome(model.selectedFlowCondition, outcome)">{{outcome.name}}</a>
+                                    </li>
+                                    <li ng-if="!availableFormOutcomes || availableFormOutcomes.length == 0">
+                                        <a>{{'PROPERTY.SEQUENCEFLOW.CONDITION.VARIABLE.NO-OUTCOMES-AVAILABLE' |
+                                            translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-show="model.selectedFlowCondition.leftFieldType != 'outcome' && model.selectedFlowCondition.rightFieldType === 'staticValue' && isShowRightHandSide()" style="margin-top: 10px;">
+                            <div ng-switch="getTypeForFieldOrVariable(model.selectedFlowCondition.leftFormFieldId,model.selectedFlowCondition.leftRestResponseId)">
+                                <div ng-switch-when="text">
+                                    <input type="text" id="rightValueField" class="form-control" ng-model="model.selectedFlowCondition.rightValue"/>
+                                </div>
+                                <div ng-switch-when="integer">
+                                    <input type="number" id="rightValueField" class="form-control" ng-model="model.selectedFlowCondition.rightValue"/>
+                                </div>
+                                <div ng-switch-when="amount">
+                                    <input type="number" step="0.01" id="rightValueField" class="form-control" ng-model="model.selectedFlowCondition.rightValue"/>
+                                </div>
+                                <div ng-switch-when="double">
+                                    <input type="number" step="0.01" id="rightValueField" class="form-control" ng-model="model.selectedFlowCondition.rightValue"/>
+                                </div>
+                                <div ng-switch-when="boolean">
+                                    <select id="rightValueField" class="form-control" ng-model="model.selectedFlowCondition.rightValue"
+                                            ng-options="option.value as option.description for option in model.rightValueOptions.boolean">
+                                    </select>
+                                </div>
+                                <div ng-switch-when="date">
+                                    <input id="rightValueField" name="rightValueField" type="text" class="form-control" placeholder="{{'FORM-BUILDER.VISIBILITY.RIGHT_VALUE_DATE.DATE-FORMAT-MESSAGE' | translate:{'dateFormat':(globalDateFormat || getGlobalDateFormat())} }}" ng-model="model.selectedFlowCondition.rightValue"
+                                           bs-datepicker template="{{appResourceRoot}}views/templates/visibility-date-picker-template.html"
+                                           data-date-format="{{(globalDateFormat || getGlobalDateFormat()) | momentToAngularFormat}}" data-date-type="iso" trigger="focus" autoclose="true">
+                                </div>
+                                 <div ng-switch-when="datetime">
+                                    <input id="rightValueField" name="rightValueField" type="text" class="form-control" placeholder="{{'FORM-BUILDER.VISIBILITY.RIGHT_VALUE_DATETIME.DATETIME-FORMAT-MESSAGE' | translate:{'dateFormat':(globalDateFormat || getGlobalDateFormat())} }}" ng-model="model.selectedFlowCondition.rightValue"
+                                           text-date-input datetimepicker
+                                           date-format="{{(globalDateFormat || getGlobalDateFormat()) | momentTodatetimeFormat}} hh:mm A" trigger="focus" autoclose="true">
+                                </div>
+
+                                <div ng-switch-when="dropdown">
+                                    <select id="rightValueField" class="form-control" ng-if="getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId).length>0"
+                                            ng-options="option.value as option.description for option in getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId)"
+                                            ng-model="model.selectedFlowCondition.rightValue">
+                                    </select>
+                                    <input ng-if="getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId).length==0" type="text" id="rightValueField" class="form-control" ng-model="model.selectedFlowCondition.rightValue"/>
+                                </div>
+
+                                <div ng-switch-when="radio-buttons">
+                                    <select id="rightValueField" class="form-control" ng-if="getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId).length>0"
+                                            ng-options="option.value as option.description for option in getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId)"
+                                            ng-model="model.selectedFlowCondition.rightValue">
+                                    </select>
+                                    <input ng-if="getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId).length==0" type="text" id="rightValueField" class="form-control" ng-model="model.selectedFlowCondition.rightValue"/>
+
+                                </div>
+
+                                <div ng-switch-when="typeahead">
+                                    <select id="rightValueField" class="form-control" ng-if="getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId).length>0"
+                                            ng-options="option.value as option.description for option in getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId)"
+                                            ng-model="model.selectedFlowCondition.rightValue">
+                                    </select>
+                                    <input ng-if="getDropDownOptions(model.selectedFlowCondition.leftFormFieldId, model.selectedFlowCondition.leftRestResponseId).length==0" type="text" id="rightValueField" class="form-control" ng-model="model.selectedFlowCondition.rightValue"/>
+
+                                </div>
+
+                                <div ng-switch-default>
+                                    <input type="text" id="rightValueField" class="form-control" ng-model="model.selectedFlowCondition.rightValue"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nextConditionOperatorField">{{'FORM-BUILDER.VISIBILITY.NEXT-CONDITION-OPERATOR' | translate}}</label>
+                            <select id="nextConditionOperatorField" class="form-control"
+                                    ng-options="operator.value as operator.description for operator in model.conditionOperatorsByType.condition.operators"
+                                    ng-model="model.selectedFlowCondition.nextConditionOperator">
+                                <option value=""></option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div ng-if="!model.selectedFlowCondition" class="muted no-property-selected" translate>FORM-BUILDER.COMPONENT.PROPERTY-UNSELECTED</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="close()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+        <button ng-click="save()" class="btn btn-primary" translate>ACTION.SAVE</button>
+    </div>
+</div>
+</div>
+</div>
+</div>

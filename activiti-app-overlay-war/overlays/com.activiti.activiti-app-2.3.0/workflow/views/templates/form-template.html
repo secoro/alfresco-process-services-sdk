@@ -1,0 +1,62 @@
+<div ng-controller="RenderFormController" id="formsection" class="column-full-height">
+
+    <!-- Custom CSS -->
+    <style type="text/css">{{formData.style}}</style>
+
+    <div loading="model.loading"></div>
+
+    <div ng-if="!model.loading && formData != null && formData != undefined && (disableForm == null || disableForm == undefined || disableForm == false)"
+         class="form-wrapper container-fluid" ng-class="formData.className">
+
+        <div ng-if="!outcomesOnly" >
+        
+            <div class="form-center-pane" ng-if="formData.tabs && formData.tabs.length > 0">
+                <div class="content">
+                   <div class="clearfix">
+                       <ul class="tabs clearfix">
+                           <li ng-show="tab.isVisible" ng-repeat="tab in formData.tabs" ng-class="{'active': tab.id == activeFormTab.id}">
+                               <a ng-click="formTabClicked(tab)">{{tab.title && (tab.title | translate) || tab.name | translate}}</a>
+                           </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+            <div ng-form="taskForm">
+                <div ng-if="!activeFormTab || !activeFormTab.id || (activeFormTab && activeFormTab.id && activeFormTab.id === field.tab)" ng-repeat="field in formData.fields" id="fieldContainer_{{field.id}}">
+                    <form-element field="field" task-id="taskId" custom-field-templates="formData.customFieldTemplates" task-form="taskForm" control-callbacks="controlCallbacks" model="model" rest-data="restData"></form-element>
+                </div>
+            </div>
+        </div>
+
+        <activiti-form-outcomes form-data="formData"
+                   disable-form="disableForm"
+                   model="model"
+                   hide-buttons="hideButtons"
+                   current-user-involved="currentUserInvolved"
+                   involved-users-can-edit-forms-flag="involvedUsersCanEditFormsFlag"
+                   save-form="saveForm"
+                   complete-form="completeForm">
+        </activiti-form-outcomes>
+
+    </div>
+
+
+    <div ng-if="disableForm != null && disableForm != undefined && disableForm == true" class="column-full-height">
+        <div ng-if="disableFormText" class="text-center column-full-height">
+            <div class="help-container">
+                <div>
+                    <div class="help-dude"></div>
+                </div>
+                <div>
+                    <div class="help-text">
+                        <div class="description">
+                            {{disableFormText | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

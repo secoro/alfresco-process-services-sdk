@@ -1,0 +1,244 @@
+{
+    "COMMON": {
+        "ACCOUNTS": {
+            "box": "Box",
+            "alfresco-*": "Alfresco ({{name}})",
+            "alfresco-cloud": "Alfresco in the Cloud",
+            "google-drive": "Google Drive"
+        },
+        "WARNING": {
+	"APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services is in read-only mode as the local license is invalid.",
+        "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services is in read-only mode since no local license could be found.",
+        "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services is in read-only mode as the dates of the local license are not valid (either expired or has a start date that in the future).",
+        "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Your license is about to expire! Alfresco Process Services will become read-only."
+        }
+   },
+   "GENERAL": {
+	"MAIN-TITLE": "Analytics",
+        "ERROR": {
+            "GENERIC": "An error occurred...",
+            "UNKNOWN": "An error occurred while performing the requested operation.",
+            "BAD_REQUEST": "An error occurred while performing the requested operation",
+            "NOT_FOUND": "The resource you are trying to access does not exist",
+            "UNAUTHORIZED": "You should sign in to perform the requested operation.",
+            "FORBIDDEN": "You are not allowed to perform the requested operation",
+            "INTERNAL_SERVER_ERROR": "An unexpected error occurred while performing the requested operation."
+        },
+        "NAVIGATION": {
+            "REPORTS": "Reports",
+            "CONFIGURE": "Configure"
+        },
+        "ACTION": {
+            "LOGOUT": "Sign out",
+            "SAVE": "Save",
+            "CANCEL": "Cancel",
+            "CLOSE": "Close",
+	    "ABOUT": "About Alfresco Process Services",
+            "HELP-DOCS-LINK": "Help"
+        },
+        "ABOUT": {
+           "TYPE": "Type",
+           "LICENSED-TO": "Licensed To",
+           "EXPIRES": "Expires",
+           "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. All rights reserved.",
+           "LEGAL": "Legal and License"
+        }
+    },
+    "REPORTING": {
+        "NO-REPORTS": "Get all kinds of important reports about your processes to help identify bottlenecks and performance improvements.",
+        "GENERATE-REPORTS" : "Add some standard reports now.",
+        "NO-REPORT-SELECTED": "No report selected. Choose a report from the list on the left",
+        "NO-DATA-FOUND": "No data found",
+        "CONFIG-REPORTS": "Configure reports",
+        "RESET-ALL-REPORTS": "Reset all my reports",
+        "FETCHING-PROC-DEFS": "Fetching process definitions...",
+        "GENERATING": "Generating report...",
+        "SAVE-REPORT": "Save this report",
+        "EXPORT-REPORT": "Export Data",
+        "SHOW": "Click to show",
+        "HIDE": "Click to hide again",
+        "FILL-PARAMS": "No report data found. Fill in the parameters to generate your report",
+        "PROCESS-STATUS": "Process Status",
+        "TASK-STATUS" : "Task Status",
+        "STATUS" : {
+            "ACTIVE" : "Active",
+            "ALL": "All",
+            "COMPLETE" : "Complete"
+        },
+        "PARAMETER-WIDGETS": {
+            "NO-TASKS": "No completed tasks found for current process definition",
+            "DATE-RANGE" : {
+                "TODAY": "Today",
+                "YESTERDAY": "Yesterday",
+                "LAST-7-DAYS": "Last 7 days",
+                "PREVIOUS-MONTH": "Previous month",
+                "CURRENT-YEAR": "Current year",
+                "CUSTOM-RANGE": "Custom range",
+                "APPLY": "Apply",
+                "CANCEL": "Cancel",
+                "FROM": "From",
+                "TO": "To"
+            },
+            "DATE-INTERVAL-OPTIONS" : {
+                "HOUR": "By hour",
+                "DAY": "By day",
+                "WEEK": "By week",
+                "MONTH": "By month",
+                "YEAR": "By year"
+            },
+            "DURATION": {
+                "SECONDS": "Seconds",
+                "MINUTES": "Minutes",
+                "HOURS": "Hours",
+                "DAYS": "Days"
+            }
+        },
+        "DEFAULT-REPORTS": {
+            "TASK-OVERVIEW": {
+                "TITLE": "Task overview",
+                "PROCESS-DEFINITION": "Process definition",
+                "DATE-RANGE": "Date range",
+                "DATE-RANGE-INTERVAL": "Aggregate dates by",
+                "TASK-COUNT-TITLE": "Task counts",
+                "TASK-COUNT-DESCRIPTION": "This chart shows the total number of tasks in the given date range",
+                "TASK-DURATIONS-TITLE": "Task durations",
+                "TASK-DURATIONS-DESCRIPTION": "This chart shows the average, minimum and maximum duration (in hours) of the completed tasks in the given date range. The x-axis shows the row number of the task in the detailed table below.",
+                "TASK-COUNT-BY-ASSIGNEE-TITLE": "Number of tasks by assignee",
+                "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "This pie chart shows the number of tasks for the chosen process definition, by each assignee",
+                "DETAILED-TASK-STATS-TITLE": "Detailed task statistics",
+                "DETAILED-TASK-STATS-DESCRIPTION": "This table shows the aggregated statistics of all the tasks. Click on any task to see more detailed information. All time information is expressed in hours.",
+                "DETAILED-TASK-STATS-TASK": "Task",
+                "DETAILED-TASK-STATS-ASSIGNEE": "Assignee",
+                "TASK-HISTOGRAM-TITLE": "Number of tasks divided by date interval",
+                "TASK-HISTOGRAM-TABLE": "Table: previous chart data in table format",
+                "TASK-HISTOGRAM-TABLE-DATE": "Date",
+                "COUNT": "Count",
+                "SUM": "Sum",
+                "MIN-DURATION": "Min. duration",
+                "MAX-DURATION": "Max. duration",
+                "AVERAGE": "Average",
+                "STDDEV": "Standard deviation"
+            },
+            "PROCESS-INSTANCES-OVERVIEW": {
+                "TITLE": "Process instances overview",
+                "PROCESS-DEFINITION": "Process definition",
+                "DATE-RANGE": "Date range",
+                "SLOW-PROC-INST-NUMBER": "How many of the slowest process instances should be displayed?",
+                "HISTOGRAM-TITLE": "Process instance counts",
+                "HISTOGRAM-DESCRIPTION": "The following chart shows the number of process instances that are started and completed within the selected date range",
+                "ACTIVITY-DURATION-TABLE-TITLE":  "Activity duration details",
+                "ACTIVITY-DURATION-TABLE-DESCRIPTION":  "The following table shows, ordered by cumulative total time taken, the timings of the various activities in the process. All time information is expressed in hours.",
+                "ACTIVITY-DURATION-TABLE-ACTIVITY": "Activity",
+                "ACTIVITY-DURATION-CHART-TITLE": "Process steps total time",
+                "ACTIVITY-DURATION-CHART-DESCRIPTION": "This chart shows in which activities time was spent. The numbers are the sum of all duration for that activity, as shown in the table below.",
+                "SLOWEST-PROCESS-INSTANCES-TITLE": "Slowest process instances",
+                "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "This table shows the slowest process instances that were completed in the configured date range. Click on any of the entries to see the process variables for that specific process instance",
+                "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Duration",
+                "SLOWEST-PROCESS-INSTANCES-ID": "Internal ID",
+                "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Business key",
+                "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Create time",
+                "SLOWEST-PROCESS-INSTANCES-END-TIME": "End time",
+                "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variables",
+                "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "variable name",
+                "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Variable value",
+                "COUNT": "Count",
+                "SUM": "Sum",
+                "MIN-DURATION": "Min. duration",
+                "MAX-DURATION": "Max. duration",
+                "AVERAGE": "Average",
+                "STDDEV": "Standard deviation"
+            },
+            "TASK-SLA": {
+                "TITLE": "Task service level agreement",
+                "PROCESS-DEFINITION": "Process definition",
+                "TASK": "Task",
+                "DATE-RANGE": "Date range",
+                "SLA-DURATION": "What is the time this task needs to be completed in to be within the SLA?",
+                "SLA-NOT-OK": "Service Level Agreement OK vs Not OK",
+                "ASSIGNEE-TABLE": "Assignees that did not completed task within SLA boundaries",
+                "ASSIGNEE": "Assignee",
+                "COUNT": "Count"
+            },
+            "PROCESS-DEFINITION-OVERVIEW": {
+                "TITLE": "Process definition overview",
+                "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Total number of process definitions: ",
+                "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Total number of process instances: ",
+                "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Total number of active process instances: ",
+                "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Total number of completed process instances: ",
+                "DETAIL-TABLE": "Process Definition details",
+                "DETAIL-TABLE-PROCESS": "Process definition",
+                "DETAIL-TABLE-TOTAL": "Total",
+                "DETAIL-TABLE-ACTIVE": "Active",
+                "DETAIL-TABLE-COMPLETED": "Completed",
+                "PROC-INST-CHART-TITLE": "Total process instances overview",
+                "DURATIONS-CHART-TITLE": "Average timings for each process definition",
+                "DURATIONS-CHART-DESCRIPTION": "The average duration (and standard deviation) of completed process instances, in hours. The x-axis number corresponds with the entry in the table above."
+            },
+            "PROCESS-HEAT-MAP" : {
+                "TITLE" : "Process heat map",
+                "TYPE-FILTERING": "Include all process steps (Unchecking this, will remove pass through steps like start events, gateways, etc.)?",
+                "METRIC-TOTAL-COUNT": "Number of times a step is executed",
+                "METRIC-TOTAL-TIME": "Total time spent in a process step",
+                "METRIC-AVG-TIME": "Average time spent in a process step",
+                "METRIC-TOTAL-COUNT-TOOLTIP": "times",
+                "METRIC-TOTAL-TIME-TOOLTIP": "hours",
+                "METRIC-AVERAGE-TIME-TOOLTIP": "hours",
+                "GENERATING": "Generating process heat map ..."
+            }
+        },
+        "MODAL": {
+            "SAVE-REPORT" : {
+                "TITLE" : "Save report",
+                "DESCRIPTION": "The current parameter settings will be stored, and a new report will be shown in the reports list. When that particular report is clicked, the report will be generated using these saved parameter values.",
+                "NAME": "Name"
+            },
+            "EXPORT-REPORT" : {
+                "TITLE" : "Export Data",
+                "NAME": "Name"
+            },
+            "DELETE-REPORT" : {
+                "TITLE" : "Delete report",
+                "DESCRIPTION": "Are you sure you want to delete this report?",
+                "CONFIRM": "Delete report"
+            }
+        }
+    },
+    "APP": {
+        "KICKSTART": {
+            "TITLE": "App Designer",
+            "TITLE-PROCESSES": "Process models",
+            "TITLE-FORMS": "Form models",
+            "TITLE-APPS": "App models",
+            "TITLE-STENCILS": "Stencils",
+            "TITLE-DECISION-TABLES": "Decision Tables",
+            "TITLE-DATA-MODELS": "Data Models"
+        },
+        "ADMINISTRATOR": {
+            "TITLE": "Admin App"
+        },
+        "TASKS": {
+            "TITLE": "Task App",
+            "TITLE-TASKS": "Tasks",
+            "TITLE-PROCESSES": "Processes",
+            "TITLE-PROCESSES?MODE=START": "Start"
+        },
+        "IDENTITY-MANAGEMENT": {
+            "TITLE": "Profile",
+            "TITLE-TENANT-ADMIN": "Identity management",
+            "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenants",
+            "TITLE-TENANT-ADMIN-USER-MGMT": "Users",
+            "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Capabilities",
+            "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organization",
+            "TITLE-TENANT-ADMIN-PROFILE": "Profile",
+            "TITLE-PROFILE": "Profile"
+        },
+        "ANALYTICS": {
+            "TITLE": "Analytics App"
+        },
+        "CUSTOM-APP" : {
+            "TITLE-TASKS": "{{name}} tasks",
+            "TITLE-PROCESSES": "{{name}} processes",
+            "TITLE-PROCESSES?MODE=START": "{{name}} start"
+        }
+    }
+}

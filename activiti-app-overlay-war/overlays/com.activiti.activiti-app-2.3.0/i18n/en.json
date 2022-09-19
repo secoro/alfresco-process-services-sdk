@@ -1,0 +1,207 @@
+{
+    "COMMON": {
+        "WARNING": {
+            "APP-LICENSE-ISSUE-INVALID": "Process Services is in read-only mode as the local license is invalid.",
+            "APP-LICENSE-ISSUE-NOT-FOUND": "Process Services is in read-only mode as no license can be found.",
+            "APP-LICENSE-ISSUE-INVALID-DATE": "Application is in read-only mode due to invalid license dates (expired or start date in the future).",
+            "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Note, your license is about to expire! Process Services will become read-only.",
+            "APP-LICENSE-UPLOAD-DISALLOWED": "To allow license upload you have to set <code>license.allow-upload=true</code> in your activiti-app.properties",
+            "APP-LICENSE-NO-UPLOAD-CAPABILITY": "Note! You need the 'Upload license' capability to upload a license"
+        }
+    },
+   "GENERAL": {
+        "MAIN-TITLE": "Process Services",
+        "ERROR": {
+            "GENERIC": "An error occurred...",
+            "UNKNOWN": "An error occurred while performing the requested operation.",
+            "BAD_REQUEST": "An error occurred while performing the requested operation",
+            "NOT_FOUND": "The resource you are trying to access does not exist",
+            "UNAUTHORIZED": "You should sign in in order to perform the requested operation.",
+            "FORBIDDEN": "You are not allowed to perform the requested operation",
+            "INTERNAL_SERVER_ERROR": "An unexpected error occurred while performing the requested operation.",
+            "QUOTA-EXCEEDED-RUNTIME-APPS": "As a trial user, you can only have {{quota}} apps deployed at the same time.",
+            "QUOTA-EXCEEDED-LICENSE-APPS": "The license only permits {{quota}} apps deployed at the same time."
+        },
+        "ACTION": {
+            "LOGOUT": "Sign out",
+            "HELP": "Getting started",
+            "EDIT-PROFILE": "Edit profile",
+            "SAVE": "Save",
+            "CANCEL": "Cancel",
+            "CLOSE": "Close",
+            "DEPLOY": "Deploy",
+            "ABOUT": "About Process Services",
+            "HELP-DOCS-LINK": "Help",
+            "UPLOAD-LICENSE": "Upload license"
+        },
+        "ABOUT": {
+          "TYPE": "Type",
+          "LICENSED-TO": "Licensed To",
+          "EXPIRES": "Expires",
+          "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. All rights reserved.",
+          "LEGAL": "Legal and License"
+        }
+   },
+   "LOGIN": {
+        "TITLE": "Sign in",
+        "USERNAME": "Username",
+        "USERNAME-PLACEHOLDER": "Enter your username",
+        "PASSWORD": "Password",
+        "PASSWORD-PLACEHOLDER": "Enter your password",
+        "NO-ACCOUNT": "No account yet?",
+        "FORGOT-PASSWORD": "Forgot your password?",
+        "INVALID-CREDENTIALS": "Invalid credentials",
+        "WELCOME": "Welcome to Alfresco Process Services",
+        "TAG1": "<strong>Simple:</strong> Ready to use, no set up required - accelerating user productivity",
+        "TAG2": "<strong>Smart:</strong> Easy to configure - providing a structured framework for all your business process requirements",
+        "TAG3": "<strong>Open:</strong> Open source, Open standards ensuring future-proof with easy integration",
+        "PRIVACY": "Privacy Policy",
+        "ALL-RIGHTS": "All Rights reserved",
+        "LOGIN-FORM": "Login Form",
+        "SKIP-TO-CONTENT": "Skip to Content",
+        "BACK-TO-TOP": "Back to top",
+        "SSO": "SSO Login",
+        "ACTION": {
+            "CONFIRM": "Sign in"
+        }
+    },
+    "ACCOUNT": {
+        "ACTIVATE": {
+          "TITLE": "Activate account",
+          "ACTIVATING-MESSAGE": "Hold on tight {{userFullName}} we're activating your account...",
+          "SUCCESS-MESSAGE": "Your account has been activated. Sign in below to start designing and running processes",
+          "FAILURE-MESSAGE": "Your account cannot be activated. Either it has already been activated or the activation link has expired."
+        },
+        "SIGNUP": {
+          "TITLE": "Sign up for an account",
+          "SIGNUP-TRIAL": "Create a password for your Process Services Trial",
+          "EMAIL": "Email address",
+          "FIRSTNAME": "First name",
+          "LASTNAME": "Last name",
+          "PASSWORD": "Password",
+          "PASSWORD-PLACEHOLDER": "Enter a password",
+          "PASSWORD-REPEAT": "Repeat password",
+          "PASSWORDS-NOT-EQUAL": "Passwords don't match",
+          "PASSWORDS-MIN-LENGTH": "Password is too short; it must be at least {{minLength}} characters",
+          "NEW-PASSWORD-STRENGTH": "Password strength:",
+          "EMAIL-PLACEHOLDER": "Enter email",
+          "FIRSTNAME-PLACEHOLDER": "Enter first name",
+          "LASTNAME-PLACEHOLDER": "Enter last name",
+          "COMPANY": "Company (optional)",
+          "COMPANY-PLACEHOLDER": "Enter your company",
+          "LICENSETERMS": "I accept the Alfresco Terms of Service and Privacy Policy",
+          "CONFIRM": "Sign up now",
+          "SUCCESS-MESSAGE": "Thank you for signing up for our service. You will receive an email shortly to activate your account. Once activated, you can start designing and running processes",
+          "SECURITY-SECTION": "Security check",
+          "PERSONAL-SECTION": "Personal info",
+          "ACCOUNT-SECTION": "Account",
+        
+          "ERROR": {
+            "ALREADY-REGISTERED": "A user with the given email-address has already been registered.",
+            "DISABLED": "Sign up is currently not possible."
+          }
+        },
+        
+        "RESET-PASSWORD-REQUEST": {
+          "MESSAGE": "Forgot your password? Enter your email address below to receive an email to reset your password.",
+          "TITLE": "Reset password",
+          "EMAIL": "Email address",
+          "EMAIL-PLACEHOLDER": "Enter your email",
+          "SECURITY-SECTION": "Security check",
+          "CONFIRM": "Request password reset",
+          "SUCCESS-MESSAGE": "You will receive a mail shortly with a link to reset your password.",
+          "ERROR": {
+              "UNEXISTING-USER": "User with the given email address does not exist."
+          }
+        },
+        
+        "RESET-PASSWORD": {
+          "TITLE": "Reset password",
+          "PASSWORD": "Password",
+          "PASSWORD-CONFIRM": "Confirm password",
+          "PASSWORD-PLACEHOLDER": "Enter a new password",
+          "PASSWORD-CONFIRM-PLACEHOLDER": "Confirm the new password",
+          "CONFIRM": "Change password",
+          "LOADING": "Resetting password...",
+          "SUCCESS-MESSAGE": "Your password has been changed.",
+          "LOGIN": "Sign in now",
+          "FAILURE-MESSAGE": "Your password cannot be reset. The reset link is invalid or expired."
+        }
+    },
+    "APP": {
+        "KICKSTART": {
+            "TITLE": "App Designer",
+            "DESCRIPTION": "Create process models, forms, decision tables, app definitions, data models, stencil definitions, and share them with others.",
+            "TITLE-PROCESSES": "Process models",
+            "TITLE-FORMS": "Form models",
+            "TITLE-APPS": "App models",
+            "TITLE-STENCILS": "Stencils",
+            "TITLE-DECISION-TABLES": "Decision Tables",
+            "TITLE-DATA-MODELS": "Data Models"
+        },
+        "ADMINISTRATOR": {
+            "TITLE": "Administrator",
+            "DESCRIPTION": "Manage all of your Process Services server nodes and clusters."
+        },
+        "TASKS": {
+            "TITLE": "Task App",
+            "DESCRIPTION": "Access your full task list and work on any tasks assigned to you from any process app. Also, start new processes and tasks.",
+            "TITLE-TASKS": "Tasks",
+            "TITLE-PROCESSES": "Processes",
+            "TITLE-PROCESSES?MODE=START": "Start"
+        },
+        "IDENTITY-MANAGEMENT": {
+            "TITLE": "Profile",
+            "DESCRIPTION": "Manage your profile: change your picture, name and other settings.",
+            "DESCRIPTION-TENANT-ADMIN": "Manage the users and groups in your organization.",
+            "TITLE-TENANT-ADMIN": "Identity management",
+            "TITLE-TENANT-ADMIN-TENANT-MGMT": "Tenants",
+            "TITLE-TENANT-ADMIN-USER-MGMT": "Users",
+            "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Capabilities",
+            "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organization",
+            "TITLE-TENANT-ADMIN-PROFILE": "Profile",
+            "TITLE-PROFILE": "Profile"
+        },
+        "ANALYTICS": {
+            "TITLE": "Analytics App",
+            "DESCRIPTION": "Generate various reports giving performance and throughput statistics for processes."
+        },
+        "CUSTOM-APP" : {
+          "TITLE-TASKS": "{{name}} tasks",
+          "TITLE-PROCESSES": "{{name}} processes",
+          "TITLE-PROCESSES?MODE=START": "{{name}} start"
+        },
+        "POPUP" : {
+            "ADD-APP-TITLE": "Add app to landing page",
+            "ADD-APP-SUMMARY": "Add an app to your landing page",
+            "GETTING-STARTED-TITLE": "Getting started with Process Services BPMS"
+        },
+        "ACTION": {
+            "DELETE": "Remove app",
+            "ADD": "Add new app",
+            "UPLOAD-LICENSE": "Upload license"
+        },
+        "MESSAGE": {
+            "DELETED": "App was successfully removed",
+            "NO-CUSTOM-APPS": "Welcome to Alfresco Process Services, the smarter way to do business process management! There are different things you may want to do from here, you can:",
+            "NO-CUSTOM-APPS-EDITOR-HINT": "Design business processes and share them",
+            "NO-CUSTOM-APPS-TASKS-HINT": "Work on your tasks or start a process",
+            "NO-CUSTOM-APPS-PROFILE-HINT": "Update your profile with your latest photo and details",
+            "NO-CUSTOM-APPS-GETTING-STARTED-HINT": "Read the Getting Started Guide"
+        }
+    },
+    "LICENSE": {
+        "STATUS": {
+            "INVALID": "Invalid license",
+            "WARNING": "License warning"
+        },
+        "UPLOAD": {
+            "UPLOAD-LICENSE-TITLE": "Upload license",
+            "UPLOAD-LICENSE-DESCRIPTION": "Select a license from your computer or drop it in the zone below.",
+            "CANCEL-UPLOAD": "Cancel upload",
+            "LICENSE-DROPZONE": "Drop license file here",
+            "NO-DROP": "Drop is not supported by your browser",
+            "ERROR": "Error"
+        }
+    }
+}

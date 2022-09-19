@@ -1,0 +1,78 @@
+<div class="modal" ng-controller="DataPersistencePopupCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h2>
+            </div>
+
+            <div class="modal-body">
+                <div class="row vertical-flex-container">
+                    <div class="vertical-flex-container padding-10">
+                        <span class="padding-10 font-size-18">
+                            <span>{{'PROPERTY.DATAPERSISTENCE.DETAIL1' | translate}}</span>
+                            <span>{{'PROPERTY.DATAPERSISTENCE.DETAIL2' | translate}}</span>
+                            <span>{{'PROPERTY.DATAPERSISTENCE.DETAIL3' | translate}}</span>
+                        </span>
+                        <div class="padding-10 warn font-size-18" ng-if="!propertiesAvailable">{{'PROPERTY.DATAPERSISTENCE.NO_PROPERTIES' | translate}}</div>
+                        <div class="padding-10" ng-if="propertiesAvailable">
+                            <label style="display: block;">
+                                <input type="radio" ng-value="CONSTANTS.PERSISTANCE_TYPE.PERSIST_ALL" ng-model="persistanceType" ng-change="onPersistanceTypeChanged(persistanceType)">
+                                {{'PROPERTY.DATAPERSISTENCE.PERSIST_ALL' | translate}}
+                            </label>
+                            <label style="display: block;">
+                                <input type="radio" ng-value="CONSTANTS.PERSISTANCE_TYPE.PERSIST_SELECTED" ng-model="persistanceType" ng-change="onPersistanceTypeChanged(persistanceType)">
+                                {{'PROPERTY.DATAPERSISTENCE.PERSIST_SELECTED' | translate}}
+                            </label>
+                            <label style="display: block;">
+                                <input type="radio" ng-value="CONSTANTS.PERSISTANCE_TYPE.PERSIST_NONE" ng-model="persistanceType" ng-change="onPersistanceTypeChanged(persistanceType)">
+                                {{'PROPERTY.DATAPERSISTENCE.PERSIST_NONE' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div ng-if="persistanceType===CONSTANTS.PERSISTANCE_TYPE.PERSIST_SELECTED">
+                        <div>
+                            <button class="btn btn-icon btn-sm col-xs-6" ng-disabled="availableFormFields.length === 0" rel="tooltip" ng-class="{'active' : persistanceTabOption === CONSTANTS.PERSISTANCE_TAB_OPTION.FORM_FIELDS }" ng-click="persistanceTabOption = CONSTANTS.PERSISTANCE_TAB_OPTION.FORM_FIELDS">{{'PROPERTY.DATAPERSISTENCE.LABEL.FORM_FIELDS' | translate}}</button>
+                            <button class="btn btn-icon btn-sm col-xs-6" ng-disabled="availableProcessVariables.length === 0" rel="tooltip" ng-class="{'active' : persistanceTabOption === CONSTANTS.PERSISTANCE_TAB_OPTION.PROCESS_VARIABLES }" ng-click="persistanceTabOption = CONSTANTS.PERSISTANCE_TAB_OPTION.PROCESS_VARIABLES">{{'PROPERTY.DATAPERSISTENCE.LABEL.PROCESS_VARIABLES' | translate}}</button>
+                        </div>
+    
+                        <div ng-if="translationsRetrieved" ng-switch="persistanceTabOption">
+                            <div ng-switch-when="form-fields" class="horizontal-flex-container padding-10 justify-center">
+                                <div class="col-xs-4">
+                                    <h4 class="text-center">{{'PROPERTY.DATAPERSISTENCE.LABEL.PERSIST' | translate}}</h4>
+                                    <div class="remove-padding" ui-grid="gridOptionsPersist" ui-grid-selection></div>
+                                </div>   
+                                <div class="col-xs-3 remove-padding text-center vertical-flex-container justify-center">
+                                    <button class="btn btn-icon btn-sm full-width" rel="tooltip" ng-disabled="!notPersistFormFieldSelected" ng-click="persistFormField()">{{'PROPERTY.DATAPERSISTENCE.LABEL.PERSIST' | translate}}</button>
+                                    <button class="btn btn-icon btn-sm full-width" rel="tooltip" ng-disabled="!persistFormFieldSelected" ng-click="unPersistFormField()">{{'PROPERTY.DATAPERSISTENCE.LABEL.NOT_PERSIST' | translate}}</button>
+                                    <button class="btn btn-icon btn-sm full-width" rel="tooltip" ng-click="persistAllFormFields()">{{'PROPERTY.DATAPERSISTENCE.LABEL.PERSIST_ALL' | translate}}</button>
+                                    <button class="btn btn-icon btn-sm full-width" rel="tooltip" ng-click="unPersistAllFormFields()">{{'PROPERTY.DATAPERSISTENCE.LABEL.NOT_PERSIST_ALL' | translate}}</button>
+                                </div>
+                                <div class="col-xs-4">
+                                    <h4 class="text-center">{{'PROPERTY.DATAPERSISTENCE.LABEL.NOT_PERSIST' | translate}}</h4>
+                                    <div class="remove-padding" ui-grid="gridOptionsNotPersist" ui-grid-selection></div>
+                                </div>
+                            </div>
+                            <div ng-switch-when="process-variables" class="padding-10 vertical-flex-container text-center">
+                                <label>
+                                    <input type="checkbox" ng-model="persistAllProcessVariablesChk" ng-change="persistAllProcessVariablesChk ? persistAllProcessVariables() : ''">
+                                    {{'PROPERTY.DATAPERSISTENCE.LABEL.PROCESS_VARIABLES.PERSIST_ALL' | translate}}
+                                </label>
+                                <div class="col-xs-12">
+                                    <div  ui-grid="gridOptionsProcessVariables" ui-grid-selection></div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button ng-click="cancel()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" class="btn btn-primary" translate>ACTION.SAVE</button>
+            </div>
+
+        </div>
+    </div>
+</div>

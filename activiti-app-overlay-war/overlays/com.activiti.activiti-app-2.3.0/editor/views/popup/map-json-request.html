@@ -1,0 +1,97 @@
+<div class="modal modal-wide">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h2>{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.TITLE' | translate}}</h2></div>
+            <div class="modal-body">
+
+                <div class="form-group clearfix" ng-show="popup.selectedRequestMapping.state != 'view'">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-VALUE-TYPE' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="setRequestMessageStaticValue()" ng-model="popup.selectedRequestMapping.jsonPropertyValueType" ng-class="{'active' : (!popup.selectedRequestMapping.jsonPropertyValueType || popup.selectedRequestMapping.jsonPropertyValueType == 'static')}">{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-TYPE-STATIC' | translate}}</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="setRequestMessageFormFieldValue()" ng-model="popup.selectedRequestMapping.jsonPropertyValueType" ng-class="{'active' : popup.selectedRequestMapping.jsonPropertyValueType == 'field'}">{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-TYPE-FIELD' | translate}}</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="setRequestMessageRestResponseValue()" ng-model="popup.selectedRequestMapping.jsonPropertyValueType" ng-class="{'active' : popup.selectedRequestMapping.jsonPropertyValueType == 'restResponse'}">{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-TYPE-VARIABLE' | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group clearfix" ng-show="(!popup.selectedRequestMapping.jsonPropertyValueType || popup.selectedRequestMapping.jsonPropertyValueType == 'static')">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-VALUE' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="form-control" type="text" id="json-property-value" placeholder="Enter a json property value" ng-model="popup.selectedRequestMapping.jsonPropertyValue" ng-disabled="popup.selectedRequestMapping.state === 'view'"/>
+                    </div>
+                </div>
+
+                <div class="form-group clearfix" ng-show="popup.selectedRequestMapping.jsonPropertyValueType == 'field'">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.PUBLISH-STEP.SOURCE.FORM-FIELD' | translate}}:</label>
+                    </div>
+                    <div class="col-xs-8" ng-show="popup.selectedRequestMapping.state != 'view'">
+                        <div field-select="popup.selectedRequestMapping.jsonPropertyValueFormField" editor-type="step" include-type="true" expand-relative="true" step-id="step.id"
+                             all-steps="allSteps" field-type-filter="['text', 'integer', 'date', 'boolean', 'dropdown', 'radio-buttons', 'typeahead', 'amount']"></div>
+                    </div>
+                    <div class="col-xs-8" ng-show="popup.selectedRequestMapping.state === 'view'">
+                        <input class="form-control" type="text" id="jsonPropertyValueFormField" ng-model="popup.selectedRequestMapping.jsonPropertyValueFormField.name" disabled />
+                    </div>
+                </div>
+
+                <div class="form-group clearfix" ng-show="popup.selectedRequestMapping.jsonPropertyValueType == 'restResponse'">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-TYPE-VARIABLE' | translate}}:</label>
+                    </div>
+                    <div class="col-xs-8" ng-show="popup.selectedRequestMapping.state != 'view'">
+                            <div field-select="popup.selectedRequestMapping.jsonPropertyValueRestResponseField" all-steps="allSteps" step-id="step.id" include-type="true"
+                                 select-title="'FORM-BUILDER.MESSAGE.READONLY-TEXT-SELECT-RESPONSE-VARIABLE'" variables-type="rest" editor-type="step" expand-relative="true"></div>
+                    </div>
+                    <div class="col-xs-8" ng-show="popup.selectedRequestMapping.state === 'view'">
+                        <input class="form-control" type="text" id="jsonPropertyValueRestResponseField" ng-model="popup.selectedRequestMapping.jsonPropertyValueRestResponseField.name" disabled />
+                    </div>
+                </div>
+
+                <div class="form-group clearfix">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-TYPE' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <select id="json-property-value-type" class="form-control" ng-model="popup.selectedRequestMapping.jsonPropertyType"
+                                ng-options="jsonType for jsonType in jsonTypes" ng-disabled="popup.selectedRequestMapping.state === 'view'">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group clearfix">
+                    <div class="col-xs-4">
+                        <label>{{'PROCESS-BUILDER.REST-CALL-STEP.REQUEST-MESSAGE.POPUP.PROPERTY-NAME' | translate}}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="form-control" type="text" id="json-property-name" placeholder="Enter a json property name" ng-model="popup.selectedRequestMapping.jsonPropertyName" auto-focus ng-disabled="popup.selectedRequestMapping.state === 'view'"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-sm btn-default" ng-click="cancelRequestMapping()" ng-disabled="model.loading">
+                        {{'GENERAL.ACTION.CANCEL' | translate}}
+                    </button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="okRequestMapping()" ng-disabled="model.loading || readOnly" ng-show="popup.selectedRequestMapping.state != 'view'">
+                        {{'GENERAL.ACTION.SAVE' | translate}}
+                    </button>
+                </div>
+                <div class="loading pull-right" ng-show="model.loading">
+                    <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

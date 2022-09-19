@@ -1,0 +1,29 @@
+<div class="modal" ng-controller="ConfirmImportDataModelCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="pull-right">
+                    <a class="action" ng-click="cancel()">&times; {{'GENERAL.ACTION.CANCEL' | translate}}</a>
+                </div>
+                <h2>{{'DATA-MODEL.POPUP.IMPORT-TITLE' | translate}}</h2>
+            </div>
+            <div class="modal-body">
+                <p>{{'DATA-MODEL.POPUP.IMPORT-CONFIRM-OVERWRITE' | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-sm btn-default" ng-click="cancel()">
+                        {{'GENERAL.ACTION.CANCEL' | translate}}
+                    </button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="skip()">
+                        {{'GENERAL.ACTION.SKIP' | translate}}
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" ng-click="ok()">
+                        {{'GENERAL.ACTION.OVERWRITE' | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

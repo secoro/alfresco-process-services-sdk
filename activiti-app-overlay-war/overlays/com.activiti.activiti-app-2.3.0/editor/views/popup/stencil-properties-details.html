@@ -1,0 +1,75 @@
+
+<div class="modal" ng-controller="StencilPropertiesCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h2>{{'STENCILS.POPUP.PROPERTIES-TITLE' | translate}} - {{model.activeStencilItem.name | translate}}</h2>
+            </div>
+            <div class="modal-body">
+            	
+            	<div class="row">
+                    <div class="col-xs-12 item-wrapper stencil-info-container">
+                        <div class="stencil-info stencil-info-box">
+                            <div class="row">
+        
+                                <!-- List of stencils -->
+                                <div class="col-xs-4">
+        
+                                    <div class="stencil-info-items-box">
+                                        <div ng-repeat="property in model.activeStencilItem.stencilProperties" class="stencil-info-item" ng-if="!property.removed" ng-click="showPropertyDetails(property)">
+                                            <span ng-class="{'stencil-info-groupItem-selected' : model.activeStencilProperty.id == property.id}">{{property.name | translate}}</span>
+                                        </div>
+                                    </div>
+        
+                                </div>
+        
+                                <!-- Details -->
+                                <div class="col-xs-8">
+        
+                                    <!-- Details for stencil property -->
+        
+                                    <div ng-show="model.activeStencilProperty">
+        
+                                        <div class="form-group">
+                                            <label for="stencilPropertyName">{{'STENCILS.ITEM.NAME' | translate}}</label>
+                                            <input id="stencilPropertyName" type="text" class="form-control" ng-model="model.activeStencilProperty.name" disabled>
+                                        </div>
+        
+                                        <div class="form-group">
+                                            <label for="stencilPropertyDescription">{{'STENCILS.ITEM.DESCRIPTION' | translate}}</label>
+                                            <textarea id="stencilPropertyDescription" type="text" class="form-control" ng-model="model.activeStencilProperty.description" disabled></textarea>
+                                        </div>
+                                        
+                                        <div ng-if="model.activeStencilProperty.customStencilProperty && model.activeStencilProperty.customStencilProperty.customProperty" class="form-group">
+                                            <label for="stencilPropertyType">{{'STENCILS.PROPERTY.TYPE' | translate}}</label>
+                                            <input id="stencilPropertyType" type="text" class="form-control" ng-model="model.activeStencilProperty.type" disabled>
+                                        </div>
+                                        
+                                        <div ng-if="model.activeStencilProperty.customStencilProperty && model.activeStencilProperty.customStencilProperty.customProperty" class="form-group">
+                                            <label for="stencilPropertyIncludeInXML">{{'STENCILS.PROPERTY.INCLUDEINXML' | translate}}</label>
+                                            <input id="stencilPropertyIncludeInXML" type="checkbox" class="form-control" ng-model="model.activeStencilProperty.customStencilProperty.includeInXML" disabled>
+                                        </div>
+        
+        
+                                        <div ng-if="model.activeStencilProperty.customStencilProperty && model.activeStencilProperty.customStencilProperty.customProperty && model.activeStencilProperty.customStencilProperty.includeInXML" class="form-group">
+                                            <label for="stencilPropertyXMLPropertyName">{{'STENCILS.PROPERTY.XMLNAME' | translate}}</label>
+                                            <input id="stencilPropertyXMLPropertyName" type="text" class="form-control" ng-model="model.activeStencilProperty.customStencilProperty.xmlPropertyName" disabled>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>                
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+            	<div class="pull-right">
+            		<button type="button" class="btn btn-sm btn-default" ng-click="close()" ng-disabled="model.loading">
+            			{{'GENERAL.ACTION.CLOSE' | translate}}
+            		</button>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>

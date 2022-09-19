@@ -1,0 +1,41 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller="ContentDetailsController">
+    <div class="modal-dialog wide google-drive-browse">
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <div class="pull-right">
+                    <button type="button" class="close" ng-click="$hide()">&times;</button>
+                </div>
+                <h3 class="modal-title" ng-bind-html="model.selectedContent.name"></h3>
+                <div class="row">
+                    <div class="summary col-lg-6">
+                        <i class="icon icon-{{model.selectedContent.simpleType}}"></i>
+                        <span>{{model.contentType}}</span>
+                        <span class="label" ng-if="model.selectedContent.createdBy">{{'TASK.MESSAGE.CONTENT-UPLOADED-BY' | translate}}: </span>
+                        <span ng-if="model.selectedContent.createdBy"><span user-name="model.selectedContent.createdBy"></span>, {{content.created | dateformat}}</span>
+                    </div>
+                    <div class="modal-header-actions col-lg-6">
+                        <a class="activiti-btn activiti-btn-primary" target="_blank" download="{{content.name | decodeHtml}}" href="{{content.rawUrl}}" ng-click="$event.stopPropagation();" ng-show="content.contentAvailable && (!content.source || contentAccounts[content.source])"><i class="icon icon-download"></i> Download</a>
+                        <a class="activiti-btn activiti-btn-primary" external-target="_blank" href="{{content.linkUrl}}" ng-click="$event.stopPropagation();" ng-if="content.linkUrl && content.source === 'alfresco-cloud'"> {{'CONTENT.ACTION.OPEN-IN-ALFRESCO-CLOUD' | translate}}</a>
+                        <a class="activiti-btn activiti-btn-primary" external-target="_blank" href="{{content.linkUrl}}" ng-click="$event.stopPropagation();" ng-if="content.linkUrl && content.source === 'google-drive'"> {{'CONTENT.ACTION.OPEN-IN-GOOGLE-DRIVE' | translate}}</a>
+                        <a class="activiti-btn activiti-btn-primary" external-target="_blank" href="{{content.linkUrl}}" ng-click="$event.stopPropagation();" ng-if="content.linkUrl && content.source === 'box'"> {{'CONTENT.ACTION.OPEN-IN-BOX' | translate}}</a>
+                        <a class="activiti-btn activiti-btn-primary" external-target="_blank" href="{{content.linkUrl}}" ng-click="$event.stopPropagation();" ng-if="content.linkUrl && content.source !== 'google-drive' && content.source !== 'alfresco-cloud' && content.source !== 'box'"> {{'CONTENT.ACTION.OPEN-IN-ALFRESCO' | translate}}</a>
+                        <button class="activiti-btn activiti-btn-primary" ng-if="content.contentAvailable && content.officeUrl && editable" ng-click="openOfficeDocument(content); $event.stopPropagation()"><i class="icon icon-{{model.selectedContent.simpleType}}"></i> Edit in  Office</button>
+                        <button ng-if="!readOnly" class="activiti-btn activiti-btn-danger" ng-click="deleteContent(content, selectedTask )"><i class="glyphicon glyphicon-trash" style="margin-left:0px; margin-right:0px;"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body content-preview-wrapper">
+                <div ng-if="content.pdfUrl">
+                    <iframe ng-src="{{content.pdfUrl | pdfViewerUrl}}" width="100%" height="600" style="border: none;"/>
+                </div>
+                <div ng-if="content.imageUrl" ng-switch="(content.source == undefined || contentAccounts[content.source] != undefined)">
+                    <img ng-switch-when="true" ng-src="{{content.rawUrl}}" class="preview-image">
+                    <div ng-switch-when="false" class="nothing-to-see" translate="CONTENT.MESSAGE.NO-PREVIEW-AVAILABLE"></div>
+                </div>
+                <div ng-if="!content.pdfUrl && !content.imageUrl">
+                    <div class="nothing-to-see" translate="CONTENT.MESSAGE.NO-PREVIEW-AVAILABLE"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+
+<div class="modal" ng-controller="SaveKickstartModelCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h2>{{'PROCESS.POPUP.CREATE-TITLE' | translate}}</h2></div>
+            <div class="modal-body">
+                <p>{{'PROCESS.POPUP.CREATE-DESCRIPTION' | translate}}</p>
+                <div class="form-group">
+                    <label for="newProcessName">{{'PROCESS.NAME' | translate}}</label>
+                    <input ng-disabled="model.loading" type="text" maxlength="400" class="form-control"
+                           id="newProcessName" ng-model="saveDialog.name" auto-focus editor-input-check>
+                </div>
+                <div class="form-group">
+                    <label for="newProcessDescription">{{'PROCESS.DESCRIPTION' | translate}}</label>
+                    <textarea ng-disabled="model.loading" class="form-control" id="newProcessDescription" rows="5" ng-model="saveDialog.description"></textarea>
+                </div>
+                <div class="checkbox" ng-show="!error && !error.isConflict && saveDialog.hasEmbedContext">
+                    <label>
+                        <input type="checkbox" ng-disabled="status.loading" ng-model="saveDialog.embedded" ng-click="embedClicked()">
+                        {{'PROCESS.POPUP.SAVE-EMBEDDED' | translate}}
+                    </label>
+                </div>
+                <div ng-if="hasOtherRelations" class="alert warning" style="font-size: 14px; margin-top:20px">
+                    <div class="popup-warning" style="font-size: 14px">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span translate="PROCESS.POPUP.SAVE-EMBEDDED-COPY" translate-values="error"></span>
+                    </div>
+                </div>
+                <div class="checkbox" ng-show="!error && !error.isConflict">
+                    <label>
+                        <input type="checkbox" ng-disabled="status.loading" ng-model="saveDialog.newVersion" >
+                            {{'MODEL.SAVE.NEWVERSION' | translate}}
+                    </label>
+                </div>
+                <div class="form-group" ng-if="saveDialog.newVersion">
+                    <label for="commentTextArea">{{'MODEL.SAVE.COMMENT' | translate}}</label>
+                    <textarea id="commentTextArea" class="form-control" ng-model="saveDialog.comment" ng-disabled="status.loading"></textarea>
+                </div>
+                <div ng-if="saveDialog.validationErrors" class="alert error" style="font-size: 14px; margin-top:20px">
+                    <div class="popup-error" style="font-size: 14px">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span translate="MODEL.VALIDATIONERRORS" translate-values="error"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="model.loading" translate>GENERAL.ACTION.CANCEL</button>
+                    <button class="btn btn-primary" ng-click="saveAndClose()" ng-disabled="status.loading || readOnly" ng-show="!error && !error.isConflict && !hasOtherRelations" translate>ACTION.SAVE-AND-CLOSE</button>
+                    <button class="btn btn-primary" ng-click="save()" ng-disabled="status.loading || readOnly" ng-show="!error && !error.isConflict && !hasOtherRelations" translate>ACTION.SAVE</button>
+                    <button class="btn btn-primary" ng-click="saveAndClose()" ng-disabled="status.loading || readOnly" ng-show="!error && !error.isConflict && hasOtherRelations" translate>ACTION.SAVE-COPY-AND-CLOSE</button>
+                </div>
+                <div class="loading pull-right" ng-show="model.loading">
+                    <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

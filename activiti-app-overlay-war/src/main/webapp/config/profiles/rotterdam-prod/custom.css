@@ -1,0 +1,9 @@
+.navbar {
+    background-color: #008000;
+}
+
+.user-menu-con:before {
+    content: "ROTTERDAM-PROD";
+    color: white;
+    padding-right: 15px;
+}

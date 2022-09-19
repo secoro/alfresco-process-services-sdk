@@ -1,0 +1,30 @@
+<div class="column-full-height">
+
+	<div class="column-header-large" ng-if="newProcessInstance.processDefinition">
+		<h2>
+			<edit-in-place value="newProcessInstance.name"></edit-in-place>
+		</h2>
+	</div>
+
+    <div column-list-scroll="column-header-large">
+
+        <div class="column-list-scroll-push"></div>
+
+        <div class="section-no-h3" ng-if="newProcessInstance.processDefinition && newProcessInstance.processDefinition.hasStartForm">
+            <div class="alert error" ng-show="startFormError">{{startFormError}}</div>
+            <div>
+                <activiti-form process-name="newProcessInstance.name" process-definition-id="newProcessInstance.processDefinition.id"></activiti-form>
+            </div>
+        </div>
+
+        <div ng-if="newProcessInstance.processDefinition && !newProcessInstance.processDefinition.hasStartForm">
+            <div class="center">
+                <button id="form_start_button" class="activiti-btn activiti-btn-primary" style="margin: 10px 15px 0 0" ng-disabled="newProcessInstance.loading || model.formStartButtonDisabled || readOnly"
+                        ng-click="startProcessInstanceWithoutForm()">{{'FORM.DEFAULT-OUTCOME.START-PROCESS'| translate}}</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

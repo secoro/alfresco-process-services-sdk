@@ -1,0 +1,26 @@
+<div ng-if="element.values[0].values && element.values[0].values.length > 0">
+
+    <h2 ng-if="element.title">{{element.title}}</h2>
+    <h2 ng-if="!element.title && element.titleKey">{{element.titleKey | translate}}</h2>
+
+    <div ng-if="element.description" class="well">{{element.description}}</div>
+    <div ng-if="!element.description && element.descriptionKey" class="well">{{element.descriptionKey | translate}}</div>
+
+    <nvd3-discrete-bar-chart
+            data="element.values"
+            id="{{element.id}}"
+            showXAxis="true"
+            showYAxis="true"
+            xAxisTickFormat="xAxisTickFormatFunction(element.xAxisType)"
+            yAxisTickFormat="yAxisTickFormatFunction(element.yAxisType)"
+            width="{{calculateChartWidth()}}"
+            height="{{calculateChartHeight()}}"
+            showValues="false"
+            tooltips="true"
+            tooltipcontent="toolTipContentFunction(element.xAxisType)">
+        <svg ng-style="{width: calculateChartWidth(), height: calculateChartHeight()}"></svg>
+    </nvd3-discrete-bar-chart>
+</div>
+
+<div ng-if="!element.values[0].values || element.values[0].values.length == 0" class="no-reporting-data">{{'REPORTING.NO-DATA-FOUND' | translate}}
+</div>

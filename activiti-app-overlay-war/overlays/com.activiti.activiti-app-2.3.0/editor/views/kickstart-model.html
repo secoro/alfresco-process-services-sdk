@@ -1,0 +1,117 @@
+<div class="subheader editor-toolbar" id="editorHeader">
+    <div class="fixed-container">
+        <div class="btn-group">
+            <div class="btn-toolbar pull-left" ng-controller="KickstartToolbarController" ng-cloak>
+                <button id="{{item.id}}"
+                        title="{{item.title | translate}}"
+                        ng-repeat="item in items"
+                        ng-switch on="item.type"
+                        class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
+                        ng-disabled="item.type == 'separator' || item.enabled == false || (readOnly && item.disableOnReadonly)"
+                        ng-click="toolbarButtonClicked($index)">
+                    <i ng-switch-when="button" ng-class="item.cssClass" class="toolbar-button" data-toggle="tooltip" title="{{item.title | translate}}"></i>
+                    <div ng-switch-when="separator" ng-class="item.cssClass"></div>
+                </button>
+            </div>
+        </div>
+        <div class="btn-group pull-right" ng-show="!secondaryItems.length">
+            <div class="btn-toolbar pull-right" ng-controller="KickstartToolbarController">
+                <button title="{{item.title | translate}}" ng-repeat="item in secondaryItems" ng-switch on="item.type" class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
+                        ng-disabled="item.type == 'separator' || (readOnly && item.disableOnReadonly)" ng-click="toolbarSecondaryButtonClicked($index)" id="{{item.id}}">
+                    <i ng-switch-when="button" ng-class="item.cssClass" class="toolbar-button" data-toggle="tooltip" title="{{item.title | translate}}"></i>
+                    <div ng-switch-when="separator" ng-class="item.cssClass"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="center-pane content scroll-container" auto-height offset="40">
+    <div class="container-fluid" >
+            <div id="canvasHeader" class="header clearfix">
+                <h2 ng-if="!kickstartModelRootLevelValidationError">{{currentKickstartModel.definition.name}}</h2>
+                <h2 ng-if="kickstartModelRootLevelValidationError" style="color:red">{{currentKickstartModel.definition.name}}</h2>
+                <div class="pull-left badge-wrapper">
+                    <span class="badge">{{'KICKSTART-MODEL.VERSION' | translate:currentKickstartModel.definition}}</span>
+                    <span>&nbsp;&nbsp;<span translate="KICKSTART-MODEL.LAST-UPDATED" translate-values="currentKickstartModel.definition"></span></span>
+                    <a ng-if="kickstartModelRootLevelValidationError" ng-click="showValidationErrors('process')">
+                        <img src="editor-app/images/bpmn-error.png"/>
+                    </a>
+                </div>
+            </div>
+            <div id="canvasSection" class="steps-wrapper has-line" ng-controller="KickstartModelDesignController" ng-class="{'moving': moveState}">
+                <div class="line-marker-only" ng-if="kickstartModelReference" ng-class="{ 'validation-error': kickstartModelStartEventValidationError }">
+                    <a class="error" ng-if="kickstartModelStartEventValidationError" ng-click="showValidationErrors('start-event')">
+                        <img src="editor-app/images/bpmn-error.png"/>
+                    </a>
+                    <h4>{{'PROCESS-BUILDER.TITLE.PROCESS-START' | translate}}</h4>
+                </div>
+                <div class="line-marker" ng-if="!kickstartModelReference" ng-class="{'expanded': model.processStart.expanded, 'validation-error': kickstartModelStartEventValidationError }">
+                    <a class="error" ng-if="kickstartModelStartEventValidationError" ng-click="showValidationErrors('start-event')">
+                        <img src="editor-app/images/bpmn-error.png"/>
+                    </a>
+                    <h4 ng-click="toggleProcessStartExpanded()"><i class="icon" ng-class="{'icon-caret-right': !model.processStart.expanded, 'icon-caret-down': model.processStart.expanded}"></i>
+                        {{'PROCESS-BUILDER.TITLE.PROCESS-START' | translate}}
+                    </h4>
+
+                    <div class="section clearfix" ng-show="model.processStart.expanded">
+                        <div class="col-xs-3">
+                            <label>{{'PROCESS-BUILDER.TITLE.PROCESS-TRIGGER' | translate}}: </label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="btn-group span">
+                                <button class="selection" activiti-fix-dropdown-bug ng-disabled="(model.kickstartMode && model.kickstartMode == 'read') || readOnly" ng-change="processStartChanged()" ng-model="model.processStart.type" ng-options="type as type.title for type in processStartTypes" bs-select>
+
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section clearfix" ng-show="model.processStart.expanded && model.processStart.type.id == 'form'">
+                        <div class="form-group clearfix">
+                            <div class="col-xs-3">
+                                <label>{{'PROCESS-BUILDER.TITLE.START-FORM' | translate}}: </label>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group span">
+                                    <button activiti-fix-dropdown-bug select-form-popover on-form-create="createStartForm()" on-clear="selectStartForm()" on-form-selected="selectStartForm(form)" class="selection" data-toggle="dropdown" ng-disabled="(model.kickstartMode && model.kickstartMode == 'read') || readOnly">
+                                    <span ng-if="currentKickstartModel.definition.definition.startForm">
+                                         <i class="glyphicon glyphicon-list"></i>
+                                        {{currentKickstartModel.definition.definition.startForm.name}}
+                                    </span>
+                                    <span class="empty" ng-if="!currentKickstartModel.definition.definition.startForm">
+                                       {{'PROCESS-BUILDER.FIELD.FORM-SELECT.NO-FORM-SELECTED' | translate}}
+                                    </span>
+                                        <i class="icon icon-caret-down"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix" ng-show="currentKickstartModel.definition.definition.startForm">
+                            <div class="col-xs-9 col-xs-push-3">
+                                <div class="btn-group pull-right">
+                                    <button class="btn btn-xs" ng-click="showStartForm()">{{'PROCESS-BUILDER.FIELD.FORM-SELECT.OPEN-FORM' | translate}}</button>
+                                </div>
+                                <div class="detail">
+                                <span ng-repeat="field in startFormFields">
+                                    {{$index != 0 && ', ' + field.name || field.name}}
+                                </span>
+                                <span class="empty" ng-if="!startFormFields.length">
+                                    {{'PROCESS-BUILDER.FIELD.FORM-SELECT.NO-FIELDS' | translate}}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="model.processStart.expanded && currentKickstartModel.definition.definition.startForm
+                        && isReusable(currentKickstartModel.definition.definition.startForm)">
+                            <div ng-include="'views/process-builder/form-variable-map.html'"/>
+                        </div>
+                    </div>  
+                </div>
+
+                <div ng-if="readOnly" class="step-placeholder-readonly"></div>
+                <div ng-if="!readOnly" class="step-placeholder" ng-click="insertStepBelow($event)" ng-class="{'no-move no-click': isMoveDisabled(step, stepContainer, moveState)}"></div>
+                <div ng-repeat="step in steps" ng-include="'views/process-builder/step-list.html'">
+                </div>
+            </div>
+      </div>
+</div>

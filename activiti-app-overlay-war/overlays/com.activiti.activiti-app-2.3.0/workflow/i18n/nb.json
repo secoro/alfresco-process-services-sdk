@@ -1,0 +1,764 @@
+{
+  "COMMON": {
+    "SELECT-FOLDER": "Velg mappe ...",
+    "ACCOUNTS": {
+      "ALFRESCO": "Alfresco ({{name}})",
+      "box": "Box",
+      "google-drive": "Google disk"
+    },
+    "AUTHORIZE": {
+      "EXTERNAL-REPOSITORY-CONFIGURED": "Det er en {{moduleName}} konto konfigurert for deg.",
+      "EXTERNAL-REPOSITORY-KEY-EXPIRE-AT": "Nøkkelen vil utgå den:{{expireDateTime  | date: 'dd.MM.yyyy h:mma' }}",
+      "NO-EXTERNAL-REPOSITORY-CONFIGURED": "Det er ingen {{moduleName}} konto konfigurert for deg.",
+      "EXTERNAL-REPOSITORY-REAUTHORIZE-REQUIRED": "Oppgaven kan ikke fullføres uten ny autorisasjon.",
+      "EXTERNAL-REAUTHORIZE-ADVICE": "Autoriser Alfresco Process Services på nytt for å koble til {{moduleName}} via knappen nedenfor.",
+      "MODULE-DISABLED": "{{moduleName}}-integrering er for øyeblikket deaktivert.",
+      "TITLE": "Autoriser"
+    },
+    "AUTHORIZATION_COMPLETED": "Autorisering fullført",
+    "NOBODY": "Ingen",
+    "NOBODY-LETTERS": "NB",
+    "FILTER": {
+      "NEW-FILTER": "Nytt Filter",
+      "EDIT": "Rediger",
+      "RESET": "Tilbakestill",
+      "DELETE": "Slett",
+      "NEW-FILTER-NAME": "Nytt Filter",
+      "FILTER-ICON-AND-NAME": "Filtrer ikon & navn",
+      "SAVE": "Lagre",
+      "SAVE-HINT": "Fornøyd med filteret ditt?<br/> Velg et ikon og et navn og klikk deretter lagre.",
+      "SEARCH-RESULTS": "Søkeresultater"
+    },
+    "WARNING": {
+      "APP-LICENSE-ISSUE-INVALID": "Alfresco Process Services er i skrivebeskyttet modus, fordi den lokale lisensen er ugyldig.",
+      "APP-LICENSE-ISSUE-NOT-FOUND": "Alfresco Process Services er i skrivebeskyttet modus, fordi den lokale lisensen ikke ble funnet.",
+      "APP-LICENSE-ISSUE-INVALID-DATE": "Alfresco Process Services er i skrivebeskyttet modus, fordi den lokale lisensdatoen ikke er gyldig (enten utløpt eller har en oppstartsdato som ikke har vært enda).",
+      "APP-LICENSE-WARNING-ABOUT-TO-EXPIRE": "Lisensen er i ferd med å utløpe! Alfresco Process Services vil bli skrivebeskyttet."
+    }
+  },
+  "GENERAL": {
+    "MAIN-TITLE": "Mine Oppgaver",
+    "ERROR": {
+      "GENERIC": "Det oppstod en feil ...",
+      "UNKNOWN": "Det oppstod en feil under utførelsen av den forespurte operasjonen.",
+      "BAD_REQUEST": "Det oppstod en feil under utførelsen av den forespurte operasjonen",
+      "NOT_FOUND": "Kilden du prøver å få tilgang til eksisterer ikke",
+      "UNAUTHORIZED": "Du må logge inn for å utføre den forespurte operasjonen.",
+      "FORBIDDEN": "Du har ikke tillatelse til å utføre den forespurte operasjonen",
+      "INTERNAL_SERVER_ERROR": "Det oppsto en uventet feil under utførelsen av den forespurte operasjonen.",
+      "UPLOAD-LIMIT-EXCEEDED": "Filen du prøver å laste opp er for stor",
+      "UPLOAD-LIMIT-EXCEEDED-TRIAL-USER": "Filen du prøver å laste opp er for stor. Oppgrader til organisasjon for å laste opp filer større enn {{quota}}!",
+      "QUOTA-EXCEEDED-RUNTIME-PROCESSES": "Som testbruker kan du kun ha {{quota}} aktive prosesser kjørende samtidig.",
+      "QUOTA-EXCEEDED-COMPLETED-PROCESSES": "Som testbuker kan du kun ha {{quota}} gjennomførte prosesser. Slette en gjennomført prosess for å starte en ny.",
+      "QUOTA-EXCEEDED-TOTAL-CONTENT-SIZE": "Som testbruker kan du kun lagre totalt {{quota}} av innhold. Slett innhold eller fullfør prosesser for å frigjøre plass til nytt innhold."
+    },
+    "NAVIGATION": {
+      "TASKS": "Oppgaver",
+      "PROCESSES": "Prosesser",
+      "START-PROCESS": "Start",
+      "DESIGN": "Design",
+      "CREATE": "+ Opprett",
+      "LOGIN": "Logg på",
+      "REPORTS": "Rapporter"
+    },
+    "TITLE": {
+      "ADD-COMMENT": "Opprett kommentar",
+      "INVOLVE-PEOPLE": "Velg person",
+      "RECENT-PEOPLE": "Nylige personer",
+      "MATCHING-PEOPLE": "Matchende personer",
+      "SELECT-GROUP": "Velg gruppe",
+      "MATCHING-GROUPS": "Matchende grupper",
+      "FILTER": "Filter",
+      "SELECT-DATE": "Velg en dato"
+    },
+    "ACTION": {
+      "ABOUT": "Om Alfresco Process Services",
+      "LOGOUT": "Logg ut",
+      "EDIT-PROFILE": "Rediger profil",
+      "ADD-COMMENT": "Legg til kommentar",
+      "ADD-CHECKLIST": "Legg til sjekkliste",
+      "SAVE": "Lagre",
+      "CANCEL": "Avbryt",
+      "CLOSE": "Lukk",
+      "CONFIRM": "Bekreft",
+      "SHOW-MORE": "Vis flere",
+      "HELP-DOCS-LINK": "Hjelp"
+    },
+    "MESSAGE": {
+      "SELECT-PEOPLE-HELP": "Bruk &uparrow; og &downarrow; for å velge, og trykk på Enter for å bekrefte",
+      "SELECT-GROUP-HELP": "Bruk &uparrow; og &downarrow; for å velge, og trykk på Enter for å bekrefte",
+      "SELECT-GROUP-SEARCH-PLACEHOLDER": "Søk etter gruppe",
+      "SELECT-GROUP-NO-MATCHING-RESULTS": "Bruk søkefeltet ovenfor for å finne grupper.",
+      "UPLOAD-CONTENT": "Velg eller slipp en fil",
+      "UPLOAD-CONTENT-NO-DROP": "Velg en fil som skal lastes opp ...",
+      "DROPZONE": "Slipp filen som skal lastes opp",
+      "YES": "Ja",
+      "NO": "Nei"
+    },
+    "TIME": {
+      "HOURS": "timer",
+      "MINUTES": "minutter",
+      "SECONDS": "sekunder"
+    },
+    "ABOUT": {
+      "TYPE": "Type",
+      "LICENSED-TO": "Lisensiert til",
+      "EXPIRES": "Utløper",
+      "COPYRIGHT": "© 2005-2021 Alfresco Software Inc. Med enerett.",
+      "LEGAL": "Juridisk og lisensiering"
+    }
+  },
+  "LOGIN": {
+    "TITLE": "Logg på",
+    "USERNAME": "Brukernavn",
+    "USERNAME-PLACEHOLDER": "Angi brukernavn",
+    "PASSWORD": "Passord",
+    "PASSWORD-PLACEHOLDER": "Angi passord",
+    "ACTION": {
+      "CONFIRM": "Logg på"
+    }
+  },
+  "TASK": {
+    "SECTION": {
+      "PEOPLE": "Personer",
+      "GROUPS": "Grupper",
+      "CONTENT": "Innhold",
+      "COMMENTS": "Kommentarer",
+      "CHECKLISTS": "Sjekkliste",
+      "NOTES": "Merknader"
+    },
+    "FILTER": {
+      "SORT": "Sorter",
+      "CREATED-DESC": "Nyeste først",
+      "CREATED-ASC": "Eldste først",
+      "DUE-DESC": "Forfaller sist",
+      "DUE-ASC": "Forfaller først",
+      "TEXT": "Filter",
+      "TEXT-PLACEHOLDER": "Søk via oppgavenavn",
+      "TEXT-SUMMARY": "Filteret via: {{text}}",
+      "PROCESS-DEFINITION": "Prosessdefinisjon",
+      "PROCESS-DEFINITION-PLACEHOLDER": "Velg prosessdefinisjon ...",
+      "STATE": "Tilstand",
+      "STATE-OPEN": "åpne",
+      "STATE-COMPLETED": "fullført",
+      "ASSIGNMENT": "Tilordning",
+      "ASSIGNMENT-INVOLVED": "Oppgaver der jeg er involvert",
+      "ASSIGNMENT-ASSIGNEE": "Oppgaver med meg som tilordnet",
+      "ASSIGNMENT-CANDIDATE": "Oppgaver der jeg er en av kandidatene",
+      "ASSIGNMENT-GROUP": "Oppgaver tilordnet til gruppen \"{{name}}\"",
+      "RESET": "Tilbakestill filtre",
+      "SINGLE-TASK": "Viser '{{name || (\"TASK.MESSAGE.NO-NAME\" | translate)}}'",
+      "NO-SINGLE-TASK": "Fant ingen oppgaver med ID-en '{{id}}'",
+      "INVOLVED-FILTER-NAME": "Involverte oppgaver",
+      "ASSIGNEE-FILTER-NAME": "Mine oppgaver",
+      "COMPLETED-FILTER-NAME": "Fullførte oppgaver",
+      "CANDIDATE-FILTER-NAME": "Oppgaver i kø",
+      "TASK-NAME": "Oppgavenavn",
+      "SEARCH": "Søk",
+      "NEW-SEARCH": "Nytt søk?",
+      "CREATE-FILTER": "Opprett nytt filter eller velg nedenfor",
+      "EDIT-FILTER": "Rediger søk",
+      "FILTER-NAME-PLACEHOLDER": "Navn på egendefinert filter",
+      "CREATE-TASK": "Opprett oppgave",
+      "SEARCH-PLACEHOLDER": "Søk",
+      "NO-FILTER-RESULTS": "Ikke noe funnet i \"{{name}}\". Prøv en annen liste. For å gå videre med noe nytt kan du:",
+      "NO-SEARCH-RESULTS": "Ingen oppgaver matcher/samsvarer med dine søk, du kan prøve andre kriterier. For å gå videre med noe nytt kan du:"
+    },
+    "ALERT": {
+      "COMMENT-ADDED": "Kommentar ble lagt til \"{{name}}\"",
+      "CHECKLIST-ADDED": "Oppgave \"{{name}}\" ble lagt til sjekkliste",
+      "CHECKLIST-REMOVED": "Oppgave \"{{name}}\" ble fjernet fra sjekkliste",
+      "PERSON-INVOLVED": "{{userName}} er nå involvert i \"{{taskName}}\"",
+      "PERSON-INVOLVED-EMAIL-NOT-ALLOWED": "Kan ikke involvere den eksterne personen med e-posten '{{emailAddress}}'.\"",
+      "PERSON-NO-LONGER-INVOLVED": "{{userName}} er ikke lenger involvert i \"{{taskName}}\"",
+      "GROUP-INVOLVED": "Gruppen \"{{groupName}}\" er nå involvert i oppgaven \"{{taskName}}\"",
+      "GROUP-NO-LONGER-INVOLVED": "Gruppen \"{{groupName}}\" er ikke lenger involvert i oppgaven \"{{taskName}}\"",
+      "CREATED": "Oppgaven \"{{name}}\" ble opprettet",
+      "COMPLETED": "Oppgave fullført",
+      "SAVED": "Oppgaveskjemaet er lagret",
+      "ASSIGNED": "Oppgaven \"{{taskName}}\" er nå tilordnet til {{userName}}",
+      "RELATED-CONTENT-ADDED": "\"{{name}}\" har blitt lagt til oppgaven",
+      "RELATED-CONTENT-ADDED-LOADING": "\"{{name}}\" har blitt lagt til oppgaven. Innholdet vil bli tilgjengelig når det hentes fra den eksterne kilden.",
+      "FORM-ATTACHED": "Vedlagt fra \"{{name}}\"",
+      "FORM-REMOVED": "Fjernet fra \"{{name}}\""
+    },
+    "ACTION": {
+      "BACK-TO-LIST": "Tilbake til oppgaveliste",
+      "COMPLETE-TASK-WITH-FORM": "Fullfør skjema",
+      "COMPLETE": "Fullfør",
+      "CLAIM": "Krev",
+      "UNCLAIM": "Legg tilbake i kø",
+      "ASSIGN": "Tilordne",
+      "REASSIGN": "Tilordne på nytt",
+      "CREATE": "+ Opprett oppgave",
+      "CREATE-CONFIRM": "Opprett",
+      "INVOLVE": "+ Involver personer",
+      "INVOLVE-GROUP": "Involver gruppe",
+      "ADD-COMMENT": "+ Legg til kommentar",
+      "ADD-COMMENT-CONFIRM": "Legg til kommentar",
+      "ADD-CHECKLIST": "+ Legg til oppgave i sjekkliste",
+      "ADD-CHECKLIST-CONFIRM": "Legg til oppgave i sjekkliste",
+      "ADD-CONTENT": "+ Legg til innhold",
+      "CLEAR-DUEDATE": "Fjern forfallsdato",
+      "DUE-TODAY": "Oppgaver for i dag",
+      "CLEAR-DATE": "Fjern dato",
+      "DATE-TODAY": "Dagens dato",
+      "AUDIT-LOG": "Revisjonslogg"
+    },
+    "TITLE": {
+      "ASSIGN": "Velg tilordnet",
+      "ASSIGNEE": "Tilordnet",
+      "CONTENT": "Relatert innhold",
+      "CREATE-NEW": "Ny oppgave",
+      "NEW-TASK-NAME": "Ny oppgave",
+      "EDIT-NAME": "Rediger oppgave navn",
+      "FORM": "Skjema",
+      "DETAILS": "Detaljer",
+      "ADD-RELATED-CONTENT": "Legg til relatert innhold",
+      "SELECT-DUEDATE": "Velg tidsfrist/forfallsdato",
+      "SELECT-DATE": "Velg dato",
+      "NO-CONTENT-ITEMS": "Ingen innholdselementer",
+      "NO-PEOPLE-INVOLVED": "Ingen personer involvert",
+      "NO-GROUPS-INVOLVED": "Ingen grupper involvert",
+      "NO-COMMENTS": "Ingen kommentarer",
+      "COMMENT-COUNT": "kommentar",
+      "COMMENTS-COUNT": "kommentarer",
+      "NO-CHECKLISTS": "Ingen sjekkliste",
+      "CHECKLIST-COUNT": "oppgave i sjekkliste",
+      "CHECKLISTS-COUNT": "oppgaver i sjekklister",
+      "SHOW-DETAILS": "Vis detaljer",
+      "SHOW-FORM": "Vis skjema",
+      "GROUPS-INVOLVED": "{{groupCount}} gruppe(r) involvert"
+    },
+    "FIELD": {
+      "NAME": "Navn",
+      "DESCRIPTION": "Beskrivelse",
+      "ASSIGNEE": "Tilordnet",
+      "DUE": "Forfaller",
+      "FORM": "Skjema",
+      "PROCESS-INSTANCE": "Del av prosess",
+      "PARENT-TASK": "Del av",
+      "ENDED": "Avsluttet",
+      "DURATION": "Varighet"
+    },
+    "MESSAGE": {
+      "NO-NAME": "Oppgave uten navn",
+      "NO-ASSIGNEE": "Ikke tilordnet til noen",
+      "NO-DUEDATE": "Ingen forfallsdato",
+      "DUE-ON": "Forfaller",
+      "NO-FORM": "Ikke noe skjema",
+      "CREATED-ON": "Opprettet",
+      "ENDED-ON": "Fullført",
+      "EXECUTION-FAILED": "Utførelse mislyktes",
+      "COMPLETED-BY": "Fullført av {{username}}, ",
+      "NO-DESCRIPTION": "Denne oppgaven har ingen beskrivelse",
+      "NO-RELATED-CONTENT": "Denne oppgaven har ikke noe relatert innhold enda ...",
+      "NO-PEOPLE-INVOLVED": "Denne oppgaven har ingen personer involvert enda ...",
+      "NO-COMMENTS": "Denne oppgaven har ingen kommentarer enda ...",
+      "INVOLVE-PEOPLE-PLACEHOLDER": "+ Legg til person",
+      "CONTENT-UPLOADED-BY": "Lagt til av ",
+      "ASSIGNEE": "Tilordnet til {{username}}",
+      "NEW-COMMENT-PLACEHOLDER": "Skriv en kommentar for å legge til denne oppgaven",
+      "NEW-CHECKLIST-PLACEHOLDER": "Skriv oppgavenavn",
+      "COMMENT-HEADER": "Lagt til av {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+      "NO-FILTER": "Viser oppgavene dine, uten filter",
+      "FILTERED": "Viser oppgavene dine, med filter",
+      "NO-TASKS": "Ingen matchende oppgaver funnet ...",
+      "DURATION": "Tok {{duration}}",
+      "CLAIM-TASK-FIRST": "For å jobbe med denne oppgaven må du gjøre krav på den først. Du kan gjøre dette ved å trykke Krev-knappen over.",
+      "NO-TASKS-HELP": "Vel, det ser ut som det ikke er noen oppgaver til deg! For å starte noe kan du:",
+      "NO-SUCH-TASK-HELP": "Oppgaven du ser etter kan ikke bli funnet! Hvis du vil, kan du i stedet:",
+      "NO-SUCH-TASK-RETURN-TO-LIST": "Gå tilbake til oppgavelisten",
+      "NO-TASKS-CREATE-TASK": "Lag en oppgave til deg selv, eller tilordne den til noen andre",
+      "NO-TASKS-CREATE-PROCESS": "Start en ny prosess og spor prosessens fremgang",
+      "CANNOT-CLAIM-TASK": "Oppgaven kan ikke lenger kreves."
+    },
+    "HELP": {
+      "DESCRIPTION": "Det finnes ingen detaljer for denne oppgaven enda. Du kan endre dette ved å velge en av disse aktivitetene:",
+      "COMPLETED-DESCRIPTION": "Denne fullførte oppgaven har ingen detaljer.",
+      "DESCRIPTION-WITH-CLAIM": "Det finnes ingen detaljer for denne oppgaven enda. Du kan endre dette ved å velge en av de følgende aktivitetene. For å fullføre denne oppgaven må du trykke kreve den først ved å trykke på Krev-knappen ovenfor.",
+      "ADD-FORM-DESCRIPTION": "Denne oppgaven har ingen skjema enda. Du kan bruke skjemaer fra biblioteket for å få mer informasjon til denne oppgaven:",
+      "ADD-FORM": "Legg til et skjema nå",
+      "COMPLETED-NOFORM": "Denne fullførte oppgaven har ingen skjema.",
+      "ADD-PEOPLE": "Involver noen andre og start samarbeid",
+      "ADD-FIRST-PEOPLE": "Involver noen andre og start samarbeid",
+      "ADD-FIRST-GROUP": "Inviter grupper med personer, og start samarbeidet",
+      "ADD-COMMENT": "Opplys andre ved å legge til en kommentar",
+      "ADD-FIRST-COMMENT": "Legg til en kommentar til deg selv eller for andre involverte",
+      "ADD-CHECKLIST": "Legg til oppgave i sjekkliste",
+      "ADD-FIRST-CHECKLIST": "Lag din egen sjekkliste med punkter som trengs til denne oppgaven. Du kan tilordne et punkt til noen andre, gi det en forfallsdato og legge ved et skjema fra biblioteket",
+      "ADD-CONTENT": "Legg til et dokument og del kunnskapen",
+      "ADD-FIRST-CONTENT": "Legg til ytterligere filer relatert til denne oppgaven"
+    },
+    "DYNAMIC-TABLE": {
+      "ROW-EDIT-HEADER": "Rediger tabellrad",
+      "ROW-DETAILS-HEADER": "Tabellrad-detaljer"
+    },
+    "FORM-SELECT": {
+      "TITLE": "Velg skjema",
+      "EMPTY": "Ingen skjema valgt",
+      "FORMS-ERROR": "Feil ved opplasting av skjemaer",
+      "LOADING": "Laster skjemaer ...",
+      "NO-FORMS": "Ingen skjemaer funnet",
+      "ATTACH-FORM": "Legg ved skjema",
+      "REMOVE-FORM": "Fjern skjema",
+      "CURRENT-FORM": "{{name}} (nåværende)",
+      "FORM-LOAD-ERROR": "Feil under opplasting av skjema"
+    }
+  },
+  "PROCESS": {
+    "ALERT": {
+      "COMMENT-ADDED": "Kommentar ble lagt til",
+      "STARTED": "En ny \"{{processDefinitionName}}\"-prosess ble startet",
+      "START-PROCESS-CONTENT-ADD-FAILED": "Kunne ikke legge til {{noOfFiles}} fil(er) i prosessen"
+    },
+    "TITLE": {
+      "DIAGRAM": "Prosessdiagram"
+    },
+    "FILTER": {
+      "CREATED-DESC": "Nyeste først",
+      "CREATED-ASC": "Eldste først",
+      "ENDED-DESC": "Fullført sist",
+      "ENDED-ASC": "Fullført minst nylig",
+      "STATE-SUMMARY": "Viser {{state.title | translate}} prosesser",
+      "STATE": "Prosesstilstand",
+      "STATE-RUNNING": "Kjører",
+      "STATE-COMPLETED": "Fullført",
+      "STATE-ALL": "Alle",
+      "PROCESS-NAME": "Prosessnavn",
+      "PROCESS-DEFINITION": "Prosessdefinisjon",
+      "SORT": "Sorter",
+      "TEXT-PLACEHOLDER": "Søk etter prosessnavn",
+      "RUNNING-FILTER-NAME": "Kjører",
+      "COMPLETED-FILTER-NAME": "Fullført",
+      "ALL-FILTER-NAME": "Alle",
+      "SINGLE-PROCESS": "Viser '{{name || processDefinitionName}}'",
+      "NO-SINGLE-PROCESS": "Ingen prosess med ID '{{id}}'",
+      "NO-FILTER-RESULTS": "Ingenting funnet i \"{{name}}\", du kan prøve en annen liste. For å gå videre med noe nytt kan du:",
+      "NO-SEARCH-RESULTS": "Ingen prosess samsvarer med dine søk, du kan prøve å velge andre kriterier. For å gå videre med noe nytt kan du:",
+      "FILTER-NAME-PLACEHOLDER": "Navn på egendefinert filter"
+    },
+    "MESSAGE": {
+      "NO-DESCRIPTION": "Dette prosesstilfellet har ingen beskrivelse",
+      "NO-FILTER": "Viser alle prosesstilfeller, ikke filtrert",
+      "NO-INSTANCES": "Ingen matchende prosesstilfeller funnet ...",
+      "NO-INSTANCES-HELP": "Det er ingen prosesser som kjører nå. Når prosessene er fullført kan du finne dem ved å bruke filteret for prosesslisten. For å gå videre med noe nytt kan du:",
+      "NO-INSTANCES-HELP-START": "Start en ny prosess og spor fremdriften",
+      "NO-TASKS": "Det finnes ingen aktive oppgaver for øyeblikket ...",
+      "NO-COMPLETED-TASKS": "Ingen oppgaver er fullført enda ...",
+      "NO-BUSINESS-KEY": "Ingen forretningsnøkkel",
+      "CATEGORY": "Kategori: {{processDefinitionCategory}}",
+      "NEW-COMMENT-PLACEHOLDER": "Skriv en kommentar for å legge til i denne prosessen",
+      "COMMENT-HEADER": "Lagt til av {{createdBy | username}}, {{created | dateformat:\"fromNow\"}}",
+      "SELECT-DEFINITION": "Velg en prosess fra listen under for å starte",
+      "NO-PROCESS-DEFINITIONS": "Du kan ikke starte en prosess da det ikke er noen prosessdefinisjoner tilgjengelig",
+      "START-PROCESS": "Start Prosess",
+      "STARTED-BY": "Startet av {{username}}",
+      "NO-PROCESS-DEFINITION-SELECTED-HELP": "Velg en prosessdefinisjon",
+      "NO-SUCH-PROCESS-HELP": "Prosessen du leter etter ble ikke funnet! Hvis du vil, kan du i stedet:",
+      "NO-SUCH-PROCESS-RETURN-TO-LIST": "Gå tilbake til prosesslisten"
+    },
+    "HELP": {
+      "ADD-FIRST-COMMENT": "Legg til en kommentar til deg selv eller for andre involverte"
+    },
+    "ACTION": {
+      "CREATE": "Start prosess",
+      "BACK-TO-LIST": "Tilbake til prosesstilfeller",
+      "SHOW-DIAGRAM": "Vis diagram",
+      "CANCEL": "Avbryt prosess",
+      "DELETE": "Slett prosess",
+      "ADD-COMMENT": "+ Legg til kommentar",
+      "ADD-COMMENT-CONFIRM": "Legg til kommentar",
+      "AUDIT-LOG": "Revisjonslogg",
+      "SEARCH-PLACEHOLDER": "Søk",
+      "ZOOMIN": "Zoom inn",
+      "ZOOMOUT": "Zoom ut"
+    },
+    "FIELD": {
+      "BUSINESS-KEY": "Forretningsnøkkel",
+      "CATEGORY": "Kategori",
+      "PROCESS-DEFINITION": "Prosessdefinisjon",
+      "STARTED": "Startet",
+      "STARTED-BY": "Startet av",
+      "ENDED": "Avsluttet",
+      "NAME": "Navn på prosesstilfelle",
+      "NAME-PLACEHOLDER": "Angi et valgfritt navn for prosessen som skal startes"
+    },
+    "SECTION": {
+      "ACTIVE-TASKS": "Aktive oppgaver",
+      "START-FORM": "Start skjema",
+      "COMPLETED-TASKS": "Fullførte oppgaver",
+      "COMPLETED-DECISION-TASKS": "Utførte beslutningstabeller   ",
+      "COMMENTS": "Kommentarer",
+      "CONTENT": "Innhold"
+    },
+    "POPUP": {
+      "CANCEL-TITLE": "Avbryt prosessen?",
+      "CANCEL-DESCRIPTION": "Er du sikker på at du vil avbryte prosess {{name}}?",
+      "DELETE-TITLE": "Slett prosessen?",
+      "DELETE-DESCRIPTION": "Er du sikker på at du vil slette prosess {{name}}? Alle oppgaver, innhold og kommentarer relatert til denne prosessen vil bli slettet permanent."
+    },
+    "DECISION": {
+      "TABLE": {
+        "HEADER": "Beslutningstabell \"{{name}}\"",
+        "HIT-POLICY": "Treffregel",
+        "HIT-POLICIES": {
+          "FIRST": "Første (én passering)",
+          "ANY": "Alle (én passering)"
+        },
+        "TOOLTIP": {
+          "INPUT-EXCEPTION": "Det oppstod et unntak under testing av om uttrykket samsvarte med inndataverdien: {{error}}",
+          "INPUT-MATCH": "Inndataverdien samsvarte med uttrykket.",
+          "INPUT-EMPTYEXPRESSION": "Tomme uttrykk behandles som samsvar.",
+          "INPUT-NOMATCH": "Inndataverdien samsvarte ikke med uttrykket.",
+          "INPUT-NOTEXECUTED": "Uttrykket ble aldri testet.",
+          "OUTPUT-EXCEPTION": "Det oppstod et unntak ved valg av verdi med uttrykket: \n {{expression}}.\nError message: {{error}}",
+          "OUTPUT-RESULT": "Verdien ble angitt ved å bruke følgende uttrykk: \n {{expression}}",
+          "OUTPUT-NOTEXECUTED": "Følgende uttrykk ble aldri utført: \n {{expression}}",
+          "OUTPUT-NOEXPRESSION": "Det ble ikke definert noe uttrykk for denne cellen"
+        },
+        "INPUT-VARIABLE": "Betingelse",
+        "OUTPUT-VARIABLE": "Resultat",
+        "INPUT-VARIABLES": "Inndataverdier",
+        "NO-INPUT-VARIABLES": "Det fantes ingen inndataverdier da beslutningstabellen ble utført",
+        "OUTPUT-VARIABLES": "Kalkulerte verdier",
+        "NO-OUTPUT-VARIABLES": "Ingen kalkulerte verdier ble produsert fra beslutningstabellene",
+        "METADATA-NAME": "Navn",
+        "METADATA-VALUE": "Verdi",
+        "LOAD-ERROR": "Noe gikk galt under henting av beslutningstabell og revisjonsspor for utførelse '{{executionId}}' av aktivitet '{{activityId}}'."
+      }
+    }
+  },
+  "INVOLVE-PEOPLE": {
+    "NO-MATCHING-RESULTS": "Bruk søkefeltet ovenfor for å finne brukere eller ",
+    "NO-MATCHING-RESULTS-NO-EMAIL": "Bruk søkefeltet ovenfor for å finne brukere",
+    "SEARCH-PLACEHOLDER": "Søk etter bruker",
+    "USE-EMAIL": "velg noen ved hjelp av en e-postadresse",
+    "ASSIGN-YOURSELF-LEAD": "eller",
+    "ASSIGN-YOURSELF": "tilordne deg selv",
+    "SELECT-YOURSELF-LEAD": "eller",
+    "SELECT-YOURSELF": "velg deg selv",
+    "EMAIL-PLACEHOLDER": "Angi en e-postadresse",
+    "EMAIL-HELP": "Trykk på Enter eller trykk på knappen for å fortsette. Denne personen vil varslet via e-post, eller invitert til å registrere seg",
+    "BACK-TO-SEARCH": "Tilbake til søk",
+    "ACTION-SELECT": "Velg"
+  },
+  "INTEGRATION": {
+    "GENERIC": {
+      "MESSAGE": {
+        "FILTER": "Filter",
+        "SEARCHING": "Søker",
+        "NO_MATCHING_RESULTS_FOUND": "Fant ingen matchende resultater."
+      }
+    },
+    "ALFRESCO": {
+      "MESSAGE": {
+        "SELECT-FOLDER-DESCRIPTION": "Velg en mappe fra Alfresco-kontoen din",
+        "SELECT-FOLDER": "Velg mappe",
+        "CHOOSE-NETWORK": "Velg nettverk",
+        "NETWORK": "Nettverk",
+        "CHOOSE-SITE": "Velg område",
+        "NO-CONTENT": "Ikke noe innhold i denne mappen"
+      }
+    },
+    "BOX": {
+      "MESSAGE": {
+        "ACCOUNT_NAME": "Box",
+        "FILTER": "Filter",
+        "SEARCHING": "Søker",
+        "NO-CONTENT": "Fant ingen matchende resultater.",
+        "SELECT-FOLDER-DESCRIPTION": "Velg en mappe fra Box-kontoen din",
+        "SELECT-FILE-DESCRIPTION": "Velg en fil fra Box-kontoen din",
+        "SELECT-FOLDER": "Velg mappe"
+      }
+    },
+    "ALFRESCO-CLOUD": {
+      "TITLE": {
+        "BROWSE-CLOUD": "Bla i Alfresco Content Services in the Cloud",
+        "BROWSE-ON-PREM": "Bla gjennom {{name}}"
+      },
+      "MESSAGE": {
+        "ON-PREM-BROWSE": "Velg en fil som skal importeres fra {{name}}",
+        "CLOUD-BROWSE": "Velg en fil som skal importeres fra Alfresco Content Services in the Cloud-kontoen din"
+      }
+    },
+    "GOOGLE": {
+      "MESSAGE": {
+        "TITLE": "Google Disk",
+        "FILTER": "Filter",
+        "SEARCHING": "Søker",
+        "NO-CONTENT": "Fant ingen matchende resultater",
+        "SELECT-FILE-DESCRIPTION": "Vel en fil fra Google Disk-kontoen din",
+        "SELECT-FOLDER-DESCRIPTION": "Vel en mappe fra din Google Disk-kontoen din"
+      }
+    },
+    "ALERT": {
+      "ALFRESCO-CLOUD-NOT-AUTHORIZED": "Tilgangen til Alfresco Content Services in the Cloud har utløpt. Angi brukernavn og passord på nytt.",
+      "GOOGLE-DRIVE-NOT-AUTHORIZED": "Tilgangen til Google Disk har utløpt. Angi brukernavn og passord på nytt.",
+      "ALFRESCO-ERROR": "Det oppstod en feil under tilkobling til Alfresco",
+      "BOX-ERROR": "Det oppstod en feil under tilkobling til Box",
+      "GOOGLE-DRIVE-ERROR": "Det oppstod en feil under tilkobling til Google Disk"
+    }
+  },
+  "CONTENT": {
+    "SIMPLE-TYPE": {
+      "WORD": "Dokument",
+      "EXCEL": "Regneark",
+      "PDF": "PDF-Dokument",
+      "IMAGE": "Bilde",
+      "FOLDER": "Mappe",
+      "CONTENT": "Innhold"
+    },
+    "MESSAGE": {
+      "NO-PREVIEW-AVAILABLE": "Ingen forhåndsvisning tilgjengelig",
+      "PREVIEW-PENDING": "Oppretter forhåndsvisning ...",
+      "CONTENT-PENDING": "Henter innhold ...",
+      "NOT-FOUND": "Innholdet ble ikke funnet",
+      "DELETE-CONFIRMATION": "Er du sikker på at du vil slette {{name}}?",
+      "DROP": "Slipp eller ",
+      "SELECT": "Velg en fil",
+      "DRAGOVER": "Slipp en fil for å laste opp",
+      "EXTERNAL-ONLY": "Velg kilden til innhold",
+      "NO-EXTERNAL-SOURCE": "Ingen eksterne kilder tilgjengelig"
+    },
+    "TITLE": {
+      "DELETE": "Slett innhold",
+      "NOT-FOUND": "Fil Ikke Funnet"
+    },
+    "ACTION": {
+      "OPEN-IN-GOOGLE-DRIVE": "Åpne i Google Disk",
+      "OPEN-IN-ALFRESCO-CLOUD": "Åpne i Alfresco Content Services in the Cloud",
+      "OPEN-IN-ALFRESCO": "Åpne i Alfresco",
+      "OPEN-IN-BOX": "Åpne i Box"
+    }
+  },
+  "FORM": {
+    "ACTION": {
+      "SAVE": "Lagre"
+    },
+    "DEFAULT-OUTCOME": {
+      "COMPLETE": "Fullfør",
+      "START-PROCESS": "Start prosess"
+    },
+    "MESSAGE": {
+      "SELECT-PERSON": "Ingen person er valgt ...",
+      "SELECT-GROUP": "Ingen gruppe er valgt ...",
+      "EMPTY": "(tom)"
+    },
+    "FIELD-PREVIEW": {
+      "DISPLAY-REF": "Visningsverdi",
+      "SELECT-FIELD": "(Ingen felter er valgt)",
+      "FIELD-VALUE": "Vis verdien til feltet \"{{name}}\"",
+      "UNKNOWN-TYPE": "Ukjent felttype {{type}}",
+      "TEXT-VALUE": "Tekst",
+      "MULTI-TEXT-VALUE": "Flerlinjetekst",
+      "NUMBER-VALUE": "123",
+      "DATE-VALUE": "Dato",
+      "DATETIME-VALUE": "Dato og tidspunkt",
+      "DROPDOWN-VALUE": "Velg ...",
+      "UPLOAD-VALUE": "Last opp eller importer innhold ...",
+      "RADIOS-OPTION1": "Alternativ 1"
+    }
+  },
+  "APP-DEFINITION": {
+    "MESSAGE": {
+      "NOT-FOUND": "Ingen app-definisjon funnet med den gitte ID-en",
+      "MISSING": "Alfresco Process Services kjører i integrasjonsmodus, men den etterspurte app-definisjonen mangler"
+    }
+  },
+  "APP": {
+    "KICKSTART": {
+      "TITLE": "Appdesigner",
+      "TITLE-PROCESSES": "Prosessmodeller",
+      "TITLE-FORMS": "Skjemamodeller",
+      "TITLE-APPS": "Appmodeller",
+      "TITLE-STENCILS": "Stensiler",
+      "TITLE-DECISION-TABLES": "Beslutningstabeller",
+      "TITLE-DATA-MODELS": "Datamodeller"
+    },
+    "ADMINISTRATOR": {
+      "TITLE": "Admin app"
+    },
+    "TASKS": {
+      "TITLE": "Oppgaveapp",
+      "TITLE-TASKS": "Oppgaver",
+      "TITLE-PROCESSES": "Prosesser",
+      "TITLE-PROCESSES?MODE=START": "Start"
+    },
+    "IDENTITY-MANAGEMENT": {
+      "TITLE": "Profil",
+      "TITLE-TENANT-ADMIN": "Identitetsbehandling",
+      "TITLE-TENANT-ADMIN-TENANT-MGMT": "Leietakere",
+      "TITLE-TENANT-ADMIN-USER-MGMT": "Brukere",
+      "TITLE-TENANT-ADMIN-SYSTEM-GROUP-MGMT": "Kapasiteter",
+      "TITLE-TENANT-ADMIN-FUNCTIONAL-GROUP-MGMT": "Organisasjon",
+      "TITLE-TENANT-ADMIN-PROFILE": "Profil",
+      "TITLE-PROFILE": "Profil"
+    },
+    "ANALYTICS": {
+      "TITLE": "Analyseapp"
+    },
+    "CUSTOM-APP": {
+      "TITLE-TASKS": "{{name}} oppgaver",
+      "TITLE-PROCESSES": "{{name}} prosesser",
+      "TITLE-PROCESSES?MODE=START": "{{name}} start"
+    },
+    "TITLE": {
+      "ERROR": "Feil"
+    }
+  },
+  "REPORTING": {
+    "NO-REPORTS": "Du kan få alle typer viktig rapporter om dine prosesser ved å hjelpe til å identifisere flaskehalser eller ytelsesforbedringer.",
+    "GENERATE-REPORTS": "Legg til noen standard rapporter nå.",
+    "NO-REPORT-SELECTED": "Ingen rapporter valgt. Velg en rapport fra listen til venstre",
+    "NO-DATA-FOUND": "Fant ingen data",
+    "CONFIG-REPORTS": "Konfigurer rapporter med analyseappen",
+    "FETCHING-PROC-DEFS": "Henter prosessdefinisjoner ...",
+    "GENERATING": "Genererer rapport ...",
+    "SAVE-REPORT": "Lagre denne rapporten",
+    "EXPORT-REPORT": "Eksporter data",
+    "SHOW": "Klikk for å vise",
+    "HIDE": "Klikk for å skjule igjen",
+    "FILL-PARAMS": "Ingen rapportdata funnet. Fyll inn parameterne for å generere rapporten",
+    "PROCESS-STATUS": "Prosesstatus",
+    "TASK-STATUS": "Oppgavestatus",
+    "STATUS": {
+      "ACTIVE": "Aktiv",
+      "ALL": "Alle",
+      "COMPLETE": "Fullfør"
+    },
+    "PARAMETER-WIDGETS": {
+      "NO-TASKS": "Ingen fullførte oppgaver funnet for gjeldene prosessdefinisjon",
+      "DATE-RANGE": {
+        "TODAY": "I dag",
+        "YESTERDAY": "I går",
+        "LAST-7-DAYS": "Siste 7 dager",
+        "PREVIOUS-MONTH": "Forrige måned",
+        "CURRENT-YEAR": "Gjeldene år",
+        "CUSTOM-RANGE": "Tilpasset verdiområde",
+        "APPLY": "Bruk",
+        "CANCEL": "Avbryt",
+        "FROM": "Fra",
+        "TO": "Til"
+      },
+      "DATE-INTERVAL-OPTIONS": {
+        "HOUR": "Etter time",
+        "DAY": "Etter dag",
+        "WEEK": "Etter uke",
+        "MONTH": "Etter måned",
+        "YEAR": "Etter år"
+      },
+      "DURATION": {
+        "SECONDS": "Sekunder",
+        "MINUTES": "Minutter",
+        "HOURS": "Timer",
+        "DAYS": "Dager"
+      }
+    },
+    "DEFAULT-REPORTS": {
+      "TASK-OVERVIEW": {
+        "PROCESS-DEFINITION": "Prosessdefinisjon",
+        "DATE-RANGE": "Datointervall",
+        "DATE-RANGE-INTERVAL": "Samle datoer etter",
+        "TASK-COUNT-TITLE": "Antall oppgaver",
+        "TASK-COUNT-DESCRIPTION": "Dette diagrammet viser totalt antall oppgaver i den angitte datointervallen",
+        "TASK-DURATIONS-TITLE": "Oppgavevarighet",
+        "TASK-DURATIONS-DESCRIPTION": "Denne listen viser gjennomsnittlig, minimum og maksimal varighet (i timer) av den fullførte oppgaven i den angitte datointervallen. X-aksen viser radnummer for oppgaven i den detaljerte tabellen nedenfor.",
+        "TASK-COUNT-BY-ASSIGNEE-TITLE": "Antall oppgaver, etter tilordnet",
+        "TASK-COUNT-BY-ASSIGNEE-DESCRIPTION": "Dette kakediagrammet viser antall aktiviteter for den valgte prosessdefinisjonen, etter hver tilordnet",
+        "DETAILED-TASK-STATS-TITLE": "Detaljert oppgavestatistikk",
+        "DETAILED-TASK-STATS-DESCRIPTION": "Denne tabellen viser samlet statistikk for alle oppgavene. Klikk på en vilkårlig oppgave for å se mer detaljert informasjon. All tidsinformasjon er uttrykt i timer.",
+        "DETAILED-TASK-STATS-TASK": "Oppgave",
+        "DETAILED-TASK-STATS-ASSIGNEE": "Tilordnet",
+        "TASK-HISTOGRAM-TITLE": "Antall oppgaver fordelt etter datointervall",
+        "TASK-HISTOGRAM-TABLE": "Tabell: tidligere diagramdata i tabellformat",
+        "TASK-HISTOGRAM-TABLE-DATE": "Dato",
+        "COUNT": "Antall",
+        "SUM": "Sum",
+        "MIN-DURATION": "Min. varighet",
+        "MAX-DURATION": "Maks. varighet",
+        "AVERAGE": "Gjennomsnitt",
+        "STDDEV": "Standardavvik"
+      },
+      "PROCESS-INSTANCES-OVERVIEW": {
+        "PROCESS-DEFINITION": "Prosessdefinisjon",
+        "DATE-RANGE": "Datointervall",
+        "SLOW-PROC-INST-NUMBER": "Hvor mange av de tregeste prosesstilfellene skal bli vist?",
+        "HISTOGRAM-TITLE": "Antall prosesstilfeller",
+        "HISTOGRAM-DESCRIPTION": "Følgende diagram viser antall prosesstilfeller som er starter og fullført innen den valgte datointervallen",
+        "ACTIVITY-DURATION-TABLE-TITLE": "Aktivitetvarighetsdetaljer",
+        "ACTIVITY-DURATION-TABLE-DESCRIPTION": "Følgende tabell viser, ordnet etter samlet total tid, tidsberegningen på de ulike aktivitetene i prosessen. All tidsinformasjon er uttrykt i timer.",
+        "ACTIVITY-DURATION-TABLE-ACTIVITY": "Aktivitet",
+        "ACTIVITY-DURATION-CHART-TITLE": "Prosesstrinn, total tid",
+        "ACTIVITY-DURATION-CHART-DESCRIPTION": "Diagrammet viser i hvilke aktiviteter ble brukt tid. Tallene er summen av all varighet for den spesifikke aktiviteten som vist i tabellen nedenfor.",
+        "SLOWEST-PROCESS-INSTANCES-TITLE": "Tregeste prosesstilfelle",
+        "SLOWEST-PROCESS-INSTANCES-DESCRIPTION": "Tabellen viser det tregeste prosesstilfellet som ble fullført i den konfigurerte datointervallen. Klikk på en oppføring for å se prosessvariabler for det spesifikke prosesstilfellet",
+        "SLOWEST-PROCESS-INSTANCES-ACTIVITI-DURATION": "Varighet",
+        "SLOWEST-PROCESS-INSTANCES-ID": "Intern ID",
+        "SLOWEST-PROCESS-INSTANCES-BUSINESS-KEY": "Forretningsnøkkel",
+        "SLOWEST-PROCESS-INSTANCES-CREATE-TIME": "Opprettelsestid",
+        "SLOWEST-PROCESS-INSTANCES-END-TIME": "Sluttid",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLES": "Variabler",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-NAME": "variabelnavn",
+        "SLOWEST-PROCESS-INSTANCES-VARIABLE-VALUE": "Variabelverdi",
+        "COUNT": "Antall",
+        "SUM": "Sum",
+        "MIN-DURATION": "Min. varighet",
+        "MAX-DURATION": "Maks. varighet",
+        "AVERAGE": "Gjennomsnitt",
+        "STDDEV": "Standardavvik"
+      },
+      "TASK-SLA": {
+        "PROCESS-DEFINITION": "Prosessdefinisjon",
+        "TASK": "Oppgave",
+        "DATE-RANGE": "Datointervall",
+        "SLA-DURATION": "Innen hvilken tid må denne oppgaven fullføres for å være innenfor SLA?",
+        "SLA-NOT-OK": "Serviceavtale OK kontra Ikke OK",
+        "ASSIGNEE-TABLE": "Tilordnede som ikke fullførte oppgaven innenfor SLA-grensene",
+        "ASSIGNEE": "Tilordnet",
+        "COUNT": "Antall"
+      },
+      "PROCESS-DEFINITION-OVERVIEW": {
+        "GENERAL-TABLE-TOTAL-PROCESS-DEFINITIONS": "Totalt antall prosessdefinisjoner: ",
+        "GENERAL-TABLE-TOTAL-PROCESS-INSTANCES": "Totalt antall prosesstilfeller: ",
+        "GENERAL-TABLE-ACTIVE-PROCESS-INSTANCES": "Totalt antall aktive prosesstilfeller: ",
+        "GENERAL-TABLE-COMPLETED-PROCESS-INSTANCES": "Totalt antall fullførte prosesstilfeller: ",
+        "DETAIL-TABLE": "Prosessdefinisjonsdetaljer",
+        "DETAIL-TABLE-PROCESS": "Prosessdefinisjon",
+        "DETAIL-TABLE-TOTAL": "Total",
+        "DETAIL-TABLE-ACTIVE": "Aktiv",
+        "DETAIL-TABLE-COMPLETED": "Fullført",
+        "PROC-INST-CHART-TITLE": "Total prosesstilfelleoversikt",
+        "DURATIONS-CHART-TITLE": "Gjennomsnittlig tidsberegning for hver prosessdefinisjon",
+        "DURATIONS-CHART-DESCRIPTION": "Gjennomsnittlig varighet (og standardavvik) av fullførte prosesstilfeller, i antall timer. X-aksenummeret korresponderer med oppføringen i tabellen ovenfor."
+      },
+      "PROCESS-HEAT-MAP": {
+        "TITLE": "Prosess tilgangsfrekvens",
+        "TYPE-FILTERING": "Inkludere alle prosesstrinn (Fjerning av denne medfører fjerning av trinn som starthendelser, gatewayer osv.)?",
+        "METRIC-TOTAL-COUNT": "Antall ganger et trinn har blitt utført",
+        "METRIC-TOTAL-TIME": "Total tid brukt i et prosesstrinn",
+        "METRIC-AVG-TIME": "Gjennomsnittlig tid brukt i et prosesstrinn",
+        "METRIC-TOTAL-COUNT-TOOLTIP": "ganger",
+        "METRIC-TOTAL-TIME-TOOLTIP": "timer",
+        "METRIC-AVERAGE-TIME-TOOLTIP": "timer",
+        "GENERATING": "Genererer prosess-varmekart ..."
+      }
+    },
+    "MODAL": {
+      "SAVE-REPORT": {
+        "TITLE": "Lagre rapport",
+        "DESCRIPTION": "De nåværende parameterinnstillingene vil bli lagret, og en ny rapport vil bli vist i rapportlisten. Når man klikker på den bestemte rapporten, vil rapporten bli generert ved å bruke disse lagrede parameterverdiene.",
+        "NAME": "Navn"
+      },
+      "EXPORT-REPORT": {
+        "TITLE": "Eksporter data",
+        "NAME": "Navn"
+      },
+      "DELETE-REPORT": {
+        "TITLE": "Slett rapport",
+        "DESCRIPTION": "Er du sikker på at du vil slette denne rapporten?",
+        "CONFIRM": "Slett rapport"
+      }
+    }
+  }
+}

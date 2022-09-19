@@ -1,0 +1,266 @@
+<div class="row column-page">
+
+    <div class="col-xs-1 column-page-aside" ng-class="{ 'column-page-aside-narrow': !model.filter.expanded, 'column-page-aside-wide': model.filter.expanded }">
+        <div ng-if="!model.filter.expanded" class="column-full-height">
+            <div class="column-header">
+                <div>
+                    <a ng-click="createNewFilter()" class="column-header-action"><span class="glyphicon glyphicon-filter"></span> {{'COMMON.FILTER.NEW-FILTER' | translate}}</a>
+                </div>
+            </div>
+
+            <ul style="padding-top: 40px" ng-if="!model.filter.expanded && model.filters.length > 0" column-list-scroll dnd-list="model.filters" dnd-allowed-types="['filter']" class="column-list column-list--icons">
+                <li ng-repeat="filter in model.filters" dnd-draggable="filter" dnd-moved="orderFilterlist($index);" dnd-type="'filter'" ng-click="selectFilter(filter, !model.filter.taskId);" class="column-list-item noselect" ng-class="{'active' : !model.filter.taskId && filter.id == model.filter.selected.id}">
+                    <span class="glyphicon {{filter.icon}}" aria-hidden="true"></span>
+                    <a ng-if="!model.filter.taskId && filter.id == model.filter.selected.id"
+                       class="column-list-item-action"
+                       ng-click="editFilter();$event.stopPropagation();">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                    <div class="column-list-item-title">{{filter.name}}</div>
+                </li>
+            </ul>
+        </div>
+
+        <div ng-if="model.filter.expanded" class="column-container-scroll">
+            <div class="column-header">
+                <div class="column-header-form" custom-keys escape-pressed="collapseFilter();">
+                    <a ng-click="collapseFilter()" class="column-header-form-close"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4 ng-if="!model.filter.editName">
+                        <span ng-click="toggleChangeIcon('filterIconsHeader')" class="glyphicon {{model.filter.edit.icon}}"></span>
+                        <span ng-click="toggleChangeName()" class="ng-binding">{{ model.filter.edit.name || ('COMMON.FILTER.NEW-FILTER-NAME' | translate) }}</span>
+                    </h4>
+
+                    <div ng-if="model.filterIconsHeader.expanded">
+                        <div class="icon-grid">
+                            <div class="icon-grid-item" ng-repeat="icon in filtered = icons | startFrom:(currentIconPage-1)*iconPageSize | limitTo:iconPageSize" ng-class="{'active': icon == model.filter.edit.icon}" ng-click="selectIcon(icon); $hide();">
+                                <i class="glyphicon {{icon}}"></i>
+                            </div>
+                        </div>
+                        <pager total-items="icons.length" ng-model="currentIconPage" items-per-page="iconPageSize"></pager>
+                        <hr/>
+                    </div>
+
+                    <h4 ng-if="model.filter.editName">
+                    	<span class="form-group" >
+                            <input auto-focus="model.filter.editName"
+                                   custom-keys
+                                   escape-pressed="model.filter.edit.name = model.filter.previousName; toggleChangeName(); $event.stopPropagation();"
+                                   enter-pressed="toggleChangeName(); $event.stopPropagation();"
+                                   ng-blur="toggleChangeName()"
+                                   placeholder="{{'TASK.FILTER.FILTER-NAME-PLACEHOLDER' | translate}}"
+                                   class="form-control" type="text" ng-model="model.filter.edit.name">
+                        </span>
+                        <hr/>
+                    </h4>
+
+                    <div class="form-group">
+                        <label translate="TASK.FILTER.PROCESS-DEFINITION"></label>
+                        <select class="form-control"
+                                auto-focus="model.filter.expanded"
+                                ng-options="option.key as option.name for option in model.processDefinitions"
+                                ng-model="model.filter.edit.filter.processDefinitionKey"
+                                ng-change="filterChanged()"
+                                ng-disabled="model.loading">
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label translate="TASK.FILTER.STATE"></label>
+                        <div class="selection toggle">
+                            <div class="toggle-2" ng-repeat="option in model.stateFilterOptions" ng-class="{'active' : model.filter.edit.filter.state == option.id}">
+                                <button class="btn btn-xs"
+                                        ng-click="model.filter.edit.filter.state = option.id;filterChanged();">{{option.title | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label translate="TASK.FILTER.ASSIGNMENT"></label>
+                        <select class="form-control"
+                                ng-options="option.id as option.title for option in model.assignmentOptions"
+                                ng-model="model.filter.edit.filter.assignment"
+                                ng-change="filterChanged()"
+                                ng-disabled="model.loading">
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label translate="TASK.FILTER.SORT"></label>
+                        <select class="form-control"
+                                ng-options="option.id as option.title for option in model.sorts"
+                                ng-model="model.filter.edit.filter.sort"
+                                ng-change="filterChanged()"
+                                ng-disabled="model.loading">
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label translate="TASK.FILTER.TASK-NAME"></label>
+                        <input class="form-control" type="text" placeholder="{{'TASK.FILTER.TEXT-PLACEHOLDER' | translate}}"
+                               ng-change="filterChanged()"
+                               ng-debounce="400"
+                               ng-model="model.filter.edit.filter.name">
+                    </div>
+
+                    <div ng-if="model.filter.edit.id" class="column-header-form-buttons">
+                        <button class="activiti-btn" ng-click="resetFilter();" translate="COMMON.FILTER.RESET"></button>
+                    </div>
+
+                    <hr/>
+
+                    <p ng-if="!model.filter.edit.id">
+                        <small translate="COMMON.FILTER.SAVE-HINT"></small>
+                    </p>
+
+                    <div class="form-group">
+                        <label translate="COMMON.FILTER.FILTER-ICON-AND-NAME"></label>
+                        <div class="form-control-icon">
+                            <span ng-click="toggleChangeIcon('filterIconsFooter')" class="glyphicon {{model.filter.edit.icon}}"></span>
+                            <input custom-keys
+                                   enter-pressed="toggleChangeName(); $event.stopPropagation();"
+                                   placeholder="{{'TASK.FILTER.FILTER-NAME-PLACEHOLDER' | translate}}"
+                                   class="form-control" type="text" ng-model="model.filter.edit.name">
+                        </div>
+                    </div>
+                    <div ng-if="model.filterIconsFooter.expanded">
+                        <div class="icon-grid">
+                            <div class="icon-grid-item" ng-repeat="icon in filtered = icons | startFrom:(currentIconPage-1)*iconPageSize | limitTo:iconPageSize" ng-class="{'active': icon == model.filter.edit.icon}" ng-click="selectIcon(icon); $hide();">
+                                <i class="glyphicon {{icon}}"></i>
+                            </div>
+                        </div>
+                        <pager total-items="icons.length" ng-model="currentIconPage" items-per-page="iconPageSize"></pager>
+                        <hr/>
+                    </div>
+
+                    <div class="column-header-form-buttons">
+                        <button class="activiti-btn activiti-btn-primary" ng-click="saveFilter(model.filter.edit);collapseFilter();" ng-disabled="!model.filter.edit.name || model.filter.edit.name.length === 0 || readOnly">
+                            <span class="glyphicon glyphicon-save"></span><span translate="COMMON.FILTER.SAVE"></span>
+                        </button>
+                        <button ng-if="model.filter.edit.id" class="activiti-btn activiti-btn-danger" ng-click="deleteFilter(model.filter.edit);collapseFilter();" ng-disabled="model.filters.length === 1 || readOnly || readOnly" translate="COMMON.FILTER.DELETE"></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-11 column-page-body" ng-class="{ 'column-page-body-wide': !model.filter.expanded, 'column-page-body-narrow': model.filter.expanded }">
+        <div class="row">
+            <div ng-if="model.createTask.expanded" class="col-xs-3 column-page-body-column column-container-scroll">
+                <div class="column-header">
+                    <div class="column-header-form">
+
+                        <a ng-click="collapseTaskForm()" class="column-header-form-close"><span class="glyphicon glyphicon-remove"></span></a>
+                        <h4><span translate="TASK.TITLE.CREATE-NEW"></span></h4>
+
+                        <div class="form-group">
+                            <label translate="TASK.FIELD.NAME"></label>
+                            <input type="text" class="form-control" maxlength="255"
+                                   ng-model="newTask.name"
+                                   ng-placeholder="Name"
+                                   auto-focus
+                                   select-text="newTask.name"
+                                   ng-disabled="newTask.loading"
+                                   custom-keys enter-pressed="confirmTaskCreation()">
+                        </div>
+                        <div class="form-group">
+                            <label translate="TASK.FIELD.DESCRIPTION"></label>
+                            <textarea class="form-control" rows="3" id="add-comment-input" ng-model="newTask.description" ng-disabled="newTask.loading"></textarea>
+                        </div>
+
+                        <div class="column-header-form-buttons">
+                            <div class="btn-group">
+                                <button class="activiti-btn activiti-btn-primary" ng-click="confirmTaskCreation();" ng-disabled="!newTask.name || newTask.name.length == 0 || newTask.loading || readOnly" translate="TASK.ACTION.CREATE-CONFIRM" ></button>
+                            </div>
+                        </div>
+
+                        <div loading="newTask.loading"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div ng-if="!model.createTask.expanded" class="col-xs-3 column-page-body-column">
+                <div class="column-header" ng-class="{ 'column-header-fixed': model.tasks.length > 0 }">
+                    <div ng-if="!model.filter.expanded">
+                        <span class="workflow-tasks-search" ng-class="{ 'workflow-tasks-search-active': model.filterSearchTerm.expanded }">
+                            <span style="position: relative;">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <input type="text" placeholder="{{'TASK.FILTER.SEARCH-PLACEHOLDER' | translate}}" class="form-control workflow-tasks-search-input"
+                                       ng-class="{ 'workflow-tasks-search-input-active': model.filterSearchTerm.expanded }"
+                                       ng-model="model.filter.edit.filter.name"
+                                       ng-change="filterChanged()"
+                               		   ng-debounce="400"
+                                       ng-focus="model.filterSearchTerm.expanded = true"
+                                       ng-blur="model.filterSearchTerm.expanded = false">
+                            </span>
+                        </span>
+
+                        <a ng-show="!readOnly" class="column-header-action workflow-tasks-create-task" ng-class="{ 'workflow-tasks-create-task-inactive': model.filterSearchTerm.expanded }" ng-click="createTask()">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span translate="TASK.FILTER.CREATE-TASK"></span>
+                        </a>
+                    </div>
+                    <div ng-if="model.filter.expanded">
+                        <span class="column-header-text" translate="COMMON.FILTER.SEARCH-RESULTS"></span>
+                    </div>
+                    <div ng-if="!model.filter.expanded" class="column-sub-header">
+                        <a data-toggle="dropdown" class="column-sub-header-action" ng-click="">{{(model.sorts | filter:{ id: model.filter.edit.filter.sort })[0].title}} <span class="glyphicon {{(model.sorts | filter:{ id: model.filter.edit.filter.sort })[0].icon}}"></span></a>
+                        <ul class="dropdown-menu pull-center">
+                            <li ng-repeat="option in model.sorts">
+                                <a ng-click="model.filter.edit.filter.sort = option.id; filterChanged();" ng-bind="option.title"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div loading="model.filter.loading"></div>
+
+                <ul ng-if="model.tasks.length > 0" column-list-scroll
+                    class="column-list column-list--summary">
+                    <li class="column-list-scroll-push"></li>
+                    <li ng-repeat="task in model.tasks" ng-class="{'active': selectedTask.id == task.id}"  ng-click="selectTask(task)">
+                        <div>
+                            <div class="title">
+                                {{task.name && task.name || ('TASK.MESSAGE.NO-NAME' | translate)}}
+                            </div>
+                            <div if="task.description" class="summary">
+                                {{task.description}}
+                            </div>
+                            <div class="detail">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                <span  ng-if="task.dueDate">
+                                    {{(task.dueDate | dateformat:'fromNow')}}
+                                </span>
+                                <span ng-if="!task.dueDate">
+                                    Created {{(task.created | dateformat:'fromNow')}}
+                                </span>
+                            </div>
+                            <div class="detail">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span ng-if="task.assignee.id">
+                                    {{task.assignee.firstName}} {{task.assignee.lastName}}
+                                </span>
+                                <span ng-if="!task.assignee.id" translate="TASK.MESSAGE.NO-ASSIGNEE">
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="column-list-more" ng-if="model.hasNextPage && !model.filter.loading" ng-click="nextPage()">
+                        {{'GENERAL.ACTION.SHOW-MORE' | translate}} <span class="glyphicon glyphicon-forward"></span>
+                    </li>
+                </ul>
+                <div class="column-list-empty" ng-if="!model.filter.loading && model.tasks.length === 0">
+                    <span ng-if="!model.filter.taskId" translate="TASK.MESSAGE.NO-TASKS"></span>
+                    <span ng-if="model.filter.taskId" translate="TASK.FILTER.NO-SINGLE-TASK" translate-values="{id: model.filter.taskId}"></span>
+                </div>
+            </div>
+
+            <div class="col-xs-9 column-page-body-column-large">
+                <div class="column-full-height" ng-if="!missingAppdefinition && model.tasks.length > 0" ng-include="appResourceRoot + 'views/task-detail.html'"></div>
+                <div class="column-full-height" ng-if="!missingAppdefinition && model.tasks.length === 0 && !model.filter.loading" ng-include="appResourceRoot + 'views/no-tasks-help.html'"></div>
+                <div class="column-full-height" ng-if="missingAppdefinition" ng-include="appResourceRoot + 'views/integration-mode-error.html'"></div>
+            </div>
+
+        </div>
+    </div>
+</div>

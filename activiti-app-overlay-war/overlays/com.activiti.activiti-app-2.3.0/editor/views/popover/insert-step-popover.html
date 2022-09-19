@@ -1,0 +1,44 @@
+<div class="popover step-center" click-anywhere="$hide()" ignore-class="step-placeholder" auto-scroll>
+    <div class="arrow"></div>
+    <div class="popover-header">
+        <span class="title" translate="PROCESS-BUILDER.TITLE.ADD-STEP"></span>
+
+        <div class="actions">
+            <a ng-click="$hide()">
+                {{'GENERAL.ACTION.CLOSE' | translate}}</a>
+        </div>
+    </div>
+    <div ng-controller="KickstartModelSubMenuCtrl">
+        <div class="popover-wrapper clearfix">
+            <ul class="list step-types">
+                <li ng-repeat="stepType in insertState.types" class="header">
+
+                    <!-- Normal item Start-->
+                    <div ng-if="stepType.groupBy === undefined" ng-click="insertState.confirm(stepType)" class="menu-item">
+                        <stencil-step-item-icon stencil-item="stepType"></stencil-step-item-icon>
+                        <span style="margin-left:6px">{{stepType.name | translate}}</span>
+                    </div>
+                    <!-- Normal item End-->
+
+                    <!-- Sub Menu item Start-->
+                    <div ng-if="stepType.groupBy !== undefined" class="menu-item-submenu">
+                        <ul class="list step-types">
+                            <li ng-click="toggleGroup(stepType.groupBy)"  ng-class="{active: isGroupShown(stepType.groupBy)}">
+                                <i class="glyphicon" ng-class="{'glyphicon-chevron-right': !isGroupShown(stepType.groupBy), 'glyphicon-chevron-down': isGroupShown(stepType.groupBy)}"></i>
+                                <span style="margin-left:6px">{{stepType.groupBy | translate}}</span>
+                            </li>
+                            <li class="submenu-item" ng-repeat="subStepType in stepType.elements" ng-show="isGroupShown(stepType.groupBy)">
+                                <div ng-click="insertState.confirm(subStepType)">
+                                    <stencil-step-item-icon stencil-item="subStepType"></stencil-step-item-icon>
+                                    <span style="margin-left:6px">{{subStepType.name | translate}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Sub Menu item End-->
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

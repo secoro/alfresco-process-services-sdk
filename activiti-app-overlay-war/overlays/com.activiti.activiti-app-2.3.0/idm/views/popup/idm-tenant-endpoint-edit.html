@@ -1,0 +1,126 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title" ng-if="editEndpointConfiguration.id == null || editEndpointConfiguration.id == undefined">
+                    {{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.CREATE-ENDPOINT-TITLE' | translate}}
+                </h4>
+                <h4 class="modal-title" ng-if="editEndpointConfiguration.id != null && editEndpointConfiguration.id != undefined">
+                    {{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.EDIT-ENDPOINT-TITLE' | translate}}
+                </h4>
+            </div>
+
+            <div class="modal-body" ng-form="endpointForm">
+
+                <div class="form-group" ng-class="{'has-error': endpointForm.nameField.$invalid}">
+                    <label for="nameField">{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.ENDPOINT-NAME' | translate}}</label>
+                    <input type="text" id="nameField" name="nameField" class="form-control" autofocus
+                           ng-model="editEndpointConfiguration.name"
+                           placeholder="{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.PLACEHOLDER-ENDPOINT-NAME' | translate}}" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error': endpointForm.protocolField.$invalid}">
+                    <label for="protocolField">{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.ENDPOINT-PROTOCOL' | translate}}</label>
+                    <select id="protocolField" name="protocolField" class="form-control"
+                            ng-options="protocol.id as protocol.label for protocol in endPointProtocols"
+                            ng-model="editEndpointConfiguration.protocol"></select>
+
+                </div>
+                <div class="form-group" ng-class="{'has-error': endpointForm.hostField.$invalid}">
+                    <label for="hostField">{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.ENDPOINT-HOST' | translate}}</label>
+                    <input type="text" id="hostField" name="hostField" class="form-control" ng-model="editEndpointConfiguration.host"
+                           placeholder="{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.PLACEHOLDER-ENDPOINT-HOST' | translate}}" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error': endpointForm.portField.$invalid}">
+                    <label for="portField">{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.ENDPOINT-PORT' | translate}}</label>
+                    <input type="text" id="portField" name="portField" class="form-control" ng-model="editEndpointConfiguration.port"
+                           placeholder="{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.PLACEHOLDER-ENDPOINT-PORT' | translate}}"
+                           number-input-check ng-minlength="2" ng-maxlength="5">
+                </div>
+                <div class="form-group" ng-class="{'has-error': endpointForm.pathField.$invalid}">
+                    <label for="pathField">{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.ENDPOINT-PATH' | translate}}</label>
+                    <input type="text" id="pathField" name="pathField" class="form-control" ng-model="editEndpointConfiguration.path"
+                           placeholder="{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.PLACEHOLDER-ENDPOINT-PATH' | translate}}">
+                </div>
+                <div class="form-group">
+                    <label for="basicAuthField">{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.ENDPOINT-BASIC-AUTH' | translate}}</label>
+                    <select id="basicAuthField" class="form-control"
+                            ng-options="basicAuth.id as basicAuth.name for basicAuth in basicAuthConfigurations"
+                            ng-model="editEndpointConfiguration.basicAuthId">
+                        <option value="" label="{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.NO-BASIC-AUTH-SELECTED' | translate}}"></option>
+                    </select>
+                </div>
+                
+                <div class="form-group"
+					ng-controller="EndpointRequestHeadersController">
+					<button type="button" class="btn" style="margin-bottom: 10px" ng-click="showRequestHeaders = !showRequestHeaders">{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.REQUEST-HEADERS-LABEL' | translate}}</button>
+					<div ng-show="showRequestHeaders" class="row row-no-gutter">
+						<div class="col-xs-6">
+							<div style="max-height: 182px" class="dynamicTable" ui-grid="gridOptions" ui-grid-auto-resize
+								ui-grid-selection></div>
+							<div class="pull-right">
+								<div class="btn-group">
+									<a class="btn btn-icon btn-lg" rel="tooltip"
+										data-title="{{ACTION.MOVE.UP | translate}}"
+										ng-disabled="!selectedRequestHeader" data-placement="bottom"
+										data-original-title="" title="" ng-click="moveDefinitionUp()"><i
+										class="glyphicon glyphicon-arrow-up"></i></a> <a
+										class="btn btn-icon btn-lg" rel="tooltip"
+										data-title="{{ACTION.MOVE.DOWN | translate}}"
+										ng-disabled="!selectedRequestHeader" data-placement="bottom"
+										data-original-title="" title=""
+										ng-click="moveDefinitionDown()"><i
+										class="glyphicon glyphicon-arrow-down"></i></a>
+								</div>
+								<div class="btn-group">
+									<a class="btn btn-icon btn-lg" rel="tooltip"
+										data-title="{{ACTION.ADD | translate}}"
+										data-placement="bottom" data-original-title="" title=""
+										ng-click="addNewDefinition()"><i
+										class="glyphicon glyphicon-plus"></i></a> <a
+										class="btn btn-icon btn-lg" rel="tooltip"
+										data-title="{{ACTION.REMOVE | translate}}"
+										ng-disabled="!selectedRequestHeader" data-placement="bottom"
+										data-original-title="" title="" ng-click="removeDefinition()"><i
+										class="glyphicon glyphicon-minus"></i></a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-6">
+							<div ng-if="selectedRequestHeader" ng-form="columnDefdEditForm">
+								<div class="form-group"
+									ng-class="{'has-error': columnDefdEditForm.headerName.$invalid}">
+									<label for="headerName" translate="IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.REQUEST-HEADER-NAME"></label> <input type="text"
+										id="headerName" name="headerName" class="form-control"
+										ng-model="selectedRequestHeader.name" auto-focus
+										editor-input-check
+										placeholder="{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.REQUEST-HEADER-NAME-PALCEHOLDER' | translate}}"
+										required>
+								</div>
+								<div class="form-group"
+									ng-class="{'has-error': columnDefdEditForm.headerValue.$invalid}">
+									<label for="headerValue" translate="IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.REQUEST-HEADER-VALUE"></label> <input type="text"
+										id="headerValue" name="headerValue" class="form-control"
+										ng-model="selectedRequestHeader.value"
+										placeholder="{{'IDM.TENANT-MGMT.ENDPOINT_CONFIGURATOR.REQUEST-HEADER-VALUE-PALCEHOLDER' | translate}}">
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+                
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide()">{{'IDM.GENERAL.ACTION.CANCEL' | translate}}</button>
+                <button type="button" class="btn btn-primary" ng-disabled="endpointForm.$invalid || readOnly"
+                        ng-click="createOrUpdateEndpointConfiguration(editEndpointConfiguration); $hide()">{{'IDM.GENERAL.ACTION.SAVE' | translate}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

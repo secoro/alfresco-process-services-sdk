@@ -1,0 +1,74 @@
+
+<div class="container full">
+    <div class="row">
+        <div class="col-xs-4">&nbsp;</div>
+        <div class="col-xs-4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="simple-content-wrapper" ng-cloak>
+                <h2 translate="ACCOUNT.SIGNUP.TITLE"></h2>
+                <div class="alert" ng-show="model.success && !model.loading">
+                   <i class="glyphicon glyphicon-ok"></i>
+                   <span translate="ACCOUNT.SIGNUP.SUCCESS-MESSAGE"></span>
+                </div>
+                <div class="alert error" ng-show="model.error && !model.loading">
+                   <i class="glyphicon glyphicon-remove"></i>
+                   <span>{{model.error | translate}} </span>
+                </div>
+                
+                <form novalidate class="form clearfix"  name="signupform" id="signupform" ng-show="!model.success" ng-submit="submitForm(signupform.$valid)" role="form">
+                    <div class="seperator"><i class="glyphicon glyphicon-envelope"></i> {{'ACCOUNT.SIGNUP.ACCOUNT-SECTION' | translate}}</div>
+                    <div class="form-group" ng-class="{'has-error': !signupform.email.$valid && !signupform.email.$pristine}">
+                        <label for="email" class="control-label" translate="ACCOUNT.SIGNUP.EMAIL"></label>
+                        <input type="email" name="email" ng-disabled="model.loading" ng-required="true" class="form-control" id="email" placeholder="{{'ACCOUNT.SIGNUP.EMAIL-PLACEHOLDER' | translate}}" ng-model="model.email" autofocus>
+                    </div>
+                     <div class="form-group" ng-class="{'has-error': !signupform.password.$valid && !signupform.password.$pristine}">
+                        <label for="password" class="control-label" translate="ACCOUNT.SIGNUP.PASSWORD"></label>
+                        <input type="password" name="password" ng-disabled="model.loading" class="form-control" id="password" ng-model="model.password" ng-required="true"
+                            placeholder="{{'ACCOUNT.SIGNUP.PASSWORD-PLACEHOLDER' | translate}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordRepeat" class="control-label" translate="ACCOUNT.SIGNUP.PASSWORD-REPEAT"></label>
+                        <input type="password" name="passwordRepeat" ng-disabled="model.loading" class="form-control" id="passwordRepeat" ng-model="model.passwordRepeat" ng-required="true"
+                               placeholder="{{'ACCOUNT.SIGNUP.PASSWORD-PLACEHOLDER' | translate}}">
+                    </div>
+                    <div class="alert error" ng-show="!model.loading && passwordsNotMatching()">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        <span>{{'ACCOUNT.SIGNUP.PASSWORDS-NOT-EQUAL' | translate}}</span>
+                    </div>
+                    <div class="alert error" ng-show="!model.loading && passwordsInvalidMinLength()">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        <span>{{'ACCOUNT.SIGNUP.PASSWORDS-MIN-LENGTH' | translate : {minLength:passwordMinLength} }}</span>
+                    </div>
+                    <div class="seperator"><i class="glyphicon glyphicon-user"></i> {{'ACCOUNT.SIGNUP.PERSONAL-SECTION' | translate}}</div>
+                    <div class="form-group" ng-class="{'has-error': !signupform.firstname.$valid && !signupform.firstname.$pristine}">
+                        <label for="firstname" class="control-label" translate="ACCOUNT.SIGNUP.FIRSTNAME"></label>
+                        <input type="text" name="firstname" class="form-control" ng-disabled="model.loading" ng-required="true" id="firstname" placeholder="{{'ACCOUNT.SIGNUP.FIRSTNAME-PLACEHOLDER' | translate}}" ng-model="model.firstName">
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': !signupform.lastname.$valid && !signupform.lastname.$pristine}">
+                        <label for="firstname" class="control-label" translate="ACCOUNT.SIGNUP.LASTNAME"></label>
+                        <input type="text" class="form-control" ng-disabled="model.loading" ng-required="true"  id="lastname" name="lastname" placeholder="{{'ACCOUNT.SIGNUP.LASTNAME-PLACEHOLDER' | translate}}" ng-model="model.lastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="company" class="control-label" translate="ACCOUNT.SIGNUP.COMPANY"></label>
+                        <input type="text" name="company" ng-disabled="model.loading" class="form-control" id="company" placeholder="{{'ACCOUNT.SIGNUP.COMPANY-PLACEHOLDER' | translate}}" ng-model="model.company">
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="licenseTerms" ng-disabled="model.loading" class="form-control" id="licenseTerms" ng-model="model.licenseTerms">{{'ACCOUNT.SIGNUP.LICENSETERMS' | translate}} (<a href="http://www.alfresco.com/legal/agreements/cloud" target="_blank">link</a>)</input>
+                    </div>
+                    
+                    <div class="btn-group pull-right">
+                        <button type="submit" class="btn btn-default" ng-click="login()" translate="ACCOUNT.SIGNUP.CONFIRM" ng-disabled="!signupform.$valid || model.loading || passwordsNotMatching() || passwordsInvalidMinLength() || !model.licenseTerms"></button>
+                    </div>
+                    <div class="pull-right loading" ng-show="model.loading">
+                        <div class="l1"></div><div class="l2"></div><div class="l2"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>

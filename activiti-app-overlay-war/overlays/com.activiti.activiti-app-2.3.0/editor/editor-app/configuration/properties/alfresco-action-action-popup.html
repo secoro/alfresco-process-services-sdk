@@ -1,0 +1,84 @@
+<div class="modal" ng-controller="AlfrescoActionActionPopupCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h3>{{'PROPERTY.PROPERTY.EDIT.TITLE' | translate}} "{{property.title | translate}}"</h3>
+            </div>
+            <div class="modal-body">
+
+                <div class="detail-group clearfix">
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">
+                            <label>Action</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="input-group">
+                                <input class="form-control" type="text" ng-model="model.actionName" name="propertyId" editor-input-check>
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right" activiti-fix-dropdown-bug>
+                                        <li ng-repeat="preset in presets">
+                                            <a href="#" ng-click="onPresetSelected($event, preset)">
+                                                {{preset.title}}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-group clearfix">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label>{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAMETERS' | translate}}</label>
+                            <div style="padding-top:5px;" class="row row-no-gutter">
+                                <div class="col-xs-6">
+                                    <div class="kis-listener-grid" ui-grid="gridOptions" ui-grid-auto-resize ui-grid-selection></div>
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <a class="btn btn-icon btn-lg" id="add-request-header-button" ng-click="addNewActionParam()">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                            </a>
+                                            <a class="btn btn-icon btn-lg" ng-disabled="!selectedActionParam" ng-click="removeActionParam()">
+                                                <i class="glyphicon glyphicon-minus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div ng-if="selectedActionParam" ng-form="actionParamsForm">
+                                        <div class="form-group"
+                                             ng-class="{'has-error': actionParamsForm.paramName.$invalid}">
+                                            <label for="paramName">{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-NAME' | translate}}</label>
+                                            <input type="text" id="paramName" name="paramName" class="form-control"
+                                                   ng-model="selectedActionParam.name" ng-required="true"
+                                                   placeholder="{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-NAME' | translate}}">
+                                        </div>
+                                        <div class="form-group"
+                                             ng-class="{'has-error': actionParamsForm.paramValue.$invalid}">
+                                            <label for="paramValue">{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-VALUE' | translate}}</label>
+                                            <input type="text" id="paramValue" name="paramValue" ng-required="true"
+                                                   class="form-control" ng-model="selectedActionParam.value"
+                                                   placeholder="{{'PROCESS-BUILDER.CALL-ALFRESCO-ACTION-STEP.TAB.ACTION.PARAM-VALUE' | translate}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button ng-click="close()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" ng-disabled="readOnly" class="btn btn-primary" translate >ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

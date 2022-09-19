@@ -1,0 +1,43 @@
+<div class="popover" click-anywhere="$hide()" ignore-class="toggle-email-template-select">
+    <div class="arrow"></div>
+    <div class="popover-header">
+        <span class="title">{{title && (title | translate) || ('PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.POPUP.TITLE' | translate)}}</span>
+
+        <div class="actions">
+            <a ng-click="$hide()" title="{{'GENERAL.ACTION.CLOSE' | translate}}" class="glyphicon glyphicon-remove"></a>
+        </div>
+    </div>
+
+    <div class="popover-wrapper">
+
+        <div>
+            <div class="form-group">
+                <input class="form-control" type="text" id="email-template-select-input" placeholder="{{ 'PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.POPUP.SEARCH-TEMPLATE' | translate }}" auto-focus
+                       custom-keys up-pressed="previousTemplate()" down-pressed="nextTemplate()" enter-pressed="confirmTemplate()"
+                       delayed-model="popupModel.filter" delay="200"/>
+                <div class="subtle" translate="GENERAL.MESSAGE.SELECT-PEOPLE-HELP" style="padding: 5px 0 0 1px;"></div>
+            </div>
+            <h4>
+                <span translate="PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.POPUP.MATCHING-TEMPLATES" ng-if="!popupModel.showRecentResults"></span>
+            </h4>
+            <div style="overflow: auto;">
+                <div class="no-results" ng-show="popupModel.templateResults.length == 0">
+                    <span translate="PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.POPUP.NO-MATCHING-RESULTS"></span>
+                </div>
+                <div loading="popupModel.loading"></div>
+                <ul class="simple-list selectable pack" ng-show="popupModel.templateResults.length > 0" scroll-to-active scroll-to-active-model="popupModel.selectedTemplate.id">
+                    <li ng-click="confirmTemplate(template);" ng-repeat="template in popupModel.templateResults"
+                        ng-class="{'active': template.id === popupModel.selectedTemplate.id}">
+                        <i class="glyphicon glyphicon-file"></i>&nbsp;<span>{{template.name}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+            <div class="col-xs-6"><a ng-click="previousPage()" ng-show="popupModel.page > 0">&laquo; {{'PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.POPUP.PREVIOUS' | translate}} {{popupModel.pageSize}}</a></div>
+            <div class="col-xs-6" style="text-align: right;"><a ng-click="nextPage()" ng-show="popupModel.moreTemplates">{{'PROCESS-BUILDER.EMAIL-TEMPLATE-SOURCE.POPUP.NEXT' | translate}} {{popupModel.pageSize}} &raquo;</a></div>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
